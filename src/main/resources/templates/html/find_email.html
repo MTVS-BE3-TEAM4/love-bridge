@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<meta
+		content="text/html;charset=utf-8"
+		http-equiv="Content-Type"
+	/>
+	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+	<meta
+		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+		name="viewport"
+	/>
+	<head>
+		<meta charset="UTF-8" />
+		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+		<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+		<title>test</title>
+		<link href="../css/reset.css" rel="stylesheet" type="text/css" />
+		<link href="../css/style.css" rel="stylesheet" type="text/css" />
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+		<script defer="defer" src="../js/include.js"></script>
+	</head>
+	<body>
+<!--	헤더-->
+<header data-include-file="./include/header.html" class="header includeJs">
+</header>
+
+		<div class="container">
+			<div class="section mobile">
+				<div class="section-tit">
+					이메일 찾기
+				</div>
+				<label class="input-label">이메일 확인</label>
+				<div class="input-wrap">
+					<input
+							type="text"
+							class="input-text"
+							value="example@email.com"
+					/>
+				</div>
+
+				<div class="btn-wrap m-t--40">
+					<button
+							type="button"
+							class="btn btn-full btn-round btn-primary"
+							onclick="location.href='refunds_7.html'"
+					>
+						이메일 찾기
+					</button>
+				</div>
+			</div>
+		</div>
+
+<!--		이메일 맞는지 확인헤주는 모달 창-->
+		<div class="modal show">
+			<div class="modal-dim"></div>
+			<div class="modal-con bottom">
+				<label class=" type2">
+					<span class="box"></span>
+					<span class="text">가입된 이메일 입니다.</span>
+				</label>
+
+				<div class="btn-wrap">
+					<button
+							type="button"
+							class="btn btn-full btn-primary btn-round"
+							onclick="location.href='refunds_4.html'"
+							disabled
+					>
+						로그인
+					</button>
+				</div>
+			</div>
+		</div>
+
+<!--		푸터-->
+<footer data-include-file="./include/footer.html" class="footer includeJs">
+</footer>
+	</body>
+</html>
