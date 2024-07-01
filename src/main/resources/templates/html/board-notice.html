@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>게시판</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f0f2f5;
+        margin: 0;
+        padding: 20px;
+      }
+      table {
+        margin: auto;
+        width: 80%;
+        border-radius: 5px;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      .header {
+        background-color: #446ff4;
+        color: #fff;
+        text-align: center;
+      }
+      .table td,
+      .table th {
+        border-bottom: 1px lightgray solid;
+        height: 40px;
+        font-size: 16px;
+        padding: 8px;
+      }
+      .table .num {
+        width: 10%;
+      }
+      .table .title {
+        width: 50%;
+      }
+      .body {
+        text-align: center;
+      }
+      .body .title {
+        text-align: left;
+      }
+      .body:hover {
+        background-color: #f1f1f1;
+      }
+      button,
+      .nav-button {
+        height: 45px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        padding-left: 10px;
+        background-color: #446ff4;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      button:hover,
+      .nav-button:hover {
+        background-color: #365bb3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      button:active,
+      .nav-button:active {
+        background-color: #2d4a91;
+      }
+      h2 {
+        font-weight: 700;
+        font-size: 24px;
+      }
+      .pagination {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .pagination button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        margin: 2px;
+        background-color: #446ff4;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .pagination button:hover {
+        background-color: #365bb3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .pagination button:active {
+        background-color: #2d4a91;
+      }
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .nav-right {
+        display: flex;
+        gap: 10px;
+      }
+      .write-button {
+        position: fixed;
+        right: 20px;
+        bottom: 20px;
+        width: 150px;
+        height: 45px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        padding-left: 10px;
+        background-color: #446ff4;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .write-button:hover {
+        background-color: #365bb3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .write-button:active {
+        background-color: #2d4a91;
+      }
+      .message {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #444;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nav">
+      <div class="nav-right">
+        <button
+          class="nav-button"
+          id="login-logout-btn"
+          onclick="toggleLogin()"
+        >
+          로그인
+        </button>
+        <button
+          class="nav-button"
+          id="mypage-btn"
+          style="display: none"
+          onclick="goToMyPage()"
+        >
+          마이페이지
+        </button>
+      </div>
+    </div>
+    <table class="table">
+      <tr>
+        <td colspan="4"><h2>게시판</h2></td>
+      </tr>
+      <tr class="header">
+        <td class="num">번호</td>
+        <td class="title">제목</td>
+        <td>작성자</td>
+        <td>작성날짜</td>
+      </tr>
+      <tbody id="table-body"></tbody>
+    </table>
+    <div class="pagination" id="pagination"></div>
+    <button class="write-button" onclick="location.href='write.html'">
+      글쓰기
+    </button>
+    <div class="message" id="message">로그인 하세요</div>
+    <script>
+      const itemsPerPage = 10;
+      const totalItems = 100; // 총 게시물 수 (여기서는 100개로 가정)
+      const totalPages = Math.ceil(totalItems / itemsPerPage);
+      const tableBody = document.getElementById("table-body");
+      const pagination = document.getElementById("pagination");
+      const loginLogoutBtn = document.getElementById("login-logout-btn");
+      const mypageBtn = document.getElementById("mypage-btn");
+      const messageBox = document.getElementById("message");
+      let isLoggedIn = false;
+
+      function renderTable(page) {
+        tableBody.innerHTML = "";
+        const start = (page - 1) * itemsPerPage;
+        const end = start + itemsPerPage;
+        for (let i = start; i < end; i++) {
+          if (i >= totalItems) break;
+          const row = document.createElement("tr");
+          row.className = "body";
+          row.innerHTML = `
+            <td>${i + 1}</td>
+            <td class="title">제목입니다.</td>
+            <td>작성자</td>
+            <td>24-01-${20 - (i % 10)}</td>
+          `;
+          tableBody.appendChild(row);
+        }
+      }
+
+      function renderPagination() {
+        pagination.innerHTML = "";
+        for (let i = 1; i <= totalPages; i++) {
+          const button = document.createElement("button");
+          button.innerText = i;
+          button.onclick = function () {
+            renderTable(i);
+          };
+          pagination.appendChild(button);
+        }
+      }
+
+      function toggleLogin() {
+        isLoggedIn = !isLoggedIn;
+        if (isLoggedIn) {
+          loginLogoutBtn.innerText = "로그아웃";
+          mypageBtn.style.display = "inline-block";
+        } else {
+          loginLogoutBtn.innerText = "로그인";
+          mypageBtn.style.display = "none";
+        }
+      }
+
+      function showMessage() {
+        messageBox.style.display = "block";
+        setTimeout(() => {
+          messageBox.style.display = "none";
+        }, 2000);
+      }
+
+      function goToMyPage() {
+        if (isLoggedIn) {
+          location.href = "mypage.html";
+        } else {
+          showMessage();
+        }
+      }
+
+      renderTable(1);
+      renderPagination();
+    </script>
+  </body>
+</html>
