@@ -20,7 +20,7 @@
 
     gsap.registerPlugin(ScrollTrigger);
 
-    const textElements = gsap.utils.toArray('.main-text');
+    const textElements = gsap.utils.toArray('.hover-box');
 
     textElements.forEach(text => {
         gsap.to(text, {
@@ -34,30 +34,6 @@
             },
         });
     });
-
-    const heart = document.getElementById('heart'); 
-    const heartMsg = document.getElementById('message');
-    const heartSwitch = function() {
-        if(heart.classList.contains('on-heart')) {
-        heart.classList.remove('on-heart');
-        heart.classList.add('off-heart');
-        heartMsg.textContent = ':(';
-        heartMsg.classList.remove('show-message');
-        setTimeout(() => {
-            heartMsg.classList.add('show-message');
-        }, 10);
-        } else {
-        heart.classList.remove('off-heart');
-        heart.classList.add('on-heart');
-        heartMsg.textContent = ':)';
-        heartMsg.classList.remove('show-message');
-        setTimeout(() => {
-            heartMsg.classList.add('show-message');
-        }, 10);
-        }
-    }
-
-    heart.addEventListener('click', heartSwitch); 
 
 var sakura = new Sakura('body', {
     colors: [

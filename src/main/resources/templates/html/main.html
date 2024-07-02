@@ -1,51 +1,117 @@
 <!DOCTYPE html>
 <html lang="ko">
-    <head>
-        <meta charset="UTF-8" />
-        <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-        <meta content="IE=edge" http-equiv="X-UA-Compatible" />
-        <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
-        <title>test</title>
-        <link href="../css/reset.css" rel="stylesheet" type="text/css" />
-        <link href="../css/style.css" rel="stylesheet" type="text/css" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
-        <script defer="defer" src="../js/include.js"></script>
-    </head>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+  <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+  <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+  <title>Love Bridge</title>
+  <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+  <link href="../css/style.css" rel="stylesheet" type="text/css" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+  <script defer="defer" src="../js/include.js"></script>
+</head>
 
 <body>
-    <!-- header -->
-    <header data-include-file="./include/header.html" class="header includeJs">
-    </header>
-    <!-- //header -->
+  <!-- header -->
+  <header data-include-file="./include/header.html" class="header includeJs">
+  </header>
+  <!-- //header -->
 
-    <section class="section main">
-        <div class="heart-wrap">
-            <p class="heart-click">CLICK</p>
-            <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
-            <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-            </svg>
-            <p id="message">&nbsp;</p>
-        </div> 
-    </section>
-    
-    <section class="section main">
-        <ul class="text-wrap">
-            <li><p class="main-text">LOVE BRIDGE<span>COUPLE'S DIARY</span></p></li>
-            <li><p class="main-text">CALENDAR<span>ALBUM</span></p></li>
-            <li><p class="main-text">CHATTING<span>MESSAGE</span></p></li>
-            <li><p class="main-text">TIME CAPSULE<span><a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">흠</a></span></p></li>
-            <li><p class="main-text">Q&amp;A<span><a href="https://twitter.com/juxtopposed" target="_blank">LET'S CONNECT</a></span></p></li>
-        </ul>
-    </section>
-    
-    <!-- footer -->
-    <footer data-include-file="./include/footer.html" class="footer includeJs">
-    </footer>
-    <!-- //footer -->
+  <section class="section main">
+    <div class="heart-wrap">
+      <p class="heart-click">CLICK</p>
+      <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
+        <path
+          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+      </svg>
+      <p id="message">&nbsp;</p>
+    </div>
+  </section>
+
+  <section class="section main">
+    <ul class="text-wrap">
+      <li>
+        <p class="hover-box">
+          <span class="main-text">MYPAGE</span>
+          <span class="link-text">
+            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">마이페이지</a>
+            <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </p>
+      </li>
+      <li>
+        <p class="hover-box">
+          <span class="main-text">TIME CAPSULE</span>
+          <span class="link-text">
+            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">타임캡슐</a>
+            <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </p>
+      </li>
+      <li>
+        <p class="hover-box">
+          <span class="main-text">ALBUM</span>
+          <span class="link-text">
+            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">앨범</a>
+            <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </p>
+      </li>
+      <li>
+        <p class="hover-box">
+          <span class="main-text">CHATTING</span>
+          <span class="link-text">
+            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">채팅</a>
+            <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </p>
+      </li>
+      <li>
+        <p class="hover-box">
+          <span class="main-text">NOTICE</span>
+          <span class="link-text">
+            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">공지사항</a>
+            <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
+          </span>
+        </p>
+      </li>
+    </ul>
+  </section>
+
+  <!-- footer -->
+  <footer data-include-file="./include/footer.html" class="footer includeJs">
+  </footer>
+  <!-- //footer -->
+   <script>
+    const heart = document.getElementById('heart'); 
+    const heartMsg = document.getElementById('message');
+    const heartSwitch = function() {
+        if(heart.classList.contains('on-heart')) {
+        heart.classList.remove('on-heart');
+        heart.classList.add('off-heart');
+        heartMsg.textContent = ':(';
+        heartMsg.classList.remove('show-message');
+        setTimeout(() => {
+            heartMsg.classList.add('show-message');
+        }, 10);
+        } else {
+        heart.classList.remove('off-heart');
+        heart.classList.add('on-heart');
+        heartMsg.textContent = ':)';
+        heartMsg.classList.remove('show-message');
+        setTimeout(() => {
+            heartMsg.classList.add('show-message');
+        }, 10);
+        }
+    }
+
+    heart.addEventListener('click', heartSwitch); 
+   </script>
 </body>
-
 </html>
