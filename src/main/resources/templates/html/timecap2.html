@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ko">
+<meta
+        content="text/html;charset=utf-8"
+        http-equiv="Content-Type"
+/>
+<meta content="IE=edge" http-equiv="X-UA-Compatible" />
+<meta
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+        name="viewport"
+/>
+<head>
+    <meta charset="UTF-8" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <title>Love Bridge</title>
+    <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+    <script defer="defer" src="../js/include.js"></script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        .capsule{
+            margin:10px;
+            border:1px solid #ddd;
+            border-radius:50px;
+            overflow:hidden;
+            width: 350px;
+            background-color:#fff
+        }
+        .capsule img{
+            width:100%;
+            cursor:pointer;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: inline;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+
+        }
+        .container {
+            margin-top:150px;
+            margin-bottom: 150px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 3000px;
+        }
+        .title {
+
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-group label {
+            width: 80px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group textarea {
+            resize: vertical;
+        }
+        .upload-section {
+            border: 2px dashed #ff7e81;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .upload-section:hover {
+            background-color: #ffe6e6;
+        }
+        .upload-section input[type="file"] {
+            display: none;
+        }
+        .preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .preview img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+            position: relative;
+        }
+        .preview .remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff4a4a;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .submit-button {
+            background-color: #ff7e81;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        #texta{
+
+            font-size: 20px;
+
+        }
+    </style>
+</head>
+<body>
+<header data-include-file="./include/header.html" class="header includeJs">
+</header>
+
+<div class="container">
+    <div class="title">타임캡슐 게시물 생성</div>
+    <div class="form-group">
+        <label for="date" id="texta">봉인일:</label>
+        <input type="date" id="date">
+    </div>
+    <div class="form-group">
+        <label for="open-date" id="texta">개봉일:</label>
+        <input type="date" id="open-date">
+    </div>
+    <div class="form-group">
+        <label for="title" id="texta">제목:</label>
+        <input type="text" id="title" placeholder="우리의 타임캡슐">
+    </div>
+    <div class="form-group">
+        <label for="content" id="texta">내용:</label>
+        <textarea id="content" rows="4" placeholder="1년 후 봉인한 타임캡슐을 열 생각하니 벌써부터 두근두근"></textarea>
+    </div>
+    <div class="upload-section" onclick="document.getElementById('file-input').click();">
+        <input type="file" id="file-input" accept="image/*" multiple onchange="previewImages()">
+        <p>사진 업로드</p>
+    </div>
+    <div class="preview" id="preview"></div>
+    <button class="submit-button" onclick="submitPost()">게시하기</button>
+</div>
+
+<!-- footer -->
+
+<!-- //footer -->
+</body>
+<footer data-include-file="./include/footer.html" class="footer includeJs">
+</footer>
+
+<script>
+    function previewImages() {
+        const preview = document.getElementById('preview');
+        const files = document.getElementById('file-input').files;
+        preview.innerHTML = '';
+
+        Array.from(files).forEach((file, index) => {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const img = document.createElement('img');
+                img.src = e.target.result;
+
+                const removeButton = document.createElement('button');
+                removeButton.className = 'remove';
+                removeButton.innerText = 'X';
+                removeButton.onclick = () => removeImage(index);
+
+                const imgContainer = document.createElement('div');
+                imgContainer.style.position = 'relative';
+                imgContainer.appendChild(img);
+                imgContainer.appendChild(removeButton);
+
+                preview.appendChild(imgContainer);
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    function removeImage(index) {
+        const files = Array.from(document.getElementById('file-input').files);
+        files.splice(index, 1);
+
+        const dataTransfer = new DataTransfer();
+        files.forEach(file => dataTransfer.items.add(file));
+
+        document.getElementById('file-input').files = dataTransfer.files;
+        previewImages();
+    }
+
+    function submitPost() {
+        alert('게시물이 등록되었습니다!');
+        // 여기에 서버로 데이터를 전송하는 코드를 추가할 수 있습니다.
+    }
+</script>
+</html>
