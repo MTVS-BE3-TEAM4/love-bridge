@@ -22,16 +22,42 @@
   <header data-include-file="./include/header.html" class="header includeJs">
   </header>
   <!-- //header -->
+  <div class="sakura-bg"></div>
 
   <section class="section main">
-    <div class="heart-wrap">
-      <p class="heart-click">CLICK</p>
-      <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
-        <path
-          d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-      </svg>
-      <p id="message">&nbsp;</p>
+    <div class="main-visual">
+      <div class="heart-wrap">
+        <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
+          <path
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+        <svg xmlns="http://www.w3.org/2000/svg" id="heart" viewBox="0 0 24 24">
+          <path
+            d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        </svg>
+      </div>
+      <div class="item-a">
+        <div class="picture-line"><img src="../images/picture_line.png" alt="" /></div>
+        <div class="picture">
+          <img src="../images/picture_01.png" alt="사진1" />
+          <img src="../images/picture_02.png" alt="사진2" />
+          <img src="../images/picture_03.png" alt="사진3" />
+          <img src="../images/picture_04.png" alt="사진4" />
+          <img src="../images/picture_05.png" alt="사진5" />
+        </div>
+      </div>
+      <div class="item-b">
+        <div class="camera"><img src="../images/camera.png" alt="카메라" /></div>
+        <div class="character woman"><img src="../images/character_02.png" alt="여자캐릭터" /></div>
+        <div class="center-item">
+          <img src="../images/cat_01.png" alt="고양이1" />
+          <img src="../images/book.png" alt="책" class="book-img" />
+        </div>
+        <div class="character man"><img src="../images/character_01.png" alt="남자캐릭터" /></div>
+        <div class="cat"><img src="../images/cat_02.png" alt="고양이2" /></div>
+      </div>
     </div>
+    
   </section>
 
   <section class="section main">
@@ -40,7 +66,7 @@
         <p class="hover-box">
           <span class="main-text">MYPAGE</span>
           <span class="link-text">
-            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">마이페이지</a>
+            <a href="#" target="_blank">마이페이지</a>
             <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
           </span>
         </p>
@@ -49,7 +75,7 @@
         <p class="hover-box">
           <span class="main-text">TIME CAPSULE</span>
           <span class="link-text">
-            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">타임캡슐</a>
+            <a href="#" target="_blank">타임캡슐</a>
             <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
           </span>
         </p>
@@ -58,7 +84,7 @@
         <p class="hover-box">
           <span class="main-text">ALBUM</span>
           <span class="link-text">
-            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">앨범</a>
+            <a href="#" target="_blank">앨범</a>
             <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
           </span>
         </p>
@@ -67,7 +93,7 @@
         <p class="hover-box">
           <span class="main-text">CHATTING</span>
           <span class="link-text">
-            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">채팅</a>
+            <a href="#" target="_blank">채팅</a>
             <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
           </span>
         </p>
@@ -76,7 +102,7 @@
         <p class="hover-box">
           <span class="main-text">NOTICE</span>
           <span class="link-text">
-            <a href="https://stacksorted.com/text-effects/minh-pham" target="_blank">공지사항</a>
+            <a href="#" target="_blank">공지사항</a>
             <span class="arrow-text"><span>바로가기</span><i class="fa-solid fa-arrow-right"></i></span>
           </span>
         </p>
@@ -88,30 +114,5 @@
   <footer data-include-file="./include/footer.html" class="footer includeJs">
   </footer>
   <!-- //footer -->
-   <script>
-    const heart = document.getElementById('heart'); 
-    const heartMsg = document.getElementById('message');
-    const heartSwitch = function() {
-        if(heart.classList.contains('on-heart')) {
-        heart.classList.remove('on-heart');
-        heart.classList.add('off-heart');
-        heartMsg.textContent = ':(';
-        heartMsg.classList.remove('show-message');
-        setTimeout(() => {
-            heartMsg.classList.add('show-message');
-        }, 10);
-        } else {
-        heart.classList.remove('off-heart');
-        heart.classList.add('on-heart');
-        heartMsg.textContent = ':)';
-        heartMsg.classList.remove('show-message');
-        setTimeout(() => {
-            heartMsg.classList.add('show-message');
-        }, 10);
-        }
-    }
-
-    heart.addEventListener('click', heartSwitch); 
-   </script>
 </body>
 </html>

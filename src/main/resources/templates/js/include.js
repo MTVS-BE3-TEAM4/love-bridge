@@ -45,10 +45,8 @@
         // scriptElement.src = 'otherScript.js';
         scriptElement.src = '../js/sakura.js'
         scriptElement2.src = '../js/main.js'
-        scriptElement3.src = '../js/sakura.js'
         document.head.appendChild(scriptElement);
         document.head.appendChild(scriptElement2);
-        document.head.appendChild(scriptElement3);
     }
     
 

@@ -1,56 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
-	<meta
-		content="text/html;charset=utf-8"
-		http-equiv="Content-Type"
-	/>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
 	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-	<meta
-		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-		name="viewport"
-	/>
-	<head>
-		<meta charset="UTF-8" />
-		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-		<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
-		<title>Love Bridge</title>
-		<link href="../css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
-		<script defer="defer" src="../js/include.js"></script>
-	</head>
-	<body>
+	<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+		name="viewport" />
+	<title>Love Bridge</title>
+	<link href="../css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+		type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+	<script defer="defer" src="../js/include.js"></script>
+</head>
+
+<body>
 	<header data-include-file="./include/header.html" class="header includeJs">
 	</header>
 
-		<div class="container">
-			<div class="section join complete">
-				<div class="icon-clap"></div>
-				<span class="txt-c--primary">가입 완료!</span>
-				<div class="tit">혁진쨩님, 환영해요</div>
-				<p>
-					이제 연인과 일상을 공유해봐요!<br />
-				</p>
+	<div class="container">
+		<section class="section join complete">
+			<i class="fa-regular fa-circle-check"></i>
+			<p class="tit">혁진쨩님, 환영해요</p>
+			<p>이제 연인과 일상을 공유해봐요!</p>
 
-				<div class="btn-wrap">
-					<button
-						type="button"
-						class="btn btn-full btn-round btn-primary"
-						onclick="location.href='certification_1.html'"
-					>
-						일상 공유하기
-					</button>
-				</div>
+			<div class="btn-wrap">
+				<button type="button" class="btn btn-full btn-pink"
+					onclick="location.href='certification_1.html'">
+					일상 공유하기
+				</button>
 			</div>
-		</div>
+		</section>
+	</div>
 
-<!--		푸터-->
 	<footer data-include-file="./include/footer.html" class="footer includeJs">
 	</footer>
-	</body>
+</body>
+
 </html>

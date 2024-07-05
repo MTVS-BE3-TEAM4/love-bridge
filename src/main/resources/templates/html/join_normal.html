@@ -1,68 +1,45 @@
 <!DOCTYPE html>
 <html lang="ko">
-	<meta
-		content="text/html;charset=utf-8"
-		http-equiv="Content-Type"
-	/>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
 	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-	<meta
-		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-		name="viewport"
-	/>
-	<head>
-		<meta charset="UTF-8" />
-		<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-		<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-		<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
-		<title>Love Bridge</title>
-		<link href="../css/reset.css" rel="stylesheet" type="text/css" />
-		<link href="../css/style.css" rel="stylesheet" type="text/css" />
-		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-		<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
-		<script defer="defer" src="../js/include.js"></script>
-	</head>
+	<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+		name="viewport" />
+	<title>Love Bridge</title>
+	<link href="../css/reset.css" rel="stylesheet" type="text/css" />
+	<link href="../css/style.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+		type="text/css" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+	<script defer="defer" src="../js/include.js"></script>
+</head>
 
-	<body>
-<!--	헤더-->
-<header data-include-file="./include/header.html" class="header includeJs">
-</header>
+<body>
+	<header data-include-file="./include/header.html" class="header includeJs">
+	</header>
 
-		<div class="container">
-			<div class="section join">
-				<div class="section-tit">기본 정보</div>
-				<form method="post" action="/joinProc" name="joinForm">
+	<div class="container">
+		<section class="section join">
+			<p class="section-tit">기본 정보</p>
+			<form method="post" action="/joinProc" name="joinForm">
 
 				<label class="input-label required">이메일</label>
 				<div class="input-wrap">
-					<input
-						type="text"
-						class="input-text"
-						placeholder="‘@’ 포함 모두 입력해 주세요."
-						name = "email"
-					/>
+					<input type="text" class="input-text" placeholder="‘@’ 포함 모두 입력해 주세요." name="email" />
 				</div>
 
 				<label class="input-label required">비밀번호</label>
 				<div class="input-wrap">
-					<input
-						type="password"
-						class="input-text"
-						placeholder="영문+숫자+특수문자 조합으로 입력해 주세요."
-						name = "password"
-					/>
+					<input type="password" class="input-text" placeholder="영문+숫자+특수문자 조합으로 입력해 주세요." name="password" />
 				</div>
-				<label class="input-label required"
-					>비밀번호 재입력</label
-				>
+				<label class="input-label required">비밀번호 재입력</label>
 				<div class="input-wrap">
-					<input
-						type="password"
-						class="input-text"
-						placeholder="영문+숫자+특수문자 조합으로 입력해 주세요."
-					/>
+					<input type="password" class="input-text" placeholder="영문+숫자+특수문자 조합으로 입력해 주세요." />
 				</div>
 				<div class="input-guide error">
 					비밀번호가 일치하지 않습니다.
@@ -70,45 +47,30 @@
 
 				<label class="input-label required">애칭</label>
 				<div class="input-wrap">
-					<input
-							type="text"
-							class="input-text"
-							placeholder="혁진쨩♥"
-							name = "nickname"
-					/>
+					<input type="text" class="input-text" placeholder="혁진쨩♥" name="nickname" />
 				</div>
 
-					<label class="input-label required">생년월일</label>
-					<div class="input-wrap">
-						<input
-								type="text"
-								class="input-text"
-								placeholder="1998-12-12"
-								name = "birth-year"
-								oninput="localAutoHyphen(this)" maxlength="10"
-						/>
+				<label class="input-label required">생년월일</label>
+				<div class="input-wrap">
+					<input type="text" class="input-text" placeholder="1998-12-12" name="birth-year"
+						oninput="localAutoHyphen(this)" maxlength="10" />
 
-					</div>
+				</div>
 
 
-				<div class="section-sub">
-					사이트 이용을 위한 <br />
-					약관에 <span class="txt-c--primary">동의</span>해
-					주세요.
+				<div class="section-sub mg-t--40">
+					약관동의
 				</div>
 				<div class="agree">
-					<div class="top">
-						<span class="txt-c--primary">[필수]</span>
+					<div class="agree-tit">
+						<span class="txt-c--pink">[필수]</span>
 						이용약관
-						
 					</div>
-					<div class="line">
+					<div class="agree-input">
 						<label class="input-checkbox">
 							<input type="checkbox" />
 							<span class="check square"></span>
-							<span class="text"
-								>개인정보 수집 및 이용에 대한 안내</span
-							>
+							<span class="text">개인정보 수집 및 이용에 대한 안내</span>
 						</label>
 					</div>
 					<div class="scroll-box">
@@ -117,12 +79,12 @@
 						</div>
 						<pre></pre>
 					</div>
-				
-					<div class="top m-t--40">
+
+					<div class="agree-tit mg-t--40">
 						<span class="txt-c--grey">[선택]</span> 이메일
 						수신 동의
 					</div>
-					<div class="line">
+					<div class="agree-input">
 						<label class="input-checkbox">
 							<input type="checkbox" />
 							<span class="check square"></span>
@@ -130,43 +92,34 @@
 						</label>
 					</div>
 				</div>
-				<div class="btn-wrap type2 m-t--40">
-					<button
-						type="button"
-						class="btn btn-half btn-round btn-grey"
-						onclick="location.href='login.html'"
-					>
+				<div class="btn-wrap type2 mg-t40">
+					<button type="button" class="btn btn-half btn-line" onclick="location.href='login.html'">
 						취소
 					</button>
-					<button
-						type="submit"
-						class="btn btn-half type2 btn-round btn-primary"
-						onclick="location.href='join_complete.html'"
-					>
+					<button type="submit" class="btn btn-half type2 btn-pink"
+						onclick="location.href='join_complete.html'">
 						가입하기
 					</button>
 				</div>
+			</form>
+		</section>
+	</div>
+	
+	<footer data-include-file="./include/footer.html" class="footer includeJs">
+	</footer>
+	<script>
+		const localAutoHyphen = (target) => {
+			target.value = target.value
+				.replace(/[^0-9]/g, '')
+				.replace(/^(\d{2,4})(\d{1,2})(\d{1,2})$/, `$1-$2-$3`);
+		}
 
-				</form>
+		const phoneAutoHyphen = (target) => {
+			target.value = target.value
+				.replace(/[^0-9]/g, '')
+				.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+		}
+	</script>
+</body>
 
-
-			</div>
-		</div>
-<!--푸터-->
-<footer data-include-file="./include/footer.html" class="footer includeJs">
-</footer>
-<script>
-	const localAutoHyphen = (target) => {
-		target.value = target.value
-		.replace(/[^0-9]/g, '')
-		.replace(/^(\d{2,4})(\d{1,2})(\d{1,2})$/, `$1-$2-$3`);
-	}
-
-	const phoneAutoHyphen = (target) => {
-		target.value = target.value
-		.replace(/[^0-9]/g, '')
-		.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
-	}
-</script>
-	</body>
 </html>

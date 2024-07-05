@@ -1,9 +1,6 @@
 <!DOCTYPE html>
+
 <html lang="ko">
-<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
-<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-	name="viewport" />
 
 <head>
 	<meta charset="UTF-8" />
@@ -29,9 +26,8 @@
 
 	<div class="container">
 		<section class="section login">
-			<!--				로그인 폼-->
 			<form method="post" action="/loginProc">
-				<div class="section-tit">로그인</div>
+				<p class="section-tit">로그인</p>
 				<label class="input-label">이메일</label>
 				<div class="input-wrap">
 					<input type="text" class="input-text" placeholder="이메일을 입력하세요" name="email" />
@@ -41,9 +37,8 @@
 					<input type="password" class="input-text" placeholder="비밀번호를 입력하세요" name="password" />
 				</div>
 
-				<div class="btn-wrap m-t--40">
-					<button type="submit" class="btn btn-full btn-pink"
-						onclick="location.href='login_pop.html'">
+				<div class="btn-wrap mg-t40">
+					<button type="submit" class="btn btn-full btn-pink" onclick="location.href='login_pop.html'">
 						로그인
 					</button>
 				</div>
@@ -71,11 +66,8 @@
 		</section>
 	</div>
 
-
-	<!-- footer -->
 	<footer data-include-file="./include/footer.html" class="footer includeJs">
 	</footer>
-
 </body>
 
 </html>
