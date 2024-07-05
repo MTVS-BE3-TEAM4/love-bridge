@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chat</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"/>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: pink;
+        }
+
+        .left {
+            background-color: pink;
+
+        }
+
+        .AvatarView{
+            width: 300px;
+            height: 250px;
+            border-radius: 25px;
+            background: #FFFFFF;
+            margin-bottom: 15px;
+        }
+
+        .AvatarViewBody{
+            width: 100%;
+            height: 100%;
+            max-width: 100%;
+            max-height: 250px;
+        }
+
+
+        .UserInfoView{
+            width: 300px;
+            height: 320px;
+            border-radius: 25px;
+            background: #FFFFFF;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .right {
+            width: 350px;
+            height: 600px;
+            margin: 10px;
+        }
+
+        .center{
+            width: 1000px;
+            height: 600px;
+            margin: 10px;
+        }
+
+
+        .center {
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .centerBody {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .chatBody {
+            width: 95%;
+            height: 95%;
+            margin: 20px;
+            background-color: #C4C4C4;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .inputContainer {
+            display: flex;
+            width: 100%;
+            align-content: center;
+        }
+        .inputField {
+            flex: 1;
+            width: 95%;
+            align-content: center;
+            align-self: end;
+        }
+
+        .inputChatField{
+            width: 80%;
+            border: 5px solid black;
+        }
+
+        .sendButton {
+            margin-left: 10px;
+            padding: 10px 20px;
+            border: 2px solid #FF646A;
+            border-radius: 5px;
+            background-color: #FF646A;
+            color: white;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .CodeInputField {
+            width: 95%;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .right {
+            background-color: pink;
+        }
+        .rightBody{
+            height: 86%;
+            background-color: #C4C4C4;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .rightBody > div {
+            margin: 5px;
+        }
+
+        .inputContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 80%;
+            text-align: center;
+        }
+
+        .ButtonStyle{
+            box-sizing: border-box;
+            width: 200px;
+            height: 48px;
+            left: 870px;
+            top: 114px;
+            border: 2px solid #FF646A;
+            border-radius: 100px;
+            color: red;
+        }
+
+        .ExitButtonStyle{
+            box-sizing: border-box;
+            width: 200px;
+            height: 48px;
+            left: 870px;
+            top: 114px;
+            border: 2px solid #2F2B28;
+            border-radius: 100px;
+            color: white;
+            background-color: #0D0D0D;
+        }
+
+    </style>
+</head>
+<header data-include-file="./include/header.html" class="header includeJs">
+</header>
+<body>
+
+<!-- 바디 -->
+
+<!-- //header -->
+<div class="container">
+
+
+    <!-- 왼쪽 그림 이미지 -->
+    <div class="left">
+        <!-- 아바타그림 -->
+        <div class="AvatarView">
+            <img src="../images/Avatarimg.svg" class="AvatarViewBody" alt="Avatar">
+        </div>
+
+        <!-- 유저 정보 -->
+        <div class="UserInfoView">
+            <div>info</div>
+        </div>
+    </div>
+
+
+    <!-- 가운데 그림 이미지 -->
+    <div class="center">
+        <div class="centerBody">
+            <div class="chatBody" id="MessageList"></div>
+            <div class="inputField">
+                <input id="InputChat" class="inputChatField">
+                <button id="sendMessageButton" class="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 오른쪽 그림 이미지 -->
+    <div class="right">
+        <div class="rightBody">
+            <div id="HelloUserName">반갑습니다. ??님</div>
+            <div>시크릿코드를 생성해주세요</div>
+            <div>
+                <button class="ButtonStyle" id="secretNumber" onclick="CreateSecretNumber()">Button</button>
+            </div>
+            <div style="margin-bottom: -10px">시크릿코드가 있으신가요</div>
+            <div class="inputContainer">
+                <input type="text" class="CodeInputField" value="" id="NewSecretNumber">
+            </div>
+            <div>
+                <button class="ButtonStyle" onclick="IsSecretNumber()">Button</button>
+            </div>
+            <div style="margin-top: 50px">
+                <button class="ExitButtonStyle" onclick="ExitChat()">Exit</button>
+            </div>
+            <div id="TimeDiv" style="margin-top: 20px">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<!-- footer -->
+<footer data-include-file="./include/footer.html" class="footer includeJs">
+</footer>
+<!-- //footer -->
+<script>
+    // 시크릿번호 생성 : 임시 난수
+    const CreateSecretNumber = () => {
+        const SecretNumber = Math.floor(Math.random() * 100000);
+        const NewSecretNumber = document.getElementById("NewSecretNumber");
+        alert("당신의 시크릿 번호는 " + SecretNumber + "입니다.");
+        NewSecretNumber.value = SecretNumber;
+    }
+
+    // 채팅 메시지 보내기
+    const sendMessageButton = document.getElementById("sendMessageButton");
+    const inputChat = document.getElementById("InputChat");
+    const messageList = document.getElementById("MessageList");
+
+    const sendMessage = () => {
+        const message = inputChat.value.trim();
+        if (message) {
+            const messageElement = document.createElement("div");
+            messageElement.textContent = message;
+            messageElement.style.margin = "5px 0";
+            messageElement.style.padding = "10px";
+            messageElement.style.backgroundColor = "#FFF500";
+            messageElement.style.borderRadius = "5px";
+            messageElement.style.alignSelf = "flex-end"; // 메시지를 오른쪽으로 정렬
+            messageElement.style.maxWidth = "80%"; // 선택 사항: 말풍선 너비 제한
+            messageElement.style.wordBreak = "break-word"; // 선택 사항: 긴 단어를 말풍선에 맞도록 분리
+            messageList.appendChild(messageElement);
+            inputChat.value = "";
+            messageList.scrollTop = messageList.scrollHeight;
+        }
+        else{
+            alert("입력된 내용이 없습니다.")
+        }
+    };
+
+    // 엔터버튼으로 send
+    sendMessageButton.addEventListener("click", sendMessage);
+    inputChat.addEventListener("keyup", (event) => {
+        if (event.key === "Enter") {
+            sendMessage();
+        }
+    });
+
+    // 시크릿번호 유무
+    const IsSecretNumber = () => {
+        const NewSecretNumber = document.getElementById("NewSecretNumber");
+        if (NewSecretNumber.value !== "")
+        {
+            alert("즐거운 시간 되세요")
+        }
+        else
+        {
+            alert("No SecretNumber");
+        }
+    }
+
+    //유저 이름
+    const username = "dev";
+    document.getElementById("HelloUserName").textContent = `반갑습니다. ${username}님`;
+
+    //채팅 포기
+    const ExitChat = () => {
+        const userConfirmed = confirm("정말 나가시겠습니까?");
+        if (userConfirmed) {
+            // 사용자가 "예"를 선택한 경우 수행할 작업
+            alert("채팅에서 나갑니다.");
+            // window.location.href = "";
+        } else {
+            alert("채팅을 계속합니다.");
+        }
+    }
+
+    // 현재 시간 업데이트
+    const updateTime = () => {
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString();
+        document.getElementById("TimeDiv").textContent = formattedTime;
+    }
+
+    // 1초마다 현재 시간 업데이트
+    setInterval(updateTime, 1000);
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</html>
+
+
+
