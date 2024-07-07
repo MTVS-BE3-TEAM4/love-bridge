@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+      name="viewport"/>
+    <title>Love Bridge</title>
+    <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+      type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+    <script defer="defer" src="../js/include.js"></script>
+  </head>
+
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f0f2f5;
+        padding: 20px;
+      }
+      .container1 {
+        max-width: 100%;
+        margin-top: 5%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+      }
+      .header1 {
+        background-color: #ff6f61;
+        padding: 20px;
+        text-align: center;
+        color: #fff;
+        font-size: 24px;
+        font-weight: 700;
+      }
+      .sidebar {
+        width: 200px;
+        background-color: #ff6f61;
+        color: #fff;
+        padding: 20px;
+        float: left;
+        height: 100%;
+      }
+      .sidebar h3 {
+        margin-top: 0;
+        font-size: 18px;
+        font-weight: 700;
+      }
+      .sidebar a {
+        display: block;
+        color: #fff;
+        padding: 10px 0;
+        text-decoration: none;
+        font-size: 16px;
+      }
+      .sidebar a:hover {
+        background-color: #ff5a50;
+      }
+      .content {
+        margin-left: 220px;
+        padding: 20px;
+      }
+      .content h2 {
+        font-size: 24px;
+        font-weight: 700;
+        color: #333;
+      }
+      .content .search-bar {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+      }
+      .content .search-bar input[type="text"] {
+        width: 80%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+      }
+      .content .search-bar button {
+        padding: 10px 20px;
+        background-color: #ff6f61;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      .content .search-bar button:hover {
+        background-color: #ff5a50;
+      }
+      .content table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+      }
+      .content table th,
+      .content table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ccc;
+      }
+      .content table th {
+        background-color: #ff6f61;
+        color: #fff;
+        font-weight: 700;
+      }
+      .content table tr:hover {
+        background-color: #f1f1f1;
+      }
+      .content table .actions {
+        text-align: center;
+      }
+      .content table .actions button {
+        margin: 0 5px;
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .content table .actions .edit {
+        background-color: #ff6f61;
+        color: #fff;
+      }
+      .content table .actions .delete {
+        background-color: #ccc;
+      }
+      .footer {
+        background-color: #ff6f61;
+        color: #fff;
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        clear: both;
+      }
+    </style>
+
+  <body>
+
+    <meta charset="UTF-8" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+    <title>Love Bridge</title>
+    <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+    <script defer="defer" src="../js/include.js"></script>
+  </head>
+    <!-- header -->
+    <header data-include-file="./include/header.html" class="header includeJs"></header>
+    <!-- //header -->
+    <div class="container1">
+      <div class="header1">1:1 문의 게시판</div>
+      <div class="sidebar">
+        <a href="#">유저관리</a>
+        <a href="#">공지사항관리</a>
+        <a href="#">게시물관리</a>
+        <a href="#">문의게시판</a>
+      </div>
+      <div class="content">
+        <div class="search-bar">
+          <input type="text" placeholder="검색" />
+          <button>공지사항 등록</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성일</th>
+              <th>작성자</th>
+              <th class="actions">수정/삭제</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>1:1문의의 스크리치로 생성완료입니다. (답변 대기중)</td>
+              <td>2023-11-13</td>
+              <td>수정/삭제</td>
+              <td class="actions">
+                <button class="edit">수정</button>
+                <button class="delete">삭제</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>1:1문의의 본서버가 열었습니다. (답변 완료)</td>
+              <td>2023-11-13</td>
+              <td>수정/삭제</td>
+              <td class="actions">
+                <button class="edit">수정</button>
+                <button class="delete">삭제</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>1:1문의 사이트 질문입니다 (답변 대기중)</td>
+              <td>2023-11-13</td>
+              <td>수정/삭제</td>
+              <td class="actions">
+                <button class="edit">수정</button>
+                <button class="delete">삭제</button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>1:1문의 시의 크리티컬 문제입니다 (답변 대기중)</td>
+              <td>2023-11-13</td>
+              <td>수정/삭제</td>
+              <td class="actions">
+                <button class="edit">수정</button>
+                <button class="delete">삭제</button>
+              </td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>1:1문의 시의 크리티컬 문제입니다 (답변 대기중)</td>
+              <td>2023-11-13</td>
+              <td>수정/삭제</td>
+              <td class="actions">
+                <button class="edit">수정</button>
+                <button class="delete">삭제</button>
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      <!-- footer -->
+      <footer
+        data-include-file="./include/footer.html"
+        class="footer includeJs"
+      ></footer>
+      <!-- //footer -->
+    </div>
+    
+  </body>
+</html>
