@@ -1,186 +1,134 @@
 <!DOCTYPE html>
 <html lang="ko">
-<meta
-		content="text/html;charset=utf-8"
-		http-equiv="Content-Type"
-/>
-<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-<meta
-		content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-		name="viewport"
-/>
+
 <head>
 	<meta charset="UTF-8" />
 	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
 	<meta content="IE=edge" http-equiv="X-UA-Compatible" />
-	<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport" />
+	<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+		name="viewport" />
 	<title>Love Bridge</title>
 	<link href="../css/reset.css" rel="stylesheet" type="text/css" />
 	<link href="../css/style.css" rel="stylesheet" type="text/css" />
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" type="text/css" />
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+		type="text/css" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
 	<script defer="defer" src="../js/include.js"></script>
 </head>
+
 <body>
-<header data-include-file="./include/header.html" class="header includeJs">
-</header>
+	<header data-include-file="./include/header.html" class="header includeJs">
+	</header>
 
-<div class="container">
-	<div class="section join">
-		<div class="section-tit">마이페이지</div>
-
-		<div class="info-confirm">
-			<div class="icon-confirm"></div>
-			<div class="tit">프로필 사진</div>
-		</div>
-		<div class="input-wrap">
-			<button
-					type="button"
-					class="btn btn-line type2 noshadow"
-			>
-				프로필 사진 변경
-			</button>
-		</div>
-
-		<div class="info-confirm">
-			<div class="icon-confirm"></div>
-			<div class="tit">채팅 배경</div>
-		</div>
-		<div class="input-wrap">
-			<button
-					type="button"
-					class="btn btn-half btn-round btn-dark noshadow"
-			>
-				채팅 배경 변경
-			</button>
-			<button
-					type="button"
-					class="btn btn-half btn-primary btn-round type2 noshadow"
-			>
-				채팅 바로가기
-			</button>
-		</div>
-
-		<label class="input-label">내 시크릿 코드</label>
-		<div class="input-wrap">
-			<input
-					type="text"
-					class="input-text"
-					value="1Q2w3E4r!"
-					readonly
-			/>
-			<button
-					type="button"
-					class="btn btn-half btn-round btn-primary noshadow"
-			>
-				시크릿 코드 생성(이미 있으면 버튼 안보임)
-			</button>
-		</div>
-
-		<label class="input-label required">애칭</label>
-		<div class="input-wrap">
-			<input
-					type="text"
-					class="input-text"
-					value="혁진쨩"
-					readonly
-			/>
-
-			<button
-					type="button"
-					class="btn btn-half btn-round btn-primary noshadow"
-			>
-				애칭 변경(버튼 눌러야 변경 가능)
-			</button>
-
-		</div>
-		<label class="input-label required">이메일</label>
-		<div class="input-wrap">
-			<input
-					type="text"
-					class="input-text"
-					value="tax2024@naver.com"
-					readonly
-			/>
-			<button
-					type="button"
-					class="btn btn-half btn-round btn-primary noshadow"
-			>
-				이메일 변경(버튼 눌러야 변경 가능)
-			</button>
-		</div>
-		<div class="input-wrap m-t--40 m-b--20">
-			<button
-					type="button"
-					class="btn btn-line btn-half type2 noshadow"
-			>
-				비밀번호 변경(버튼 누르면 모달창 쌈@뽕하게 뜸)
-			</button>
-		</div>
-
-<!--		비밀번호 변경 버튼 누르면 뜨는 모달창-->
-		<div class="modal">
-			<div class="modal-dim"></div>
-			<div class="modal-con">
-				<label class="type2">
-					<label class="input-label required">기존 비밀번호</label>
-					<div class="input-wrap">
-						<input type="password" class="input-text" />
+	<div class="container">
+		<section class="section mypage">
+			<p class="section-tit">마이페이지</p>
+			<div class="mypage-top">
+				<div class="mypage-box">
+					<div class="image-area"></div>
+					<div class="tit">프로필 사진</div>
+					<div class="btn-wrap left">
+						<button type="button" class="btn btn-lg btn-line btn-round type2">
+							프로필 사진 변경
+						</button>
 					</div>
 
-					<label class="input-label required">새로운 비밀번호</label>
-					<div class="input-wrap">
-						<input type="password" class="input-text"/>
+				</div>
+				<div class="mypage-box">
+					<div class="image-area"></div>
+					<div class="tit">채팅 배경</div>
+					<div class="btn-wrap type2">
+						<button type="button" class="btn btn-lg btn-half btn-line btn-round type2">
+							채팅 배경 변경
+						</button>
+						<button type="button" class="btn btn-lg btn-half btn-monalisa btn-round type2">
+							채팅 바로가기
+						</button>
 					</div>
+				</div>
+			</div>
 
-					<label class="input-label required">비밀번호 재입력</label>
-					<div class="input-wrap">
-						<input type="password" class="input-text"/>
-					</div>
-				</label>
+			<div class="mypage-bottom mg-t--40">
+				<label class="input-label">내 시크릿 코드</label>
+				<div class="input-wrap">
+					<input type="text" class="input-text" value="1Q2w3E4r!" readonly />
+					<button type="button" class="btn btn-lg btn-line btn-round type2">
+						시크릿 코드 생성(이미 있으면 버튼 안보임)
+				</div>
 
-				<div class="btn-wrap">
-					<button
-							type="button"
-							class="btn btn-full btn-primary btn-round"
-							onclick="location.href='refunds_4.html'"
-							disabled
-					>
-						비밀번호 변경
+				<label class="input-label required">애칭</label>
+				<div class="input-wrap">
+					<input type="text" class="input-text" value="혁진쨩" readonly />
+
+					<button type="button" class="btn btn-lg btn-line btn-round type2">
+						애칭 변경(버튼 눌러야 변경 가능)
+					</button>
+				</div>
+				<label class="input-label required">이메일</label>
+				<div class="input-wrap">
+					<input type="text" class="input-text" value="tax2024@naver.com" readonly />
+					<button type="button" class="btn btn-lg btn-line btn-round type2">
+						이메일 변경(버튼 눌러야 변경 가능)
+					</button>
+				</div>
+				<div class="input-wrap mg-t--40 mg-b--20">
+					<button type="button" class="btn btn-line btn-full type2 mg-l--0">
+						비밀번호 변경(버튼 누르면 모달창 쌈@뽕하게 뜸)
 					</button>
 				</div>
 			</div>
-		</div>
 
 
+			<div class="mg-t--30 mg-b--80 txt-right">
+				<button type="button" class="btn txt-c--grey" onclick="location.href='user_secession.html'">회원 탈퇴
+					하시겠습니까?</button>
+			</div>
+			<div class="btn-wrap type2 mg-t40">
+				<button type="button" class="btn btn-half btn-line">
+					취소
+				</button>
+				<button type="button" class="btn btn-half type2 btn-pink">
+					회원 정보 수정(버튼 누르면 put 요청 보내서 서버에서 수정됨)
+				</button>
+			</div>
+		</section>
+	</div>
 
+	<!-- 비밀번호 변경 버튼 누르면 뜨는 모달창-->
+	<div class="modal">
+		<div class="modal-dim"></div>
+		<div class="modal-con">
+			<label class="type2">
+				<label class="input-label required">기존 비밀번호</label>
+				<div class="input-wrap">
+					<input type="password" class="input-text" />
+				</div>
 
-		<div class="m-t--30 m-b--80 txt-right">
-			<button type="button" class="btn txt-c--grey"
-					onclick="location.href='user_secession.html'">회원 탈퇴 하시겠습니까?</button>
-		</div>
-		<div class="btn-wrap type2 m-t--40">
-			<button
-					type="button"
-					class="btn btn-half btn-round btn-grey"
-			>
-				취소
-			</button>
-			<button
-					type="button"
-					class="btn btn-half type2 btn-round btn-primary"
-			>
-				회원 정보 수정(버튼 누르면 put 요청 보내서 서버에서 수정됨)
-			</button>
+				<label class="input-label required">새로운 비밀번호</label>
+				<div class="input-wrap">
+					<input type="password" class="input-text" />
+				</div>
+
+				<label class="input-label required">비밀번호 재입력</label>
+				<div class="input-wrap">
+					<input type="password" class="input-text" />
+				</div>
+			</label>
+
+			<div class="btn-wrap">
+				<button type="button" class="btn btn-full btn-primary btn-round"
+					onclick="location.href='refunds_4.html'" disabled>
+					비밀번호 변경
+				</button>
+			</div>
 		</div>
 	</div>
-</div>
 
-<!--		푸터-->
-<footer data-include-file="./include/footer.html" class="footer includeJs">
-</footer>
+	<footer data-include-file="./include/footer.html" class="footer includeJs">
+	</footer>
 </body>
+
 </html>

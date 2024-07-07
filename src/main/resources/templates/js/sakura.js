@@ -8,9 +8,9 @@ const Sakura = function(selector, options) {
     // Defaults for the option object, which gets extended below.
     const defaults = {
       className: 'sakura', // Classname of the petal. This corresponds with the css.
-      fallSpeed: 1, // Speed factor in which the petal falls (higher is slower).
-      maxSize: 14, // The maximum size of the petal.
-      minSize: 10, // The minimum size of the petal.
+      fallSpeed: 2, // Speed factor in which the petal falls (higher is slower).
+      maxSize: 10, // The maximum size of the petal.
+      minSize: 8, // The minimum size of the petal.
       delay: 300, // Delay between petals.
       colors: [
         {
