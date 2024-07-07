@@ -6,18 +6,19 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-      name="viewport"/>
+      name="viewport" />
     <title>Love Bridge</title>
     <link href="../css/reset.css" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
-      type="text/css"/>
+      type="text/css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
     <script defer="defer" src="../js/include.js"></script>
   </head>
+
   <body>
     <header
       data-include-file="./include/header.html"
@@ -88,7 +89,7 @@
     </style>
     <div class="body1">
       <form action="board-notice.html" method="post">
-        <h2>공지사항 글쓰기</h2>
+        <h2>1:1 문의 글쓰기</h2>
         <div>
           <div class="header1">제목</div>
           <input
@@ -108,10 +109,13 @@
         </div>
         <div>
           <!-- <input type="submit" value="등록" onclick="alert('작성 완료!')" /> -->
-          <button class="btn-full btn-pink" onclick="location.href='board-notice-write.html'">글쓰기</button>
+          <button class="btn btn-pink btn-md" onclick="location.href='board-qna.html'">글쓰기</button>
         </div>
       </form>
     </div>
-    <footer data-include-file="./include/footer.html" class="footer includeJs"></footer>
+    <footer
+      data-include-file="./include/footer.html"
+      class="footer includeJs"
+    ></footer>
   </body>
 </html>
