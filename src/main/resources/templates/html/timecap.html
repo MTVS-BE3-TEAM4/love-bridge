@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+        name="viewport" />
+    <title>Love Bridge</title>
+    <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+        type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+    <script defer="defer" src="../js/include.js"></script>
+</head>
+
+<body>
+    <style>
+        .time-capsule {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            padding: 20px;
+        }
+
+        .capsule {
+            margin: 10px;
+            border: 1px solid #ddd;
+            border-radius: 50px;
+            overflow: hidden;
+            min-height: 450px;
+            flex: 0 1 30%;
+            background-color: #fff;
+        }
+
+        .capsule img {
+            width: 100%;
+            height: 80%;
+            object-fit: cover;
+            cursor: pointer;
+
+        }
+
+        .capsule p {
+            anlign: center;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .pagination {
+            margin-top: 100px;
+        }
+
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            text-align: center;
+            border: none;
+            border-radius: 3px;
+            background-color: #ff7e81;
+            color: white;
+            cursor: pointer;
+        }
+
+        .pagination button.active {
+            background-color: #ff4a4a;
+        }
+
+        .positioned {
+            position: static;
+
+        }
+    </style>
+    <!-- header -->
+    <header data-include-file="./include/header.html" class="header includeJs">
+    </header>
+    <!-- //header -->
+    <div class="container">
+        <section class="section time-capsule">
+            <div class="capsule" onclick="location.href='page1.html'">
+                <img src="../images/1.png" alt="타임캡슐 1">
+                <p class="positioned">기존 타임캡슐 1<br>YYYY.MM.DD~YYYY.MM.DD </p>
+                <button>삭제하기</button>
+
+            </div>
+            <div class="capsule" onclick="location.href='page2.html'">
+                <img src="../images/2.jpg" alt="타임캡슐 2">
+                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
+                <button>삭제하기</button>
+
+            </div>
+            <div class="capsule" onclick="location.href='page3.html'">
+                <img src="../images/3.jpg" alt="타임캡슐 3">
+                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
+                <button>삭제하기</button>
+
+            </div>
+            <div class="capsule" onclick="location.href='page4.html'">
+                <img src="../images/4.jpg" alt="타임캡슐 4">
+                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
+                <button>삭제하기</button>
+
+            </div>
+            <div class="capsule" onclick="location.href='page5.html'">
+                <img src="../images/1.png" alt="타임캡슐 5">
+                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
+                <button>삭제하기</button>
+
+            </div>
+            <div class="capsule" onclick="location.href='page6.html'">
+                <img src="../images/2.jpg" alt="타임캡슐 6">
+                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
+                <button>삭제하기</button>
+            </div>
+
+            <button onclick="location.href='timecap2.html'" class="btn btn-full btn-pink"> 타임캡슐 추가</button>
+
+            <div class="pagination">
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>4</button>
+                <button>5</button>
+            </div>
+
+        </section>
+        <!-- Add more capsule items here -->
+    </div>
+    <!-- footer -->
+    <footer data-include-file="./include/footer.html" class="footer includeJs">
+    </footer>
+    <!-- //footer -->
+</body>
+
+</html>
+
+<script>
+    const capsules = document.querySelectorAll('.capsule');
+    const pages = document.querySelectorAll('.pagination button');
+    let currentPage = 1;
+    const capsulesPerPage = 3;
+
+    function showPage(page) {
+        currentPage = page;
+        const start = (page - 1) * capsulesPerPage;
+        const end = start + capsulesPerPage;
+
+        capsules.forEach((capsule, index) => {
+            if (index >= start && index < end) {
+                capsule.style.display = 'block';
+            } else {
+                capsule.style.display = 'none';
+            }
+        });
+
+        pages.forEach((button, index) => {
+            if (index + 1 === page) {
+                button.classList.add('active');
+            } else {
+                button.classList.remove('active');
+            }
+        });
+    }
+
+    pages.forEach((button, index) => {
+        button.addEventListener('click', () => {
+            showPage(index + 1);
+        });
+    });
+
+    showPage(currentPage);
+</script>

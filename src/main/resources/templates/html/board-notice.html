@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+      name="viewport" />
+    <title>Love Bridge</title>
+    <link href="../css/reset.css" rel="stylesheet" type="text/css" />
+    <link href="../css/style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"
+      type="text/css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>
+    <script defer="defer" src="../js/include.js"></script>
+  </head>
+
+<body>
+    <header data-include-file="./include/header.html" class="header includeJs"></header>
+    <style>
+      .table {
+        margin: auto;
+        width: 80%;
+        border-radius: 5px;
+        border-collapse: collapse;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      .header {
+        background-color: #446ff4;
+        color: #fff;
+        text-align: center;
+      }
+      .table td,
+      .table th {
+        border-bottom: 1px lightgray solid;
+        height: 40px;
+        font-size: 16px;
+        padding: 8px;
+      }
+      .table .num {
+        width: 10%;
+      }
+      .table .title {
+        width: 50%;
+      }
+      .body {
+        text-align: center;
+      }
+      .body .title {
+        text-align: left;
+      }
+      .body:hover {
+        background-color: #f1f1f1;
+      }
+      button,
+      .nav-button {
+        height: 45px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        padding-left: 10px;
+        background-color: #446ff4;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      button:hover,
+      .nav-button:hover {
+        background-color: #365bb3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      button:active,
+      .nav-button:active {
+        background-color: #2d4a91;
+      }
+      h2 {
+        font-weight: 700;
+        font-size: 24px;
+      }
+      .pagination {
+        text-align: center;
+        margin-top: 20px;
+      }
+      .pagination button {
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+        margin: 2px;
+        background-color: #446ff4;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      }
+      .pagination button:hover {
+        background-color: #365bb3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .pagination button:active {
+        background-color: #2d4a91;
+      }
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+      .nav-right {
+        display: flex;
+        gap: 10px;
+      }
+       
+
+      .write-button:hover {
+        background-color: #365bb3;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+      .write-button:active {
+        background-color: #2d4a91;
+      }
+      .message {
+        display: none;
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #444;
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+      }
+    </style>
+
+    
+    <div class="container">
+      <div class="section join">
+        <p class="section-tit">공지사항 게시판</p>
+        <div class="nav">
+          <div class="nav-right">
+          </div>
+        </div>
+
+          <table class="report-table">
+            <colgroup>
+              <col width="10%" />
+              <col width="30%" />
+              <col width="50%" />
+              <col width="50%" />
+            </colgroup>
+            <tr>
+              <th>번호</th>
+              <th>제목</th>
+              <th>작성자</th>
+              <th>작성일</th>
+            </tr>
+            <!--					타임리프로 데이터 돌리기-->
+            <tr>
+              <td>1</td>
+              <td onclick="location.href='http://www.naver.com';" style="cursor:pointer;">제목입니다 1</td>
+              <td>작성자입니다. 1</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td onclick="location.href='http://www.naver.com';" style="cursor:pointer;">제목입니다 2</td>
+              <td>작성자입니다. 2</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>제목입니다 3</td>
+              <td>작성자입니다. 3</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+            <tr>
+              <td>1</td>
+              <td>제목입니다.</td>
+              <td>작성자</td>
+              <td>24-01-20</td>
+            </tr>
+
+          </table>
+          <tbody class="table-body"></tbody>
+        </table>
+        <div class="search-bar">
+          <input type="text" placeholder="검색" />
+        </div>
+        <div class="pagination" id="pagination"></div>
+        <button class="btn btn-pink btn-md" onclick="location.href='board-notice-write.html'">글쓰기</button>
+        <div class="message" id="message">로그인 하세요</div>
+    <footer data-include-file="./include/footer.html" class="footer includeJs"></footer>
+    </div>
+  </div>
+  
+</body>
+
+</html>
