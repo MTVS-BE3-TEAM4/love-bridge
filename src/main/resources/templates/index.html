@@ -1,248 +1,204 @@
 <!DOCTYPE html>
 <html lang="ko">
-	<head>
 
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Document</title>
-		<style>
-			h1 {
-				text-align: center;
-				font-size: 22px;
-				line-height: 40px;
-				background: #ff7777;
-				color: #fff;
-			}
-			table {
-				width: 100%;
-				border-collapse: collapse;
-			}
-			th {
-				background: #f9f9f9;
-				border: 1px solid #e2e2e2;
-				padding: 4px;
-				font-size: 14px;
-			}
-			td {
-				font-size: 14px;
-				border: 1px solid #e2e2e2;
-				padding: 4px 6px;
-				font-size: 13px;
-				width: calc(100% / 6);
-			}
-			a {
-				color: #003eb1;
-			}
-			a:hover {
-				text-decoration: underline;
-			}
-			tr.line td {
-				border-bottom: 2px solid #e2e2e2;
-			}
-			tr:nth-child(even) {
-				background: #fefefe;
-			}
-			td.mod {
-				color: #ff4040;
-			}
-			td.com {
-				color: #4068ff;
-			}
-			tr:hover {
-				background: rgba(255, 255, 0, 0.1);
-			}
-			tr.bg {
-				background-color: #e9f1ffc2;
-			}
-		</style>
-	</head>
-	<body>
-		<h1 id="docTit">러브릿지</h1>
-		<table>
-			<thead>
-				<tr>
-					<th scope="col">MENU</th>
-					<th scope="col">2depth</th>
-					<th scope="col">3depth</th>
-					<th scope="col">File</th>
-					<th scope="col">완료</th>
-					<th scope="col">비고</th>
-				</tr>
-			</thead>
-			<tbody>
+<head>
+
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Document</title>
+	<style>
+		h1 {
+			text-align: center;
+			font-size: 22px;
+			line-height: 40px;
+			background: #ff7777;
+			color: #fff;
+		}
+
+		table {
+			width: 100%;
+			border-collapse: collapse;
+		}
+
+		th {
+			background: #f9f9f9;
+			border: 1px solid #e2e2e2;
+			padding: 10px 4px;
+			font-size: 14px;
+		}
+
+		td {
+			font-size: 14px;
+			border: 1px solid #e2e2e2;
+			padding: 10px 6px;
+			font-size: 13px;
+			width: calc(100% / 6);
+		}
+
+		a {
+			color: #003eb1;
+		}
+
+		a:hover {
+			text-decoration: underline;
+		}
+
+		tr.line td {
+			border-bottom: 2px solid #e2e2e2;
+		}
+
+		tr:nth-child(even) {
+			background: #fefefe;
+		}
+
+		td.mod {
+			color: #ff4040;
+		}
+
+		td.com {
+			color: #4068ff;
+		}
+
+		tr:hover {
+			background: rgba(255, 255, 0, 0.1);
+		}
+
+		tr.bg {
+			background-color: #e9f1ffc2;
+		}
+	</style>
+</head>
+
+<body>
+	<h1 id="docTit">러브릿지</h1>
+	<table>
+		<thead>
 			<tr>
-				<td>=====메인 도메인=====</td>
+				<th scope="col">MENU</th>
+				<th scope="col">2depth</th>
+				<th scope="col">3depth</th>
+				<th scope="col">File</th>
+				<th scope="col">완료</th>
+				<th scope="col">비고</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>메인</td>
 				<td></td>
 				<td></td>
 				<td>
+					<a href="html/main.html" target="_blank">main.html</a>
 				</td>
 				<td class="mod"></td>
-				<td></td>
 			</tr>
-
-				<tr>
-					<td>메인</td>
-					<td></td>
-					<td></td>
-					<td>
-						<a href="html/main.html" target="_blank"
-							>main.html</a
-						>
-					</td>
-					<td class="mod">몰?루</td>
-				</tr>
 			<tr>
-				<td>=====회원 도메인=====</td>
-				<td></td>
+				<td>회원</td>
+				<td>로그인</td>
 				<td></td>
 				<td>
-				</td>
-				<td class="mod"></td>
-				<td></td>
-			</tr>
-				<tr>
-					<td>회원</td>
-					<td>로그인</td>
-					<td></td>
-					<td>
-						<a href="html/login.html" target="_blank"
-							>login.html</a
-						>
-					</td>
-					<td class="com">완료</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>비밀번호 찾기</td>
-					<td>
-						<a href="html/find_password.html" target="_blank"
-						>find_password.html</a
-						>
-					</td>
-					<td class="com">완료</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>이메일 찾기</td>
-					<td>
-						<a href="html/find_email.html" target="_blank"
-						>find_email.html</a
-						>
-					</td>
-					<td class="com">완료</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>회원가입</td>
-					<td></td>
-					<td>
-						<a href="html/join_normal.html" target="_blank"
-							>join_normal.html</a
-						>
-					</td>
-					<td class="com">완료</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>가입완료</td>
-					<td>
-						<a
-							href="html/join_complete.html"
-							target="_blank"
-							>join_complete.html</a
-						>
-					</td>
-					<td class="com">완료</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>회원탈퇴</td>
-					<td></td>
-					<td>
-						<a href="html/user_secession.html" target="_blank"
-						>user_secession.html</a
-						>
-					</td>
-					<td class="com">완료(4.20)</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td></td>
-					<td>탈퇴완료</td>
-					<td>
-						<a href="html/secession_complete.html" target="_blank"
-						>secession_complete.html</a
-						>
-					</td>
-					<td class="com">완료(4.20)</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td></td>
-					<td>마이페이지</td>
-					<td></td>
-					<td>
-						<a href="html/user_info.html" target="_blank"
-						>user_info.html</a
-						>
-					</td>
-					<td class="com">완료(4.20)</td>
-					<td></td>
-				</tr>
-
-			<tr>
-				<td>=====앨범 도메인=====</td>
-				<td></td>
-				<td></td>
-				<td>
-				</td>
-				<td class="mod"></td>
-				<td></td>
-			</tr>
-
-			<tr>
-				<td>앨범</td>
-				<td></td>
-				<td></td>
-				<td>
-					<a href="html/album.html" target="_blank"
-					>album.html</a
-					>
+					<a href="html/user_login.html" target="_blank">user_login.html</a>
 				</td>
 				<td class="com">완료</td>
 				<td></td>
 			</tr>
-
 			<tr>
-				<td>=====게시판 도메인=====</td>
 				<td></td>
-				<td></td>
+				<td>로그인</td>
+				<td>비밀번호 찾기</td>
 				<td>
+					<a href="html/user_find_password.html" target="_blank">user_find_password.html</a>
 				</td>
-				<td class="mod"></td>
+				<td class="com">완료</td>
 				<td></td>
 			</tr>
 			<tr>
-				<td>게시글</td>
+				<td></td>
+				<td>로그인</td>
+				<td>이메일 찾기</td>
+				<td>
+					<a href="html/user_find_email.html" target="_blank">user_find_email.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>회원가입</td>
+				<td></td>
+				<td>
+					<a href="html/join_normal.html" target="_blank">join_normal.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>회원가입</td>
+				<td>가입완료</td>
+				<td>
+					<a href="html/join_complete.html" target="_blank">join_complete.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>회원탈퇴</td>
+				<td></td>
+				<td>
+					<a href="html/secession_confirm.html" target="_blank">secession_confirm.html</a>
+				</td>
+				<td class="com">완료(4.20)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>회원탈퇴</td>
+				<td>탈퇴완료</td>
+				<td>
+					<a href="html/secession_complete.html" target="_blank">secession_complete.html</a>
+				</td>
+				<td class="com">완료(4.20)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>마이페이지</td>
+				<td></td>
+				<td>
+					<a href="html/user_info.html" target="_blank">user_info.html</a>
+				</td>
+				<td class="com">완료(4.20)</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>앨범</td>
 				<td>리스트</td>
 				<td></td>
 				<td>
-					<a href="html/board-notice.html" target="_blank"
-					>board-notice.html</a
-					>
+					<a href="html/album-list.html" target="_blank">album-list.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>쓰기</td>
+				<td></td>
+				<td>
+					<a href="html/album-write.html" target="_blank">album-write.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>공지사항</td>
+				<td>리스트</td>
+				<td></td>
+				<td>
+					<a href="html/board-notice.html" target="_blank">board-notice.html</a>
 				</td>
 				<td class="com">완료</td>
 				<td></td>
@@ -252,36 +208,102 @@
 				<td>생성</td>
 				<td></td>
 				<td>
-					<a href="html/board-notice-write.html" target="_blank"
-					>board-notice-write.html</a
-					>
+					<a href="html/board-notice-write.html" target="_blank">board-notice-write.html</a>
 				</td>
 				<td class="com">완료</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td>Q&A</td>
+				<td>읽기</td>
 				<td></td>
 				<td>
-					<a href="html/board-qna.html" target="_blank"
-					>board-qna.html</a
-					>
+					<a href="html/board-notice-view.html" target="_blank">board-notice-view.html</a>
 				</td>
 				<td class="com">완료</td>
 				<td></td>
 			</tr>
-
 			<tr>
-				<td>=====타임캡슐 도메인=====</td>
-				<td class="mod"> 아직 개발중</td>
+				<td>Q&amp;A</td>
+				<td>리스트</td>
 				<td></td>
 				<td>
+					<a href="html/board-qna.html" target="_blank">board-qna.html</a>
 				</td>
-				<td class="mod"></td>
+				<td class="com">완료</td>
 				<td></td>
 			</tr>
-
+			<tr>
+				<td></td>
+				<td>생성</td>
+				<td></td>
+				<td>
+					<a href="html/board-qna-write.html" target="_blank">board-qna-write.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>읽기</td>
+				<td></td>
+				<td>
+					<a href="html/board-qna-view.html" target="_blank">board-qna-view.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>타입캡슐</td>
+				<td>리스트</td>
+				<td></td>
+				<td>
+					<a href="html/timecapsule-list.html" target="_blank">timecapsule-list.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>쓰기</td>
+				<td></td>
+				<td>
+					<a href="html/timecapsule-write.html" target="_blank">timecapsule-write.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>상세</td>
+				<td></td>
+				<td>
+					<a href="html/timecapsule-view.html" target="_blank">timecapsule-view.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>읽기</td>
+				<td></td>
+				<td>
+					<a href="html/board-qna-view.html" target="_blank">board-notice-view.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>채팅</td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="html/chatting.html" target="_blank">chatting.html</a>
+				</td>
+				<td class="com">완료</td>
+				<td></td>
+			</tr>
+		
 
 			<tr>
 				<td>=====관리자 페이지=====</td>
@@ -302,73 +324,64 @@
 				<td class="mod"></td>
 				<td></td>
 			</tr>
-				<tr>
-					<td>로딩화면은 유용할듯?</td>
-					<td></td>
-					<td></td>
-					<td>
-						<a href="html/loading.html" target="_blank"
-						>loading.html</a
-						>
-					</td>
-					<td class="mod">사용할 수 있을듯?</td>
-					<td></td>
-				</tr>
+			<tr>
+				<td>로딩화면은 유용할듯?</td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="html/loading.html" target="_blank">loading.html</a>
+				</td>
+				<td class="mod">사용할 수 있을듯?</td>
+				<td></td>
+			</tr>
 
-				<tr>
-					<td>로딩화면은 유용할듯?</td>
-					<td></td>
-					<td></td>
-					<td>
-						<a href="html/loading.html" target="_blank"
-							>loading.html</a
-						>
-					</td>
-					<td class="mod">사용할 수 있을듯?</td>
-					<td></td>
-				</tr>
+			<tr>
+				<td>로딩화면은 유용할듯?</td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="html/loading.html" target="_blank">loading.html</a>
+				</td>
+				<td class="mod">사용할 수 있을듯?</td>
+				<td></td>
+			</tr>
 
-				<tr>
-					<td>게시글 비스무리하게 쓸 수 있을듯?</td>
-					<td></td>
-					<td></td>
-					<td>
-						<a
-							href="html/income_history_1.html"
-							target="_blank"
-							>income_history_1.html</a
-						>
-					</td>
-					<td class="mod">사용할 수 있을듯?</td>
-					<td></td>
-				</tr>
+			<tr>
+				<td>게시글 비스무리하게 쓸 수 있을듯?</td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="html/income_history_1.html" target="_blank">income_history_1.html</a>
+				</td>
+				<td class="mod">사용할 수 있을듯?</td>
+				<td></td>
+			</tr>
 
 
-				<tr>
-					<td>관리자 페이지에서 사용할 수 있을듯?</td>
-					<td></td>
-					<td></td>
-					<td>
-						<a href="html/fee_info.html" target="_blank">fee_info.html</a>
-					</td>
-					<td class="mod">사용할 수 있을듯?</td>
-				</tr>
+			<tr>
+				<td>관리자 페이지에서 사용할 수 있을듯?</td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="html/fee_info.html" target="_blank">fee_info.html</a>
+				</td>
+				<td class="mod">사용할 수 있을듯?</td>
+			</tr>
 
-				<tr>
-					<td>관리자 페이지에서 사요용할 수 있을듯(표)</td>
-					<td></td>
-					<td></td>
-					<td>
-						<a href="html/report_info.html" target="_blank"
-							>report_info.html</a
-						>
-					</td>
-					<td class="mod">사용할 수 있을듯?</td>
-					<td></td>
-				</tr>
-			</tbody>
-		</table>
-	</body>
+			<tr>
+				<td>관리자 페이지에서 사요용할 수 있을듯(표)</td>
+				<td></td>
+				<td></td>
+				<td>
+					<a href="html/report_info.html" target="_blank">report_info.html</a>
+				</td>
+				<td class="mod">사용할 수 있을듯?</td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
 </html>
 
 <script></script>
