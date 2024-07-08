@@ -1,246 +1,46 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
-
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400; 500; 600&display=swap");
 html,
-body {
-  margin: 0;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+body { margin: 0; position: relative; width: 100%; height: 100%; } 
 
 
-.section {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-}
-
-div.container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 2200px;
-}
-
-.Acontainer {
-  display: grid;
-  /* background-color: blue; */
-  grid-template-columns: 20% 20% 20% 20%;
-  grid-template-rows: 25% 25% 25% 25%;
-  width: 100%;
-  height: 100%;
-  column-gap: 1%;
-  row-gap: 1%;
-  justify-content: center;
-}
-.Bcontainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 10%;
-}
-.item11 {
-  /* background-color: blueviolet; */
-  display: flex;
-  flex-direction: column;
-  margin: 1%;
-  border: 1px solid #ffc8c8;
-  align-items: center;
-  justify-content: space-evenly;
-  box-shadow: 0 0 30px rgba(255, 141, 145, 0.3);
-}
-.cenTT {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-
-}
-
-.imgdiv {
-  border: 1px solid black;
-  width: 80%;
-  height: 60%;
-  margin-top: 10%;
-}
-
-.ptag {
-  margin-top: 30%;
-}
-.bt {
-  color: blue;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
-}
-.sugi {
-  margin-top: 10px;
-  border-radius: 20%;
-  background-color: rgba(36, 65, 210, 0);
-  height: 40%;
-  width: 100%;
-  /* bottom: 3750%;
-  left: 700%; */
-}
-
-.gearbt {
-  display: flex;
-  background-color: rgba(0,0,0,0);
-  position: relative;
-  border: none;
-}
-
-.logo_02{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 30%;
-  box-shadow: 0 0 30px rgba(255, 141, 145, 0.3);
-  border-radius: 20%;
-}
 
 
 
 /**/
 
-/* .container01 {
-  display: flex;
-  flex-direction: row;
-  width: 100;
-  height: 100%;
-}
-.con1 {
-  margin-top: 9%;
-  display: flex;
-  flex-direction: row;
-  width: 70%;
-  height: 60%;
-  background-color: white;
-  justify-content: space-evenly;
-}
+/* .container01 { display: flex; flex-direction: row; width: 100; height: 100%; } 
+.con1 { margin-top: 9%; display: flex; flex-direction: row; width: 70%; height: 60%; background-color: white; justify-content: space-evenly; } 
 
-.item1 {
-  margin-top: 5%;
-  background-color: white;
-  width: 42%;
-  height: 80%;
-  display: flex;
-  align-items: flex-end;
-  flex-direction: row-reverse;
-  outline-style: dotted;
-}
-.item2 {
-  display: flex;
-  margin-top: 5%;
-  background-color: white(81, 24, 135);
-  width: 42%;
-  height: 80%;
-  flex-direction: row-reverse;
-  align-items: flex-end;
-  outline-style: dotted;
-}
+.item1 { margin-top: 5%; background-color: white; width: 42%; height: 80%; display: flex; align-items: flex-end; flex-direction: row-reverse; outline-style: dotted; } 
+.item2 { display: flex; margin-top: 5%; background-color: white(81, 24, 135); width: 42%; height: 80%; flex-direction: row-reverse; align-items: flex-end; outline-style: dotted; } 
 
-.con2 {
-  margin-top: 9%;
-  align-items: flex-end;
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  height: 60%;
-  background-color: white;
-  align-items: center;
-  outline-style: dotted;
-}
-.item3 {
-  margin-top: 10px;
-  width: 70%;
-  height: 25%;
-  background-color: wheat;
-  outline-style: dotted;
-}
-.item4 {
-  margin-top: 20px;
-  width: 70%;
-  height: 65%;
-  background-color: white(44, 86, 72);
-  display: flex;
-  flex-direction: column;
-  outline-style: dotted;
-}
-.f2 {
-  right: 100%;
-}
+.con2 { margin-top: 9%; align-items: flex-end; display: flex; flex-direction: column; width: 30%; height: 60%; background-color: white; align-items: center; outline-style: dotted; } 
+.item3 { margin-top: 10px; width: 70%; height: 25%; background-color: wheat; outline-style: dotted; } 
+.item4 { margin-top: 20px; width: 70%; height: 65%; background-color: white(44, 86, 72); display: flex; flex-direction: column; outline-style: dotted; } 
+.f2 { right: 100%; } 
 
-button {
-  display: flex;
-  border: none;
-  outline: none;
-  background-color: transparent;
-  cursor: pointer;
-}
+button { display: flex; border: none; outline: none; background-color: transparent; cursor: pointer; } 
 
-.bodycaleander {
-  display: flex;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-}
+.bodycaleander { display: flex; height: 100%; width: 100%; flex-direction: column; } 
 
-.week {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  font-size: 20px;
-  justify-content: space-evenly;
-  margin-top: 15px;
-  color: black;
-}
-.day {
-  display: flex;
-  flex-direction: column;
-  display: flex;
-  font-size: 20px;
-}
+.week { display: flex; flex-wrap: wrap; flex-direction: row; font-size: 20px; justify-content: space-evenly; margin-top: 15px; color: black; } 
+.day { display: flex; flex-direction: column; display: flex; font-size: 20px; } 
 .week1,
 .week2,
 .week3,
 .week4,
-.week5 {
-  display: flex;
-  justify-content: space-evenly;
-  flex-direction: row;
-  margin-top: 20px;
-}
+.week5 { display: flex; justify-content: space-evenly; flex-direction: row; margin-top: 20px; } 
 
 .week1 div,
 .week2 div,
 .week3 div,
 .week4 div,
-.week5 div {
-  border: 1px solid black;
-  width: 50px;
-  border-radius: 20%;
-}
+.week5 div { border: 1px solid black; width: 50px; border-radius: 20%; } 
 
-div a {
-  position: relative;
-  text-decoration: none;
-  color: black;
-  left: 12px;
-}
+div a { position: relative; text-decoration: none; color: black; left: 12px; } 
 
-.sun {
-  color: red;
-}
+.sun { color: red; } 
 
-.sat {
-  color: blue;
-}
+.sat { color: blue; } 
 
-.headcaleander {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+.headcaleander { display: flex; align-items: center; justify-content: center; } */
