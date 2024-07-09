@@ -40,27 +40,26 @@
             cursor:pointer;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
-            display: inline;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+        /*body {*/
+        /*    font-family: Arial, sans-serif;*/
+        /*    background-color: #f9f9f9;*/
+        /*    display: inline;*/
+        /*    justify-content: center;*/
+        /*    align-items: center;*/
+        /*    height: 100vh;*/
 
-        }
-        .container {
-            margin-top:150px;
-            margin-bottom: 150px;
-            background-color: #fff;
+        /*}*/
+        .container-write {
+            margin-left: 10%;
+            margin-bottom: 5%;
+            background-color: rgba(255, 200, 201, 0.55);
             border: 1px solid #ddd;
-            padding: 20px;
+            padding: 2%;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 3000px;
+            width: 80%;
         }
         .title {
-
             text-align: center;
             font-size: 40px;
             margin-bottom: 20px;
@@ -85,11 +84,12 @@
         }
         .upload-section {
             border: 2px dashed #ff7e81;
-            padding: 20px;
+            background-color: #FFFFFF;
+            padding: 3%;
+            margin-top: 3%;
             text-align: center;
             cursor: pointer;
             border-radius: 5px;
-            margin-bottom: 20px;
         }
         .upload-section:hover {
             background-color: #ffe6e6;
@@ -127,11 +127,12 @@
         .submit-button {
             background-color: #ff7e81;
             color: white;
-            padding: 10px 20px;
+            padding: 2% 20px;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             width: 100%;
+            margin-top: 3%;
         }
         #texta{
 
@@ -145,6 +146,7 @@
 </header>
 
 <div class="container">
+    <div class="container-write">
     <div class="title">타임캡슐 게시물 생성</div>
     <div class="form-group">
         <label for="date" id="texta">봉인일:</label>
@@ -168,6 +170,7 @@
     </div>
     <div class="preview" id="preview"></div>
     <button class="submit-button" onclick="submitPost()">게시하기</button>
+    </div>
 </div>
 
 <!-- footer -->
