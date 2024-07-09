@@ -10,7 +10,7 @@
     />
     <title>Love Bridge</title>
     <style>
-      .container{
+      /* .container{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -152,9 +152,25 @@
         width: 100%;
         font-size: 25px;
         border: 2px solid #ddd; border-radius: 8px;
-      }
+      } */
       /* border: 2px solid #ddd; border-radius: 8px; */
-      
+      .input1-text { width: 100%; padding: 0 20px; font-size: 1.5rem; background-color: #fff; border: 2px solid #ddd; border-radius: 8px; font-weight: 400; color: #333; height: 200px; } 
+      .input1-text.line { background-color: #fff; border: 1px solid #ddd; } 
+      .input1-text:focus { background-color: #fff; border: 2px solid #FF0707; } 
+    .bttt{
+      background: #FF646A; color: #fff;
+      white-space: nowrap; 
+      height: 50px; 
+      min-width:-moz-fit-content; 
+      min-width: fit-content; 
+      padding: 0 24px; 
+      font-size: 2.6rem; 
+      margin-left: 10px;
+      } 
+      .off{
+        
+      }
+    
     </style>
     <link href="../css/reset.css" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -177,10 +193,48 @@
     ></header>
 
     <div class="container">
-      <div class="section join">
-      </div>
+      <section class="section join">
+        <p class="section-tit">앨범 만들기</p>
+        <form method="post" action="/joinProc" name="joinForm">
+  
+          <label class="input-label required">날짜</label>
+          <div class="input-wrap">
+            <input type="text" class="input-text" placeholder="20XX-XX-XX" name="date" />
+          </div>
+  
+          <label class="input-label required ">메모</label>
+          
+          <div class="input-wrap ">
+            <input type="text" class="input1-text sizeone off" placeholder="내용을 적어주세요." name="memo" />
+          </div>
 
-     <div class="Acontainer">
+          <div class="d-flex mg-b--10 mg-t--20">
+          <label class="input-label required">첨부파일</label> 
+          <button type="button" class="btn btn-pink">파일</button>
+        </div>
+
+          <div class="input-wrap">
+            <input type="" class="input-text" placeholder="첨부파일을 넣어주세요." />
+          </div>
+          <div class="input-guide error">
+            첨부파일이 존재하지 않습니다
+          </div>
+  
+          
+          <div class="btn-wrap type2 mg-t40">
+            <button type="button" class="btn btn-half btn-line" onclick="location.href=''">
+              취소
+            </button>
+            <button type="submit" class="btn btn-half type2 btn-pink"
+              onclick="location.href=''">
+              작성완료
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+     <!-- <div class="Acontainer">
 
       <div class="title1">
         <img src="../images/cat_01.png" alt="" class="cat1">
@@ -212,7 +266,7 @@
     </table></div>
 
       <div class="file">
-        <div class="file1"><p style="font-size: 20px;">첨부파일</p></div>
+        <div class="file1"><p class="txt-size--15">첨부파일</p></div>
         <div class="file2 tdtdtd" style="width: 60%;">
           <table>
             <tr>
@@ -231,7 +285,7 @@
     </div>
      
 
-    </div>
+    </div> -->
     <footer
       data-include-file="./include/footer.html"
       class="footer includeJs"

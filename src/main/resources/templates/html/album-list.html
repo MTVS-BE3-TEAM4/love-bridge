@@ -26,19 +26,21 @@
     }
     .imglogo{
         display: flex;
-
+    }
+    .width1{
+        display: flex;
+        flex-direction: row-reverse;
+        width: 83%;
     }
 </style>
 
 <body>
     <header data-include-file="./include/header.html" class="header includeJs"></header>
     <div class=" container">
-        <div class="imglogo centerin">
-            <img src="../images/logo_01.png" alt="" class="centerin">
-        </div>
-        <div class="btn-wrap  mg-t--40  mg-b--10">
+        
+        <div class="btn-wrap  mg-t--40  mg-b--10 width1">
             <button type="submit" class="btn btn-lg btn-pink" onclick="location.href='join_complete.html'">
-                작성하기
+                <p>작성하기</p>
             </button>
         </div>
         <section class="section album">
