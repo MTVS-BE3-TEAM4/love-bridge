@@ -36,14 +36,11 @@
 
 <body>
     <header data-include-file="./include/header.html" class="header includeJs"></header>
-    <div class=" container">
-        
-        <div class="btn-wrap  mg-t--40  mg-b--10 width1">
-            <button type="submit" class="btn btn-lg btn-pink" onclick="location.href='join_complete.html'">
-                <p>작성하기</p>
-            </button>
-        </div>
+    <div class="container">
         <section class="section album">
+            <div class="btn-wrap right mg-b--20">
+                <a href="#" class="btn btn-pink btn-board">글쓰기</a>
+            </div>
             <ul class="Acontainer">
                 <li class="item11 mg-b--20">
                     <div class="imgdiv"></div>
@@ -209,18 +206,18 @@
                     <p class="album-memo">앨범 메모메모메모</p>
                 </li>
             </ul>
+            
+            <div class="pagination">
+                <button type="button" class="prev">prev</button>
+                <button type="button" class="active">1</button>
+                <button type="button">2</button>
+                <button type="button">3</button>
+                <button type="button">4</button>
+                <button type="button">5</button>
+                <button type="button" class="next">next</button>
+            </div>
         </section>
-        <div class=" d-flex centerin">
-            <div class="mg-l--10 mg-r--10"><button type="submit" class="btn btn-lg btn-pink" onclick="location.href='join_complete.html'">
-                <
-            </button></div>
-            <div><button type="submit" class="btn btn-lg btn-pink" onclick="location.href='join_complete.html'">
-                1
-            </button></div>
-            <div class="mg-l--10 mg-r--10"><button type="submit" class="btn btn-lg btn-pink" onclick="location.href='join_complete.html'">
-                >
-            </button></div>
-        </div>
+        
     </div>
     <footer data-include-file="./include/footer.html" class="footer includeJs"></footer>
 </body>
