@@ -10,7 +10,54 @@
     />
     <title>Love Bridge</title>
     <style>
-      .container{
+
+
+.file-input1 {
+  display: inline-block;
+  text-align: left;
+  background: #fff;
+  padding: 16px;
+  width: 180px;
+  position: relative;
+  border-radius: 3px;
+  height: 50px;
+}
+
+.file-input1 > [type='file'] {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.file-input1 > .button {
+  display: inline-block;
+  cursor: pointer;
+  background: #eee;
+  padding: 8px 16px;
+  border-radius: 2px;
+  margin-right: 8px;
+}
+
+.file-input1:hover > .button {
+  background: dodgerblue;
+  color: white;
+}
+
+.file-input1 > .label {
+  color: #333;
+  white-space: nowrap;
+  opacity: .3;
+}
+
+.file-input1.-chosen > .label {
+  opacity: 1;
+}
+      /* .container{
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -19,7 +66,7 @@
         display: flex;
         flex-direction: column;
         width: 50%;
-        height: 800px;
+        height: 700px;
         background-color: white;
         box-shadow: 0 0 30px rgba(255, 141, 145, 0.3);
         border-radius: 7%;
@@ -33,8 +80,9 @@
       .date{
         display: flex;
         flex-direction: row;
-        height: 15%;
+        height: 10%;
         width: 100%;
+        justify-content: center;
         
       }
       .date1{
@@ -42,7 +90,6 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        
       }
       .date2{
         width: 60%;
@@ -54,12 +101,18 @@
         flex-direction: row;
         height: 10%;
         width: 100%;
+        justify-content: center;
+        position: relative;
+
       }
       .inside1{
         width: 30%;
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
+        top: 40px;
+        right: 50px;
       }
       .toolbox{
         width: 40%;
@@ -67,7 +120,6 @@
         display: flex;
         flex-direction: column-reverse;
         color: blueviolet;
-      
       }
       .inside2{
         height: 30%;
@@ -76,7 +128,8 @@
         margin-top: 4%;
         margin-right: 10%;
         margin-bottom: 6%;
-        border: 1px dotted rgb(255, 162, 162);
+        border: 2px solid #ddd;
+         border-radius: 8px;
       }
       .file{
         display: flex;
@@ -94,8 +147,8 @@
         width: 60%;
         display: flex;
         align-items: center;
-        border: 1px dotted rgb(255, 162, 162);
-        border-radius: 2%;
+        border: 2px solid #ddd; 
+        border-radius: 8px;
       }
       .bt{
         height: 10%;
@@ -111,9 +164,12 @@
       }
       .p1{
         font-size: 50px;
+       
+        
       }
       .tdtd{
         font-size: 25px;
+        width: 100%;
         
       }
       input::placeholder{
@@ -139,8 +195,29 @@
         position: relative;
         bottom: 13%;
       }
-   
-      
+      .tdtdtd{
+        width: 100%;
+        font-size: 25px;
+        border: 2px solid #ddd; border-radius: 8px;
+      } */
+      /* border: 2px solid #ddd; border-radius: 8px; */
+      .input1-text { width: 100%; padding: 0 20px; font-size: 1.5rem; background-color: #fff; border: 2px solid #ddd; border-radius: 8px; font-weight: 400; color: #333; height: 200px; } 
+      .input1-text.line { background-color: #fff; border: 1px solid #ddd; } 
+      .input1-text:focus { background-color: #fff; border: 2px solid #FF0707; } 
+    .bttt{
+      background: #FF646A; color: #fff;
+      white-space: nowrap; 
+      height: 50px; 
+      min-width:-moz-fit-content; 
+      min-width: fit-content; 
+      padding: 0 24px; 
+      font-size: 2.6rem; 
+      margin-left: 10px;
+      } 
+      .off{
+        
+      }
+    
     </style>
     <link href="../css/reset.css" rel="stylesheet" type="text/css" />
     <link href="../css/style.css" rel="stylesheet" type="text/css" />
@@ -163,10 +240,52 @@
     ></header>
 
     <div class="container">
-      <div class="section join">
-      </div>
+      <section class="section join">
+        <p class="section-tit">앨범 만들기</p>
+        <form method="post" action="/joinProc" name="joinForm">
+  
+          <label class="input-label required">날짜</label>
+          <div class="input-wrap">
+            <input type="text" class="input-text" placeholder="20XX-XX-XX" name="date" />
+          </div>
+  
+          <label class="input-label required ">메모</label>
+          
+          <div class="input-wrap ">
+            <input type="text" class="input1-text sizeone off" placeholder="내용을 적어주세요." name="memo" />
+          </div>
 
-     <div class="Acontainer">
+          <div class="d-flex mg-b--10 mg-t--20">
+          <div><label class="input-label required">첨부파일</label></div>
+          <div class='file-input1'>
+            <input type='file'>
+            <span class='button'>Choose</span>
+            <span class='label' data-js-label>No file selected</label>
+          </div>
+        </div>
+
+          <div class="input-wrap">
+            <input type="" class="input-text" placeholder="첨부파일을 넣어주세요." />
+          </div>
+          <div class="input-guide error">
+            첨부파일이 존재하지 않습니다
+          </div>
+  
+          
+          <div class="btn-wrap type2 mg-t40">
+            <button type="button" class="btn btn-half btn-line" onclick="location.href=''">
+              취소
+            </button>
+            <button type="submit" class="btn btn-half type2 btn-pink"
+              onclick="location.href=''">
+              작성완료
+            </button>
+          </div>
+        </form>
+      </section>
+    </div>
+
+     <!-- <div class="Acontainer">
 
       <div class="title1">
         <img src="../images/cat_01.png" alt="" class="cat1">
@@ -180,7 +299,7 @@
         <div class="date2">
           <table>
             <tr>
-                <td><input type="text" placeholder="20XX-XX-XX" class="tdtd"></td>
+                <td><input type="text" placeholder="20XX-XX-XX" class="tdtdtd"></td>
             </tr>
         </table>
         </div>
@@ -198,21 +317,26 @@
     </table></div>
 
       <div class="file">
-        <div class="file1"><p style="font-size: 20px;">첨부파일</p></div>
-        <div class="file2">
+        <div class="file1"><p class="txt-size--15">첨부파일</p></div>
+        <div class="file2 tdtdtd" style="width: 60%;">
           <table>
             <tr>
-                <td><input type="text" placeholder="첨부파일을 넣어주세요." style="font-size: 20px;"></td>
+                <td><input type="text" placeholder="첨부파일을 넣어주세요." style="font-size: 20px;" class="tdtd"></td>
             </tr>
         </table>
         </div>
       </div>
 
-      <div class="bt"><button class="bt1">작성완료</button></div>
+      <div class="bt">
+        <button type="submit" class="btn btn-lg btn-pink" onclick="location.href='join_complete.html'">
+          작성하기
+      </button>
+      </div>
+     
     </div>
      
 
-    </div>
+    </div> -->
     <footer
       data-include-file="./include/footer.html"
       class="footer includeJs"

@@ -85,7 +85,7 @@ u { text-underline-offset: 2px; }
 .btn-monalisa { background: #FF979B; color: #fff; }
 .btn-link { text-decoration: underline; text-underline-offset: 2px; } 
 .btn-next:after { content: ">"; display: block; font-weight: 100; margin-left: 7px; }
-
+.btn-board{padding: 10px; width: 150px; font-size: 1.4rem;}
 input { font-family: "Pretendard", sans-serif !important; outline: none; -webkit-appearance: none; -moz-appearance: none; appearance: none; } 
 input::-moz-placeholder { color: #bbb; font-weight: 400; } 
 input::placeholder { color: #bbb; font-weight: 400; } 
@@ -609,6 +609,19 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../imag
 .fee-container .bottom-text-box p { color: #999; } 
 .fee-container .bottom-text-box p:first-child { margin-bottom: 14px; }
 
+.table-wrap table { margin-bottom: 1.5rem; font-size: 2rem; line-height: 1.3; white-space: nowrap; letter-spacing: -1px; } 
+.table-wrap tbody tr { border-bottom: 1px solid #eee; } 
+.table-wrap table thead th { padding: 10px 0; text-align: center; font-size: 1.6rem; color: #fff; line-height: 1.3; white-space: nowrap; letter-spacing: -1px; font-weight: 500; background: #FF979B; } 
+.table-wrap table tbody tr{border-bottom: 1px solid #ffc4c6;}
+.table-wrap table tbody tr td{border-right: 1px solid #ffc4c6;}
+.table-wrap table tbody tr td a{display: block;}
+.table-wrap table tbody tr td:last-child{border-right: 0;}
+.table-wrap table tbody tr td.left{text-align: left;}
+.table-wrap table tbody tr td.right{text-align: right;}
+.table-wrap table tbody tr td.center{text-align: center;}
+.table-wrap table td { padding: 10px 15px; font-size: 1.5rem; color: #333; line-height: 1.3; white-space: nowrap; letter-spacing: -1px; font-weight: 500;  text-align: center;} 
+.table-wrap table tr.strong th, .table-wrap table tr.strong td { color: #4c81e6; font-weight: 900; } 
+
 /* album */
 .Acontainer{display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;}
 .Acontainer li{padding: 2%; flex: 0 1 24%; display: flex; flex-direction: column; border: 1px solid #ffc8c8; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3); }
@@ -623,4 +636,4 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../imag
 }
 
 /* board */
-.section.notice { max-width: 600px; } 
+.section.notice-write { max-width: 600px; } 
