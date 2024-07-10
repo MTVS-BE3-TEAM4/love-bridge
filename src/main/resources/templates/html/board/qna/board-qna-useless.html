@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="html/header :: headerLayout"></th:block>
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <!--  <head>-->
 <!--    <meta charset="UTF-8" />-->
@@ -163,7 +163,7 @@
     <script defer="defer" src="../js/include.js"></script>
   </head>
     <!-- header -->
-    <header data-include-file="./include/header.html" class="header includeJs"></header>
+    <header data-include-file="html/include/header.html" class="header includeJs"></header>
     <!-- //header -->
     <div class="container1">
       <div class="header1">1:1 문의 게시판</div>
@@ -245,7 +245,7 @@
       </div>
       <!-- footer -->
       <footer
-        data-include-file="./include/footer.html"
+        data-include-file="html/include/footer.html"
         class="footer includeJs"
       ></footer>
       <!-- //footer -->

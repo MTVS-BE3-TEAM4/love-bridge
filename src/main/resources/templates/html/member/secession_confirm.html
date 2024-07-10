@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="html/header :: headerLayout"></th:block>
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
 <!--<head>-->
 <!--	<meta charset="UTF-8" />-->
 <!--	<meta content="text/html;charset=utf-8" http-equiv="Content-Type" />-->
@@ -20,7 +20,7 @@
 <!--</head>-->
 
 <body>
-	<header data-include-file="./include/header.html" class="header includeJs">
+	<header data-include-file="html/include/header.html" class="header includeJs">
 	</header>
 
 	<div class="container">
@@ -40,7 +40,7 @@
 			</div>
 		</section>
 	</div>
-	<footer data-include-file="./include/footer.html" class="footer includeJs">
+	<footer data-include-file="html/include/footer.html" class="footer includeJs">
 	</footer>
 </body>
 

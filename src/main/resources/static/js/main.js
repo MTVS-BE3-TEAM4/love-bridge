@@ -1,12 +1,14 @@
+
     const open = document.querySelector('.menu');
     const close = document.querySelector('.close');
     var tl = gsap.timeline({ defaults: { duration: 0.6, ease: 'expo.inOut' } }); // duration을 0.6초로 변경
 
     open.addEventListener('click', () => {
+
         if (tl.reversed()) {
             tl.play();
-            
-            
+
+
         } else {
             tl.to('nav', { right: 0, duration: 0.4 }) // 각각의 애니메이션 스텝의 duration을 더 짧게 설정
                 .to('nav', { height: '100vh', duration: 0.4 }, '-=.1')
@@ -48,7 +50,6 @@ ScrollTrigger.defaults({
 document.querySelectorAll(".text").forEach((text, index) => {
   const targetID = text.dataset.target;
   const target = document.querySelector(`#${targetID}`);
-  console.log(target)
   gsap.to(text, {
     autoAlpha: 1,
     duration: 0.5,

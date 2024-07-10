@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="html/header :: headerLayout"></th:block>
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
 <!--<head>-->
 <!--    <meta charset="UTF-8" />-->
 <!--    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />-->
@@ -98,7 +98,7 @@
 
     </style>
     <!-- header -->
-    <header data-include-file="./include/header.html" class="header includeJs">
+    <header data-include-file="html/include/header.html" class="header includeJs">
     </header>
     <!-- //header -->
 
@@ -106,37 +106,37 @@
         <div class="container3">
         <section class="section time-capsule">
             <div class="capsule" onclick="location.href='page1.html'">
-                <img src="../images/1.png" alt="타임캡슐 1">
+                <img src="../../images/1.png" alt="타임캡슐 1">
                 <p class="positioned" >기존 타임캡슐 1<br>YYYY.MM.DD~YYYY.MM.DD </p>
                 <button class="btn-center3">삭제하기</button>
 
             </div>
             <div class="capsule" onclick="location.href='page2.html'">
-                <img src="../images/2.jpg" alt="타임캡슐 2">
+                <img src="../../images/2.jpg" alt="타임캡슐 2">
                 <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
                 <button class="btn-center3">삭제하기</button>
 
             </div>
             <div class="capsule" onclick="location.href='page3.html'">
-                <img src="../images/3.jpg" alt="타임캡슐 3">
+                <img src="../../images/3.jpg" alt="타임캡슐 3">
                 <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
                 <button class="btn-center3">삭제하기</button>
 
             </div>
             <div class="capsule" onclick="location.href='page4.html'">
-                <img src="../images/4.jpg" alt="타임캡슐 4">
+                <img src="../../images/4.jpg" alt="타임캡슐 4">
                 <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
                 <button class="btn-center3">삭제하기</button>
 
             </div>
             <div class="capsule" onclick="location.href='page5.html'">
-                <img src="../images/1.png" alt="타임캡슐 5">
+                <img src="../../images/1.png" alt="타임캡슐 5">
                 <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
                 <button class="btn-center3">삭제하기</button>
 
             </div>
             <div class="capsule" onclick="location.href='page6.html'">
-                <img src="../images/2.jpg" alt="타임캡슐 6">
+                <img src="../../images/2.jpg" alt="타임캡슐 6">
                 <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>
                 <button class="btn-center3">삭제하기</button>
             </div>
@@ -156,7 +156,7 @@
         </div>
     </div>
     <!-- footer -->
-    <footer data-include-file="./include/footer.html" class="footer includeJs">
+    <footer data-include-file="html/include/footer.html" class="footer includeJs">
     </footer>
     <!-- //footer -->
 </body>
