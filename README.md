@@ -46,6 +46,6 @@
 
 |                                    Backend                                             |                                        Backend                                         |                                        Backend                                         |
 |:---------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|:---------------------------------------------------------------------------------------:|
-| <img src="https://avatars.githubusercontent.com/u/173024011?v=4" width=250px alt="양재호"> | <img src="https://avatars.githubusercontent.com/u/169255823?v=4" width=250px alt="손영민"> | <img src="https://avatars.githubusercontent.com/u/169255823?v=4" width=250px alt="오도경"> |
+| <img src="https://avatars.githubusercontent.com/u/173024011?v=4" width=250px alt="양재호"> | <img src="https://avatars.githubusercontent.com/u/169255823?v=4" width=250px alt="손영민"> | <img src="https://avatars.githubusercontent.com/u/94828988?v=4" width=250px alt="오도경"> |
 |                          [양재호](https://github.com/Tund3377)                           |                           [손영민](https://github.com/thsdudals208)                           |                [오도경](https://github.com/dokhung)                           |
 |                         ~~~담당                          |                           ~~~담당                           |                          ~~~담당                          |
