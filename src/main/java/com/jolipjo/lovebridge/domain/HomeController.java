@@ -11,6 +11,6 @@ public class HomeController {
 
     @GetMapping
     public String mainPage(Model model) {
-        return "html/index.html";
+        return "html/main/index.html";
     }
 }

@@ -2,7 +2,7 @@
 
 <!--<html lang="ko">-->
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="html/header :: headerLayout"></th:block>
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <head>
 <!--    <meta charset="UTF-8" />-->
@@ -176,37 +176,37 @@
 </head>
 
 <body>
-<header data-include-file="./include/header.html" class="header includeJs">
+<header data-include-file="html/include/header.html" class="header includeJs">
 </header>
 
 
 <div class="container">
-    <img class="cat-images" src="../images/cat_01.png"/>
+    <img class="cat-images" src="../../images/cat_01.png"/>
     <div class="container3">
         <div class="row">
             <div class="image-upload">
-                <img src="../images/1.png" alt="메인 이미지">
+                <img src="../../images/1.png" alt="메인 이미지">
             </div>
         </div>
         <div class="uploaded-images">
             <div>
-                <img src="../images/1.png" alt="업로드된 이미지 1">
+                <img src="../../images/1.png" alt="업로드된 이미지 1">
                 <button class="remove">X</button>
             </div>
             <div>
-                <img src="../images/1.png" alt="업로드된 이미지 2">
+                <img src="../../images/1.png" alt="업로드된 이미지 2">
                 <button class="remove">X</button>
             </div>
             <div>
-                <img src="../images/1.png" alt="업로드된 이미지 3">
+                <img src="../../images/1.png" alt="업로드된 이미지 3">
                 <button class="remove">X</button>
             </div>
             <div>
-                <img src="../images/1.png" alt="업로드된 이미지 4">
+                <img src="../../images/1.png" alt="업로드된 이미지 4">
                 <button class="remove">X</button>
             </div>
             <div>
-                <img src="../images/1.png" alt="업로드된 이미지 5">
+                <img src="../../images/1.png" alt="업로드된 이미지 5">
                 <button class="remove">X</button>
             </div>
         </div>
@@ -235,7 +235,7 @@
 
 
 
-<footer data-include-file="./include/footer.html" class="footer includeJs">
+<footer data-include-file="html/include/footer.html" class="footer includeJs">
 </footer>
 </body>
 
