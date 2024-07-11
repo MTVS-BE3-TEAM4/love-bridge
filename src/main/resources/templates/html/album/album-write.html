@@ -21,8 +21,8 @@
 <!--</head>-->
 
 <body>
-  <header data-include-file="html/include/header.html" class="header includeJs"></header>
-
+<!--  <header data-include-file="html/include/header.html" class="header includeJs"></header>-->
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
   <div class="container">
     <section class="section album-write">
       <p class="section-tit">앨범 만들기</p>
@@ -62,7 +62,8 @@
       </form>
     </section>
   </div>
-  <footer data-include-file="html/include/footer.html" class="footer includeJs"></footer>
+<div th:replace="~{/html/include/footer :: footer}"></div>
+<!--  <footer data-include-file="html/include/footer.html" class="footer includeJs"></footer>-->
   <script>
     $("#file").on('change', function () {
       var fileName = $("#file").val();

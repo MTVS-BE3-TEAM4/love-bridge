@@ -35,7 +35,8 @@
 </style>
 
 <body>
-    <header data-include-file="html/include/header.html" class="header includeJs"></header>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<!--    <header data-include-file="html/include/header.html" class="header includeJs"></header>-->
     <div class="container">
         <section class="section album">
             <div class="btn-wrap right mg-b--20">
@@ -219,6 +220,7 @@
         </section>
         
     </div>
-    <footer data-include-file="html/include/footer.html" class="footer includeJs"></footer>
+<div th:replace="~{/html/include/footer :: footer}"></div>
+<!--    <footer data-include-file="html/include/footer.html" class="footer includeJs"></footer>-->
 </body>
 </html>
