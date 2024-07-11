@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
+
+
+<body>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+
+	<div class="container">
+		<section class="section login">
+			<form method="post" action="loginProc">
+				<p class="section-tit">로그인</p>
+				<label class="input-label">이메일</label>
+				<div class="input-wrap">
+					<input type="text" class="input-text" placeholder="이메일을 입력하세요" name="email" />
+				</div>
+				<label class="input-label">비밀번호</label>
+				<div class="input-wrap">
+					<input type="password" class="input-text" placeholder="비밀번호를 입력하세요" name="password" />
+				</div>
+
+				<div class="btn-wrap mg-t40">
+					<button type="submit" class="btn btn-full btn-pink">
+						로그인
+					</button>
+				</div>
+
+				<div class="login-state line">
+					<label class="input-checkbox">
+						<input type="checkbox" />
+						<span class="check square"></span>
+						<span class="text">로그인 상태 유지</span>
+					</label>
+				</div>
+			</form>
+
+			<div class="btn-wrap login-menu">
+				<button type="button" class="btn txt-c--black" onclick="location.href='join_simple.html'">
+					회원가입
+				</button>
+				<button type="button" class="btn">
+					아이디찾기
+				</button>
+				<button type="button" class="btn">
+					비밀번호찾기
+				</button>
+			</div>
+		</section>
+	</div>
+
+<div th:replace="~{/html/include/footer :: footer}"></div>
+</body>
+
+</html>
