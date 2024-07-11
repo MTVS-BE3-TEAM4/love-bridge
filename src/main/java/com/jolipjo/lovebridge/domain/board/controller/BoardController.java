@@ -24,19 +24,4 @@ public class BoardController {
     public String boardNoticeView(@PathVariable("id") Long id, Model model) {
         return "html/board/notice/board-notice-view";
     }
-
-    @GetMapping("qna")
-    public String boardQna(Model model) {
-        return "html/board/qna/board-qna";
-    }
-
-    @GetMapping("qna/write")
-    public String boardQnaWrite(Model model) {
-        return "html/board/qna/board-qna-write";
-    }
-
-    @GetMapping("qna/{id}")
-    public String boardQnaView(@PathVariable("id") Long id, Model model) {
-        return "html/board/qna/board-qna-view";
-    }
 }
