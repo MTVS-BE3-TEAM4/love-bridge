@@ -66,7 +66,7 @@
 
         .pagination {
             margin-top: 10%;
-            margin-left: 40%;
+            margin-left: 33%;
 
         }
 
@@ -93,23 +93,28 @@
         }
         .btn-timecapsulbut-add {
             position: relative;
-            bottom: -70px;
+            bottom: -40px;
+            left: 45%;
+            width: 100px;
+            height: 50px;
         }
 
     </style>
     <!-- header -->
-    <header data-include-file="html/include/header.html" class="header includeJs">
-    </header>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+
     <!-- //header -->
 
     <div class="container">
         <div class="container3">
         <section class="section time-capsule">
-            <div class="capsule" onclick="location.href='page1.html'">
-                <img src="../../images/1.png" alt="타임캡슐 1">
+
+
+            <div class="capsule" onclick="location.href='timecapsule/write'">
+                <img src="images/1.png" alt="타임캡슐 1">
+
                 <p class="positioned" >기존 타임캡슐 1<br>YYYY.MM.DD~YYYY.MM.DD </p>
                 <button class="btn-center3">삭제하기</button>
-
             </div>
             <div class="capsule" onclick="location.href='page2.html'">
                 <img src="../../images/2.jpg" alt="타임캡슐 2">
@@ -141,7 +146,7 @@
                 <button class="btn-center3">삭제하기</button>
             </div>
 
-            <button onclick="location.href='timecapsule-write.html'" class="btn btn-full btn-pink btn-timecapsulbut-add"> 타임캡슐 추가</button>
+            <button onclick="location.href='/timecapsule/add'" class="btn btn-full btn-pink btn-timecapsulbut-add"> 타임캡슐 추가</button>
 
             <div class="pagination">
                 <button class="active">1</button>
