@@ -138,8 +138,20 @@ textarea::placeholder{color: #bbb;}
 .input-checkbox.type-btn .wrap { border: 1px solid #ddd; border-radius: 12px; height: 60px; padding: 0 20px; width: 100%; display: flex; align-items: center; } 
 .input-checkbox.type-btn .wrap .text { font-size: 1.6rem; } 
 .input-checkbox.type-btn .logo.kakao { background-image: url("../../images/icons/logo_kakao.svg"); background-repeat: no-repeat; background-position: center; width: 26px; height: 26px; background-size: 100%; } 
-.input-checkbox.type-btn .logo.pass { background-image: url("../../images/icons/logo_pass.svg"); background-repeat: no-repeat; background-position: center; width: 26px; height: 26px; } 
+.input-checkbox.type-btn .logo.pass { background-image: url("../../images/icons/logo_pass.svg"); background-repeat: no-repeat; background-position: center; width: 26px; height: 26px; }
 
+.input-radio [type="radio"]:checked,
+.input-radio [type="radio"]:not(:checked) {position: absolute;left: -9999px; }
+.input-radio [type="radio"]:checked + label,
+.input-radio [type="radio"]:not(:checked) + label {position: relative;padding-left: 28px;cursor: pointer;line-height: 20px;display: inline-block;color: #666; }
+.input-radio [type="radio"]:checked + label:before,
+.input-radio [type="radio"]:not(:checked) + label:before {content: '';position: absolute;left: 0;top: 0;width: 18px;height: 18px;border: 2px solid #ddd;border-radius: 100%;background: #fff; }
+.input-radio [type="radio"]:checked + label:after,
+.input-radio [type="radio"]:not(:checked) + label:after {content: '';width: 12px;height: 12px;background: #FF646A;position: absolute;top: 5px;left: 5px;border-radius: 100%;-webkit-transition: all 0.2s ease;transition: all 0.2s ease; }
+.input-radio [type="radio"]:not(:checked) + label:after {opacity: 0;-webkit-transform: scale(0);transform: scale(0); }
+.input-radio [type="radio"]:checked + label:after {opacity: 1;-webkit-transform: scale(1);transform: scale(1); }
+.input-radio label {font-size: 1.4rem;color: #333; }
+.input-radio + .input-radio { margin-left: 15px }
 /* container */
 .container { background: #ffefef; min-height: 100vh; padding: 150px 0 100px; z-index: 2; } 
 @media (max-width: 1290px){
