@@ -110,6 +110,7 @@
         <section class="section time-capsule">
 
 
+
             <div class="capsule" onclick="location.href='timecapsule/write'">
                 <img src="images/1.png" alt="타임캡슐 1">
 
@@ -161,7 +162,7 @@
         </div>
     </div>
     <!-- footer -->
-    <footer data-include-file="html/include/footer.html" class="footer includeJs">
+    <div th:replace="~{/html/include/footer :: footer}"></div>
     </footer>
     <!-- //footer -->
 </body>
@@ -203,4 +204,6 @@
     });
 
     showPage(currentPage);
+
+
 </script>

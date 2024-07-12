@@ -176,7 +176,7 @@
 </head>
 
 <body>
-<header data-include-file="html/include/header.html" class="header includeJs">
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 </header>
 
 
@@ -239,7 +239,7 @@
 
 
 
-<footer data-include-file="html/include/footer.html" class="footer includeJs">
+<div th:replace="~{/html/include/footer :: footer}"></div>
 </footer>
 </body>
 
