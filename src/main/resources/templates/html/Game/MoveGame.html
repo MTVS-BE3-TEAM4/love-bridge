@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    body {
+        background-color: pink;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .GameDisPlay {
+        border-radius: 25px;
+        width: 1400px;
+        height: 800px;
+        margin: 20px;
+        background-color: skyblue;
+        position: relative;
+    }
+
+    .GameUI {
+        width: 500px;
+        height: 800px;
+        margin: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Dday, .Names, .FName, .MName, .Time {
+        border-radius: 15px;
+        background-color: white;
+        width: 400px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-top: 20px;
+        font-size: 25px;
+    }
+
+    .Dday { height: 120px; }
+    .Names { height: 80px; }
+    .FName, .MName { height: 220px; }
+    .Time { height: 100px; }
+
+    .weather {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .weather div {
+        margin: 0 -50px;
+    }
+
+    .weather div {
+        padding-left: 50px;
+    }
+
+    .weather div:nth-child(2) {
+        padding-left: 85px;
+    }
+
+    .weather div:nth-child(4) {
+        padding-left: 120px;
+    }
+
+    .weather img {
+        width: 100%;
+        max-width: 300px;
+        animation: tilt 2s infinite;
+    }
+
+    @keyframes tilt {
+        0%, 100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(10deg);
+        }
+    }
+
+    .weather div:nth-child(even) img {
+        animation: tiltLeft 2s infinite;
+    }
+
+    @keyframes tiltLeft {
+        0%, 100% {
+            transform: rotate(0deg);
+        }
+        50% {
+            transform: rotate(-10deg);
+        }
+    }
+
+    .attendancetransfer {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        height: 20vh;
+        align-items: center;
+    }
+
+    .attendacetransferButton {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        margin-top: auto;
+        margin-bottom: 20px;
+        animation: pulsate 2s infinite;
+    }
+
+    @keyframes pulsate {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+
+    .attendacetransferButton:active {
+        animation: grow 0.2s forwards;
+    }
+
+    @keyframes grow {
+        0% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(1.2);
+        }
+    }
+
+    .BridgeLayout {
+        width: 1400px;
+        height: 50px;
+        align-content: center;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    }
+
+    .MovingLayout {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-top: 300px;
+    }
+
+    .character {
+        position: absolute;
+        bottom: 60px;
+    }
+
+    #F_character {
+        left: 0;
+    }
+
+    #M_character {
+        right: 0;
+    }
+</style>
+<body>
+<!-- 게임 디스플레이 -->
+<div class="GameDisPlay">
+    <div class="weather">
+        <div style="padding-left: 50px;">
+            <img src="../../../../resources/static/images/img/Game/Cround.svg" alt="cloud" style="width: 100%; max-width: 300px">
+        </div>
+        <div style="padding-left: 85px;">
+            <img src="../../../../resources/static/images/img/Game/sun.svg" alt="sun" style="width: 100%; max-width: 300px">
+        </div>
+        <div style="padding-left: 50px;">
+            <img src="../../../../resources/static/images/img/Game/Cround.svg" alt="cloud" style="width: 100%; max-width: 300px">
+        </div>
+        <div style="padding-left: 120px;">
+            <img src="../../../../resources/static/images/img/Game/Cround.svg" alt="cloud" style="width: 100%; max-width: 300px">
+        </div>
+    </div>
+    <div >
+        <!-- 캐릭터 동적-->
+        <div class="MovingLayout">
+            <div id="F_character" class="character">
+                <img src="../../../../resources/static/images/img/Game/F_Smile.svg" style="max-width: 100px; width: 100%">
+            </div>
+            <div id="M_character" class="character">
+                <img src="../../../../resources/static/images/img/Game/M_Smile.svg" style="max-width: 100px; width: 100%">
+            </div>
+        </div>
+
+        <!-- 다리 -->
+        <div class="BridgeLayout">
+            <img src="../../../../resources/static/images/img/Game/bridge.svg" style="width: 100%">
+        </div>
+    </div>
+
+    <div class="attendancetransfer">
+        <div style="display: flex">
+            <button class="attendacetransferButton" id="F_btn">
+                <img src="../../../../resources/static/images/img/Game/AttendanceButton.svg" style="width: 100%; max-width: 150px">
+            </button>
+            <button class="attendacetransferButton" id="M_btn">
+                <img src="../../../../resources/static/images/img/Game/AttendanceButton.svg" style="width: 100%; max-width: 150px">
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<!-- UI -->
+<div class="GameUI">
+    <div class="Dday">{Today}일차</div>
+    <div class="Names">도움말</div>
+    <div class="FName">
+        <div>공주님</div>
+        <div style="margin-top: 50px">{UserName}님</div>
+    </div>
+    <div class="MName">
+        <div>왕자님</div>
+        <div style="margin-top: 50px">{UserName}님</div>
+    </div>
+    <div class="Time">{Time}</div>
+</div>
+<script>
+    document.querySelector('.attendacetransferButton')
+        .addEventListener('click', function() {
+            const button = this;
+            button.classList.add('clicked');
+            setTimeout(function() {
+                button.classList.remove('clicked');
+            }, 200);
+        });
+</script>
+
+<script>
+    // JavaScript to handle character movements
+    let F_character = document.getElementById("F_character");
+    let M_character = document.getElementById("M_character");
+    let F_position = 0;
+    let M_position = 0;
+
+    document.getElementById("F_btn").addEventListener("click", function() {
+        if (F_position < 13) { // Assuming 14 steps (0 to 13) to the other side
+            F_position++;
+            F_character.style.left = (F_position * 100) + "px";
+        }
+    });
+
+    document.getElementById("M_btn").addEventListener("click", function() {
+        if (M_position < 13) { // Assuming 14 steps (0 to 13) to the other side
+            M_position++;
+            M_character.style.right = (M_position * 100) + "px";
+        }
+    });
+</script>
+</body>
+</html>
