@@ -14,8 +14,10 @@ public class QuizController {
         return "html/quiz/quiz-list";
     }
 
-    @GetMapping("/{id}")
-    public String boardQnaView(@PathVariable("id") Long id, Model model) {
+//    @GetMapping("/{id}")
+//    public String boardQnaView(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/test")
+    public String boardQnaView(Model model) {
         return "html/quiz/quiz-view";
     }
 }
