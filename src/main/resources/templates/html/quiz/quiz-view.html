@@ -4,117 +4,80 @@
 
   <body>
     <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
-
-    <style>
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #fce4ec;
-        color: #333;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-      }
-
-      .container {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-      }
-
-      .content {
-        background: white;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        width: 80%;
-        max-width: 800px;
-        margin-bottom: 20px;
-      }
-
-      h1 {
-        text-align: center;
-        margin-bottom: 20px;
-      }
-
-      .post-details {
-        margin-bottom: 20px;
-      }
-
-      .post-title {
-        font-size: 24px;
-        margin-bottom: 10px;
-      }
-
-      .post-meta {
-        color: #777;
-        font-size: 14px;
-        margin-bottom: 20px;
-      }
-
-      .post-content p {
-        line-height: 1.6;
-      }
-
-      .buttons {
-        text-align: center;
-      }
-
-      .button {
-        background-color: #446ff4;
-        color: white;
-        border: none;
-        padding: 10px 20px;
-        margin: 5px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .button:hover {
-        background-color: #365bb3;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      }
-
-      .button:active {
-        background-color: #2d4a91;
-      }
-
-      footer {
-        text-align: center;
-        padding: 10px 0;
-        background-color: #fce4ec;
-        color: #777;
-      }
-    </style>
     <div class="container">
-      <div class="content">
-        <div class="post-details">
-          <h2 class="post-title">제목입니다.</h2>
-          <p class="post-meta"> 번호: 1 | 작성자: 작성자입니다. 1 | 작성일: 24-01-20</p>
-          <div class="post-content">
-            <p>
-              게시물 내용이 여기에 표시됩니다. 게시물 내용이 여기에 표시됩니다.
-            </p>
-            <p>
-              게시물 내용이 여기에 표시됩니다. 게시물 내용이 여기에 표시됩니다.
-            </p>
+      <section class="section quiz">
+        <p class="section-tit">QUIZ</p>
+        <div class="quiz-wrap">
+          <div class="question">
+            <p class="question-tit"><span>Q1</span>질문입니다.</p>
+            <ul class="answer-list">
+              <li class="first">
+                <p>hello,are we meeting today?</p>
+                <button class="heart-toggle answer-heart" type="button">
+                  <svg viewBox="-10 -10 500 500" class="svg-heart" >
+                    <path d="M0 200 v-200 h200
+										  a100,100 90 0,1 0,200
+										  a100,100 90 0,1 -200,0
+										  z"/>
+                  </svg>
+                </button>
+              </li>
+              <li class="second">
+                <button class="heart-toggle2 answer-heart" type="button">
+                  <svg viewBox="-10 -10 500 500" class="svg-heart2" >
+                    <path d="M0 200 v-200 h200
+											  a100,100 90 0,1 0,200
+											  a100,100 90 0,1 -200,0
+											  z"/>
+                  </svg>
+                </button>
+                <p>yes,what time suits you?</p>
+              </li>
+            </ul>
+          </div>
+          <div class="answer-wrap">
+            <label for="answer">답변등록</label>
+            <textarea id="answer"></textarea>
+            <div class="btn-wrap type2 mg-t--20">
+              <button type="button" class="btn btn-half btn-line" onclick="location.href='login.html'">
+                취소
+              </button>
+              <button type="submit" class="btn btn-half btn-pink" onclick="location.href='join_complete.html'">
+                등록
+              </button>
+            </div>
           </div>
         </div>
-        <button class="btn btn-pink btn-md" onclick="location.href='board-notice.html'">목록</button>
-        <button class="btn btn-pink btn-md" onclick="location.href='board-notice-write.html'">수정</button>
-        <button class="btn btn-pink btn-md" onclick="location.href='board-notice-write.html'">삭제</button>
-        <!-- <div class="buttons">
-          <button onclick="window.location.href='list.html'">목록</button>
-          <button onclick="editPost()">수정</button>
-          <button onclick="deletePost()">삭제</button>
-        </div> -->
-      </div>
+      </section>
     </div>
     <footer th:replace="~{/html/include/footer :: footer}"></footer>
+    <script>
+      const heart = document.querySelector('.svg-heart');
+      const heart2 = document.querySelector('.svg-heart2');
+
+      let toggleState = false;
+
+      function toggleColor() {
+        heart.style.fill == 'red' ?
+                heart.style.fill = '#eee' :
+                heart.style.fill = 'red';
+        heart.style.fill == 'red' ?
+                toggleState = true :
+                toggleState = false;
+      }
+
+      heart.addEventListener('click', toggleColor);
+
+      function toggleColor2() {
+        heart2.style.fill == 'red' ?
+                heart2.style.fill = '#eee' :
+                heart2.style.fill = 'red';
+        heart2.style.fill == 'red' ?
+                toggleState = true :
+                toggleState = false;
+      }
+
+      heart2.addEventListener('click', toggleColor2);
+    </script>
   </body>
 </html>
