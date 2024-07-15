@@ -57,4 +57,16 @@ public class JoinRequestDTO {
     public void setMarketingAgree(Boolean marketingAgree) {
         this.marketingAgree = marketingAgree;
     }
+
+    @Override
+    public String toString() {
+        return "JoinRequestDTO{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", birth=" + birth +
+                ", gender='" + gender + '\'' +
+                ", marketingAgree=" + marketingAgree +
+                '}';
+    }
 }

@@ -3,7 +3,7 @@ package com.jolipjo.lovebridge.domain.member.dto;
 public class FindPasswordResponseDTO {
     private boolean passwordReset;
 
-    public boolean isPasswordReset() {
+    public boolean getPasswordReset() {
         return passwordReset;
     }
 
