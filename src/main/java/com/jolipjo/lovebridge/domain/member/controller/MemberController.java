@@ -69,6 +69,13 @@ public class MemberController {
         return "html/member/join";
     }
 
+    @PostMapping("/joinProc")
+    public String join(@ModelAttribute JoinRequestDTO joinRequestDTO,
+                       RedirectAttributes model) {
+        System.out.println("joinRequestDTO = " + joinRequestDTO);
+        return "redirect:/member/join-complete";
+    }
+
     /*회원가입 완료 페이지*/
     @GetMapping("/join-complete")
     public String joinComplete(Model model) {

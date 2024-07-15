@@ -6,15 +6,15 @@ public class JoinRequestDTO {
     private String email;
     private String password;
     private String nickname;
-    private Date birth;
+    private String birth;
     private String gender;
     private Boolean marketingAgree;
 
-    public Date getBirth() {
+    public String getBirth() {
         return birth;
     }
 
-    public void setBirth(Date birth) {
+    public void setBirth(String birth) {
         this.birth = birth;
     }
 

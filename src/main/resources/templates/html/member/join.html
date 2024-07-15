@@ -10,7 +10,7 @@
 	<div class="container">
 		<section class="section join">
 			<p class="section-tit">기본 정보</p>
-			<form method="post" action="/joinProc" name="joinForm">
+			<form method="post" action="joinProc" name="joinForm">
 
 				<label class="input-label required">이메일</label>
 				<div class="input-wrap">
@@ -36,7 +36,7 @@
 
 				<label class="input-label required">생년월일</label>
 				<div class="input-wrap">
-					<input type="text" class="input-text" placeholder="1998-12-12" name="birth-year"
+					<input type="text" class="input-text" placeholder="1998-12-12" name="birth"
 						oninput="localAutoHyphen(this)" maxlength="10" />
 
 				</div>
@@ -70,7 +70,7 @@
 					</div>
 					<div class="agree-input">
 						<label class="input-checkbox">
-							<input type="checkbox" />
+							<input type="checkbox" name="marketingAgree" value="true"/>
 							<span class="check square"></span>
 							<span class="text">이메일 수신 동의</span>
 						</label>
