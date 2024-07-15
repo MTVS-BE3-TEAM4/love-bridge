@@ -28,4 +28,13 @@ public class LoginRequestDTO {
     public void setRememberMe(boolean rememberMe) {
         this.rememberMe = rememberMe;
     }
+
+    @Override
+    public String toString() {
+        return "LoginRequestDTO{" +
+                "email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", rememberMe=" + rememberMe +
+                '}';
+    }
 }

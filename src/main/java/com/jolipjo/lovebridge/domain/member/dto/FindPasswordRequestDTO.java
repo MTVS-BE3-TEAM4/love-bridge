@@ -10,4 +10,11 @@ public class FindPasswordRequestDTO {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "FindPasswordRequestDTO{" +
+                "email='" + email + '\'' +
+                '}';
+    }
 }
