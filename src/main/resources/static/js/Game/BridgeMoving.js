@@ -37,7 +37,7 @@ const sendPosition = (position, gender, winner) => {
 document.getElementById("F_btn").addEventListener("click", function() {
     if (F_position <= 29) {
         F_position++;
-        F_character.style.left = (F_position * 21) + "px";
+        F_character.style.left = (F_position * 15) + "px";
         sendPosition(F_position, "F","NotWinner");
     } else if (F_position >= 30) {
         sendPosition(F_position,"F","Win_F");
@@ -49,7 +49,7 @@ document.getElementById("F_btn").addEventListener("click", function() {
 document.getElementById("M_btn").addEventListener("click", function() {
     if (M_position <= 29) {
         M_position++;
-        M_character.style.right = (M_position * 21) + "px";
+        M_character.style.right = (M_position * 15) + "px";
         sendPosition(M_position, "M","NotWinner");
     } else if (M_position >= 30) {
         sendPosition(M_position,"M","Win_M");
