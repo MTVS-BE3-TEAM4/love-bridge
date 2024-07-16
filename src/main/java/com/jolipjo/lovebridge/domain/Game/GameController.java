@@ -1,4 +1,4 @@
-package com.jolipjo.lovebridge.Game;
+package com.jolipjo.lovebridge.domain.Game;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

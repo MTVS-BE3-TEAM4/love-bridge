@@ -180,21 +180,34 @@ body {
     100% { transform: translateX(0); }
 }
 
+.CroundInLeft {
+    width: 100%; max-width: 300px
+}
+.SunImg{
+    width: 100%; max-width: 300px
+}
+.CroundInRight1 {
+    width: 100%; max-width: 300px
+}
+.CroundInRight2{
+    width: 100%; max-width: 300px
+}
+
 /* 해상도 관련 사이즈 미디어 쿼리 */
-@media screen and (min-width: 1500px) and (max-width: 2000px) {
+@media screen and (min-width: 1500px) {
     .GameDisPlay {
         border-radius: 25px;
-        width: 800px;
-        height: 400px;
-        margin: 20px;
+        width: 100%;
+        height: 90%;
         background-color: skyblue;
         position: relative;
     }
 
     .GameUI {
-        width: 500px;
-        height: 400px;
-        margin: 20px;
+        width: 200px;
+        height: 80%;
+        margin-left: 100px;
+        margin-right: 100px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -202,7 +215,7 @@ body {
 
     .BridgeLayout {
         width: 100%;
-        height: 50px;
+        height: 10px;
         align-content: center;
         display: flex;
         justify-content: center;
@@ -210,24 +223,67 @@ body {
     }
 
     .attendanceBtnBody {
+        width: 100%; max-width: 200px
+    }
+
+    .Dday {
+        height: 220px;
+        width: 300px;
+    }
+    .Names {
+        height: 150px;
+        width: 300px;
+    }
+    .FName, .MName {
+        height: 220px;
+        width: 300px;
+    }
+    .Time {
+        height: 150px;
+        width: 300px;
+    }
+
+    .character {
+        position: absolute;
+        bottom: 50px;
+    }
+
+    .Fimg{
+        max-width: 100px; width: 100%
+    }
+    .Ming{
+        max-width: 100px; width: 100%
+    }
+
+    .CroundInLeft {
+        width: 100%; max-width: 100px
+    }
+    .SunImg{
+        width: 100%; max-width: 100px
+    }
+    .CroundInRight1 {
+        width: 100%; max-width: 100px
+    }
+    .CroundInRight2{
         width: 100%; max-width: 100px
     }
 }
 
-@media screen and (min-width: 1000px) and (max-width: 1500px) {
+@media screen and (max-width: 1500px) {
+
     .GameDisPlay {
         border-radius: 25px;
-        width: 400px;
-        height: 200px;
-        margin: 10px;
+        width: 100%;
+        height: 90%;
         background-color: skyblue;
         position: relative;
     }
 
     .GameUI {
-        width: 300px;
-        height: 200px;
-        margin: 10px;
+        width: 200px;
+        height: 80%;
+        margin-left: 100px;
+        margin-right: 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -235,7 +291,7 @@ body {
 
     .BridgeLayout {
         width: 100%;
-        height: 50px;
+        height: 10px;
         align-content: center;
         display: flex;
         justify-content: center;
@@ -244,5 +300,47 @@ body {
 
     .attendanceBtnBody {
         width: 100%; max-width: 50px
+    }
+
+    .Dday {
+        height: 220px;
+        width: 220px;
+    }
+    .Names {
+        height: 150px;
+        width: 220px;
+    }
+    .FName, .MName {
+        height: 220px;
+        width: 220px;
+    }
+    .Time {
+        height: 150px;
+        width: 220px;
+    }
+
+    .character {
+        position: absolute;
+        bottom: 50px;
+    }
+
+    .Fimg{
+        max-width: 50px; width: 100%
+    }
+    .Ming{
+        max-width: 50px; width: 100%
+    }
+
+    .CroundInLeft {
+        width: 100%; max-width: 100px
+    }
+    .SunImg{
+        width: 100%; max-width: 100px
+    }
+    .CroundInRight1 {
+        width: 100%; max-width: 100px
+    }
+    .CroundInRight2{
+        width: 100%; max-width: 100px
     }
 }
