@@ -4,40 +4,38 @@
 
   <body>
     <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+    <form th:action="@{/quiz/test}" th:object="${quizDetailRequestDTO}" method="post">
     <div class="container">
       <section class="section quiz">
         <p class="section-tit">QUIZ</p>
         <div class="quiz-wrap">
           <div class="question">
             <p class="question-tit"><span>Q1</span>질문입니다.</p>
+            <style th:inline="css">
+              .answer-list li::before{
+                background-image: url([[${imgSrc}]]) ;
+              }
+            </style>
             <ul class="answer-list">
               <li class="first">
-                <p>hello,are we meeting today?</p>
-                <button class="heart-toggle answer-heart" type="button">
-                  <svg viewBox="-10 -10 500 500" class="svg-heart" >
-                    <path d="M0 200 v-200 h200
-										  a100,100 90 0,1 0,200
-										  a100,100 90 0,1 -200,0
-										  z"/>
-                  </svg>
-                </button>
+                <div>
+                  <p>hello,are we meeting today?</p>
+                  <i class="fa fa-heart" id="quizHeart"></i>
+                </div>
+                <p class="answer-date">yy.mm.dd hh:mm</p>
               </li>
               <li class="second">
-                <button class="heart-toggle2 answer-heart" type="button">
-                  <svg viewBox="-10 -10 500 500" class="svg-heart2" >
-                    <path d="M0 200 v-200 h200
-											  a100,100 90 0,1 0,200
-											  a100,100 90 0,1 -200,0
-											  z"/>
-                  </svg>
-                </button>
-                <p>yes,what time suits you?</p>
+                <div>
+                  <i class="fa fa-heart" id="quizHeart2"></i>
+                  <p>yes,what time suits you?</p>
+                </div>
+                <p class="answer-date">yy.mm.dd hh:mm</p>
               </li>
             </ul>
           </div>
           <div class="answer-wrap">
             <label for="answer">답변등록</label>
-            <textarea id="answer"></textarea>
+            <textarea id="answer" name="quizAnswer"></textarea>
             <div class="btn-wrap type2 mg-t--20">
               <button type="button" class="btn btn-half btn-line" onclick="location.href='login.html'">
                 취소
@@ -50,34 +48,19 @@
         </div>
       </section>
     </div>
+    </form>
     <footer th:replace="~{/html/include/footer :: footer}"></footer>
     <script>
-      const heart = document.querySelector('.svg-heart');
-      const heart2 = document.querySelector('.svg-heart2');
-
-      let toggleState = false;
-
-      function toggleColor() {
-        heart.style.fill == 'red' ?
-                heart.style.fill = '#eee' :
-                heart.style.fill = 'red';
-        heart.style.fill == 'red' ?
-                toggleState = true :
-                toggleState = false;
-      }
-
-      heart.addEventListener('click', toggleColor);
-
-      function toggleColor2() {
-        heart2.style.fill == 'red' ?
-                heart2.style.fill = '#eee' :
-                heart2.style.fill = 'red';
-        heart2.style.fill == 'red' ?
-                toggleState = true :
-                toggleState = false;
-      }
-
-      heart2.addEventListener('click', toggleColor2);
+      (function() {
+        const heart = document.getElementById('quizHeart');
+        const heart2 = document.getElementById('quizHeart2');
+        heart.addEventListener('click', function() {
+          heart.classList.toggle('red');
+        });
+        heart2.addEventListener('click', function() {
+          heart2.classList.toggle('red');
+        });
+      })();
     </script>
   </body>
 </html>

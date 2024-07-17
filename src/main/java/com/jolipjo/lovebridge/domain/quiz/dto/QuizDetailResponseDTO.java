@@ -6,6 +6,7 @@ public class QuizDetailResponseDTO {
     private ArrayList<QuizDetail> answerList;
 
     public QuizDetailResponseDTO() {}
+
     public QuizDetailResponseDTO(ArrayList<QuizDetail> answerList) {
         this.answerList = answerList;
     }
