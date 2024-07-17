@@ -1,15 +1,19 @@
 package com.jolipjo.lovebridge.domain.quiz.dto;
 
+import java.util.Date;
+
 public class QuizDetail {
     /*
     1.회원ID
     2.프로필 사진 이미지 경로
     3.답변내용
+    4.작성날짜
      */
 
     private String userId;
     private String imgSrc;
     private String answer;
+    private Date answerDate;
 
     public void QuizDetailRequestDTO() {}
 
@@ -35,6 +39,14 @@ public class QuizDetail {
 
     public void setAnswer(String answer) {
         this.answer = answer;
+    }
+
+    public Date getAnswerDate() {
+        return answerDate;
+    }
+
+    public void setAnswerDate(Date answerDate) {
+        this.answerDate = answerDate;
     }
 
     @Override

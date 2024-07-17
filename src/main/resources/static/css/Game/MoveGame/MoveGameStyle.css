@@ -1,46 +1,51 @@
-body {
-    background-color: pink;
+.GameWrap {
+    background: #ffefef;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    padding: 0 50px;
 }
-
+.Fimg{
+    max-width: 170px; width: 100%
+}
+.Ming{
+    max-width: 170px; width: 100%
+}
 .GameDisPlay {
-    border-radius: 25px;
-    width: 1400px;
-    height: 800px;
-    margin: 20px;
+    flex: 1;
     background-color: skyblue;
     position: relative;
+    border-radius: 8px;
 }
 
 .GameUI {
-    width: 500px;
-    height: 800px;
-    margin: 20px;
+    width: 20%;
     display: flex;
+    padding: 0 20px;
     flex-direction: column;
     align-items: center;
 }
 
 .Dday, .Names, .FName, .MName, .Time {
-    border-radius: 15px;
-    background-color: white;
-    width: 400px;
+    border-radius: 8px;
+    background-color: #fff;
+    width: 100%;
     text-align: center;
     display: flex;
     justify-content: center;
     flex-direction: column;
     margin-top: 20px;
-    font-size: 25px;
+    font-size: 20px;
+    border:1px solid #FF979B;
+    min-height:80px;
 }
-
-.Dday { height: 120px; }
-.Names { height: 80px; }
-.FName, .MName { height: 220px; }
-.Time { height: 100px; }
-
+.Names button{
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
 .weather {
     display: flex;
     align-items: center;
@@ -64,7 +69,7 @@ body {
 
 .weather img {
     width: 100%;
-    max-width: 300px;
+    max-width: 250px;
     animation: tilt 2s infinite;
 }
 
@@ -92,21 +97,64 @@ body {
 
 .attendancetransfer {
     display: flex;
-    justify-content: center;
-    flex-direction: column;
-    height: 20vh;
+    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
+    padding: 30px 50px;
 }
+.attendancetransfer li p{font-size: 1.9rem; color: #333; margin-top: 25px; font-weight: 600; color: #333; text-align: center}
 
 .attendacetransferButton {
-    background: transparent;
-    border: none;
-    cursor: pointer;
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    background: #ececec;
+    box-shadow: 0 10px 0 #ccc;
+    border: 0;
     outline: none;
-    margin-top: auto;
-    margin-bottom: 20px;
-    animation: pulsate 2s infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in;
 }
+.attendacetransferButton:active {
+    background: #FF646A;
+    box-shadow: #fff 0 5px 0 0;
+    transform: translateY(10px);
+}
+
+.game-heart-btn {
+    width: 40px;
+    height: 40px;
+    transform: rotate(45deg);
+    background: #ddd;
+    top: 5px;
+    position: relative;
+    display: flex;
+    transition: 0.1s ease-in;
+}
+.attendacetransferButton:hover > .game-heart-btn {
+    background: #FF646A;
+}
+.attendacetransferButton:active > .game-heart-btn {
+    background: white;
+}
+.game-heart-btn::before,
+.game-heart-btn::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: inherit;
+    position: absolute;
+}
+.game-heart-btn::before {
+    left: -50%;
+}
+.game-heart-btn::after {
+    top: -50%;
+}
+
 
 .attendanceBtnBody {
     width: 100%; max-width: 150px
@@ -121,9 +169,6 @@ body {
     }
 }
 
-.attendacetransferButton:active {
-    animation: grow 0.2s forwards;
-}
 
 @keyframes grow {
     0% {
@@ -134,26 +179,25 @@ body {
     }
 }
 
-.BridgeLayout {
-    width: 1400px;
-    height: 50px;
-    align-content: center;
-    display: flex;
-    justify-content: center;
-    align-items: flex-end;
-}
 
 .MovingLayout {
     display: flex;
     justify-content: space-between;
     position: relative;
-    margin-top: 300px;
+    background: url(/../images/img/Game/bridge.png) no-repeat 0 0 / cover;
+    min-height: 200px;
+    margin-top: 130px;
+}
+.character{
+    position: absolute;
+    top: -130px;
+    left: 0;
 }
 
-.character {
-    position: absolute;
-    bottom: 50px;
-}
+/*.character {*/
+/*    position: absolute;*/
+/*    bottom: 50px;*/
+/*}*/
 
 #F_character {
     left: 0;
@@ -161,12 +205,13 @@ body {
 
 #M_character {
     right: 0;
+    left: initial;
 }
 
-.character {
-    display: inline-block;
-    overflow: hidden;
-}
+/*.character {*/
+/*    display: inline-block;*/
+/*    overflow: hidden;*/
+/*}*/
 
 .character img {
     display: block;
@@ -195,65 +240,14 @@ body {
 
 /* 해상도 관련 사이즈 미디어 쿼리 */
 @media screen and (min-width: 1500px) {
-    .GameDisPlay {
-        border-radius: 25px;
-        width: 100%;
-        height: 90%;
-        background-color: skyblue;
-        position: relative;
-    }
-
-    .GameUI {
-        width: 200px;
-        height: 80%;
-        margin-left: 100px;
-        margin-right: 100px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .BridgeLayout {
-        width: 100%;
-        height: 10px;
-        align-content: center;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-    }
 
     .attendanceBtnBody {
         width: 100%; max-width: 200px
     }
 
-    .Dday {
-        height: 220px;
-        width: 300px;
-    }
-    .Names {
-        height: 150px;
-        width: 300px;
-    }
-    .FName, .MName {
-        height: 220px;
-        width: 300px;
-    }
-    .Time {
-        height: 150px;
-        width: 300px;
-    }
 
-    .character {
-        position: absolute;
-        bottom: 50px;
-    }
 
-    .Fimg{
-        max-width: 100px; width: 100%
-    }
-    .Ming{
-        max-width: 100px; width: 100%
-    }
+
 
     .CroundInLeft {
         width: 100%; max-width: 100px
@@ -271,65 +265,13 @@ body {
 
 @media screen and (max-width: 1500px) {
 
-    .GameDisPlay {
-        border-radius: 25px;
-        width: 100%;
-        height: 90%;
-        background-color: skyblue;
-        position: relative;
-    }
-
-    .GameUI {
-        width: 200px;
-        height: 80%;
-        margin-left: 100px;
-        margin-right: 50px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .BridgeLayout {
-        width: 100%;
-        height: 10px;
-        align-content: center;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-    }
 
     .attendanceBtnBody {
         width: 100%; max-width: 50px
     }
 
-    .Dday {
-        height: 220px;
-        width: 220px;
-    }
-    .Names {
-        height: 150px;
-        width: 220px;
-    }
-    .FName, .MName {
-        height: 220px;
-        width: 220px;
-    }
-    .Time {
-        height: 150px;
-        width: 220px;
-    }
 
-    .character {
-        position: absolute;
-        bottom: 50px;
-    }
 
-    .Fimg{
-        max-width: 50px; width: 100%
-    }
-    .Ming{
-        max-width: 50px; width: 100%
-    }
 
     .CroundInLeft {
         width: 100%; max-width: 100px
@@ -344,3 +286,5 @@ body {
         width: 100%; max-width: 100px
     }
 }
+
+@media (max-width: 660px){}
