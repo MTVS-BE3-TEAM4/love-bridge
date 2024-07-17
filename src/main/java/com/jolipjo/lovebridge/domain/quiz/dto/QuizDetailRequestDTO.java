@@ -1,25 +1,27 @@
 package com.jolipjo.lovebridge.domain.quiz.dto;
 
 public class QuizDetailRequestDTO {
-    /*
-    1. 퀴즈목록ID
-     */
-    private int ID;
+
+    private String quizAnswer;
 
     public QuizDetailRequestDTO() {}
 
-    public int getID() {
-        return ID;
+    public QuizDetailRequestDTO(String quizAnswer) {
+        this.quizAnswer = quizAnswer;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public String getQuizAnswer() {
+        return quizAnswer;
+    }
+
+    public void setQuizAnswer(String quizAnswer) {
+        this.quizAnswer = quizAnswer;
     }
 
     @Override
     public String toString() {
         return "QuizDetailRequestDTO{" +
-                "ID=" + ID +
+                "quizAnswer='" + quizAnswer + '\'' +
                 '}';
     }
 }
