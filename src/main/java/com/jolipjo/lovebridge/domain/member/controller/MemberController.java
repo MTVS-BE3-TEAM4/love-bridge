@@ -1,5 +1,6 @@
 package com.jolipjo.lovebridge.domain.member.controller;
 
+import com.jolipjo.lovebridge.domain.member.dao.MemberMapper;
 import com.jolipjo.lovebridge.domain.member.dto.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +14,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/member")
 public class MemberController {
 
+    private final MemberMapper mapper;
+
+    public MemberController(MemberMapper mapper) {
+        this.mapper = mapper;
+    }
+
     /*로그인 페이지*/
     @GetMapping("/login")
     public String login(Model model) {
+        JoinRequestDTO dto = new JoinRequestDTO();
+
+        dto.setEmail("aaa");
+        mapper.secret(dto);
+
         return "html/member/login";
     }
 
@@ -66,6 +78,7 @@ public class MemberController {
     /*회원가입 페이지*/
     @GetMapping("/join")
     public String join(Model model) {
+
         return "html/member/join";
     }
 

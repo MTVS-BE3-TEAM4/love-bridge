@@ -25,6 +25,14 @@ dependencies {
 
 	// 시큐리티
 	implementation "org.springframework.boot:spring-boot-starter-security"
+	
+	// my batis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
+
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.3'
+	
+	// mysql 연결
+	runtimeOnly 'com.mysql:mysql-connector-j'
 }
 
 tasks.named('test') {
