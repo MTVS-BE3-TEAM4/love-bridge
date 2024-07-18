@@ -2,6 +2,7 @@ package com.jolipjo.lovebridge.domain.member.controller;
 
 import com.jolipjo.lovebridge.domain.member.dao.MemberMapper;
 import com.jolipjo.lovebridge.domain.member.dto.*;
+import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
 
     private final MemberMapper mapper;
+    private final MemberService memberService;
 
-    public MemberController(MemberMapper mapper) {
+    public MemberController(MemberMapper mapper, MemberService memberService) {
+        this.memberService = memberService;
         this.mapper = mapper;
     }
 
@@ -25,8 +28,8 @@ public class MemberController {
     public String login(Model model) {
         JoinRequestDTO dto = new JoinRequestDTO();
 
-        dto.setEmail("aaa");
-        mapper.secret(dto);
+//        dto.setEmail("aaa");
+//        mapper.secret(dto);
 
         return "html/member/login";
     }
@@ -50,7 +53,7 @@ public class MemberController {
                             RedirectAttributes model){
         System.out.println("dto = " + dto);
         FindEmailResponseDTO responseDTO = new FindEmailResponseDTO();
-        responseDTO.setIsExist(true);
+        responseDTO.setIsExist(false);
         model.addFlashAttribute("isExist", responseDTO);
         return "redirect:/member/find-email";
 
@@ -68,12 +71,11 @@ public class MemberController {
         System.out.println("dto = " + dto);
         FindPasswordResponseDTO responseDTO = new FindPasswordResponseDTO();
 
-        responseDTO.setPasswordReset(true);
+        responseDTO.setPasswordReset(false);
         model.addFlashAttribute("isReset", responseDTO);
         return "redirect:/member/find-password";
     }
 
-    /********TODO: 나머지 타임리프 데이터 연결!**************/
 
     /*회원가입 페이지*/
     @GetMapping("/join")
@@ -86,6 +88,7 @@ public class MemberController {
     public String join(@ModelAttribute JoinRequestDTO joinRequestDTO,
                        RedirectAttributes model) {
         System.out.println("joinRequestDTO = " + joinRequestDTO);
+        memberService.join(joinRequestDTO);
         return "redirect:/member/join-complete";
     }
 
@@ -100,6 +103,12 @@ public class MemberController {
     @GetMapping("/secession")
     public String secession(Model model) {
         return "html/member/secession_confirm";
+    }
+
+    @PostMapping("/secessionProc")
+    public String secessionProc() {
+        System.out.println("secessionProc");
+        return "redirect:/member/secession-complete";
     }
 
     /*회원탈퇴 완료 페이지*/

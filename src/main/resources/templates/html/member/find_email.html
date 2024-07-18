@@ -26,14 +26,17 @@
 <script th:inline="javascript">
 	var isExist = [[${isExist}]];
 
-	console.log(isExist);
+	// console.log(isExist);
 
-	if(isExist){
-		console.log("존재!");
-		alert("유효한 이메일입니다.");
-	} else if(!isExist && isExist!=null){
-		alert("존재하지 않는 이메일 입니다.");
+	if(isExist!=null){
+		if(isExist.isExist){
+			console.log("존재!");
+			alert("유효한 이메일입니다.");
+		} else {
+			alert("존재하지 않는 이메일 입니다.");
+		}
 	}
+
 </script>
 
 <div th:replace="~{/html/include/footer :: footer}"></div>
