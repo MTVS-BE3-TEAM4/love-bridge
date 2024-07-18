@@ -212,29 +212,31 @@
                 <button class="remove">X</button>
             </div>
         </div>
-        <div class="row">
+        <div class="row" >
             <label for="date-created">봉인일:</label>
-            <input type="date" id="date-created" value="2024-06-22">
+            <input type="text" id="date-created"  th:each="viewDTO : ${viewDTOList}" th:value="${viewDTO.tcsealingdate}">
         </div>
         <div class="row">
             <label for="date-open">개봉일:</label>
-            <input type="text" id="date-open" value="2025-06-22">
+            <input type="text" id="date-open" th:each="viewDTO : ${viewDTOList}" th:value="${viewDTO.tcreleasedate}">
         </div>
         <div class="row">
             <label for="title">제목:</label>
-            <input type="text" id="title" value="우리의 타임캡슐">
+            <input type="text" id="title" th:each="viewDTO : ${viewDTOList}" th:value="${viewDTO.tctitle}">
         </div>
         <div class="row">
             <label for="content">내용:</label>
-            <textarea id="content">1년 후 봉인한 타임캡슐을 열 생각하니 벌써부터 두근두근</textarea>
+            <textarea id="content"  th:each="viewDTO : ${viewDTOList}" th:text="${viewDTO.tcdetail}"></textarea>
         </div>
 
-        <div class="row">
-            <button class="btn-line btn-monalisa btn-half">게시하기</button>
-        </div>
+<!--        <div class="row">-->
+<!--            <button class="btn-line btn-monalisa btn-half">게시하기</button>-->
+<!--        </div>-->
     </div>
 
     <button onclick="location.href='/timecapsule'">GET 주문 등록 요청</button>
+
+    <h3 th:text=" ${ message } "></h3>
 </div>
 
 
