@@ -16,12 +16,13 @@
 			<p>
 				탈퇴 시 계정의 모든 정보는 삭제되며 재가입 시에도 복구되지 않습니다.
 			</p>
+			<form method="post" action="/member/secessionProc">
 			<div class="btn-wrap">
-				<button type="button" class="btn btn-full btn-pink"
-					onclick="location.href='secession_complete.html'">
+				<button type="submit" class="btn btn-full btn-pink">
 					탈퇴하기
 				</button>
 			</div>
+			</form>
 		</section>
 	</div>
 <div th:replace="~{/html/include/footer :: footer}"></div>
