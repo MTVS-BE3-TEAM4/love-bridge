@@ -28,14 +28,14 @@ public class SecurityConfig {
                 );
 
         /*로그인 페이지*/
-//        http
-//                .formLogin( (form) -> form
-//                        .loginPage("/member/login")// 로그인 페이지 url
-//                        .usernameParameter("email")// 이메일로 로그인함
-//                        .passwordParameter("password")
-//                        .loginProcessingUrl("/member/loginProc")// 로그인 처리 경로
-//                        .permitAll()
-//                );
+        http
+                .formLogin( (form) -> form
+                        .loginPage("/member/login")// 로그인 페이지 url
+                        .usernameParameter("email")// 이메일로 로그인함
+                        .passwordParameter("password")
+                        .loginProcessingUrl("/member/loginProc")// 로그인 처리 경로
+                        .permitAll()
+                );
 
         /*자동 로그인*/
 //        http
