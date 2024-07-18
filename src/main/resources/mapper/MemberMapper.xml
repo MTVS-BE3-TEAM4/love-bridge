@@ -4,14 +4,16 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jolipjo.lovebridge.domain.member.dao.MemberMapper">
     
+
     <parameterMap id="Member" type="com.jolipjo.lovebridge.domain.member.entity.Member">
         <parameter property="email"/>
-        <parameter property="nickname"/>
         <parameter property="password"/>
-        <parameter property="role"/>
+        <parameter property="nickname"/>
         <parameter property="birth"/>
         <parameter property="gender"/>
+        <parameter property="marketingAgree"/>
     </parameterMap>
+
 
     <parameterMap id="SecretCode" type="com.jolipjo.lovebridge.domain.member.entity.SecretCode">
         <parameter property="id"/>
@@ -36,21 +38,12 @@
     <insert id="join" parameterMap="Member" useGeneratedKeys="true">
         INSERT INTO member
         (
-            email,
-            nickname,
-            password,
-            role,
-            birth,
-            gender
+        code
         )
         VALUES
         (
-            #{email},
-            #{nickname},
-            #{password},
-            #{role},
-            #{birth},
-            #{gender}
+        #{email
+        }
         )
     </insert>
 
