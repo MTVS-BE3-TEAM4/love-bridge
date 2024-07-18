@@ -2,6 +2,7 @@ package com.jolipjo.lovebridge.domain.member.controller;
 
 import com.jolipjo.lovebridge.domain.member.dao.MemberMapper;
 import com.jolipjo.lovebridge.domain.member.dto.*;
+import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +24,31 @@ public class MemberController {
         this.mapper = mapper;
     }
 
+    /******API 사용법********/
+    @GetMapping
+    public String test() {
+
+        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
+        memberService.createSecretCode(1L);
+
+        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
+        SecretCode secretCode = memberService.getSecretCode(1L);
+
+        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
+        memberService.inviteSecretCode(1L, 2L);
+
+        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
+        memberService.getMembersBySecretCode(1L);
+
+        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
+        memberService.getPartner(1L);
+
+        return "html/member/login";
+    }
+
     /*로그인 페이지*/
     @GetMapping("/login")
     public String login(Model model) {
-        JoinRequestDTO dto = new JoinRequestDTO();
-
-//        dto.setEmail("aaa");
-//        mapper.secret(dto);
-
         return "html/member/login";
     }
 
@@ -45,12 +63,18 @@ public class MemberController {
     /*이메일 찾기 페이지*/
     @GetMapping("/find-email")
     public String findEmail(Model model) {
+        SecretCode secretCode = memberService.getSecretCode(2L);
+        System.out.println(secretCode);
+
+        memberService.inviteSecretCode(1L, 2L);
         return "html/member/find_email";
     }
 
     @PostMapping("/find-email")
     public String findEmail(@ModelAttribute FindEmailRequestDTO dto,
                             RedirectAttributes model){
+
+        memberService.createSecretCode(2L);
         System.out.println("dto = " + dto);
         FindEmailResponseDTO responseDTO = new FindEmailResponseDTO();
         responseDTO.setIsExist(false);
@@ -87,9 +111,18 @@ public class MemberController {
     @PostMapping("/joinProc")
     public String join(@ModelAttribute JoinRequestDTO joinRequestDTO,
                        RedirectAttributes model) {
-        System.out.println("joinRequestDTO = " + joinRequestDTO);
         memberService.join(joinRequestDTO);
         return "redirect:/member/join-complete";
+    }
+
+    @GetMapping("/my")
+    public String admin(Model model) {
+        return "html/mypage/mypage";
+    }
+
+    @GetMapping("/admin")
+    public String admin2(Model model) {
+        return "html/admin/adminPage";
     }
 
     /*회원가입 완료 페이지*/

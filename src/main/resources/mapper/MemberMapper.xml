@@ -4,7 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jolipjo.lovebridge.domain.member.dao.MemberMapper">
     
-    <parameterMap id="MemberEntity" type="com.jolipjo.lovebridge.domain.member.entity.Member">
+    <parameterMap id="Member" type="com.jolipjo.lovebridge.domain.member.entity.Member">
         <parameter property="email"/>
         <parameter property="nickname"/>
         <parameter property="password"/>
@@ -13,8 +13,27 @@
         <parameter property="gender"/>
     </parameterMap>
 
+    <parameterMap id="SecretCode" type="com.jolipjo.lovebridge.domain.member.entity.SecretCode">
+        <parameter property="id"/>
+        <parameter property="code"/>
+        <parameter property="count"/>
+    </parameterMap>
+
+    <parameterMap id="AddSecretCodeUserDTO" type="com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO">
+        <parameter property="secretCodeId"/>
+        <parameter property="memberId"/>
+    </parameterMap>
+
+    <resultMap id="SecretCode" type="com.jolipjo.lovebridge.domain.member.entity.SecretCode">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="count" property="count"/>
+    </resultMap>
+
+
+
 <!--    회원가입-->
-    <insert id="join" parameterMap="MemberEntity" useGeneratedKeys="true">
+    <insert id="join" parameterMap="Member" useGeneratedKeys="true">
         INSERT INTO member
         (
             email,
@@ -35,4 +54,102 @@
         )
     </insert>
 
+<!--    시크릿 코드 생성-->
+    <insert id="createSecretCode" parameterMap="SecretCode" useGeneratedKeys="true">
+        INSERT INTO secret_code
+        (
+            code,
+            count
+        )
+        VALUES
+        (
+            #{code},
+            #{count}
+        )
+    </insert>
+
+    <select id="findSecretByCode" parameterType="string" resultMap="SecretCode">
+        SELECT
+            id,
+            code,
+            count
+        FROM
+            secret_code
+        WHERE
+            code = #{code}
+    </select>
+
+    <update id="addSecretCodeUser" parameterMap="AddSecretCodeUserDTO">
+        UPDATE
+            member
+        SET
+            secretId = #{secretCodeId}
+        WHERE
+            id = #{memberId}
+    </update>
+
+<!--    사용자 ID로 시크릿 코드 정보 추출-->
+    <select id="findSecretCodeByMemberId" parameterType="long" resultMap="SecretCode">
+        SELECT
+            a.id,
+            a.code,
+            a.count
+        FROM
+            secret_code a
+        JOIN
+            member b
+        ON
+            a.id = b.secretId
+        WHERE
+            b.id = #{memberId}
+    </select>
+
+<!--    시크릿코드 id와 연결된 사용자 검색-->
+    <select id="findMembersBySecretCode" parameterType="long" resultType="long">
+        SELECT
+            id
+        FROM
+            member
+        WHERE
+            secretId = #{secretCodeId}
+        ORDER BY
+            id asc;
+    </select>
+
+<!--    나와 시크릿코드로 연결된 다른 사용자 검색-->
+    <select id="findMyPartner" parameterType="long" resultType="long">
+        SELECT
+            id
+        FROM
+            member
+        WHERE
+            id != #{memberId}
+        AND
+            secretId
+        IN
+            (
+            SELECT
+                secretId
+            FROM
+                member
+            WHERE
+                id = #{memberId}
+            )
+
+
+
+<!--        SELECT-->
+<!--        secretId-->
+<!--        FROM-->
+<!--        member-->
+<!--        WHERE-->
+<!--        id = #{memberId} &ndash;&gt; 8-->
+<!--        -->
+<!--        SELECT-->
+<!--            id-->
+<!--        FROM-->
+<!--        member-->
+<!--        WHERE-->
+<!--        id != #{memberId}  (SELECT secretId FROM member WHERE id != #{memberId})-->
+    </select>
 </mapper>
