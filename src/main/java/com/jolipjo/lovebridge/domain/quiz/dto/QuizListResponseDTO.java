@@ -6,14 +6,14 @@ public class QuizListResponseDTO {
 
     private int quizId;
     private String quizTitle;
-    private Boolean isComplete;
+    private String quizComplete;
 
     public QuizListResponseDTO() {}
 
-    public QuizListResponseDTO(int quizId, String quizTitle, Boolean isComplete) {
+    public QuizListResponseDTO(int quizId, String quizTitle, String quizComplete) {
         this.quizId = quizId;
         this.quizTitle = quizTitle;
-        this.isComplete = isComplete;
+        this.quizComplete = quizComplete;
     }
 
     public int getQuizId() {
@@ -32,12 +32,12 @@ public class QuizListResponseDTO {
         this.quizTitle = quizTitle;
     }
 
-    public Boolean getComplete() {
-        return isComplete;
+    public String getComplete() {
+        return quizComplete;
     }
 
-    public void setComplete(Boolean complete) {
-        isComplete = complete;
+    public void setComplete(String complete) {
+        quizComplete = complete;
     }
 
     @Override
@@ -45,7 +45,7 @@ public class QuizListResponseDTO {
         return "QuizListResponseDTO{" +
                 "quizId=" + quizId +
                 ", quizTitle='" + quizTitle + '\'' +
-                ", isComplete=" + isComplete +
+                ", quizComplete=" + quizComplete +
                 '}';
     }
 }

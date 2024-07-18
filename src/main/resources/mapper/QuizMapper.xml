@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jolipjo.lovebridge.domain.quiz.dao.QuizMapper">
+
+    <resultMap id="quizListMap" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO">
+        <id property="quizId" column="id"/>
+        <result property="quizTitle" column="title"/>
+        <result property="quizComplete" column="complete"/>
+    </resultMap>
+
+    <select id="getQuizList" resultMap="quizListMap">
+        SELECT
+               a.id AS id
+             , b.title
+             , a.complete
+          FROM
+               quizList a
+          JOIN
+               quiz b on a.quizId = b.id
+    </select>
+</mapper>
