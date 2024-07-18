@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jolipjo.lovebridge.domain.board.dao.BoardMapper">
+
+<!--    <parameterMap id="BoardNoticeDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardNoticeDTO">-->
+<!--        <parameter property="id"/>-->
+<!--        <parameter property="title"/>-->
+<!--        <parameter property="memberId"/>-->
+<!--        <parameter property="date"/>-->
+<!--    </parameterMap>-->
+
+    <resultMap id="BoardNoticeDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardNoticeDTO">
+        <id property="id" column="id"/>
+        <result property="memberId" column="memberId"/>
+        <result property="title" column="title"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
+    <resultMap id="BoardWriteDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO">
+        <id property="title" column="title"/>
+        <result property="text" column="text"/>
+    </resultMap>
+
+    <resultMap id="BoardViewDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardViewDTO">
+        <id property="title" column="title"/>
+        <result property="text" column="text"/>
+    </resultMap>
+
+    <select id="getBoardList" resultMap="BoardNoticeDTO">
+        SELECT
+              id
+            , title
+            , memberId
+            , date
+        FROM notice
+    </select>
+
+    <select id="getBoardText" resultMap="BoardViewDTO">
+        SELECT
+              title
+            , text
+        FROM notice
+    </select>
+
+<!--    <insert id="writeNewPost" parameterType="com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO">-->
+<!--        insert into notice-->
+<!--        (-->
+<!--              title-->
+<!--            , text-->
+<!--        )-->
+<!--        values-->
+<!--        (-->
+<!--            #{ title }-->
+<!--          , #{ text }-->
+<!--        )-->
+<!--    </insert>-->
+
+</mapper>
