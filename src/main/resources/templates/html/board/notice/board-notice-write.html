@@ -11,15 +11,15 @@
         <p class="section-tit">공지사항 작성</p>
         
         <label class="input-label">제목</label>
-        <div class="input-wrap">
-          <input type="text" class="input-text" >
+        <div class="input-wrap" >
+          <input type="text" class="input-text" th:value="${message.getTitle()}" >
         </div>
-        <label class="input-label">제목</label>
+        <label class="input-label">내용</label>
         <div class="textarea-wrap">
-          <textarea placeholder="내용을 입력하세요" name="detail" required></textarea>
+          <textarea placeholder="내용을 입력하세요" name="detail" th:text="${message.getText()}" required></textarea>
         </div>
         <div class="btn_wrap mg-t--30">
-          <button class="btn btn-full btn-pink" onclick="location.href='board-notice-write.html'">글쓰기</button>
+          <button class="btn btn-full btn-pink" onclick="location.href='/board/notice'">글쓰기</button>
         </div>
       </form>
     </section>

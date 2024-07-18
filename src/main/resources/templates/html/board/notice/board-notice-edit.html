@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
+
+<body>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+
+<div class="container">
+    <section class="section board notice-edit">
+        <form>
+            <p class="section-tit">공지사항 수정</p>
+
+            <label class="input-label">제목</label>
+            <div class="input-wrap">
+                <input type="text" class="input-text" th:value="${message.getTitle()}" required >
+            </div>
+            <label class="input-label">내용</label>
+            <div class="textarea-wrap">
+                <textarea placeholder="내용을 입력하세요" name="detail" th:text="${message.getText()}" required></textarea>
+            </div>
+            <div class="btn_wrap mg-t--30">
+                <button class="btn btn-full btn-pink" onclick="location.href='/board/notice'">글수정</button>
+            </div>
+        </form>
+    </section>
+</div>
+<footer th:replace="~{/html/include/footer :: footer}"></footer>
+</body>
+
+</html>

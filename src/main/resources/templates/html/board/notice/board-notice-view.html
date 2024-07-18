@@ -98,15 +98,15 @@
           <p class="post-meta"> 번호: 1 | 작성자: 작성자입니다. 1 | 작성일: 24-01-20</p>
           <div class="post-content">
             <p>
-              게시물 내용이 여기에 표시됩니다. 게시물 내용이 여기에 표시됩니다.
+              th:text="${postTitle.title}
             </p>
             <p>
               게시물 내용이 여기에 표시됩니다. 게시물 내용이 여기에 표시됩니다.
             </p>
           </div>
         </div>
-        <button class="btn btn-pink btn-md" onclick="location.href='board-notice.html'">목록</button>
-        <button class="btn btn-pink btn-md" onclick="location.href='board-notice-write.html'">수정</button>
+        <button class="btn btn-pink btn-md" onclick="location.href='/board/notice'">목록</button>
+        <button class="btn btn-pink btn-md" onclick="location.href='/board/notice/edit'">수정</button>
         <button class="btn btn-pink btn-md" onclick="location.href='board-notice-write.html'">삭제</button>
         <!-- <div class="buttons">
           <button onclick="window.location.href='list.html'">목록</button>
