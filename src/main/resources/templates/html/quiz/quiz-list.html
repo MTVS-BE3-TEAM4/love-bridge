@@ -10,11 +10,13 @@
 			<p class="section-tit">QUIZ</p>
 			<div class="quiz-complete">
 				<ul class="quiz-list">
-					<li class="complete"><a href="/quiz/test"><span class="num">1.</span>질의응답 질문</a></li>
-					<li class="complete"><span class="num">2.</span>질의응답 질문</li>
-					<li class="complete"><span class="num">3.</span>질의응답 질문</li>
-					<li><span class="num">4.</span>질의응답 질문</li>
-					<li><span class="num">5.</span>질의응답 질문</li>
+					<li class="" th:each="quiz : ${ quizList }">
+						<a href="/quiz/test">
+							<span class="num" th:text="Q + ${ quiz.quizId } + ."></span>
+							<span th:text="${ quiz.getQuizTitle() }"></span>
+						</a>
+					</li>
+
 				</ul>
 			</div>
 			<div class="pagination">
@@ -30,6 +32,13 @@
 	</div>
 
 	<footer th:replace="~{/html/include/footer :: footer}"></footer>
-</body>
 
+</body>
+<!--/*<script th:inline="javascript">
+	const quizList = [[${quizAnswer}]]
+
+	if(quizAnswer.answer == 2) {
+		li .add class complete
+	}
+</script>*/-->
 </html>
