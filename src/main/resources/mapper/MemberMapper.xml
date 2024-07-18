@@ -13,6 +13,8 @@
         <parameter property="marketingAgree"/>
     </parameterMap>
 
+
+
     <insert id="secret" parameterMap="JoinRequestDTO" useGeneratedKeys="true">
         INSERT INTO secret_code
         (
