@@ -9,6 +9,15 @@ public class Member {
     private String role;
     private String birth;
     private String gender;
+    private Boolean marketingAgree;
+
+    public Boolean getMarketingAgree() {
+        return marketingAgree;
+    }
+
+    public void setMarketingAgree(Boolean marketingAgree) {
+        this.marketingAgree = marketingAgree;
+    }
 
     public String getBirth() {
         return birth;

@@ -39,6 +39,7 @@ public class MemberService {
         member.setBirth(joinRequestDTO.getBirth());
         member.setNickname(joinRequestDTO.getNickname());
         member.setPassword(passwordEncoder.encode(joinRequestDTO.getPassword()) );
+        member.setMarketingAgree(joinRequestDTO.getMarketingAgree());
         member.setRole("ROLE_USER");
 
         /*DB에 회원정보 저장*/
