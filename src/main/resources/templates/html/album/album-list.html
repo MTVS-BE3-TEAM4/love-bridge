@@ -20,194 +20,44 @@
 <!--    <script defer="defer" src="../js/include.js"></script>-->
 <!--</head>-->
 <style>
-    .centerin{
-        align-items: center;
-        justify-content: center;
-    }
-    .imglogo{
-        display: flex;
-    }
-    .width1{
-        display: flex;
-        flex-direction: row-reverse;
-        width: 83%;
-    }
+    .centerin{ align-items: center;justify-content: center; }
+    .imglogo{display: flex;}
+    .width1{display: flex;flex-direction: row-reverse;width: 83%;}
+    .select{-moz-appearance: none;-webkit-appearance: none;}
+
+
+
+
 </style>
 
 <body>
-<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 <!--    <header data-include-file="html/include/header.html" class="header includeJs"></header>-->
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
     <div class="container">
         <section class="section album">
-            <div class="btn-wrap right mg-b--20">
-                <a href="#" class="btn btn-pink btn-board">글쓰기</a>
-            </div>
+
             <ul class="Acontainer">
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
+                <li class="item11 mg-b--20"  th:each=" album : ${albumList}">
+                    <div class="imgdiv" th:text="${album.image}" ></div>
                     <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
+                        <div>
+                             <button class="gearbt" type="button" onclick="isDelete(event)" >
+                                 <i class="fa-solid fa-trash"  th:attr="data-value=${album.id}" ></i>
+                             </button>
+                             <a class="gearbt" type="submit" th:href="@{album/modify/{id}(id=${album.id})}" >
+                                 <i class="fa-solid fa-gear"></i>
+                             </a>
+                        </div>
+                            <p class="date" th:text="${album.date}" ></p>
                     </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
+                    <p class="album-memo" th:text="${album.memo}"></p>
                 </li>
 
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
 
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
-                <li class="item11 mg-b--20">
-                    <div class="imgdiv"></div>
-                    <div class="album-util">
-                        <button class="gearbt" type="button">
-                            <i class="fa-solid fa-gear"></i>
-                        </button>
-                        <p class="date">2024.07.04</p>
-                    </div>
-                    <p class="album-memo">앨범 메모메모메모</p>
-                </li>
             </ul>
-            
+            <div class="btn-wrap right mg-b--20 ">
+                <a href="/album/write" class="btn btn-pink btn-board">글쓰기</a>
+            </div>
             <div class="pagination">
                 <button type="button" class="prev">prev</button>
                 <button type="button" class="active">1</button>
@@ -217,10 +67,43 @@
                 <button type="button">5</button>
                 <button type="button" class="next">next</button>
             </div>
+
         </section>
-        
     </div>
 <div th:replace="~{/html/include/footer :: footer}"></div>
-<!--    <footer data-include-file="html/include/footer.html" class="footer includeJs"></footer>-->
 </body>
+<script>
+
+// function isDelete(event){
+//     if(confirm("영구적으로 삭제 하시겠습니까?")){
+//         const id = event.target.getAttribute('data-value');
+//         deleteAlbum(id);
+//     }
+//
+// }
+//
+//
+// function deleteAlbum(id){
+//     fetch(`album/${id}`, {
+//         method: 'DELETE',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//
+//     })
+//         .then(response => {
+//             if (response.ok) {
+//                 alert("삭제되었습니다.");
+//                 location.reload(); // 페이지를 새로고침하여 삭제된 항목이 반영되도록 합니다.
+//             } else {
+//                 alert("삭제 실패");
+//             }
+//         })
+//         .catch(error => {
+//             console.error('Error:', error);
+//             alert("삭제 중 오류가 발생했습니다.");
+//         });
+//
+// }
+</script>
 </html>

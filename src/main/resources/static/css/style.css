@@ -583,7 +583,7 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 .Acontainer{display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;}
 .Acontainer li{padding: 2%; flex: 0 1 24%; display: flex; flex-direction: column; border: 1px solid #ffc8c8; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3); }
 .Acontainer li .imgdiv { border: 1px solid #ddd; width: 100%; min-height: 250px; }
-.Acontainer li .album-util{display: flex; align-items: center; justify-content: space-between;} 
+.Acontainer li .album-util{display: flex; align-items: center; justify-content: space-between;}
 .Acontainer li .album-util .gearbt{cursor: pointer;margin: 0; padding: 0; border: 0; background: nne;}
 .Acontainer li .album-util .gearbt i{font-size: 1.3rem; color: #FF646A}
 .Acontainer li .album-util .date {font-size: 1.7rem; text-align: right; margin: 10px 0; color: #FF646A;} 
