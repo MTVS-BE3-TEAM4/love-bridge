@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/Game/WheelGame/WheelGameStyle.css">
+</head>
+<body>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<!-- 게임 디스플레이 -->
+<div class="GameWrap">
+    <div class="GameDisPlay">
+        <div class="counter-container">
+            <button id="decrement">-</button>
+            <div id="number" class="number-display">4</div>
+            <button id="increment">+</button>
+            <div id="optionInputs"></div>
+        </div>
+
+        <div class="Wheel">
+            <canvas id="wheelCanvas" width="380" height='380'></canvas>
+            <button onclick="rotate()">룰렛 돌리기</button>
+        </div>
+    </div>
+</div>
+<script>
+    function updateInputFields() {
+        const container = document.getElementById("textInputs");
+        const numberOfInputs = document.getElementById("numberOfInputs").value;
+
+        container.innerHTML = ''; // Clear existing inputs
+
+        for (let i = 0; i < numberOfInputs; i++) {
+            const input = document.createElement("input");
+            input.type = "text";
+            input.className = "input-field";
+            input.placeholder = `Input ${i + 1}`;
+            container.appendChild(input);
+        }
+    }
+
+    function getInputValues() {
+        const inputs = document.querySelectorAll("#textInputs .input-field");
+        const values = Array.from(inputs).map(input => input.value);
+        console.log(values); // Use values array as needed
+    }
+
+    // Initialize input fields
+    document.addEventListener("DOMContentLoaded", updateInputFields);
+</script>
+<script src="/js/Game/SpinTheWheel.js"></script>
+</body>
+</html>
