@@ -1,13 +1,20 @@
 // 돌림판 게임 관련 자바스크립트 코드
-
+/*
+    1. 아이템 숫자 지정
+    2. 숫자에 따라 인풋텍스트 생성 (원형으로 배치하는 방법은?)
+    3. 텍스트가 모두 입려되면 설정 버튼 클릭
+    4. 돌리기 버튼
+    5. 결과 (숫자에 따라 각도 조절 계산식 어떻게?)
+    6. 한 번 돌리고 다시 돌리려면 각도 리셋
+ */
 let numberOfBetItems = 4;
 
-const $c = document.querySelector("canvas");
-const ctx = $c.getContext("2d");
-
 // 룰렛에 들어갈 항목
-const betItems = ["aa", "bb"
+let betItems = [
 ];
+
+const canvas = document.querySelector("canvas");
+const ctx = canvas.getContext("2d");
 
 // 각 항목에 해당하는 색상
 const colors = [
@@ -15,13 +22,16 @@ const colors = [
     "#9FC2E7", "#C2A0DA", "#B4E0E8", "#F3F3F3"
 ];
 
+// 돌림판과 문자입력 창 그리기
 function updateNumberDisplay() {
     document.getElementById('number').textContent = numberOfBetItems;
+    generateInputText()
+    newMake()
 }
 
 // 증가 버튼 클릭 이벤트 리스너
 document.getElementById('increment').addEventListener('click', () => {
-    if (numberOfBetItems < 8) {
+    if (numberOfBetItems < 8 && window.getComputedStyle(document.getElementById("rotateButton")).display === "none") {
         numberOfBetItems++;
         updateNumberDisplay();
     }
@@ -29,61 +39,80 @@ document.getElementById('increment').addEventListener('click', () => {
 
 // 감소 버튼 클릭 이벤트 리스너
 document.getElementById('decrement').addEventListener('click', () => {
-    if (numberOfBetItems > 2) {
+    if (numberOfBetItems > 2 && window.getComputedStyle(document.getElementById("rotateButton")).display === "none") {
         numberOfBetItems--;
         updateNumberDisplay();
     }
 });
 
-const newMake = () => {
-    const [cw, ch] = [$c.width / 2, $c.height / 2];
-    const arc = Math.PI / (betItems.length / 2);
+// 설정완료 버튼 동작, 돌림판에 그렸던 텍스트 지우고 새로 입력된 내용 반영함.
+const setInputBetItems = () => {
 
-    // 돌림판 배경
-    for (let i = 0; i < betItems.length; i++) {
-      ctx.beginPath();
-      ctx.fillStyle = colors[i % colors.length];
-      ctx.moveTo(cw, ch);
-      ctx.arc(cw, ch, cw, arc * (i - 1), arc * i);
-      ctx.fill();
-      ctx.closePath();
+    betItems = [];
+    for (let i = 0; i < numberOfBetItems; i++) {
+        const optionValue = document.getElementById(`optionInput${i}`).value;
+        if (optionValue.trim() === '') {
+            alert('모든 옵션을 입력해주세요.');
+            return;
+        }
+        betItems.push(optionValue);
     }
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    newMake();
+    changeShowButton();
+}
 
-    ctx.fillStyle = "#fff";
-    ctx.font = "18px Pretendard";
-    ctx.textAlign = "center";
+const reset = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    changeShowButton();
+    betItems = []
+    newMake();
+}
 
-    for (let i = 0; i < betItems.length; i++) {
-      const angle = (arc * i) + (arc / 2);
+const changeShowButton = () => {
+    const setInputBetItemsButton = document.getElementById("setInputBetItemsButton")
+    const optionInputs = document.getElementById("optionInputs");
+    const rotateButton = document.getElementById("rotateButton");
+    const resetButton = document.getElementById("resetButton");
 
-      ctx.save()  ;
-
-      ctx.translate(
-        cw + Math.cos(angle) * (cw - 50),
-        ch + Math.sin(angle) * (ch - 50),
-      );
-
-      // ctx.rotate(angle + Math.PI / 2);
-
-      betItems[i].split(" ").forEach((text, j) => {
-        ctx.fillText(text, 0, 30 * j);
-      });
-
-      ctx.restore();
+    const currentRotateButton = window.getComputedStyle(rotateButton).display;
+    if (currentRotateButton === "none") {
+        setInputBetItemsButton.style.display = "none";
+        optionInputs.style.display = "none";
+        rotateButton.style.display = "block";
+        resetButton.style.display = "block";
+    } else {
+        setInputBetItemsButton.style.display = "block";
+        optionInputs.style.display = "block";
+        rotateButton.style.display = "none";
+        resetButton.style.display = "none";
     }
 }
 
-function generateWheel() {
+const rotate = () => {
+  canvas.style.transform = `initial`;
+  canvas.style.transition = `initial`;
+  
+  setTimeout(() => {
+    
+    const ran = Math.floor(Math.random() * betItems.length);
+
+    const arc = 360 / betItems.length;
+    const rotate = (ran * arc) + 1800 + (arc / 9);
+    console.log(arc, rotate, ran);
+    
+    canvas.style.transform = `rotate(${rotate}deg)`;
+    canvas.style.transition = `2s`;
+    
+    setTimeout(() => alert(`${betItems[ran]} 선택되었습니다.`), 2000);
+  }, 2);
+};
+
+// numberOfBetItems 숫자에 따라 텍스트 입력창 생성
+function generateInputText() {
     const optionCount = numberOfBetItems;
     const optionInputsContainer = document.getElementById('optionInputs');
-    // const wheel = document.getElementById('wheel');
-    // const status = document.querySelector('.status');
-
-    console.log(optionCount);
-
     optionInputsContainer.innerHTML = '';
-    // wheel.innerHTML = '';
-    // status.textContent = '0 options selected';
 
     for (let i = 0; i < optionCount; i++) {
         const input = document.createElement('input');
@@ -92,38 +121,45 @@ function generateWheel() {
         input.id = `optionInput${i}`;
         optionInputsContainer.appendChild(input);
     }
-
-    const submitButton = document.createElement('button');
-    submitButton.textContent = 'Submit Options';
-    submitButton.onclick = () => {
-        for (let i = 0; i < optionCount; i++) {
-            const optionValue = document.getElementById(`optionInput${i}`).value;
-            if (optionValue.trim() === '') {
-                alert('All options must be filled out');
-                return;
-            }
-            betItems.push(optionValue);
-        }
-    };
-    optionInputsContainer.appendChild(submitButton);
 }
 
-const rotate = () => {
-  $c.style.transform = `initial`;
-  $c.style.transition = `initial`;
-  
-  setTimeout(() => {
-    
-    const ran = Math.floor(Math.random() * betItems.length);
+// 돌림판 생성
+const newMake = () => {
+    const [cw, ch] = [canvas.width / 2, canvas.height / 2];
+    const arc = Math.PI * (2 / numberOfBetItems);
+    ctx.remove();
+    // 돌림판 배경
+    for (let i = 0; i < numberOfBetItems; i++) {
+        ctx.beginPath();
+        ctx.fillStyle = colors[i % colors.length];
+        ctx.moveTo(cw, ch);
+        ctx.arc(cw, ch, cw, arc * i, arc * (i + 1));
+        ctx.fill();
+        ctx.closePath();
+    }
 
-    const arc = 360 / betItems.length;
-    const rotate = (ran * arc) + 3600 + (arc * 2);
-    
-    $c.style.transform = `rotate(-${rotate}deg)`;
-    $c.style.transition = `2s`;
-    
-    setTimeout(() => alert(`${betItems[ran]} 선택되었습니다.`), 2000);
-  }, 1);
-};
+    ctx.fillStyle = "#fff";
+    ctx.font = "18px Pretendard";
+    ctx.textAlign = "center";
 
-newMake();
+    for (let i = 0; i < betItems.length; i++) {
+        const angle = (arc * i) + (arc / 2);
+
+        ctx.save()  ;
+
+        ctx.translate(
+            cw + Math.cos(angle) * (cw - 50),
+            ch + Math.sin(angle) * (ch - 50),
+        );
+
+        // ctx.rotate(angle + Math.PI / 2);
+
+        betItems[i].split(" ").forEach((text, j) => {
+            ctx.fillText(text, 0, 30 * j);
+        });
+
+        ctx.restore();
+    }
+}
+
+updateNumberDisplay();

@@ -1,3 +1,10 @@
+#rotateButton {
+  display: none;
+}
+#resetButton {
+  display: none;
+}
+
 .GameWrap {
   background: #ffefef;
   display: flex;
@@ -17,11 +24,18 @@
   padding: 20px;
 }
 
-.counter-container {
+.Counter-container {
   display: flex;
   align-items: center; /* 수직 방향으로 가운데 정렬 */
   gap: 10px; /* 요소 간의 간격 설정 */
   font-size: 20px;
+}
+
+.OptionInput {
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  width: 70%
 }
 
 canvas {
