@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<th:block th:replace="html/include/head :: headerLayout"></th:block>
+<th:block th:replace="~{html/include/head :: headerLayout}"></th:block>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/Game/WheelGame/WheelGameStyle.css">
 </head>
 <body>
-<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<header th:insert="~{/html/include/header :: header}" class="header includeJs"></header>
 <!-- 게임 디스플레이 -->
 <div class="GameWrap">
     <div class="GameDisPlay">
