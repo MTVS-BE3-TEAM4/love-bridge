@@ -27,21 +27,23 @@
     <section class="section album-write">
       <p class="section-tit">앨범 만들기</p>
 
-<form method="post" action="/album/write" >
+<form method="post"  action="" >
         <label class="input-label required">날짜</label>
         <div class="input-wrap">
-                <input type="date" class="input-text" placeholder="20XX-XX-XX" name="date"/>
+
+            <input type="date" class="input-text" name="date" th:value="${albumModify.date}" />
+
         </div>
 
         <label class="input-label required ">메모</label>
 
         <div class="textarea-wrap">
-          <textarea name="memo" placeholder="내용을 입력하세요"  ></textarea>
+          <textarea name="memo" placeholder="내용을 입력하세요" th:text="${albumModify.memo}" th:value="${albumModify.memo}"></textarea>
         </div>
 
         <label class="input-label required">첨부파일</label>
         <div class="input-file">
-          <input class="upload-name" name="image">
+          <input type="text" class="upload-name" name="image" th:value="${albumModify.image}" >
           <label for="file">파일찾기</label>
           <input type="file" id="file">
         </div>
@@ -50,13 +52,14 @@
           첨부파일이 존재하지 않습니다
         </div>
 
+
         <div class="btn-wrap type2 mg-t40">
-            <button type="button" class="btn btn-half btn-line" onclick="location.href='/album'">
+          <button type="button" class="btn btn-half btn-line" onclick="location.href='/album'">
             취소
-            </button>
-            <button type="submit" class="btn btn-half type2 btn-pink">
+          </button>
+          <button type="submit" class="btn btn-half type2 btn-pink"  >
             작성완료
-            </button>
+          </button>
         </div>
 </form>
     </section>
