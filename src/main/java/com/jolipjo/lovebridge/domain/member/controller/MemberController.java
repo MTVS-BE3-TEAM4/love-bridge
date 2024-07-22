@@ -103,7 +103,7 @@ public class MemberController {
 
     /*회원가입 페이지*/
     @GetMapping("/join")
-    public String join(Model model) {
+    public String join() {
         return "html/member/join";
     }
 
