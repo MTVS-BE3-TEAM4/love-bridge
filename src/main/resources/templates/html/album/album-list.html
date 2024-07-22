@@ -28,14 +28,23 @@
 
 
 
+
+
+    @media(max-width: 844px ){
+        .ip12pro{
+            padding-top: 20%;
+        }
+
+    }
 </style>
+
 
 <body>
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
     <div class="container">
         <section class="section album">
         <form enctype="multipart/form-data">
-            <ul class="Acontainer">
+            <ul class="Acontainer ip12pro ">
                 <li class="item11 mg-b--20"  th:each=" album : ${albumList}" >
                     <div class="imgdiv" >
                         <img th:src="@{${album.image}}">
