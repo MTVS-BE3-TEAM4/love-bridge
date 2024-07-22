@@ -5,6 +5,7 @@ import com.jolipjo.lovebridge.domain.board.dto.BoardNoticeDTO;
 import com.jolipjo.lovebridge.domain.board.dto.BoardViewDTO;
 import com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.ui.Model;
 
 import java.util.List;
 

@@ -28,6 +28,18 @@
         <result property="text" column="text"/>
     </resultMap>
 
+    <resultMap id="BoardEditDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardEditDTO">
+        <id property="title" column="title"/>
+        <result property="text" column="text"/>
+    </resultMap>
+
+    <select id="getBoardEdit" resultMap="BoardEditDTO">
+        SELECT
+               id
+             , title
+        FROM notice
+    </select>
+
     <select id="getBoardList" resultMap="BoardNoticeDTO">
         SELECT
               id

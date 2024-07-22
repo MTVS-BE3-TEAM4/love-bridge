@@ -37,14 +37,15 @@ public class BoardController {
     }
 
     @GetMapping("notice/{id}")
-    public String boardNoticeView(@PathVariable("id") Long id, Model model) {
+    public String boardNoticeView(@PathVariable("id") int id, Model model) {
+
         BoardViewDTO boardViewDTO = new BoardViewDTO();
 
-        String postTitle = boardService.getBoardViewTitle(boardViewDTO);
-        model.addAttribute("postTitle", postTitle);
-
-        String postText = boardService.getBoardViewText(boardViewDTO);
-        model.addAttribute("postText", postText);
+//        String postTitle = boardService.getBoardViewTitle(boardViewDTO);
+//        model.addAttribute("postTitle", postTitle);
+//
+//        String postText = boardService.getBoardViewText(boardViewDTO);
+//        model.addAttribute("postText", postText);
         return "html/board/notice/board-notice-view";
     }
 
@@ -91,4 +92,9 @@ public class BoardController {
         boardService.writeNewPost(newPost);
         return "html/board/notice/board-notice-write";
     }
+
+//    @GetMapping("notice/{id}")
+//    public String deleteBoardNotice(@PathVariable("id") int id, Model model) {
+//
+//    }
 }
