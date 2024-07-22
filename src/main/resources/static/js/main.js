@@ -40,27 +40,27 @@
     //     });
     // });
 
-    gsap.registerPlugin(ScrollTrigger);
+    // gsap.registerPlugin(ScrollTrigger);
 
-ScrollTrigger.defaults({
-  toggleActions: "play reset play reset",
-  markers: false
-});
-
-document.querySelectorAll(".text").forEach((text, index) => {
-  const targetID = text.dataset.target;
-  const target = document.querySelector(`#${targetID}`);
-  gsap.to(text, {
-    autoAlpha: 1,
-    duration: 0.5,
-    // ease: "power4.inOut",
-    scrollTrigger: {
-      trigger: target,
-      start: "top center",
-      end: "bottom center"
-    }
-  });
-});
+// ScrollTrigger.defaults({
+//   toggleActions: "play reset play reset",
+//   markers: false
+// });
+//
+// document.querySelectorAll(".text").forEach((text, index) => {
+//   const targetID = text.dataset.target;
+//   const target = document.querySelector(`#${targetID}`);
+//   gsap.to(text, {
+//     autoAlpha: 1,
+//     duration: 0.5,
+//     // ease: "power4.inOut",
+//     scrollTrigger: {
+//       trigger: target,
+//       start: "top center",
+//       end: "bottom center"
+//     }
+//   });
+// });
 
 var sakura = new Sakura('.sakura-bg', {
     colors: [
