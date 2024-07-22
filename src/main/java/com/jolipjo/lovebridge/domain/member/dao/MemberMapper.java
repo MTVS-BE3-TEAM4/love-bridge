@@ -23,4 +23,5 @@ public interface MemberMapper {
 
     Long findMyPartner(Long memberId);
 
+    Member findByEmail(String username);
 }

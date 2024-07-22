@@ -1,9 +1,10 @@
 package com.jolipjo.lovebridge.domain.member.controller;
 
-import com.jolipjo.lovebridge.domain.member.dao.MemberMapper;
 import com.jolipjo.lovebridge.domain.member.dto.*;
+import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,7 +25,11 @@ public class MemberController {
 
     /******API 사용법********/
     @GetMapping
-    public String test() {
+    public String test(@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+
+        /*현재 로그인 한 사용자*/
+        Member member = customMemberDetail.getMember();
+        System.out.println("member = " + member);
 
         /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
         memberService.createSecretCode(1L);
@@ -50,21 +55,10 @@ public class MemberController {
         return "html/member/login";
     }
 
-    /*로그인 처리 경로*/
-    @PostMapping("/loginProc")
-    public String loginProc(@ModelAttribute LoginRequestDTO loginRequestDTO,
-                            Model model) {
-        System.out.println("loginRequestDTO = " + loginRequestDTO);
-        return "redirect:/";
-    }
-
     /*이메일 찾기 페이지*/
     @GetMapping("/find-email")
     public String findEmail(Model model) {
-        SecretCode secretCode = memberService.getSecretCode(2L);
-        System.out.println(secretCode);
 
-        memberService.inviteSecretCode(1L, 2L);
         return "html/member/find_email";
     }
 
@@ -83,7 +77,8 @@ public class MemberController {
 
     /*비번 찾기 페이지*/
     @GetMapping("/find-password")
-    public String findPassword(Model model) {
+    public String findPassword(@AuthenticationPrincipal CustomMemberDetail member, Model model) {
+        System.out.println("member = " + member.getMember());
         return "html/member/find_password";
     }
 
@@ -102,7 +97,6 @@ public class MemberController {
     /*회원가입 페이지*/
     @GetMapping("/join")
     public String join(Model model) {
-
         return "html/member/join";
     }
 

@@ -70,6 +70,10 @@ public class MemberService {
         return memberMapper.findSecretCodeByMemberId(memberId);
     }
 
+    public Member getByEmail(String email){
+        return memberMapper.findByEmail(email);
+    }
+
 
     /*시크릿 코드로 상대방 초대
     * host:     시크릿코드를 갖고 있는 사람

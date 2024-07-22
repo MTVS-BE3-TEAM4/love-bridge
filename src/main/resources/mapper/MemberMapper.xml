@@ -32,6 +32,17 @@
         <result column="count" property="count"/>
     </resultMap>
 
+    <resultMap id="Member" type="com.jolipjo.lovebridge.domain.member.entity.Member">
+        <id column="id" property="id"/>
+        <result column="secretId" property="secretId"/>
+        <result column="email" property="email"/>
+        <result column="nickname" property="nickname"/>
+        <result column="password" property="password"/>
+        <result column="role" property="role"/>
+        <result column="birth" property="birth"/>
+        <result column="gender" property="gender"/>
+    </resultMap>
+
 
 
 <!--    회원가입-->
@@ -137,21 +148,21 @@
             WHERE
                 id = #{memberId}
             )
+    </select>
 
-
-
-<!--        SELECT-->
-<!--        secretId-->
-<!--        FROM-->
-<!--        member-->
-<!--        WHERE-->
-<!--        id = #{memberId} &ndash;&gt; 8-->
-<!--        -->
-<!--        SELECT-->
-<!--            id-->
-<!--        FROM-->
-<!--        member-->
-<!--        WHERE-->
-<!--        id != #{memberId}  (SELECT secretId FROM member WHERE id != #{memberId})-->
+    <select id="findByEmail" parameterType="String" resultMap="Member">
+        SELECT
+            id,
+            secretId,
+            email,
+            nickname,
+            password,
+            role,
+            birth,
+            gender
+        FROM
+            member
+        WHERE
+            email = #{email}
     </select>
 </mapper>
