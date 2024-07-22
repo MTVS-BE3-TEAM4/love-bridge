@@ -9,26 +9,38 @@
 </head>
 <body>
 <header th:insert="~{/html/include/header :: header}" class="header includeJs"></header>
-<!-- 게임 디스플레이 -->
-<div class="GameWrap">
-    <div class="GameDisPlay">
-        <div class="Wheel">
-            <canvas id="wheelCanvas" width="380" height='380'></canvas>
+
+<div class="container">
+    <section class="section wheel">
+        <p class="section-tit">룰렛게임</p>
+        <!-- 게임 디스플레이 -->
+        <div class="GameWrap">
+            <div class="GameDisPlay">
+                <div class="Wheel">
+                    <canvas id="wheelCanvas" width="450" height='450'></canvas>
+                </div>
+
+                <div class="Counter-container">
+                    <button id="decrement"><i class="fa-solid fa-minus"></i></button>
+                    <div id="number" class="number-display">4</div>
+                    <button id="increment"><i class="fa-solid fa-plus"></i></button>
+                </div>
+
+                <div id="optionInputs" class="OptionInput">
+                </div>
+
+                <div class="btn-wrap type2 btn-wheel-wrap mg-t--20">
+                    <button id="setInputBetItemsButton" class="btn btn-full btn-pink btn-wheel" onclick="setInputBetItems()">설정 완료</button>
+                    <button id="resetButton" onclick="reset()" class="btn btn-half btn-line">재설정하기</button>
+                    <button id="rotateButton" onclick="rotate()" class="btn btn-half type2 btn-pink">룰렛 돌리기</button>
+                </div>
+
+            </div>
         </div>
-
-        <div class="Counter-container">
-            <button id="decrement">-</button>
-            <div id="number" class="number-display">4</div>
-            <button id="increment">+</button>
-        </div>
-
-        <div id="optionInputs" class="OptionInput"></div>
-
-        <button id="setInputBetItemsButton" onclick="setInputBetItems()">설정 완료</button>
-        <button id="resetButton" onclick="reset()">재설정하기</button>
-        <button id="rotateButton" onclick="rotate()">룰렛 돌리기</button>
-    </div>
+    </section>
 </div>
+
+
 <script src="/js/Game/SpinTheWheel.js"></script>
 </body>
 </html>
