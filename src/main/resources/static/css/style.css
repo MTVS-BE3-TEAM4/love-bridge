@@ -621,9 +621,9 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 .answer-list li + li{margin-top: 20px;}
 .answer-date{font-size: 1.4rem; color: #777; padding: 5px 0 0 15px; text-align: left}
 .question .question-tit{font-size: 2.2rem; color: #333; font-weight: 600; display: flex; align-items: center;}
-.question .question-tit span{position: relative; font-size: 1.9rem; color: #FF646A; font-weight: 700; display: block; margin-right: 10px; padding-right: 10px;}
-.question .question-tit span::before{content: ''; width: 2px; height: 6px; background: #fda3a6; display: block; position: absolute; right: 0; top: 0; z-index: 1;}
-.question .question-tit span::after{content: ''; width: 2px; height: 18px; background: #FF646A; display: block; position: absolute; right: 0; top: 0;}
+.question .question-tit .title-line{position: relative; font-size: 1.9rem; color: #FF646A; font-weight: 700; display: block; margin-right: 10px; padding-right: 10px;}
+.question .question-tit .title-line::before{content: ''; width: 2px; height: 6px; background: #fda3a6; display: block; position: absolute; right: 0; top: 0; z-index: 1;}
+.question .question-tit .title-line::after{content: ''; width: 2px; height: 18px; background: #FF646A; display: block; position: absolute; right: 0; top: 0;}
 .answer-heart {background: none; cursor: pointer; border: 0; padding: 0; width: 2em; height: 2em; text-align: center; }
 .svg-heart,.svg-heart2 {width: 2em; height: 2em; fill: rgb(238, 238, 238); stroke: #fff; stroke-width: 20; transform: rotate(225deg); }
 .list-svg-heart { fill: none; stroke: #FF9EA2; stroke-width: 20; }
