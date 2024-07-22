@@ -2,54 +2,87 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
+<head>
+	<style>
+
+		/* 작은 화면에서 작성자 열 숨기기 */
+		@media (max-width: 660px) {
+
+			.author-column {
+				display: none;
+			}
+			.section{
+				width: 100%;
+				padding: 5%;
+			}
+
+			/* 작성자 열 숨겼을 때 남은 열 너비 조정 */
+			.table-wrap table {
+				table-layout: fixed;
+				white-space: nowrap;
+			}
+		}
+		.jack {
+			/*table-layout: fixed;*/
+			/*white-space: nowrap;*/
+			overflow: hidden;
+			/*text-overflow:ellipsis;*/
+			/*overflow: scroll;*/
+
+		}
+
+
+	</style>
+</head>
+
 <body>
-	<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 
-	<div class="container">
-		<section class="section notice">
-			<p class="section-tit">공지사항 게시판</p>
-			<div class="table-wrap">
-				<table>
-					<colgroup>
-						<col width="15%" />
-						<col width="50%" />
-						<col width="20%" />
-						<col width="15%" />
-					</colgroup>
-					<thead>
-						<tr>
-							<th scope="col">번호</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성자</th>
-							<th scope="col">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="board : ${boardList}">
-							<td th:text="${board.id}"></td>
-							<td class="left" th:text="${board.title}"><a href="#" onclick="location.href='notice/{id}'"></a></td>
-							<td th:text="${board.memberId}"></td>
-							<td th:text="${board.date}"></td>
-						</tr>
-					</tbody>
-				</table>
-				<div class="btn-wrap right">
-					<a onclick="location.href='notice/write';" class="btn btn-pink btn-board">글쓰기</a>
-				</div>
-				<div class="pagination">
-					<button type="button" class="prev">prev</button>
-					<button type="button" class="active">1</button>
-					<button type="button">2</button>
-					<button type="button">3</button>
-					<button type="button">4</button>
-					<button type="button">5</button>
-					<button type="button" class="next">next</button>
-				</div>
+<div class="container">
+	<section class="section notice">
+		<p class="section-tit">공지사항 게시판</p>
+		<div class="table-wrap">
+			<table class="jack">
+<!--				<colgroup>-->
+<!--					<col width="15%" />-->
+<!--					<col width="50%" />-->
+<!--					<col width="20%" />-->
+<!--					<col width="15%" />-->
+<!--				</colgroup>-->
+				<thead>
+				<tr class="jack">
+					<th scope="col">번호</th>
+					<th scope="col">제목</th>
+					<th scope="col" class="author-column">작성자</th>
+					<th scope="col" style="padding: 0 0 0 0;">작성일</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr class="jack" th:each="board : ${boardList}">
+					<td class="jack" th:text="${board.id}"></td>
+					<td class="left jack" th:text="${board.title}"><a href="#" onclick="location.href='notice/{id}'"></a></td>
+					<td class="author-column jack" th:text="${board.memberId}"></td>
+					<td class="jack" th:text="${board.date}"></td>
+				</tr>
+				</tbody>
+			</table>
+			<div class="btn-wrap right">
+				<a onclick="location.href='notice/write';" class="btn btn-pink btn-board">글쓰기</a>
 			</div>
-		</section>
-	</div>
+			<div class="pagination">
+				<button type="button" class="prev">prev</button>
+				<button type="button" class="active">1</button>
+				<button type="button">2</button>
+				<button type="button">3</button>
+				<button type="button">4</button>
+				<button type="button">5</button>
+				<button type="button" class="next">next</button>
+			</div>
+		</div>
+	</section>
+</div>
 
-	<footer th:replace="~{/html/include/footer :: footer}"></footer>
+<footer th:replace="~{/html/include/footer :: footer}"></footer>
 </body>
 
 </html>
