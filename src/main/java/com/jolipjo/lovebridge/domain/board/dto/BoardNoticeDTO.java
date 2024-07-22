@@ -6,12 +6,12 @@ public class BoardNoticeDTO {
     private int id;
     private int memberId;
     private String title;
-    private Date date;
+    private String date;
 
     public BoardNoticeDTO() {
     }
 
-    public BoardNoticeDTO(int id, int memberId, String title, Date date) {
+    public BoardNoticeDTO(int id, int memberId, String title, String date) {
         this.id = id;
         this.memberId = memberId;
         this.title = title;
@@ -42,11 +42,11 @@ public class BoardNoticeDTO {
         this.title = title;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
@@ -56,7 +56,7 @@ public class BoardNoticeDTO {
                 "id=" + id +
                 ", memberId=" + memberId +
                 ", title='" + title + '\'' +
-                ", date=" + date +
+                ", date='" + date + '\'' +
                 '}';
     }
 }

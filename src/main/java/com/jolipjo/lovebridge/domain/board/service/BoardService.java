@@ -7,6 +7,7 @@ import com.jolipjo.lovebridge.domain.board.dto.BoardViewDTO;
 import com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import java.util.List;
 
