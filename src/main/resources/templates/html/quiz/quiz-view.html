@@ -10,7 +10,7 @@
         <p class="section-tit">QUIZ</p>
         <div class="quiz-wrap">
           <div class="question">
-            <p class="question-tit"><span>Q1</span>질문입니다.</p>
+            <p class="question-tit"><span class="title-line" th:text="Q + ${id}"></span><span th:text="${quizGetTitle}"></span></p>
             <style th:inline="css">
               .answer-list li::before{
                 background-image: url([[${imgSrc}]]) ;
@@ -18,11 +18,11 @@
             </style>
             <ul class="answer-list">
               <li class="first">
-                <div>
-                  <p>hello,are we meeting today?</p>
-                  <i class="fa fa-heart" id="quizHeart"></i>
-                </div>
-                <p class="answer-date">yy.mm.dd hh:mm</p>
+<!--                <div>-->
+<!--                  <p>hello,are we meeting today?</p>-->
+<!--                  <i class="fa fa-heart" id="quizHeart"></i>-->
+<!--                </div>-->
+<!--                <p class="answer-date">yy.mm.dd hh:mm</p>-->
               </li>
               <li class="second">
                 <div>
@@ -33,18 +33,20 @@
               </li>
             </ul>
           </div>
-          <div class="answer-wrap">
-            <label for="answer">답변등록</label>
-            <textarea id="answer" name="quizAnswer"></textarea>
-            <div class="btn-wrap type2 mg-t--20">
-              <button type="button" class="btn btn-half btn-line" onclick="location.href='login.html'">
-                취소
-              </button>
-              <button type="submit" class="btn btn-half btn-pink" onclick="location.href='join_complete.html'">
-                등록
-              </button>
+          <form action="" method="post">
+            <div class="answer-wrap">
+              <label for="answer">답변등록</label>
+              <textarea id="answer" name="quizAnswer"></textarea>
+              <div class="btn-wrap type2 mg-t--20">
+                <button type="button" class="btn btn-half btn-line">
+                  취소
+                </button>
+                <button type="submit" class="btn btn-half btn-pink">
+                  등록
+                </button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </section>
     </div>

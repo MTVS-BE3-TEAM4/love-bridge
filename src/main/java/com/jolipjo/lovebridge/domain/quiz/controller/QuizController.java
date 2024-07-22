@@ -1,5 +1,6 @@
 package com.jolipjo.lovebridge.domain.quiz.controller;
 
+import com.amazonaws.internal.SdkFilterOutputStream;
 import com.jolipjo.lovebridge.domain.quiz.dto.*;
 import com.jolipjo.lovebridge.domain.quiz.service.QuizService;
 import org.springframework.context.MessageSource;
@@ -29,26 +30,22 @@ public class QuizController {
 
         return "html/quiz/quiz-list";
     }
+    @GetMapping("/{id}")
+    public String quizDetailView(@PathVariable("id") int id, Model model) {
 
-//    @GetMapping("/{id}")
-//    public String boardQnaView(@PathVariable("id") Long id, Model model) {
-    @GetMapping("/test")
-    public String boardQnaView(Model model) {
-        QuizDetail quizDetail = new QuizDetail();
+//        String message = quizService.getMsg(id);
 
-        quizDetail.setImgSrc("https://dummyimage.com/600x600/8aff82/fff");
-        quizDetail.setAnswer("test");
+        String quizGetTitle = quizService.getQuizDetail(id);
 
-
-        model.addAttribute("imgSrc", quizDetail.getImgSrc());
+        model.addAttribute("quizGetTitle", quizGetTitle);
 
         return "html/quiz/quiz-view";
     }
 
-    @PostMapping("/test")
-    public String boardQnaSubmit(@ModelAttribute("QuizDetailRequestDTO") QuizDetailRequestDTO quizDetailRequestDTO) {
+    @PostMapping("/{id}")
+    public String quizAnswerRegist(QuizDetailAnswer quizDetailAnswer) {
 
-        System.out.println(quizDetailRequestDTO.getQuizAnswer());
+        quizService.registAnswer(quizDetailAnswer);
 
         return "html/quiz/quiz-view";
     }

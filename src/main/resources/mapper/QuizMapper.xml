@@ -10,9 +10,13 @@
         <result property="quizComplete" column="complete"/>
     </resultMap>
 
+    <resultMap id="quizDetailMap" type="java.lang.String">
+        <result property="quizGetTitle" column="title"/>
+    </resultMap>
+
     <select id="getQuizList" resultMap="quizListMap">
         SELECT
-               a.id AS id
+               a.id
              , b.title
              , a.complete
           FROM
@@ -20,4 +24,30 @@
           JOIN
                quiz b on a.quizId = b.id
     </select>
+
+    <select id="getQuizDetail" resultType="String" parameterType="integer">
+        SELECT
+               a.title
+          FROM
+               quiz a
+          LEFT JOIN
+               quizList b on a.id = b.quizId
+          LEFT JOIN
+               quizAnswer c on c.list_id = b.id
+         WHERE
+               a.id = #{ id }
+    </select>
+
+    <insert id="registAnswer" parameterType="String" useGeneratedKeys="true" keyProperty="code">
+        insert into
+        (
+
+        )
+        value
+        (
+
+        )
+    </insert>
+
+
 </mapper>
