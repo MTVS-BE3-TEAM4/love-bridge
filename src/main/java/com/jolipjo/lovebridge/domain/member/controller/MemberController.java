@@ -4,8 +4,12 @@ import com.jolipjo.lovebridge.domain.member.dto.*;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,7 +82,6 @@ public class MemberController {
         }
 
         return "redirect:/member/find-email";
-
     }
 
     /*비번 찾기 페이지*/
@@ -108,15 +111,34 @@ public class MemberController {
 
     @PostMapping("/joinProc")
     public String join(@ModelAttribute JoinRequestDTO joinRequestDTO,
-                       RedirectAttributes model) {
+                       RedirectAttributes model,
+                       HttpServletRequest request,
+                       HttpServletResponse response) throws ServletException {
         memberService.join(joinRequestDTO);
         model.addFlashAttribute("nickname", joinRequestDTO.getNickname());
+
+        /*회원가입 후 자동 로그인*/
+        request.login(joinRequestDTO.getEmail(), joinRequestDTO.getPassword());
+
         return "redirect:/member/join-complete";
     }
 
-    @GetMapping("/my")
-    public String admin() {
+    @GetMapping("/mypage")
+    public String myPage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                        Model model) {
+        Member member = customMemberDetail.getMember();
+        MypageResponseDTO response = memberService.getMypageInfo(member.getId());
+        model.addAttribute("member", response);
+
         return "html/mypage/mypage";
+    }
+
+    @PostMapping("/mypage")
+    public String myPageUpdate(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                               @ModelAttribute MypageRequestDTO mypageRequestDTO,
+                               RedirectAttributes model) {
+        System.out.println("mypageRequestDTO = " + mypageRequestDTO);
+        return "redirect:/member/mypage";
     }
 
     @GetMapping("/admin")
@@ -127,7 +149,6 @@ public class MemberController {
     /*회원가입 완료 페이지*/
     @GetMapping("/join-complete")
     public String joinComplete() {
-
         return "html/member/join_complete";
     }
 

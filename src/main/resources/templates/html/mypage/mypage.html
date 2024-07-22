@@ -8,6 +8,8 @@
 	<div class="container">
 		<section class="section mypage">
 			<p class="section-tit">마이페이지</p>
+			<form method="post" action="">
+
 			<div class="mypage-top">
 				<div class="mypage-box">
 					<div class="image-area"></div>
@@ -17,43 +19,37 @@
 							프로필 사진 변경
 						</button>
 					</div>
-
-				</div>
-				<div class="mypage-box">
-					<div class="image-area"></div>
-					<div class="tit">채팅 배경</div>
-					<div class="btn-wrap type2">
-						<button type="button" class="btn btn-lg btn-half btn-line btn-round type2">
-							채팅 배경 변경
-						</button>
-						<button type="button" class="btn btn-lg btn-half btn-monalisa btn-round type2">
-							채팅 바로가기
-						</button>
-					</div>
 				</div>
 			</div>
 
 			<div class="mypage-bottom mg-t--40">
 				<label class="input-label">내 시크릿 코드</label>
 				<div class="input-wrap">
-					<input type="text" class="input-text" value="1Q2w3E4r!" readonly />
-					<button type="button" class="btn btn-lg btn-line btn-round type2">
-						시크릿 코드 생성(이미 있으면 버튼 안보임)
+					<input type="text" class="input-text" th:value="${member.secretCode}" readonly id="mypage-secret"/>
+					<button type="button" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn">
+						시크릿 코드 생성
+					</button>
 				</div>
 
 				<label class="input-label required">애칭</label>
 				<div class="input-wrap">
-					<input type="text" class="input-text" value="혁진쨩" readonly />
+					<input name="nickname" type="text" class="input-text"
+						   th:value="${member.nickname}" readonly id="mypage-nickname"/>
 
-					<button type="button" class="btn btn-lg btn-line btn-round type2">
-						애칭 변경(버튼 눌러야 변경 가능)
+					<button type="button" class="btn btn-lg btn-line btn-round type2"
+							onclick="inputEnable('mypage-nickname')">
+						애칭 변경
 					</button>
 				</div>
 				<label class="input-label required">이메일</label>
 				<div class="input-wrap">
-					<input type="text" class="input-text" value="tax2024@naver.com" readonly />
-					<button type="button" class="btn btn-lg btn-line btn-round type2">
-						이메일 변경(버튼 눌러야 변경 가능)
+					<input type="text" class="input-text"
+						   th:value="${member.email}" readonly
+						   name="email" id="mypage-email"/>
+
+					<button type="button" class="btn btn-lg btn-line btn-round type2"
+							onclick="inputEnable('mypage-email')">
+						이메일 변경
 					</button>
 				</div>
 				<div class="input-wrap mg-t--40 mg-b--20">
@@ -72,10 +68,11 @@
 				<button type="button" class="btn btn-half btn-line">
 					취소
 				</button>
-				<button type="button" class="btn btn-half type2 btn-pink">
-					회원 정보 수정(버튼 누르면 put 요청 보내서 서버에서 수정됨)
+				<button type="submit" class="btn btn-half type2 btn-pink">
+					회원 정보 수정
 				</button>
 			</div>
+			</form>
 		</section>
 	</div>
 
@@ -122,6 +119,23 @@
 				.replace(/[^0-9]/g, '')
 				.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 	}
+
+	function inputEnable(targetId){
+		document.getElementById(targetId).readOnly=false;
+	}
+
+	function secretCodeButtonDisplay(){
+		const secretCode = document.getElementById("mypage-secret").value;
+
+		if(secretCode.length>0){
+			console.log(secretCode.length>0);
+			document.getElementById("mypage-secretBtn").style.display='none';
+		} else {
+			document.getElementById("mypage-secretBtn").style.display='block';
+		}
+	}
+
+	secretCodeButtonDisplay();
 </script>
 </body>
 

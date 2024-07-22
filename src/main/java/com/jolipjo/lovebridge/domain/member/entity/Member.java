@@ -1,7 +1,7 @@
 package com.jolipjo.lovebridge.domain.member.entity;
 
 public class Member {
-    private Integer id;
+    private Long id;
     private Integer secretId;
     private String email;
     private String nickname;
@@ -27,11 +27,11 @@ public class Member {
         this.birth = birth;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
