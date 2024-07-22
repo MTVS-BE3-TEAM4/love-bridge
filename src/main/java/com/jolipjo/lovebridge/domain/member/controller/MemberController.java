@@ -16,12 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/member")
 public class MemberController {
 
-    private final MemberMapper mapper;
     private final MemberService memberService;
 
-    public MemberController(MemberMapper mapper, MemberService memberService) {
+    public MemberController(MemberService memberService) {
         this.memberService = memberService;
-        this.mapper = mapper;
     }
 
     /******API 사용법********/
@@ -112,6 +110,7 @@ public class MemberController {
     public String join(@ModelAttribute JoinRequestDTO joinRequestDTO,
                        RedirectAttributes model) {
         memberService.join(joinRequestDTO);
+        model.addFlashAttribute("nickname", joinRequestDTO.getNickname());
         return "redirect:/member/join-complete";
     }
 

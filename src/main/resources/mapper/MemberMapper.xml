@@ -38,12 +38,21 @@
     <insert id="join" parameterMap="Member" useGeneratedKeys="true">
         INSERT INTO member
         (
-        code
+        email,
+        nickname,
+        password,
+        role,
+        birth,
+        gender
         )
         VALUES
         (
-        #{email
-        }
+        #{email},
+        #{nickname},
+        #{password},
+        #{role},
+        #{birth},
+        #{gender}
         )
     </insert>
 
