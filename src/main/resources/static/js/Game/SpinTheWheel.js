@@ -15,6 +15,9 @@ const ctx = canvas.getContext("2d");
 const colors = [
     "#F89E97", "#F0A84A", "#F7D24A", "#B4DA66",
     "#9FC2E7", "#C2A0DA", "#B4E0E8", "#F3F3F3"
+    // 10% 어두워진 색
+    // "#DF8E88", "#D89742", "#DEBD42", "#A2C45C",
+    // "#8FAFD0", "#AE90C4", "#A2C9D1", "#DADADA"
 ];
 
 // 룰렛에 들어갈 항목
@@ -63,14 +66,14 @@ const setInputBetItems = () => {
         }
         betItems.push(optionValue);
     }
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    clearCanvas();
     makeWheel();
     changeShowButton();
 }
 
 //재설정하기 버튼 동작
 const reset = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    clearCanvas();
     changeShowButton();
     betItems = []
     makeWheel();
@@ -90,7 +93,7 @@ const changeShowButton = () => {
         resetButton.style.display = "block";
     } else {
         setInputBetItemsButton.style.display = "block";
-        optionInputs.style.display = "block";
+        optionInputs.style.display = "flex";
         rotateButton.style.display = "none";
         resetButton.style.display = "none";
     }
@@ -124,6 +127,7 @@ function generateInputText() {
         input.type = 'text';
         input.placeholder = `Option ${i + 1}`;
         input.id = `optionInput${i}`;
+        input.maxLength = 7;
         optionInputsContainer.appendChild(input);
     }
 }
@@ -143,7 +147,7 @@ const makeWheel = () => {
         ctx.closePath();
     }
 
-    ctx.fillStyle = "#fff";
+    ctx.fillStyle = "#883c9a";
     ctx.font = "18px Pretendard";
     ctx.textAlign = "center";
 
