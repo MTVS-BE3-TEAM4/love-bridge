@@ -47,11 +47,11 @@ public class SecurityConfig {
 //                );
 //
 //        /*로그아웃 페이지*/
-//        http
-//                .logout( (logout) ->
-//                        logout.logoutUrl("/logout")
-//                        .logoutSuccessUrl("/")
-//                );
+        http
+                .logout( (logout) ->
+                        logout.logoutUrl("/member/logout")
+                        .logoutSuccessUrl("/")
+                );
 
         /*CSRF 끔(개발용)*/
         http

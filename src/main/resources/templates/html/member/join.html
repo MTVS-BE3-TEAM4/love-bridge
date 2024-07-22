@@ -19,13 +19,13 @@
 
 				<label class="input-label required">비밀번호</label>
 				<div class="input-wrap">
-					<input type="password" class="input-text" placeholder="영문+숫자+특수문자 조합으로 입력해 주세요." name="password" />
+					<input type="password" oninput="pwCheck()" class="input-text" placeholder="영문+숫자+특수문자 조합으로 입력해 주세요." name="password" id="password"/>
 				</div>
 				<label class="input-label required">비밀번호 재입력</label>
 				<div class="input-wrap">
-					<input type="password" class="input-text" placeholder="영문+숫자+특수문자 조합으로 입력해 주세요." />
+					<input type="password" oninput="pwCheck()" class="input-text" placeholder="영문+숫자+특수문자 조합으로 입력해 주세요." id="rePassword" />
 				</div>
-				<div class="input-guide error">
+				<div class="input-guide" id="pwd-confirm">
 					비밀번호가 일치하지 않습니다.
 				</div>
 
@@ -113,6 +113,20 @@
 				.replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
 		}
 	</script>
+
+
+<script>
+	function pwCheck(){
+		if($('#password').val() === '' || $('#rePassword').val() === ''){
+			$('#pwd-confirm').text('비밀번호를 입력해 주세요.').css('color', 'red')
+		} else if($('#password').val() === $('#rePassword').val()){
+			$('#pwd-confirm').text('비밀번호가 일치합니다.').css('color', 'green')
+		}else{
+			$('#pwd-confirm').text('비밀번호가 일치하지 않습니다.').css('color', 'red')
+		}
+	}
+</script>
+
 </body>
 
 </html>
