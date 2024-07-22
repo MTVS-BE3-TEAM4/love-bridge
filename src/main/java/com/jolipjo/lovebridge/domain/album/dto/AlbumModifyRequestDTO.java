@@ -5,11 +5,11 @@ public class AlbumModifyRequestDTO {
     private String image;
     private String memo;
     private String date;
-    private int id;
+    private long id;
 
     public AlbumModifyRequestDTO() {}
 
-    public AlbumModifyRequestDTO(String image, String memo, String date, int id) {
+    public AlbumModifyRequestDTO(String image, String memo, String date, long id) {
         this.image = image;
         this.memo = memo;
         this.date = date;
@@ -40,7 +40,7 @@ public class AlbumModifyRequestDTO {
         this.date = date;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

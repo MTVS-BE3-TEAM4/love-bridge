@@ -31,14 +31,15 @@
 </style>
 
 <body>
-<!--    <header data-include-file="html/include/header.html" class="header includeJs"></header>-->
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
     <div class="container">
         <section class="section album">
-
+        <form enctype="multipart/form-data">
             <ul class="Acontainer">
-                <li class="item11 mg-b--20"  th:each=" album : ${albumList}">
-                    <div class="imgdiv" th:text="${album.image}" ></div>
+                <li class="item11 mg-b--20"  th:each=" album : ${albumList}" >
+                    <div class="imgdiv" >
+                        <img th:src="@{${album.image}}">
+                    </div>
                     <div class="album-util">
                         <div>
                              <button class="gearbt" type="button" onclick="isDelete(event)" >
@@ -52,9 +53,8 @@
                     </div>
                     <p class="album-memo" th:text="${album.memo}"></p>
                 </li>
-
-
             </ul>
+        </form>
             <div class="btn-wrap right mg-b--20 ">
                 <a href="/album/write" class="btn btn-pink btn-board">글쓰기</a>
             </div>
@@ -73,7 +73,32 @@
 <div th:replace="~{/html/include/footer :: footer}"></div>
 </body>
 <script>
+    function isDelete(event) {
+        event.preventDefault(); // Prevent default button behavior
 
+        // Get album ID from data-value attribute
+        var id = $(event.target).data('value');
+
+        // Confirm dialog
+        if (confirm("영구적으로 삭제 하시겠습니까?")) {
+            // Send POST request to the server
+            $.ajax({
+                url: '/album/' + id , // URL to send request to
+                type: 'POST', // Use POST for the delete request
+                data: {
+                    id: id
+                },
+                success: function(response) {
+                    // Optionally handle success (e.g., reload the page or remove the item from the DOM)
+                    location.reload();
+                },
+                error: function(error) {
+                    // Optionally handle error
+                    alert("An error occurred while deleting the album.");
+                }
+            });
+        }
+    }
 // function isDelete(event){
 //     if(confirm("영구적으로 삭제 하시겠습니까?")){
 //         const id = event.target.getAttribute('data-value');

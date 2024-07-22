@@ -5,12 +5,13 @@ public class AlbumModifyResponseDTO {
     private String image;
     private String memo;
     private String date;
-    private int id;
+    private long id;
     private String memberId;
+
 
     public AlbumModifyResponseDTO(){}
 
-    public AlbumModifyResponseDTO(String image, String memo, String date, int id, String memberId) {
+    public AlbumModifyResponseDTO(String image, String memo, String date, long id, String memberId) {
         this.image = image;
         this.memo = memo;
         this.date = date;
@@ -42,11 +43,11 @@ public class AlbumModifyResponseDTO {
         this.date = date;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

@@ -1,13 +1,15 @@
 package com.jolipjo.lovebridge.domain.album.controller;
 
+import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.album.dto.*;
 import com.jolipjo.lovebridge.domain.album.service.AlbumService;
+import jakarta.servlet.annotation.MultipartConfig;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,13 +20,14 @@ public class AlbumController {
 
     private final AlbumService albumService;
 //    private final MessageSource messageSource;
+//    private final FileUploader fileUploader;
 
-    public AlbumController(AlbumService albumService) {
+
+    @Autowired
+    public AlbumController(AlbumService albumService, FileUploader fileUploader) {
         this.albumService = albumService;
-//        this.messageSource = messageSource;
+//        this.fileUploader = fileUploader;
     }
-
-
 
     // 앨범 화면 불러오기
     @GetMapping
@@ -36,28 +39,18 @@ public class AlbumController {
 
 
 
-//        List<AlbumListRequestDTO> dtos = new ArrayList<>();
-//        AlbumListRequestDTO albumList1 = new AlbumListRequestDTO();
-//        albumList1.setDate("123");
-//        albumList1.setMemo("123");
-//        albumList1.setImage("qqq");
-//        model.addAttribute("albumlist1", albumList1);
-//        dtos.add(albumList1);
-//        dtos.add(albumList1);
-//        dtos.add(albumList1);
-//        dtos.add(albumList1);
-//        model.addAttribute("albumList1", dtos);
 
         return "html/album/album-list";
     }
 
 
-    //2. 삭제하기
-    @PostMapping("{id}")
-    public void albumDelete(@PathVariable int id,AlbumDeleteDTO albumDeleteDTO, Model model) {
-        albumService.albumDelete(albumDeleteDTO,id);
-    }
 
+
+    @PostMapping("{id}")
+    public ResponseEntity<Void> albumDelete(@PathVariable int id, AlbumDeleteDTO albumDeleteDTO) {
+        albumService.albumDelete(albumDeleteDTO, id);
+        return ResponseEntity.noContent().build(); // Return HTTP 204 No Content
+    }
 
     //3. 앨범 작성 화면 호출
     @GetMapping("write")
@@ -75,31 +68,33 @@ public class AlbumController {
         albumService.albumWrite(albumWriteRequestDTO);
         System.out.println(albumWriteRequestDTO);
 
+
+
         return "redirect:/album";
     }
 
 
     //5.수정 값 가져오기
     @GetMapping("modify/{id}")
+    public String albumModifyLoad( @PathVariable Long id, Model model) {
 
-    public String albumModifyLoad( @PathVariable("id") int id, Model model) {
-
-        AlbumModifyResponseDTO albumModify = albumService.albumModifyLoad(id);
+        AlbumModifyRequestDTO albumModify = albumService.albumModifyLoad(id);
         model.addAttribute("albumModify", albumModify);
 
 
         System.out.println("수정 페이지 호출");
-        System.out.println(albumModify.getId());
+        System.out.println(albumModify);
 
         return "html/album/album-modify";
     }
 
 
     //6.수정 값 보내기
-    @PostMapping("modify")
-    public String albumModifySend(AlbumModifyRequestDTO albumModifyRequestDTO) {
+    @PostMapping("modify/{id}")
+    public String albumModifySend(@PathVariable Long id, AlbumModifyResponseDTO albumModifyResponseDTO) {
+        albumModifyResponseDTO.setId(id);
+        albumService.albumModifySend(albumModifyResponseDTO);
 
-        albumService.albumModifySend(albumModifyRequestDTO);
 
         return "redirect:/album";
     }

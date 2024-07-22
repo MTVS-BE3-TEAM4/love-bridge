@@ -7,15 +7,13 @@ public class AlbumWriteRequestDTO {
     private String memo;
     private String date;
 
-    public AlbumWriteRequestDTO(String image, String memo, String date,int id) {
-        this.image = image;
-        this.memo = memo;
-        this.date = date;
-        this.id = id;
+    public int getId() {
+        return id;
     }
 
-    public AlbumWriteRequestDTO() {}
-
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getImage() {
         return image;
@@ -41,13 +39,16 @@ public class AlbumWriteRequestDTO {
         this.date = date;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
+    public AlbumWriteRequestDTO(String image, String memo, String date, int id) {
+        this.image = image;
+        this.memo = memo;
+        this.date = date;
         this.id = id;
     }
+
+    public AlbumWriteRequestDTO() {}
+
+
 
     @Override
     public String toString() {

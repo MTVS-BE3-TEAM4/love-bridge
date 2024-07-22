@@ -24,11 +24,12 @@ public interface AlbumMapper {
 
 
     //앨범 수정 값 불러오기
-    AlbumModifyResponseDTO albumModifyLoad(int id);
+    AlbumModifyRequestDTO albumModifyLoad(long id);
 
 
     //앨범 수정 값 보내기
-    void albumModifySend(AlbumModifyRequestDTO albumModifyRequestDTO);
+    void albumModifySend(AlbumModifyResponseDTO albumModifyResponseDTO);
+
 
 
 }

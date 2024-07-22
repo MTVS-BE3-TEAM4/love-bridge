@@ -1,9 +1,11 @@
 package com.jolipjo.lovebridge.domain.album.service;
 
 
+import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.album.dao.AlbumMapper;
 import com.jolipjo.lovebridge.domain.album.dto.*;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -11,9 +13,12 @@ import java.util.List;
 public class AlbumService {
 
     private final AlbumMapper  albumMapper;
+    private final FileUploader fileUploader;
 
-    public AlbumService(AlbumMapper albumMapper) {this.albumMapper = albumMapper;}
-
+    public AlbumService(AlbumMapper albumMapper, FileUploader fileUploader) {
+        this.albumMapper = albumMapper;
+        this.fileUploader = fileUploader;
+    }
 
 
     //화면 출력
@@ -34,14 +39,14 @@ public class AlbumService {
 
 
     //앨범 수정 값 불러오기
-    public AlbumModifyResponseDTO albumModifyLoad(int id) {
+    public AlbumModifyRequestDTO albumModifyLoad(long id) {
         return albumMapper.albumModifyLoad(id);
     }
 
 
     //앨범 수정 값 보내기
-    public void albumModifySend(AlbumModifyRequestDTO albumModifyRequestDTO ) {
-        albumMapper.albumModifySend(albumModifyRequestDTO);
+    public void albumModifySend(AlbumModifyResponseDTO albumModifyResponseDTO ) {
+        albumMapper.albumModifySend(albumModifyResponseDTO);
     }
 
 

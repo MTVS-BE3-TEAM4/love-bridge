@@ -15,9 +15,17 @@
         <result property="date" column="date"/>
     </resultMap>
 
+    <resultMap id="AlbumModifyResultMap" type="com.jolipjo.lovebridge.domain.album.dto.AlbumModifyRequestDTO">
+        <id property="id" column="id"/>
+        <result property="memberId" column="memberId" />
+        <result property="image" column="pictureLink"/>
+        <result property="memo" column="message"/>
+        <result property="date" column="date"/>
+    </resultMap>
+
 
 <!--  리스트 화면 불러오기  -->
-    <select id="albumListPage" parameterType="com.jolipjo.lovebridge.domain.album.dto.AlbumListResponseDTO">
+    <select id="albumListPage" resultMap="AlbumResultMap">
         SELECT
                pictureLink
               ,message
@@ -46,7 +54,7 @@
     </insert>
 
 <!--SQL WHERE문 공부!-->
-    <select id="albumModifyLoad" parameterType="com.jolipjo.lovebridge.domain.album.dto.AlbumModifyRequestDTO">
+    <select id="albumModifyLoad" resultMap="AlbumModifyResultMap">
         SELECT
                id
               ,pictureLink
@@ -66,7 +74,7 @@
              ,message = #{memo}
              ,date = #{date}
          WHERE
-              1=1
+              id = #{id}
     </update>
 
 <!-- 삭제   -->
