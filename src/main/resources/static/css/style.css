@@ -479,6 +479,8 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 }
 
 .section.mypage{ max-width: 800px;}
+.section.wheel{ max-width: 700px;}
+
 /* login */
 .login-logo { width: 144px; height: 34px; background: url(../../images/logo.svg) no-repeat center/100%; margin: 0 auto 53px; } 
 .login-menu .btn { color: #777; margin: 0 14px; position: relative; border-bottom: 1px solid #ccc; } 
