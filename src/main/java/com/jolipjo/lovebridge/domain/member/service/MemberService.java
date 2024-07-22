@@ -4,6 +4,7 @@ package com.jolipjo.lovebridge.domain.member.service;
 import com.jolipjo.lovebridge.domain.member.dao.MemberMapper;
 import com.jolipjo.lovebridge.domain.member.dto.JoinRequestDTO;
 import com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO;
+import com.jolipjo.lovebridge.domain.member.dto.MypageResponseDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -61,7 +62,6 @@ public class MemberService {
         dto.setMemberId(memberId);
         dto.setSecretCodeId(secretCode.getId());
         memberMapper.addSecretCodeUser(dto);
-
     }
 
     /*사용자의 시크릿코드 추출*/
@@ -98,6 +98,10 @@ public class MemberService {
     /*나와 연결된 시크릿코드를 가진 사용자 id 검색*/
     public Long getPartner(Long memberId){
         return memberMapper.findMyPartner(memberId);
+    }
+
+    public MypageResponseDTO getMypageInfo(Long memberId){
+        return memberMapper.getMypageInfo(memberId);
     }
 
 

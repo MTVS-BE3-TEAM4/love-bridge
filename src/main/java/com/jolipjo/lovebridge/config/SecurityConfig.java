@@ -28,7 +28,14 @@ public class SecurityConfig {
         /*url 경로 권한*/
         http
                 .authorizeHttpRequests( (auth) -> auth
-                        .anyRequest().permitAll()// 모든 경로 전부 허용
+                        .requestMatchers("css/**", "js/**", "images/**")
+                                .permitAll()// 기본 템플릿 경로는 누구나 접근 가능
+                        .requestMatchers("/")
+                                .permitAll()// 메인페이지 누구나 접근 가능
+                        .requestMatchers("/member/mypage")
+                                .authenticated()// 마이페이지는 로그인 해야 접근 가능
+                        .anyRequest().permitAll()
+//                        .anyRequest().authenticated()// 그 외에는 로그인 해야 함
                 );
 
         /*로그인 페이지*/

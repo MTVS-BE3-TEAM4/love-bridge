@@ -1,6 +1,7 @@
 package com.jolipjo.lovebridge.domain.member.dao;
 
 import com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO;
+import com.jolipjo.lovebridge.domain.member.dto.MypageResponseDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import org.apache.ibatis.annotations.Mapper;
@@ -24,4 +25,6 @@ public interface MemberMapper {
     Long findMyPartner(Long memberId);
 
     Member findByEmail(String username);
+
+    MypageResponseDTO getMypageInfo(Long memberId);
 }

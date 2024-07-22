@@ -43,27 +43,33 @@
         <result column="gender" property="gender"/>
     </resultMap>
 
+    <resultMap id="MypageResponseDTO" type="com.jolipjo.lovebridge.domain.member.dto.MypageResponseDTO">
+        <result column="code" property="secretCode"/>
+        <result column="nickname" property="nickname"/>
+        <result column="email" property="email"/>
+    </resultMap>
+
 
 
 <!--    회원가입-->
     <insert id="join" parameterMap="Member" useGeneratedKeys="true">
         INSERT INTO member
         (
-        email,
-        nickname,
-        password,
-        role,
-        birth,
-        gender
+            email,
+            nickname,
+            password,
+            role,
+            birth,
+            gender
         )
         VALUES
         (
-        #{email},
-        #{nickname},
-        #{password},
-        #{role},
-        #{birth},
-        #{gender}
+            #{email},
+            #{nickname},
+            #{password},
+            #{role},
+            #{birth},
+            #{gender}
         )
     </insert>
 
@@ -164,5 +170,20 @@
             member
         WHERE
             email = #{email}
+    </select>
+
+    <select id="getMypageInfo" parameterType="Long" resultMap="MypageResponseDTO">
+        SELECT
+        b.code,
+        a.nickname,
+        a.email
+        FROM
+        member a
+        LEFT JOIN
+        secret_code b
+        ON
+        b.id = a.secretId
+        WHERE
+        a.id = #{memberId}
     </select>
 </mapper>
