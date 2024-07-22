@@ -31,4 +31,10 @@ public class GameController {
         model.addAttribute("winner", winner);
         return "html/Game/MoveGame";
     }
+
+    @GetMapping("/WheelGame")
+    public String playWheelGame(Model model) {
+        System.out.println("Render WheelGame");
+        return "html/Game/WheelGame";
+    }
 }
