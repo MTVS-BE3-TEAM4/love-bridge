@@ -1,0 +1,82 @@
+#rotateButton {
+  display: none;
+}
+#resetButton {
+  display: none;
+}
+
+.GameWrap {
+  background: #ffefef;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 50px;
+}
+
+.GameDisPlay {
+  background-color: #f2ece1;
+  display: flex;
+  flex-direction: column; /* 수직 방향으로 정렬 */
+  justify-content: center; /* 수직 방향으로 가운데 정렬 */
+  align-items: center;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.Counter-container {
+  display: flex;
+  align-items: center; /* 수직 방향으로 가운데 정렬 */
+  gap: 10px; /* 요소 간의 간격 설정 */
+  font-size: 20px;
+}
+
+.OptionInput {
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  width: 70%
+}
+
+canvas {
+  transition: 2s;
+  pointer-events: none;
+}
+
+button {
+  background: #febf00;
+  margin-top: 1rem;
+  padding: .8rem 1.8rem;
+  border: none;
+  font-size: 1.5rem;
+  font-weight: bold;
+  border-radius: 5px;
+  transition: .2s;
+  cursor: pointer;
+}
+
+button:active {
+  background: #444;
+  color: #f9f9f9;
+}
+ 
+.Wheel {
+  width: 380px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+.Wheel::before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 40px;
+  border-radius: 5px;
+  background: #000;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+}

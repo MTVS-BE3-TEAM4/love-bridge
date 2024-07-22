@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="~{html/include/head :: headerLayout}"></th:block>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/Game/WheelGame/WheelGameStyle.css">
+</head>
+<body>
+<header th:insert="~{/html/include/header :: header}" class="header includeJs"></header>
+<!-- 게임 디스플레이 -->
+<div class="GameWrap">
+    <div class="GameDisPlay">
+        <div class="Wheel">
+            <canvas id="wheelCanvas" width="380" height='380'></canvas>
+        </div>
+
+        <div class="Counter-container">
+            <button id="decrement">-</button>
+            <div id="number" class="number-display">4</div>
+            <button id="increment">+</button>
+        </div>
+
+        <div id="optionInputs" class="OptionInput"></div>
+
+        <button id="setInputBetItemsButton" onclick="setInputBetItems()">설정 완료</button>
+        <button id="resetButton" onclick="reset()">재설정하기</button>
+        <button id="rotateButton" onclick="rotate()">룰렛 돌리기</button>
+    </div>
+</div>
+<script src="/js/Game/SpinTheWheel.js"></script>
+</body>
+</html>
