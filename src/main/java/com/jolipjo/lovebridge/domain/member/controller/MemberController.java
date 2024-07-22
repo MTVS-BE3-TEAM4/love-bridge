@@ -6,7 +6,6 @@ import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,13 +50,13 @@ public class MemberController {
 
     /*로그인 페이지*/
     @GetMapping("/login")
-    public String login(Model model) {
+    public String login() {
         return "html/member/login";
     }
 
     /*이메일 찾기 페이지*/
     @GetMapping("/find-email")
-    public String findEmail(Model model) {
+    public String findEmail() {
 
         return "html/member/find_email";
     }
@@ -66,18 +65,25 @@ public class MemberController {
     public String findEmail(@ModelAttribute FindEmailRequestDTO dto,
                             RedirectAttributes model){
 
-        memberService.createSecretCode(2L);
-        System.out.println("dto = " + dto);
         FindEmailResponseDTO responseDTO = new FindEmailResponseDTO();
-        responseDTO.setIsExist(false);
-        model.addFlashAttribute("isExist", responseDTO);
+
+        Member member = memberService.getByEmail(dto.getEmail());
+
+        if(member == null){
+            responseDTO.setIsExist(false);
+            model.addFlashAttribute("isExist", responseDTO);
+        } else{
+            responseDTO.setIsExist(true);
+            model.addFlashAttribute("isExist", responseDTO);
+        }
+
         return "redirect:/member/find-email";
 
     }
 
     /*비번 찾기 페이지*/
     @GetMapping("/find-password")
-    public String findPassword(@AuthenticationPrincipal CustomMemberDetail member, Model model) {
+    public String findPassword(@AuthenticationPrincipal CustomMemberDetail member) {
         System.out.println("member = " + member.getMember());
         return "html/member/find_password";
     }
@@ -96,7 +102,7 @@ public class MemberController {
 
     /*회원가입 페이지*/
     @GetMapping("/join")
-    public String join(Model model) {
+    public String join() {
         return "html/member/join";
     }
 
@@ -109,25 +115,25 @@ public class MemberController {
     }
 
     @GetMapping("/my")
-    public String admin(Model model) {
+    public String admin() {
         return "html/mypage/mypage";
     }
 
     @GetMapping("/admin")
-    public String admin2(Model model) {
+    public String admin2() {
         return "html/admin/adminPage";
     }
 
     /*회원가입 완료 페이지*/
     @GetMapping("/join-complete")
-    public String joinComplete(Model model) {
+    public String joinComplete() {
 
         return "html/member/join_complete";
     }
 
     /*회원탈퇴 페이지*/
     @GetMapping("/secession")
-    public String secession(Model model) {
+    public String secession() {
         return "html/member/secession_confirm";
     }
 
@@ -139,7 +145,7 @@ public class MemberController {
 
     /*회원탈퇴 완료 페이지*/
     @GetMapping("/secession-complete")
-    public String secessionComplete(Model model) {
+    public String secessionComplete() {
         return "html/member/secession_complete";
     }
 }
