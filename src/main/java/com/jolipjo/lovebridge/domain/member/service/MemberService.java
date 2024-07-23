@@ -2,9 +2,7 @@ package com.jolipjo.lovebridge.domain.member.service;
 
 
 import com.jolipjo.lovebridge.domain.member.dao.MemberMapper;
-import com.jolipjo.lovebridge.domain.member.dto.JoinRequestDTO;
-import com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO;
-import com.jolipjo.lovebridge.domain.member.dto.MypageResponseDTO;
+import com.jolipjo.lovebridge.domain.member.dto.*;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -48,7 +46,7 @@ public class MemberService {
     }
 
     /*사용자 시크릿코드 생성*/
-    public void createSecretCode(Long memberId){
+    public SecretCode createSecretCode(Long memberId){
         /*시크릿 코드 생성*/
         SecretCode secretCode = generateSecretCode();
         secretCode.setCount(1);
@@ -62,6 +60,8 @@ public class MemberService {
         dto.setMemberId(memberId);
         dto.setSecretCodeId(secretCode.getId());
         memberMapper.addSecretCodeUser(dto);
+
+        return secretCode;
     }
 
     /*사용자의 시크릿코드 추출*/
@@ -118,4 +118,26 @@ public class MemberService {
 
         return secretCode;
     }
+
+    public void updateMemberInfo(MypageRequestDTO mypageRequestDTO) {
+        memberMapper.UpdateMemberInfo(mypageRequestDTO);
+    }
+
+    public Boolean changePassword(ChangePasswordRequestDTO dto) {
+        String password = memberMapper.getPassword(dto.getId());
+
+        if(passwordEncoder.matches(dto.getOldPassword(), password)){
+            System.out.println("비번 일치함!");
+            String encodePassword = passwordEncoder.encode(dto.getNewPassword());
+
+            dto.setNewPassword(encodePassword);
+            memberMapper.changePassword(dto);
+            return true;
+        } else {
+            System.out.println("비번 틀림ㅅㄱ");
+        } 
+
+        return false;
+    }
+
 }

@@ -3,8 +3,9 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jolipjo.lovebridge.domain.member.dao.MemberMapper">
-    
 
+
+<!--    ================= 파라미터 ==================== -->
     <parameterMap id="Member" type="com.jolipjo.lovebridge.domain.member.entity.Member">
         <parameter property="email"/>
         <parameter property="password"/>
@@ -26,6 +27,20 @@
         <parameter property="memberId"/>
     </parameterMap>
 
+    <parameterMap id="MypageRequestDTO" type="com.jolipjo.lovebridge.domain.member.dto.MypageRequestDTO">
+        <parameter property="id"/>
+        <parameter property="nickname"/>
+        <parameter property="email"/>
+    </parameterMap>
+
+    <parameterMap id="ChangePasswordRequestDTO" type="com.jolipjo.lovebridge.domain.member.dto.ChangePasswordRequestDTO">
+        <parameter property="id"/>
+        <parameter property="oldPassword"/>
+        <parameter property="newPassword"/>
+    </parameterMap>
+
+
+    <!--    ================= 반환값 ==================== -->
     <resultMap id="SecretCode" type="com.jolipjo.lovebridge.domain.member.entity.SecretCode">
         <id column="id" property="id"/>
         <result column="code" property="code"/>
@@ -174,16 +189,44 @@
 
     <select id="getMypageInfo" parameterType="Long" resultMap="MypageResponseDTO">
         SELECT
-        b.code,
-        a.nickname,
-        a.email
+            b.code,
+            a.nickname,
+            a.email
         FROM
-        member a
+            member a
         LEFT JOIN
-        secret_code b
+            secret_code b
         ON
-        b.id = a.secretId
+            b.id = a.secretId
         WHERE
-        a.id = #{memberId}
+            a.id = #{memberId}
     </select>
+
+    <update id="UpdateMemberInfo" parameterMap="MypageRequestDTO">
+        UPDATE
+            member
+        SET
+            nickname = #{nickname},
+            email = #{email}
+        WHERE
+            id = #{id}
+    </update>
+
+    <select id="getPassword" parameterType="Long" resultType="String">
+        SELECT
+            password
+        FROM
+            member
+        WHERE
+            id = #{id}
+    </select>
+
+    <update id="changePassword" parameterMap="ChangePasswordRequestDTO">
+        UPDATE
+            member
+        SET
+            password = #{newPassword}
+        WHERE
+        id = #{id}
+    </update>
 </mapper>

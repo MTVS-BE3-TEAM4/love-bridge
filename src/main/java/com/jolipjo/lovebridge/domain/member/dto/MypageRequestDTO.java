@@ -2,9 +2,18 @@ package com.jolipjo.lovebridge.domain.member.dto;
 
 
 public class MypageRequestDTO {
+    private Long id;
     private String nickname;
     private String email;
 
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getNickname() {
         return nickname;
@@ -25,7 +34,8 @@ public class MypageRequestDTO {
     @Override
     public String toString() {
         return "MypageRequestDTO{" +
-                "nickname='" + nickname + '\'' +
+                "id=" + id +
+                ", nickname='" + nickname + '\'' +
                 ", email='" + email + '\'' +
                 '}';
     }
