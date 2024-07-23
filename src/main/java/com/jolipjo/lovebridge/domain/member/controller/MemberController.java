@@ -1,5 +1,6 @@
 package com.jolipjo.lovebridge.domain.member.controller;
 
+import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.member.dto.*;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
@@ -12,6 +13,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -19,36 +21,46 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
 
     private final MemberService memberService;
+    private final FileUploader fileUploader;
 
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, FileUploader fileUploader) {
         this.memberService = memberService;
+        this.fileUploader = fileUploader;
     }
 
     /******API 사용법********/
-//    @GetMapping
-//    public String (@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+    @GetMapping
+    public String upload () {
+
+        /*현재 로그인 한 사용자*/
+//        Member member = customMemberDetail.getMember();
+//        System.out.println("member = " + member);
 //
-//        /*현재 로그인 한 사용자*/
-////        Member member = customMemberDetail.getMember();
-////        System.out.println("member = " + member);
-////
-////        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
-////        memberService.createSecretCode(1L);
-////
-////        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
-////        SecretCode secretCode = memberService.getSecretCode(1L);
-////
-////        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
-////        memberService.inviteSecretCode(1L, 2L);
-////
-////        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
-////        memberService.getMembersBySecretCode(1L);
-////
-////        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
-////        memberService.getPartner(1L);
+//        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
+//        memberService.createSecretCode(1L);
 //
-//        return "html/member/login";
-//    }
+//        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
+//        SecretCode secretCode = memberService.getSecretCode(1L);
+//
+//        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
+//        memberService.inviteSecretCode(1L, 2L);
+//
+//        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
+//        memberService.getMembersBySecretCode(1L);
+//
+//        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
+//        memberService.getPartner(1L);
+
+        return "html/file-upload";
+    }
+
+    @PostMapping
+    public String uploadPost (@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                              @RequestParam(name = "file") MultipartFile file) {
+        String url = fileUploader.saveFile(file);
+        System.out.println("url = " + url);
+        return "html/file-upload";
+    }
 
     /*로그인 페이지*/
     @GetMapping("/login")
