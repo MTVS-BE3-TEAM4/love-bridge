@@ -229,4 +229,37 @@
         WHERE
         id = #{id}
     </update>
+
+    <select id="findMyPartnerInfo" parameterType="Long" resultMap="Member">
+        SELECT
+            id,
+            secretId,
+            email,
+            nickname,
+            password,
+            role,
+            birth,
+            gender
+        FROM
+            member
+        WHERE
+        id = #{memberId}
+
+    </select>
+
+    <select id="getMemberInfo" parameterType="Long" resultType="String">
+        SELECT
+            id,
+            secretId,
+            email,
+            nickname,
+            password,
+            role,
+            birth,
+            gender
+        FROM
+            member
+        WHERE
+        id = #{memberId}
+    </select>
 </mapper>
