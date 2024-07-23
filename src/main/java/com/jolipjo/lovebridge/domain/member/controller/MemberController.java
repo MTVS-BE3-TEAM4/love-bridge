@@ -55,10 +55,12 @@ public class MemberController {
     }
 
     @PostMapping
-    public String uploadPost (@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+    public String uploadPost (Model model,
                               @RequestParam(name = "file") MultipartFile file) {
         String url = fileUploader.saveFile(file);
         System.out.println("url = " + url);
+
+        model.addAttribute("img", url);
         return "html/file-upload";
     }
 
