@@ -1,5 +1,8 @@
-package com.jolipjo.lovebridge.domain.Game;
+package com.jolipjo.lovebridge.domain.Game.Controller;
 
+import com.jolipjo.lovebridge.domain.Game.DTO.GameDTO;
+import com.jolipjo.lovebridge.domain.member.entity.Member;
+import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,10 +14,22 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/Game")
 public class GameController {
 
+    private final MemberService memberService;
+
+    public GameController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     // 보낸다.
     @GetMapping("/MoveGame")
     public String MoveGamePage(Model model) {
+        GameDTO gameDTO = new GameDTO();
         System.out.println("Render MoveGame");
+        Member member = memberService.getByEmail("email@email.com");
+        Member member1 = memberService.getByEmail("qwer");
+        gameDTO.setMyName(member.getNickname());
+        gameDTO.setPartnerName(member1.getNickname());
+        model.addAttribute("gameDTO", gameDTO);
         return "html/Game/MoveGame";
     }
 
