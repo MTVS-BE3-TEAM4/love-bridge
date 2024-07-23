@@ -66,6 +66,7 @@
 canvas {
   transition: 2s;
   pointer-events: none;
+  width: 70%; /* 룰렛 원이 아이폰12pro 기준 화면 넘어가서 추가 */
 }
 
 .Wheel {
