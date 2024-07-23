@@ -104,7 +104,7 @@ public class MemberService {
         return memberMapper.findMyPartnerInfo(memberId);
     }
 
-    public String getMemberById(Long memberId){
+    public Member getMemberById(Long memberId){
         return memberMapper.getMemberInfo(memberId);
     }
 

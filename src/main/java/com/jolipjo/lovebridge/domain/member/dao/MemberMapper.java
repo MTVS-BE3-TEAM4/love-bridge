@@ -38,7 +38,7 @@ public interface MemberMapper {
 
     Member findMyPartnerInfo(Long memberId);
 
-    String getMemberInfo(Long memberId);
+    Member getMemberInfo(Long memberId);
 
 //    void changePassword(ChangePasswordRequestDTO dto);
 }

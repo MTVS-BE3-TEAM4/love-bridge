@@ -247,7 +247,7 @@
 
     </select>
 
-    <select id="getMemberInfo" parameterType="Long" resultType="String">
+    <select id="getMemberInfo" parameterType="Long" resultMap="Member">
         SELECT
             id,
             secretId,
