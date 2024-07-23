@@ -35,6 +35,7 @@ document.getElementById("F_btn").addEventListener("click", function() {
         F_character.style.left = (F_position * 1) + "%";
         if (F_position === 30) {
             sendPosition(F_position, "F", "Win_F");
+            document.getElementById("F_heart").style.display = "flex";
             WinnerOkDialog.textContent = " 여자친구분이 이겼어요.";
         } else {
             sendPosition(F_position, "F", "NotWinner");
@@ -51,6 +52,7 @@ document.getElementById("M_btn").addEventListener("click", function() {
         if (M_position === 30) {
             sendPosition(M_position, "M", "Win_M");
             WinnerOkDialog.textContent = "남자친구분이 이겼어요.";
+            document.getElementById("M_heart").style.display = "flex";
         } else {
             sendPosition(M_position, "M", "NotWinner");
         }

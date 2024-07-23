@@ -7,10 +7,25 @@
     padding: 0 50px;
 }
 .Fimg{
-    max-width: 170px; width: 100%
+    max-width: 170px; width: 100%;
 }
 .Ming{
     max-width: 170px; width: 100%
+}
+
+.F_heartDisplay {
+    display: none;
+}
+
+.M_heartDisplay {
+    display: none;
+}
+
+.HeartImg{
+    max-width: 170px;
+    width: 100%;
+    position: absolute;
+    margin-top: -130px;
 }
 .GameDisPlay {
     flex: 1;
@@ -188,6 +203,7 @@
     min-height: 200px;
     margin-top: 130px;
 }
+
 .character{
     position: absolute;
     top: -130px;
