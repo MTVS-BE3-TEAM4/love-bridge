@@ -15,7 +15,7 @@
                 .to('.menu', { opacity: 0, pointerEvents: 'all', duration: 0.3 }, "-=.4")
                 .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.4') // stagger 값을 0.1로 줄임
                 .to('.close', { opacity: 1, pointerEvents: 'all', duration: 0.4 }, "-=.4") // duration을 0.3초로 변경
-                .to('nav h2', { opacity: 1, duration: 0.4 }, '-=0.6'); // duration을 0.4초로 변경
+                .to('nav h2', { opacity: 1, pointerEvents: 'all', duration: 0.4 }, '-=0.6'); // duration을 0.4초로 변경
         }
     });
 

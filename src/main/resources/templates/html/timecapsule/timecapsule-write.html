@@ -49,8 +49,14 @@
     .cnenen{
         margin: 0px 0px 0px ;
     }
-    .input-text{padding: 0 0 0;}
+    .date-wrap{
+        display: flex;
+        justify-content: space-between;
+    }
 
+    .date-wrap .date-box{flex: 0 1 45%}
+
+    textarea{resize: none}
 </style>
 
 <body>
@@ -61,36 +67,24 @@
         <p class="section-tit">타임캡슐 게시물 작성하기</p>
 
         <form method="" action="">
-
-
             <label class="input-label required">제목</label>
             <div class="input-wrap">
-                <input type="text" class="input-text "style="width: 40%;" placeholder="제목을 입력해주세요" name=""/>
+                <input type="text" class="input-text" placeholder="제목을 입력해주세요" name=""/>
             </div>
-
-
-            <div class="rowflex">
-
-
-                <div style="display: flex; flex-direction: column; width: 100%"   >
+            <div class="date-wrap input-wrap mg-t--30">
+                <div class="date-box">
                     <label class="input-label required cnenen">봉인일</label>
-                        <div class="input-wrap ">
-                            <input type="date" class="input-text F-width" placeholder="20XX-XX-XX" name=""/>
-                        </div>
+                    <div class="input-wrap ">
+                        <input type="date" class="input-text" placeholder="20XX-XX-XX" name=""/>
+                    </div>
                 </div>
-
-
-                <div style="display: flex; flex-direction: column; width: 100%">
+                <div class="date-box">
                     <label class="input-label required cnenen">개봉일</label>
-                        <div class="input-wrap ">
-                            <input type="date" class="input-text F-width" placeholder="20XX-XX-XX" name=""/>
-                        </div>
+                    <div class="input-wrap ">
+                        <input type="date" class="input-text" placeholder="20XX-XX-XX" name=""/>
+                    </div>
                 </div>
-
-
-
             </div>
-
 
 
             <label class="input-label required ">내용</label>
@@ -99,9 +93,9 @@
             </div>
 
 
-        <div class="fileBOX">
+        <div class="mg-t--30">
             <label class="input-label required">첨부파일</label>
-                <div class="upload-section " onclick="document.getElementById('file-input').click();">
+                <div class="upload-section input-wrap" onclick="document.getElementById('file-input').click();">
                     <input class="upload-name" type="file" id="file-input" accept="image/*" multiple onchange="previewImages()">
                     <div class="preview" id="preview" style="text-align: center" >눌러서 파일을 첨부해주세요</div>
                 </div>
