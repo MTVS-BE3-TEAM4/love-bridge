@@ -77,10 +77,10 @@
         <div class="Dday">{Today}일차</div>
         <div class="Names"><button type="button" id="DescriptionButton">도움말</button></div>
         <div class="FName">
-            <p>{UserName}님</p>
+            <p th:text="${gameDTO.myName}">{UserName}님</p>
         </div>
         <div class="MName">
-            <p>{UserName}님</p>
+            <p th:text="${gameDTO.partnerName}"> {UserName}님</p>
         </div>
         <div class="Time">{Time}</div>
     </div>
