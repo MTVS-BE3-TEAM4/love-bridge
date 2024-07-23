@@ -7,13 +7,21 @@
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 
 <div class="container">
-    <h1>파일 업로드 테스트</h1>
-
 
     <div class="container">
+        <p class="section-tit">파일 업로드</p>
+        <div class="image-area">
+            <img th:src="${img}" style="width: 400px; height: 400px;">
+        </div>
+
         <form action="" enctype="multipart/form-data" method="post">
-            File : <input type="file" name="file">
-            <input type="submit" value="upload">
+            <div class="input-wrap">
+                <input type="file" name="file" class="input-text">
+            </div>
+
+            <button type="submit" class="btn btn-full btn-pink">
+                업로드★(업로드 하는데 시간 좀 걸림)
+            </button>
         </form>
     </div>
 
