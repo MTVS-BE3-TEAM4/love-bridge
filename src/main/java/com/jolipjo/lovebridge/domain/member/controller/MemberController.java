@@ -7,13 +7,11 @@ import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -137,8 +135,35 @@ public class MemberController {
     public String myPageUpdate(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                                @ModelAttribute MypageRequestDTO mypageRequestDTO,
                                RedirectAttributes model) {
-        System.out.println("mypageRequestDTO = " + mypageRequestDTO);
+        mypageRequestDTO.setId(customMemberDetail.getMember().getId());
+        memberService.updateMemberInfo(mypageRequestDTO);
+
         return "redirect:/member/mypage";
+    }
+
+    @PostMapping("/changePassword")
+    public String changePassword(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                                 @ModelAttribute ChangePasswordRequestDTO dto,
+                                 RedirectAttributes model,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) throws ServletException {
+        dto.setId(customMemberDetail.getMember().getId());
+        Boolean result = memberService.changePassword(dto);
+
+        model.addFlashAttribute("isChange", result);
+        request.logout();
+
+        return "redirect:/member/login";
+    }
+
+    @PostMapping("/secretCode")
+    @ResponseBody
+    public ResponseEntity<SecretCode> generateSecretCode(@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+        SecretCode secretCode = memberService.createSecretCode(customMemberDetail.getMember().getId());
+
+        ResponseEntity<SecretCode> responseEntity = ResponseEntity.ok(secretCode);
+        return responseEntity;
+
     }
 
     @GetMapping("/admin")
@@ -158,7 +183,7 @@ public class MemberController {
         return "html/member/secession_confirm";
     }
 
-    @PostMapping("/secessionProc")
+    @PostMapping("/secession")
     public String secessionProc() {
         System.out.println("secessionProc");
         return "redirect:/member/secession-complete";

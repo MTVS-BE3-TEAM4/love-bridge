@@ -10,23 +10,11 @@
 			<p class="section-tit">마이페이지</p>
 			<form method="post" action="">
 
-			<div class="mypage-top">
-				<div class="mypage-box">
-					<div class="image-area"></div>
-					<div class="tit">프로필 사진</div>
-					<div class="btn-wrap left">
-						<button type="button" class="btn btn-lg btn-line btn-round type2">
-							프로필 사진 변경
-						</button>
-					</div>
-				</div>
-			</div>
-
 			<div class="mypage-bottom mg-t--40">
 				<label class="input-label">내 시크릿 코드</label>
 				<div class="input-wrap">
 					<input type="text" class="input-text" th:value="${member.secretCode}" readonly id="mypage-secret"/>
-					<button type="button" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn">
+					<button type="button" onclick="generateSecretCode('mypage-secret')" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn">
 						시크릿 코드 생성
 					</button>
 				</div>
@@ -53,8 +41,8 @@
 					</button>
 				</div>
 				<div class="input-wrap mg-t--40 mg-b--20">
-					<button type="button" class="btn btn-line btn-full type2 mg-l--0">
-						비밀번호 변경(버튼 누르면 모달창 쌈@뽕하게 뜸)
+					<button type="button" class="btn btn-line btn-full type2 mg-l--0" onclick="modalEnable('mypage-passwordChangeModal')">
+						비밀번호 변경
 					</button>
 				</div>
 			</div>
@@ -77,32 +65,35 @@
 	</div>
 
 	<!-- 비밀번호 변경 버튼 누르면 뜨는 모달창-->
-	<div class="modal">
+	<div class="modal" id="mypage-passwordChangeModal">
 		<div class="modal-dim"></div>
 		<div class="modal-con">
+			<form method="post" action="/member/changePassword">
 			<label class="type2">
-				<label class="input-label required">기존 비밀번호</label>
+				<label class="input-label required" >기존 비밀번호</label>
 				<div class="input-wrap">
-					<input type="password" class="input-text" />
+					<input type="password" name="oldPassword" id="mypage-oldPassword" oninput="pwCheck()" class="input-text" />
 				</div>
 
 				<label class="input-label required">새로운 비밀번호</label>
 				<div class="input-wrap">
-					<input type="password" class="input-text" />
+					<input type="password" name="newPassword" id="mypage-newPassword" class="input-text" oninput="pwCheck()" />
+				</div>
+				<div class="input-guide" id="mypage-pwdConfirm">
 				</div>
 
 				<label class="input-label required">비밀번호 재입력</label>
 				<div class="input-wrap">
-					<input type="password" class="input-text" />
+					<input type="password" id="mypage-newPasswordConfirm" name="passwordConfirm" class="input-text"  oninput="pwCheck()" />
 				</div>
 			</label>
 
 			<div class="btn-wrap">
-				<button type="button" class="btn btn-full btn-primary btn-round"
-					onclick="location.href='refunds_4.html'" disabled>
+				<button type="submit" class="btn btn-full btn-primary btn-round" >
 					비밀번호 변경
 				</button>
 			</div>
+			</form>
 		</div>
 	</div>
 
@@ -133,6 +124,38 @@
 		} else {
 			document.getElementById("mypage-secretBtn").style.display='block';
 		}
+	}
+
+	function modalEnable(targetId){
+		document.getElementById(targetId).className += ' show';
+	}
+
+	function modalDisable(targetId){
+		document.getElementById(targetId).className = document
+														.getElementById(targetId)
+														.className.replace('show', '');
+	}
+
+	function pwCheck(){
+		if($('#mypage-newPassword').val() === '' || $('#mypage-newPasswordConfirm').val() === ''){
+			$('#mypage-pwdConfirm').text('비밀번호를 입력해 주세요.').css('color', 'red')
+		} else if($('#mypage-newPassword').val() === $('#mypage-newPasswordConfirm').val()){
+			$('#mypage-pwdConfirm').text('비밀번호가 일치합니다.').css('color', 'green')
+		} else{
+			$('#mypage-pwdConfirm').text('비밀번호가 일치하지 않습니다.').css('color', 'red')
+		}
+	}
+
+	function generateSecretCode(target){
+		$.ajax({
+			url : "/member/secretCode",
+			type : "post",
+			success : function(result) {
+				console.log(result.code);
+				document.getElementById(target).value=result.code;
+				secretCodeButtonDisplay();
+			}
+		});
 	}
 
 	secretCodeButtonDisplay();
