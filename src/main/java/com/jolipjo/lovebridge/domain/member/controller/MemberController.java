@@ -166,6 +166,27 @@ public class MemberController {
 
     }
 
+    @PostMapping("/secretCode/invite")
+    @ResponseBody
+    public ResponseEntity<Boolean> inviteSecretCode(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                                                  @RequestBody SecretCodeInviteDTO dto) {
+        
+        /*상대방 찾아옴*/
+        Member member = memberService.getByEmail(dto.getEmail());
+        
+        /*상대방이 없으면 오류 반환*/
+        if(member == null){
+            ResponseEntity<Boolean> responseEntity = ResponseEntity.ok(false);
+            return responseEntity;
+        } 
+
+        /*시크릿 코드 초대함*/
+        memberService.inviteSecretCode(customMemberDetail.getMember().getId(), member.getId());
+        ResponseEntity<Boolean> responseEntity = ResponseEntity.ok(true);
+
+        return responseEntity;
+    }
+
     @GetMapping("/admin")
     public String admin2() {
         return "html/admin/adminPage";
