@@ -100,6 +100,14 @@ public class MemberService {
         return memberMapper.findMyPartner(memberId);
     }
 
+    public Member getPartnerInfo(Long memberId){
+        return memberMapper.findMyPartnerInfo(memberId);
+    }
+
+    public String getMemberById(Long memberId){
+        return memberMapper.getMemberInfo(memberId);
+    }
+
     public MypageResponseDTO getMypageInfo(Long memberId){
         return memberMapper.getMypageInfo(memberId);
     }

@@ -25,30 +25,30 @@ public class MemberController {
     }
 
     /******API 사용법********/
-    @GetMapping
-    public String test(@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
-
-        /*현재 로그인 한 사용자*/
-        Member member = customMemberDetail.getMember();
-        System.out.println("member = " + member);
-
-        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
-        memberService.createSecretCode(1L);
-
-        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
-        SecretCode secretCode = memberService.getSecretCode(1L);
-
-        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
-        memberService.inviteSecretCode(1L, 2L);
-
-        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
-        memberService.getMembersBySecretCode(1L);
-
-        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
-        memberService.getPartner(1L);
-
-        return "html/member/login";
-    }
+//    @GetMapping
+//    public String (@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+//
+//        /*현재 로그인 한 사용자*/
+////        Member member = customMemberDetail.getMember();
+////        System.out.println("member = " + member);
+////
+////        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
+////        memberService.createSecretCode(1L);
+////
+////        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
+////        SecretCode secretCode = memberService.getSecretCode(1L);
+////
+////        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
+////        memberService.inviteSecretCode(1L, 2L);
+////
+////        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
+////        memberService.getMembersBySecretCode(1L);
+////
+////        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
+////        memberService.getPartner(1L);
+//
+//        return "html/member/login";
+//    }
 
     /*로그인 페이지*/
     @GetMapping("/login")
