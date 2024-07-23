@@ -43,8 +43,11 @@
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
     <div class="container">
         <section class="section album">
-        <form enctype="multipart/form-data">
-            <ul class="Acontainer ip12pro ">
+            <p class="section-tit">ALBUM</p>
+
+            <form enctype="multipart/form-data">
+
+            <ul class="Acontainer  ">
                 <li class="item11 mg-b--20"  th:each=" album : ${albumList}" >
                     <div class="imgdiv" >
                         <img th:src="@{${album.image}}">
@@ -63,10 +66,12 @@
                     <p class="album-memo" th:text="${album.memo}"></p>
                 </li>
             </ul>
+
         </form>
             <div class="btn-wrap right mg-b--20 ">
                 <a href="/album/write" class="btn btn-pink btn-board">글쓰기</a>
             </div>
+
             <div class="pagination">
                 <button type="button" class="prev">prev</button>
                 <button type="button" class="active">1</button>
