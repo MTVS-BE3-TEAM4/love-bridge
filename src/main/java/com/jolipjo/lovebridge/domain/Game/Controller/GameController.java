@@ -1,6 +1,7 @@
 package com.jolipjo.lovebridge.domain.Game.Controller;
 
 import com.jolipjo.lovebridge.domain.Game.DTO.GameDTO;
+import com.jolipjo.lovebridge.domain.Game.Service.GameService;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import org.springframework.stereotype.Controller;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class GameController {
 
     private final MemberService memberService;
+    private final GameService gameService;
 
-    public GameController(MemberService memberService) {
+    public GameController(MemberService memberService, GameService gameService) {
         this.memberService = memberService;
+        this.gameService = gameService;
+
     }
 
     // 보낸다.
@@ -59,6 +63,8 @@ public class GameController {
             model.addAttribute("count", count);
             model.addAttribute("gender", gender);
             model.addAttribute("winner", winner);
+
+            GameDTO gameDTO = gameService.SetCount(count);
 
         return "html/Game/MoveGame";
     }

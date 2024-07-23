@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jolipjo.lovebridge.domain.Game.DAO.GameMapper">
+
+    <resultMap id="MiniGameDto" type="com.jolipjo.lovebridge.domain.Game.DTO.MiniGameDto">
+        <id property="id" column="id"/>
+        <result property="memberId" column="memberId" />
+        <result property="attendCnt" column="attendCnt"/>
+        <result property="date" column="date"/>
+        <result property="mission" column="mission"/>
+    </resultMap>
+
+    <select id="findAllByMemberId" resultMap="MiniGameDto">
+        SELECT
+            id
+            , memberId
+            , attendCnt
+            , date
+            , mission
+        FROM
+            miniGame
+        WHERE
+            memberId = #{id}
+    </select>
+
+
+    <select id="gameCnt" resultType="java.lang.Integer">
+        SELECT
+            attendCnt
+        FROM
+            miniGame
+        WHERE
+            memberId = #{id}
+    </select>
+
+</mapper>
