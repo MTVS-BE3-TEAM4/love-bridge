@@ -22,8 +22,8 @@ public class AlbumService {
 
 
     //화면 출력
-    public List<AlbumListResponseDTO> albumListPage() {
-        return albumMapper.albumListPage();
+    public List<AlbumListResponseDTO> albumListPage(long memberId) {
+        return albumMapper.albumListPage(memberId);
     }
 
     //앨범 삭제
@@ -36,6 +36,9 @@ public class AlbumService {
     public void albumWrite(AlbumWriteRequestDTO albumWriteRequestDTO) {
         albumMapper.albumWrite(albumWriteRequestDTO);
     }
+//    public List<AlbumWriteRequestDTO> albumWrite(Long memberId) {
+//        return albumMapper.albumWrite(memberId);
+//    }
 
 
     //앨범 수정 값 불러오기
@@ -51,4 +54,8 @@ public class AlbumService {
 
 
 
+
+//    public List<AlbumListResponseDTO> albumId(Long memberId) {
+//        return albumMapper.albumId(memberId);
+//    }
 }

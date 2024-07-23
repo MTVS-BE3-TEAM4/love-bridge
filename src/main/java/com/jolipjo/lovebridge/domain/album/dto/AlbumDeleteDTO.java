@@ -7,10 +7,18 @@ public class AlbumDeleteDTO {
     private String image;
     private String memo;
     private String date;
+    private String memberId;
 
-    public AlbumDeleteDTO() {
+    public AlbumDeleteDTO() {}
+
+
+    public AlbumDeleteDTO(int id, String image, String memo, String date, String memberId) {
+        this.id = id;
+        this.image = image;
+        this.memo = memo;
+        this.date = date;
+        this.memberId = memberId;
     }
-
 
     @Override
     public String toString() {
@@ -19,14 +27,8 @@ public class AlbumDeleteDTO {
                 ", image='" + image + '\'' +
                 ", memo='" + memo + '\'' +
                 ", date='" + date + '\'' +
+                ", memberId='" + memberId + '\'' +
                 '}';
-    }
-
-    public AlbumDeleteDTO(String image, String memo, String date, int id) {
-        this.image = image;
-        this.memo = memo;
-        this.date = date;
-        this.id = id;
     }
 
     public int getId() {
@@ -61,4 +63,11 @@ public class AlbumDeleteDTO {
         this.date = date;
     }
 
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
 }

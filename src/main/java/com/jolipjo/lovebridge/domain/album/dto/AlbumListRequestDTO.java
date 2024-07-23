@@ -6,6 +6,7 @@ public class AlbumListRequestDTO {
     private String image;
     private String memo;
     private String date;
+    private String memberId;
 
     public AlbumListRequestDTO() {}
 
@@ -15,6 +16,7 @@ public class AlbumListRequestDTO {
                 "image='" + image + '\'' +
                 ", memo='" + memo + '\'' +
                 ", date='" + date + '\'' +
+                ", memberId='" + memberId + '\'' +
                 '}';
     }
 
@@ -42,9 +44,18 @@ public class AlbumListRequestDTO {
         this.date = date;
     }
 
-    public AlbumListRequestDTO(String image, String memo, String date) {
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
+    }
+
+    public AlbumListRequestDTO(String image, String memo, String date, String memberId) {
         this.image = image;
         this.memo = memo;
         this.date = date;
+        this.memberId = memberId;
     }
 }

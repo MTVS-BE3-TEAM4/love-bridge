@@ -6,14 +6,28 @@ public class AlbumModifyRequestDTO {
     private String memo;
     private String date;
     private long id;
+    private String memberId;
 
     public AlbumModifyRequestDTO() {}
 
-    public AlbumModifyRequestDTO(String image, String memo, String date, long id) {
+
+    public AlbumModifyRequestDTO(String image, String memo, String date, long id, String memberId) {
         this.image = image;
         this.memo = memo;
         this.date = date;
         this.id = id;
+        this.memberId = memberId;
+    }
+
+    @Override
+    public String toString() {
+        return "AlbumModifyRequestDTO{" +
+                "image='" + image + '\'' +
+                ", memo='" + memo + '\'' +
+                ", date='" + date + '\'' +
+                ", id=" + id +
+                ", memberId='" + memberId + '\'' +
+                '}';
     }
 
     public String getImage() {
@@ -44,17 +58,15 @@ public class AlbumModifyRequestDTO {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "AlbumModifyRequestDTO{" +
-                "image='" + image + '\'' +
-                ", memo='" + memo + '\'' +
-                ", date='" + date + '\'' +
-                ", id='" + id + '\'' +
-                '}';
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 }
