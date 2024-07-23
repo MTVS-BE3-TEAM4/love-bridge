@@ -16,7 +16,7 @@ public class AdminController {
         return "html/admin/adminPage";
     }
 
-    @GetMapping("/UserManagement")
+    @GetMapping("/UserManager")
     public String UserManager(Model model)
     {
         System.out.println("Render User Management");

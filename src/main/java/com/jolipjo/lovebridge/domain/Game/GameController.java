@@ -17,18 +17,35 @@ public class GameController {
         System.out.println("Render MoveGame");
         return "html/Game/MoveGame";
     }
+
+    @PostMapping("/Wish")
+    public String WishPage(Model model,
+    @RequestParam(value = "fwish", required=false) String MWish,
+    @RequestParam(value = "mwish", required = false) String FWish) {
+        System.out.println("MWish: " + MWish);
+        System.out.println("FWish: " + FWish);
+        model.addAttribute("MWish", MWish);
+        model.addAttribute("FWish", FWish);
+        return "html/Game/MoveGame";
+    }
+
     // 받는다.
     @PostMapping("/MoveGame")
-    public String MoveGameCount(@RequestParam("cnt") Integer count,
-                                @RequestParam("gender") String gender,
-                                @RequestParam("winner") String winner,
+    public String MoveGameCount(@RequestParam(value = "cnt") Integer count,
+                                @RequestParam(value = "gender") String gender,
+                                @RequestParam(value = "winner") String winner,
+
                                 Model model) {
-        System.out.println("Gender: " + gender);
-        System.out.println("Count: " + count);
-        System.out.println("Winner: " + winner);
-        model.addAttribute("count", count);
-        model.addAttribute("gender", gender);
-        model.addAttribute("winner", winner);
+
+            System.out.println("Gender: " + gender);
+            System.out.println("Count: " + count);
+            System.out.println("Winner: " + winner);
+
+            model.addAttribute("count", count);
+            model.addAttribute("gender", gender);
+            model.addAttribute("winner", winner);
+
         return "html/Game/MoveGame";
     }
 }
+
