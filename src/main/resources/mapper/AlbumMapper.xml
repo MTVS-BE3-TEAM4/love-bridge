@@ -43,7 +43,7 @@
               ,id
           FROM
                album
-            WHERE memberId = #{ memberId}
+            WHERE memberId = #{ memberId }
     </select>
 
 <!--  앨범 작성 하기  -->
@@ -74,7 +74,7 @@
           FROM
                album
          WHERE
-               id = #{id}
+               id = #{ memberId }
     </select>
 
     <update id="albumModifySend" parameterType="com.jolipjo.lovebridge.domain.album.dto.AlbumModifyResponseDTO">
@@ -85,7 +85,7 @@
              ,message = #{memo}
              ,date = #{date}
          WHERE
-              id = #{id}
+              id = #{ id }
     </update>
 
 <!-- 삭제   -->

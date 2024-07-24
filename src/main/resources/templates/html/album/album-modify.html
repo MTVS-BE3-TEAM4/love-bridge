@@ -50,7 +50,7 @@
     <section class="section album-write">
       <p class="section-tit">앨범 만들기</p>
 
-<form method="post"  action="" >
+<form method="post"  action="" enctype="multipart/form-data">
         <label class="input-label required">날짜</label>
         <div class="input-wrap">
 
@@ -61,14 +61,14 @@
         <label class="input-label required ">메모</label>
 
         <div class="textarea-wrap">
-          <textarea name="memo" placeholder="내용을 입력하세요" th:text="${albumModify.memo}" th:value="${albumModify.memo}"></textarea>
+          <textarea name="memo" placeholder="내용을 입력하세요" th:text="${albumModify.memo}"></textarea>
         </div>
 
         <label class="input-label required">첨부파일</label>
         <div class="input-file">
-          <input type="text" class="upload-name" name="image" th:value="${albumModify.image}" >
+          <input type="text" class="upload-name" th:value="${albumModify.image}"  >
           <label for="file">파일찾기</label>
-          <input type="file" id="file">
+          <input type="file" id="file" name="file">
         </div>
 
         <div class="input-guide error">
