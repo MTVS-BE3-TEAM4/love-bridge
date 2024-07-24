@@ -4,10 +4,10 @@ public class GameDTO {
 
     public String myName;
     public String partnerName;
-    public String attendCnt; // 출석일수
+    public Integer attendCnt; // 출석일수
     public String mission;
 
-    public GameDTO(String myName, String partnerName, String attendCnt, String mission) {
+    public GameDTO(String myName, String partnerName, Integer attendCnt, String mission) {
         this.myName = myName;
         this.partnerName = partnerName;
         this.attendCnt = attendCnt;
@@ -33,11 +33,11 @@ public class GameDTO {
         this.partnerName = partnerName;
     }
 
-    public String getAttendCnt() {
+    public Integer getAttendCnt() {
         return attendCnt;
     }
 
-    public void setAttendCnt(String attendCnt) {
+    public void setAttendCnt(Integer attendCnt) {
         this.attendCnt = attendCnt;
     }
 

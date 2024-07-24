@@ -47,9 +47,6 @@ public class GameController {
     @AuthenticationPrincipal CustomMemberDetail memberDetail
     ) {
         GameDTO gameDTO = new GameDTO();
-
-        System.out.println("MWish: " + MWish);
-        System.out.println("FWish: " + FWish);
         model.addAttribute("MWish", MWish);
         model.addAttribute("FWish", FWish);
         gameService.missionInsert(FWish,memberDetail.getMember().getId());
@@ -64,23 +61,24 @@ public class GameController {
     // 받는다.
     @PostMapping("/MoveGame")
     public String MoveGameCount(
-            @RequestParam(value = "cnt") String count,
+            @RequestParam(value = "cnt") Integer count,
             @RequestParam(value = "gender") String gender,
             @RequestParam(value = "winner") String winner,
             Model model, @AuthenticationPrincipal CustomMemberDetail memberDetail) {
             GameDTO gameDTO = new GameDTO();
-            System.out.println("Gender: " + gender);
-            System.out.println("Count: " + count);
-            System.out.println("Winner: " + winner);
             model.addAttribute("count", count);
             model.addAttribute("gender", gender);
             model.addAttribute("winner", winner);
-            gameService.attendanceInsert(count,memberDetail.getMember().getId());
-            model.addAttribute("gameDTO", gameDTO);
-
-
-
-        return "html/Game/MoveGame";
+            System.out.println("count :: " + count);
+            if (count == 1) {
+                gameService.attendanceInsert(count, memberDetail.getMember().getId());
+            } else if (count != 30) {
+                gameService.updateAttendance(memberDetail.getMember().getId(), count);
+            } else {
+                gameService.deleteAttendanceByCount(memberDetail.getMember().getId(), count);
+            }
+                model.addAttribute("gameDTO", gameDTO);
+                return "html/Game/MoveGame";
     }
 
     @GetMapping("/WheelGame")
@@ -88,5 +86,7 @@ public class GameController {
         System.out.println("Render WheelGame");
         return "html/Game/WheelGame";
     }
+
+
 }
 
