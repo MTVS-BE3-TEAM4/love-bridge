@@ -6,6 +6,8 @@ import com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -18,10 +20,33 @@ public class QuizService {
     }
 
     public List<QuizListResponseDTO> getQuizList() {
-        return quizMapper.getQuizList();
+
+        List<QuizListResponseDTO> quizList = quizMapper.getQuizList();
+        List<QuizListResponseDTO> subset = new ArrayList<>();
+        List<Integer> indices = new ArrayList<>();
+
+        for (int i = 0; i < quizList.size(); i++) {
+            indices.add(i);
+        }
+        Collections.shuffle(indices);
+
+        int count = 0;
+
+        for (Integer index : indices) {
+//            if (count >= subsetSize) {
+//                break;
+//            }
+            QuizListResponseDTO quiz = quizList.get(index);
+            if (!subset.contains(quiz)) {
+                subset.add(quiz);
+                count++;
+            }
+        }
+
+        return subset;
     }
 
-    public String getQuizDetail(int id) {
+    public String getQuizDetail(Long id) {
         return quizMapper.getQuizDetail(id);
     }
 

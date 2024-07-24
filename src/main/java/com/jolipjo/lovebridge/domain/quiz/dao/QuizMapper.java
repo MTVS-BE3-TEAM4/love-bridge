@@ -10,7 +10,7 @@ import java.util.List;
 public interface QuizMapper {
     List<QuizListResponseDTO> getQuizList();
 
-    String getQuizDetail(int id);
+    String getQuizDetail(Long id);
 
     void registAnswer(QuizDetailAnswer quizDetailAnswer);
 }

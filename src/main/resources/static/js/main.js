@@ -10,12 +10,12 @@
 
 
         } else {
-            tl.to('nav', { right: 0, duration: 0.4 }) // 각각의 애니메이션 스텝의 duration을 더 짧게 설정
-                .to('nav', { height: '100vh', duration: 0.4 }, '-=.1')
-                .to('.menu', { opacity: 0, pointerEvents: 'all', duration: 0.3 }, "-=.4")
-                .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.2 }, '-=.4') // stagger 값을 0.1로 줄임
-                .to('.close', { opacity: 1, pointerEvents: 'all', duration: 0.4 }, "-=.4") // duration을 0.3초로 변경
-                .to('nav h2', { opacity: 1, pointerEvents: 'all', duration: 0.4 }, '-=0.6'); // duration을 0.4초로 변경
+            tl.to('nav', { right: 0, duration: 0.2 }) // 각각의 애니메이션 스텝의 duration을 더 짧게 설정
+                .to('nav', { height: '100vh', duration: 0.2 }, '-=.1')
+                .to('.menu', { opacity: 0, display: 'none', pointerEvents: 'all', duration: 0.2 }, "-=.2")
+                .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }, '-=.2') // stagger 값을 0.1로 줄임
+                .to('.close', { opacity: 1, pointerEvents: 'all', duration: 0.2 }, "-=.2") // duration을 0.3초로 변경
+                .to('nav h2', { opacity: 1, pointerEvents: 'all', duration: 0.2 }, '-=0.2'); // duration을 0.4초로 변경
         }
     });
 
@@ -82,4 +82,14 @@ var sakura = new Sakura('.sakura-bg', {
     ],
     delay: 200
 });
+
+function sendPost() {
+    let headerForm = document.createElement('form');
+
+    headerForm.setAttribute('method', 'post');
+    headerForm.setAttribute('action', '/member/logout');
+    document.body.appendChild(headerForm);
+    headerForm.submit();
+}
+
 

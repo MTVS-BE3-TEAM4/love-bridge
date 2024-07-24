@@ -1,14 +1,15 @@
 package com.jolipjo.lovebridge.domain.quiz.controller;
 
-import com.amazonaws.internal.SdkFilterOutputStream;
+import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
+import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.quiz.dto.*;
 import com.jolipjo.lovebridge.domain.quiz.service.QuizService;
 import org.springframework.context.MessageSource;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -22,21 +23,20 @@ public class QuizController {
         this.quizService = quizService;
         this.messageSource = messageSource;
     }
+
     @GetMapping
-    public String quizGetList(Model model) {
+    public String quizGetList(QuizListResponseDTO quizListResponseDTO, Model model) {
 
         List<QuizListResponseDTO> quizList = quizService.getQuizList();
         model.addAttribute("quizList", quizList);
 
         return "html/quiz/quiz-list";
     }
-    @GetMapping("/{id}")
-    public String quizDetailView(@PathVariable("id") int id, Model model) {
 
-//        String message = quizService.getMsg(id);
+    @GetMapping("{id}")
+    public String quizDetailView(@PathVariable("id") Long id, Model model) {
 
         String quizGetTitle = quizService.getQuizDetail(id);
-
         model.addAttribute("quizGetTitle", quizGetTitle);
 
         return "html/quiz/quiz-view";
@@ -49,4 +49,6 @@ public class QuizController {
 
         return "html/quiz/quiz-view";
     }
+
+
 }

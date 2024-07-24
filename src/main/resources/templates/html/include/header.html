@@ -13,6 +13,7 @@
     </div>
     <ul class="nav-menu logout">
         <li><a href="/member/login">LOGIN</a></li>
+
         <li><a href="/member/join">JOIN</a></li>
     </ul>
     <ul class="nav-menu login">
@@ -21,13 +22,56 @@
         <li><a href="/quiz">QUIZ</a></li>
         <li><a href="/Game/WheelGame">ROULETTE</a></li>
         <li><a href="/album">ALBUM</a></li>
+        <li class="menu-logout"><a href="javascript:void(0)" onclick="sendPost()">LOGOUT</a></li>
+        <li class="menu-mypage"><a href="/member/mypage">MYPAGE</a></li>
     </ul>
     <!-- <ul>
         <li><a href="#">Login</a></li>
         <li><a href="#">Join</a></li>
     </ul> -->
 </nav>
+    <script>
+        function checkAuthStatus(){
+            $.ajax({
+                url : "/include/header",
+                type : "get",
+                success : function(result) {
+                    console.log(result);
+                    // document.getElementById(target).value=result.code;
+                    // secretCodeButtonDisplay();
+                    const loginMenu = document.querySelector('.nav-menu.login')
+                    const logoutMenu = document.querySelector('.nav-menu.logout')
 
+                    if(result) {
+                        loginMenu.style.display = "block";
+                        logoutMenu.style.display = "none";
+                    } else {
+                        loginMenu.style.display = "none";
+                        logoutMenu.style.display = "block";
+                    }
+
+                }
+            });
+        }
+        // async function checkAuthStatus() {
+        //
+        //
+        //
+        //     const response = await fetch('/include/header', {
+        //         method: 'GET',
+        //         headers: {
+        //             'Content-Type': 'application/json'
+        //         }
+        //     });
+        //
+        //
+        // }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            checkAuthStatus();
+        });
+    </script>
 </header>
+
 </body>
 </html>
