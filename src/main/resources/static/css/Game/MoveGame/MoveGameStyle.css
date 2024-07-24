@@ -7,10 +7,25 @@
     padding: 0 50px;
 }
 .Fimg{
-    max-width: 170px; width: 100%
+    max-width: 170px; width: 100%;
 }
 .Ming{
     max-width: 170px; width: 100%
+}
+
+.F_heartDisplay {
+    display: none;
+}
+
+.M_heartDisplay {
+    display: none;
+}
+
+.HeartImg{
+    max-width: 170px;
+    width: 100%;
+    position: absolute;
+    margin-top: -130px;
 }
 .GameDisPlay {
     flex: 1;
@@ -188,6 +203,7 @@
     min-height: 200px;
     margin-top: 130px;
 }
+
 .character{
     position: absolute;
     top: -130px;
@@ -285,6 +301,77 @@
     .CroundInRight2{
         width: 100%; max-width: 100px
     }
+}
+
+
+.modal {
+    z-index: 1050;
+}
+.modal-backdrop {
+    z-index: 0;
+}
+
+
+.custom-modal {
+    z-index: 1005;
+}
+.custom-backdrop {
+    z-index: 1000;
+}
+
+#DescriptionCloseButton {
+    text-decoration: none;
+    color: inherit;
+}
+#DescriptionCloseButton:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+input::placeholder {
+    font-size: 15px;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.result-list {
+    margin-top: 20px;
+    list-style-type: none;
+    display: flex;
+}
+.result-item {
+    padding: 10px;
+    background-color: pink;
+    margin-bottom: 5px;
+    font-size: 18px;
+    border-radius: 15px;
+}
+
+.WantTop {
+    border-radius: 15px;
+}
+
+.modal-dialog {
+    border-radius: 8px;
+    background-color: #fff;
+    align-items: center;
+    border: 1px solid #FF979B;
+    width: 100%;
+}
+
+.WantWhichInput {
+    border-radius: 8px;
+    background-color: #fff;
+    align-items: center;
+    border: 1px solid #FF979B;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 @media (max-width: 660px){}

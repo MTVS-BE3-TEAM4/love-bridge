@@ -48,6 +48,16 @@
 			</div>
 		</section>
 	</div>
+<script th:inline="javascript">
+	const pwdChange = [[${isChange}]];
+	console.log("pwd: ", pwdChange);
+	if(pwdChange===true){
+		alert("비밀번호가 변경됬습니다.")
+	} else if(pwdChange===false){
+		alert("비밀번호 변경이 실패했습니다.")
+	}
+
+</script>
 
 <div th:replace="~{/html/include/footer :: footer}"></div>
 </body>

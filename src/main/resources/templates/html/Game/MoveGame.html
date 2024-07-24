@@ -3,6 +3,9 @@
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 <html lang="en">
 <head>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/Game/MoveGame/MoveGameStyle.css">
@@ -29,27 +32,42 @@
         <!-- 캐릭터 동적-->
         <div class="MovingLayout">
             <div id="F_character" class="character">
+                <div id="F_heart" class="F_heartDisplay">
+                    <img src="/images/img/Game/heart.PNG" class="HeartImg">
+                </div>
                 <img src="/images/img/Game/F_Smile.svg" class="Fimg">
             </div>
             <div id="M_character" class="character">
+                <div id="M_heart" class="M_heartDisplay">
+                    <img src="/images/img/Game/heart.PNG" class="HeartImg">
+                </div>
                 <img src="/images/img/Game/M_Smile.svg" class="Ming">
             </div>
         </div>
 
         <ul class="attendancetransfer">
-            <li>
+            <li id="M_attendance">
                 <button class="attendacetransferButton" id="F_btn">
-                    <span class="game-heart-btn"></span>
+                    <span class="game-heart-btn" id="F_btnSpan"></span>
                 </button>
                 <p>출석하기</p>
             </li>
-            <li>
+            <li id="WantInputController_F" class="WantWhichInput"
+            >
+                <input placeholder="공주님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="FText" >
+                <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_F" class="btn-pink btn-board">저장</button>
+            </li>
+            <ul id="resultList" class="result-list"></ul>
+            <li id="WantInputController_M" class="WantWhichInput">
+                <input placeholder="왕자님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="MText">
+                <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_M" class="btn-pink btn-board">저장</button>
+            </li>
+            <li id="F_attendance">
                 <button class="attendacetransferButton" id="M_btn">
-                    <span class="game-heart-btn"></span>
+                    <span class="game-heart-btn" id="M_btnSpan"></span>
                 </button>
                 <p>출석하기</p>
             </li>
-
         </ul>
     </div>
 
@@ -57,14 +75,64 @@
     <!-- UI -->
     <div class="GameUI">
         <div class="Dday">{Today}일차</div>
-        <div class="Names"><button type="button">도움말</button></div>
+        <div class="Names"><button type="button" id="DescriptionButton">도움말</button></div>
         <div class="FName">
-            <p>{UserName}님</p>
+            <p th:text="${gameDTO.myName} + ' 님'"></p>
         </div>
         <div class="MName">
-            <p>{UserName}님</p>
+            <p th:text="${gameDTO.partnerName} + ' 님'">님</p>
         </div>
         <div class="Time">{Time}</div>
+    </div>
+</div>
+
+
+<!-- Modal HTML -->
+<div class="modal fade custom-modal" id="attendanceModal" tabindex="-1" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <h5 id="attendanceModalLabel">&nbsp;</h5>
+            </div>
+            <div class="modal-body">
+                <h3 style="text-align: center" id="WinnerOK">출석이 완료 되었습니다. </h3>
+            </div>
+            <div style="align-self: center">
+                <button type="button" class="btn-pink btn-board" id="confirmButton" style="text-align: center; border-radius: 15px; font-size: 20px; margin-bottom: 10px;">
+                    확인
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- 도움말 -->
+<div class="modal fade custom-modal" id="DescriptionModal" tabindex="-1" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div>
+                <h5 id="DescriptionTitle">&nbsp;</h5>
+            </div>
+            <div class="modal-body">
+                <h3 style="text-align: center">설명내용준비</h3>
+            </div>
+            <div class="modal-body" style="text-align: center">
+                <p style="font-size: 16px;">
+                    게임방법은 다음과 같습니다.<br>
+                    본 미니게임은 커플분이 서로 경쟁하여 먼저<br>
+                    도착한분의 소원을 들어주는 게임입니다.<br>
+                    하루 1회로 먼저 30일째 출석을 하시는 분이 승리를 하는 게임입니다.<br>
+                    플레이를 하기전에 서로의 소원을 먼저 정해주시기 바랍니다.<br>
+                    **소원을 먼저 입력을 끝내셔야만 출석을 할 수 있습니다.**
+                </p>
+            </div>
+
+            <div style="align-self: center">
+                <a type="button" class="btn-pink btn-board" data-bs-dismiss="modal" id="DescriptionCloseButton"
+                   style="text-align: center; border-radius: 15px; font-size: 20px; margin-bottom: 10px; text-decoration: none; color: inherit;">확인</a>
+            </div>
+        </div>
     </div>
 </div>
 <script src="/js/Game/BridgeMoving.js"></script>

@@ -1,6 +1,8 @@
 package com.jolipjo.lovebridge.domain.member.dao;
 
 import com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO;
+import com.jolipjo.lovebridge.domain.member.dto.ChangePasswordRequestDTO;
+import com.jolipjo.lovebridge.domain.member.dto.MypageRequestDTO;
 import com.jolipjo.lovebridge.domain.member.dto.MypageResponseDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
@@ -27,4 +29,16 @@ public interface MemberMapper {
     Member findByEmail(String username);
 
     MypageResponseDTO getMypageInfo(Long memberId);
+
+    void UpdateMemberInfo(MypageRequestDTO mypageRequestDTO);
+
+    String getPassword(Long id);
+
+    void changePassword(ChangePasswordRequestDTO dto);
+
+    Member findMyPartnerInfo(Long memberId);
+
+    Member getMemberInfo(Long memberId);
+
+//    void changePassword(ChangePasswordRequestDTO dto);
 }

@@ -24,8 +24,18 @@
     </resultMap>
 
 
+
+    <parameterMap id="AlbumWriteRequestDTO" type="com.jolipjo.lovebridge.domain.album.dto.AlbumWriteRequestDTO">
+        <parameter property="id" />
+        <parameter property="memberId" />
+        <parameter property="image" />
+        <parameter property="memo" />
+        <parameter property="date" />
+    </parameterMap>
+
+
 <!--  리스트 화면 불러오기  -->
-    <select id="albumListPage" resultMap="AlbumResultMap">
+    <select id="albumListPage" parameterType="long" resultMap="AlbumResultMap">
         SELECT
                pictureLink
               ,message
@@ -33,10 +43,11 @@
               ,id
           FROM
                album
+            WHERE memberId = #{ memberId}
     </select>
 
 <!--  앨범 작성 하기  -->
-    <insert id="albumWrite" parameterType="com.jolipjo.lovebridge.domain.album.dto.AlbumWriteRequestDTO">
+    <insert id="albumWrite" parameterMap="AlbumWriteRequestDTO">
         INSERT INTO album
         (
                pictureLink
@@ -49,7 +60,7 @@
                #{ image }
               ,#{ memo }
               ,#{ date }
-              ,1
+              ,#{ memberId }
         )
     </insert>
 

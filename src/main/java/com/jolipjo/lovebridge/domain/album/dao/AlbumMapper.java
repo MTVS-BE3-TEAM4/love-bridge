@@ -12,7 +12,7 @@ public interface AlbumMapper {
 
 
     //앨범 화면 불러오기
-    List<AlbumListResponseDTO> albumListPage();
+    List<AlbumListResponseDTO> albumListPage(long memberId);
 
 
     //삭제하기
@@ -21,7 +21,7 @@ public interface AlbumMapper {
 
     //앨범 작성하기
     void albumWrite(AlbumWriteRequestDTO albumWriteRequestDTO);
-
+//    List<AlbumWriteRequestDTO> albumWrite(Long memberId);
 
     //앨범 수정 값 불러오기
     AlbumModifyRequestDTO albumModifyLoad(long id);

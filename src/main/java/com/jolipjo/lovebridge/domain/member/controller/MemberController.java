@@ -1,5 +1,6 @@
 package com.jolipjo.lovebridge.domain.member.controller;
 
+import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.member.dto.*;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
@@ -7,13 +8,12 @@ import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
@@ -21,35 +21,47 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class MemberController {
 
     private final MemberService memberService;
+    private final FileUploader fileUploader;
 
-    public MemberController(MemberService memberService) {
+    public MemberController(MemberService memberService, FileUploader fileUploader) {
         this.memberService = memberService;
+        this.fileUploader = fileUploader;
     }
 
     /******API 사용법********/
     @GetMapping
-    public String test(@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+    public String upload () {
 
         /*현재 로그인 한 사용자*/
-        Member member = customMemberDetail.getMember();
-        System.out.println("member = " + member);
+//        Member member = customMemberDetail.getMember();
+//        System.out.println("member = " + member);
+//
+//        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
+//        memberService.createSecretCode(1L);
+//
+//        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
+//        SecretCode secretCode = memberService.getSecretCode(1L);
+//
+//        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
+//        memberService.inviteSecretCode(1L, 2L);
+//
+//        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
+//        memberService.getMembersBySecretCode(1L);
+//
+//        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
+//        memberService.getPartner(1L);
 
-        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
-        memberService.createSecretCode(1L);
+        return "html/file-upload";
+    }
 
-        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
-        SecretCode secretCode = memberService.getSecretCode(1L);
+    @PostMapping
+    public String uploadPost (Model model,
+                              @RequestParam(name = "file") MultipartFile file) {
+        String url = fileUploader.saveFile(file);
+        System.out.println("url = " + url);
 
-        /*1번 사용자가 2번 사용자에게 시크릿 코드를 초대하는 메소드*/
-        memberService.inviteSecretCode(1L, 2L);
-
-        /*1번 시크릿코드와 연결된 사용자를 불러오는 메소드 */
-        memberService.getMembersBySecretCode(1L);
-
-        /*1번 사용자와 연결된 다른 사용저(파트너)의 ID를 가져오는 메소드*/
-        memberService.getPartner(1L);
-
-        return "html/member/login";
+        model.addAttribute("img", url);
+        return "html/file-upload";
     }
 
     /*로그인 페이지*/
@@ -137,8 +149,56 @@ public class MemberController {
     public String myPageUpdate(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                                @ModelAttribute MypageRequestDTO mypageRequestDTO,
                                RedirectAttributes model) {
-        System.out.println("mypageRequestDTO = " + mypageRequestDTO);
+        mypageRequestDTO.setId(customMemberDetail.getMember().getId());
+        memberService.updateMemberInfo(mypageRequestDTO);
+
         return "redirect:/member/mypage";
+    }
+
+    @PostMapping("/changePassword")
+    public String changePassword(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                                 @ModelAttribute ChangePasswordRequestDTO dto,
+                                 RedirectAttributes model,
+                                 HttpServletRequest request,
+                                 HttpServletResponse response) throws ServletException {
+        dto.setId(customMemberDetail.getMember().getId());
+        Boolean result = memberService.changePassword(dto);
+
+        model.addFlashAttribute("isChange", result);
+        request.logout();
+
+        return "redirect:/member/login";
+    }
+
+    @PostMapping("/secretCode")
+    @ResponseBody
+    public ResponseEntity<SecretCode> generateSecretCode(@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+        SecretCode secretCode = memberService.createSecretCode(customMemberDetail.getMember().getId());
+
+        ResponseEntity<SecretCode> responseEntity = ResponseEntity.ok(secretCode);
+        return responseEntity;
+
+    }
+
+    @PostMapping("/secretCode/invite")
+    @ResponseBody
+    public ResponseEntity<Boolean> inviteSecretCode(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                                                  @RequestBody SecretCodeInviteDTO dto) {
+        
+        /*상대방 찾아옴*/
+        Member member = memberService.getByEmail(dto.getEmail());
+        
+        /*상대방이 없으면 오류 반환*/
+        if(member == null){
+            ResponseEntity<Boolean> responseEntity = ResponseEntity.ok(false);
+            return responseEntity;
+        } 
+
+        /*시크릿 코드 초대함*/
+        memberService.inviteSecretCode(customMemberDetail.getMember().getId(), member.getId());
+        ResponseEntity<Boolean> responseEntity = ResponseEntity.ok(true);
+
+        return responseEntity;
     }
 
     @GetMapping("/admin")
@@ -158,7 +218,7 @@ public class MemberController {
         return "html/member/secession_confirm";
     }
 
-    @PostMapping("/secessionProc")
+    @PostMapping("/secession")
     public String secessionProc() {
         System.out.println("secessionProc");
         return "redirect:/member/secession-complete";

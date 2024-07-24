@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<th:block th:replace="html/include/head :: headerLayout"></th:block>
+
+
+<body>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+
+<div class="container">
+
+    <div class="container">
+        <p class="section-tit">파일 업로드</p>
+        <div class="image-area">
+            <img th:src="${img}" style="width: 400px; height: 400px;">
+        </div>
+
+        <form action="" enctype="multipart/form-data" method="post">
+            <div class="input-wrap">
+                <input type="file" name="file" class="input-text">
+            </div>
+
+            <button type="submit" class="btn btn-full btn-pink">
+                업로드★(업로드 하는데 시간 좀 걸림)
+            </button>
+        </form>
+    </div>
+
+</div>
+
+<div th:replace="~{/html/include/footer :: footer}"></div>
+</body>
+
+</html>
