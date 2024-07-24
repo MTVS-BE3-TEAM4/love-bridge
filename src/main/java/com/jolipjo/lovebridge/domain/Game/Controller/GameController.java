@@ -63,18 +63,21 @@ public class GameController {
 
     // 받는다.
     @PostMapping("/MoveGame")
-    public String MoveGameCount(@RequestParam(value = "cnt") Integer count,
-                                @RequestParam(value = "gender") String gender,
-                                @RequestParam(value = "winner") String winner,
-                                Model model) {
-
+    public String MoveGameCount(
+            @RequestParam(value = "cnt") String count,
+            @RequestParam(value = "gender") String gender,
+            @RequestParam(value = "winner") String winner,
+            Model model, @AuthenticationPrincipal CustomMemberDetail memberDetail) {
+            GameDTO gameDTO = new GameDTO();
             System.out.println("Gender: " + gender);
             System.out.println("Count: " + count);
             System.out.println("Winner: " + winner);
-
             model.addAttribute("count", count);
             model.addAttribute("gender", gender);
             model.addAttribute("winner", winner);
+            gameService.attendanceInsert(count,memberDetail.getMember().getId());
+            model.addAttribute("gameDTO", gameDTO);
+
 
 
         return "html/Game/MoveGame";

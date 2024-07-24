@@ -13,5 +13,8 @@ public interface GameMapper {
 
     GameDTO SetCount(String count);
 
+    
     void insertMission(Map<String, Object> parmas);
+
+    void insertAttendance(Map<String, Object> value);
 }

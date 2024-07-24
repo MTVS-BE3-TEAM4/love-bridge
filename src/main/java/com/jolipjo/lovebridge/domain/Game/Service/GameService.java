@@ -22,9 +22,11 @@ public class GameService {
     }
 
 
-    public GameDTO SetCount(String count) {
-        return gameMapper.SetCount(count);
+    public GameDTO setAttendCnt(String attendCnt) {
+        return gameMapper.SetCount(attendCnt);
     }
+
+
 
 
     public void missionInsert(String mission, Long memberId){
@@ -36,5 +38,18 @@ public class GameService {
         params.put("mission",mission);
         params.put("memberId",memberId);
         gameMapper.insertMission(params);
+    }
+
+    public void attendanceInsert(String attendCnt, Long memberId){
+        System.out.println(attendCnt);
+        System.out.println(memberId);
+        Map<String,Object> value = new HashMap<>();
+        value.put("attendCnt",attendCnt);
+        System.out.println("attendCnt ::" + attendCnt);
+        System.out.println("memberId ::" + memberId);
+        value.put("memberId",memberId);
+        gameMapper.insertAttendance(value);
+
+
     }
 }
