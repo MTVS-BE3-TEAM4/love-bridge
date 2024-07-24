@@ -2,8 +2,11 @@ package com.jolipjo.lovebridge.domain.Game.Controller;
 
 import com.jolipjo.lovebridge.domain.Game.DTO.GameDTO;
 import com.jolipjo.lovebridge.domain.Game.Service.GameService;
+import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -40,11 +43,21 @@ public class GameController {
     @PostMapping("/Wish")
     public String WishPage(Model model,
     @RequestParam(value = "fwish", required=false) String MWish,
-    @RequestParam(value = "mwish", required = false) String FWish) {
+    @RequestParam(value = "mwish", required = false) String FWish,
+    @AuthenticationPrincipal CustomMemberDetail memberDetail
+    ) {
+        GameDTO gameDTO = new GameDTO();
+
         System.out.println("MWish: " + MWish);
         System.out.println("FWish: " + FWish);
         model.addAttribute("MWish", MWish);
         model.addAttribute("FWish", FWish);
+        gameService.missionInsert(FWish,memberDetail.getMember().getId());
+        gameDTO.setMyName("member");
+        gameDTO.setPartnerName("member1");
+        model.addAttribute("gameDTO", gameDTO);
+
+
         return "html/Game/MoveGame";
     }
 
@@ -53,7 +66,6 @@ public class GameController {
     public String MoveGameCount(@RequestParam(value = "cnt") Integer count,
                                 @RequestParam(value = "gender") String gender,
                                 @RequestParam(value = "winner") String winner,
-
                                 Model model) {
 
             System.out.println("Gender: " + gender);
@@ -64,7 +76,6 @@ public class GameController {
             model.addAttribute("gender", gender);
             model.addAttribute("winner", winner);
 
-            GameDTO gameDTO = gameService.SetCount(count);
 
         return "html/Game/MoveGame";
     }

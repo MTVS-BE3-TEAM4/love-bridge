@@ -6,11 +6,11 @@ public class MiniGameDto {
 
     private Long id;
     private Long memberId;
-    private Integer attendCnt;
+    private String attendCnt;
     private Date date;
     private String mission;
 
-    public MiniGameDto(Long id, Long memberId, Integer attendCnt, Date date, String mission) {
+    public MiniGameDto(Long id, Long memberId, String attendCnt, Date date, String mission) {
         this.id = id;
         this.memberId = memberId;
         this.attendCnt = attendCnt;
@@ -34,11 +34,11 @@ public class MiniGameDto {
         this.memberId = memberId;
     }
 
-    public Integer getAttendCnt() {
+    public String getAttendCnt() {
         return attendCnt;
     }
 
-    public void setAttendCnt(Integer attendCnt) {
+    public void setAttendCnt(String attendCnt) {
         this.attendCnt = attendCnt;
     }
 
