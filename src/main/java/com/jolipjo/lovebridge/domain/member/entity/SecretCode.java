@@ -1,40 +1,51 @@
 package com.jolipjo.lovebridge.domain.member.entity;
 
 public class SecretCode {
-    Long id;
-    String code;
-    Integer count;
+    private Long couple_id;
+    private String secret_code;
+    private Long m_member_id;
+    private Long f_member_id;
 
-    public Long getId() {
-        return id;
+
+    public Long getCouple_id() {
+        return couple_id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCouple_id(Long couple_id) {
+        this.couple_id = couple_id;
     }
 
-    public String getCode() {
-        return code;
+    public String getSecret_code() {
+        return secret_code;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setSecret_code(String secret_code) {
+        this.secret_code = secret_code;
     }
 
-    public Integer getCount() {
-        return count;
+    public Long getM_member_id() {
+        return m_member_id;
     }
 
-    public void setCount(Integer count) {
-        this.count = count;
+    public void setM_member_id(Long m_member_id) {
+        this.m_member_id = m_member_id;
+    }
+
+    public Long getF_member_id() {
+        return f_member_id;
+    }
+
+    public void setF_member_id(Long f_member_id) {
+        this.f_member_id = f_member_id;
     }
 
     @Override
     public String toString() {
         return "SecretCode{" +
-                "id=" + id +
-                ", code='" + code + '\'' +
-                ", count=" + count +
+                "couple_id=" + couple_id +
+                ", secret_code='" + secret_code + '\'' +
+                ", m_member_id=" + m_member_id +
+                ", f_member_id=" + f_member_id +
                 '}';
     }
 }
