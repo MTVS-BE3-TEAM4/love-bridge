@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jolipjo.lovebridge.domain.admin.dao.AdminMapper">
+
+
+    <!--    ================= 파라미터 ==================== -->
+    <parameterMap id="MemberInfoDTO" type="com.jolipjo.lovebridge.domain.admin.dto.MemberInfoDTO">
+        <parameter property="id"/>
+        <parameter property="email"/>
+        <parameter property="secretCode"/>
+        <parameter property="nickname"/>
+        <parameter property="role"/>
+        <parameter property="birth"/>
+        <parameter property="gender"/>
+    </parameterMap>
+
+
+    <!--    ================= 반환값 ==================== -->
+    <resultMap id="MemberInfoDTO" type="com.jolipjo.lovebridge.domain.admin.dto.MemberInfoDTO">
+        <id column="id" property="id"/>
+        <result column="email" property="email"/>
+        <result column="code" property="secretCode"/>
+        <result column="nickname" property="nickname"/>
+        <result column="role" property="role"/>
+        <result column="birth" property="birth"/>
+        <result column="gender" property="gender"/>
+    </resultMap>
+
+    <!--    전체 회원 검색-->
+    <select id="findAllMembers" resultMap="MemberInfoDTO">
+        SELECT
+            a.id,
+            a.email,
+            b.code,
+            a.nickname,
+            a.role,
+            a.birth,
+            a.gender
+        FROM
+            member a
+        LEFT JOIN
+            secret_code b
+        ON
+        a.secretId = b.id
+    </select>
+
+</mapper>

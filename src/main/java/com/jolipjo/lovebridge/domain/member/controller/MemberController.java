@@ -201,11 +201,6 @@ public class MemberController {
         return responseEntity;
     }
 
-    @GetMapping("/admin")
-    public String admin2() {
-        return "html/admin/adminPage";
-    }
-
     /*회원가입 완료 페이지*/
     @GetMapping("/join-complete")
     public String joinComplete() {
