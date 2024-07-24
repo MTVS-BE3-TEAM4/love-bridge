@@ -11,10 +11,20 @@ public interface GameMapper {
 
     MiniGameDto getMiniGameDto(Long memberId);
 
-    GameDTO SetCount(String count);
+    GameDTO SetCount(Integer count);
 
     
     void insertMission(Map<String, Object> parmas);
 
+    void deleteMission(Map<String, Object> parmas);
+
+    void updateMission(Map<String, Object> params);
+
     void insertAttendance(Map<String, Object> value);
+
+    void updateAttendance(Map<String, Object> value);
+
+    void deleteAttendance(Map<String, Object> value);
+
+
 }

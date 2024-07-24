@@ -22,7 +22,7 @@ public class GameService {
     }
 
 
-    public GameDTO setAttendCnt(String attendCnt) {
+    public GameDTO setAttendCnt(Integer attendCnt) {
         return gameMapper.SetCount(attendCnt);
     }
 
@@ -30,26 +30,44 @@ public class GameService {
 
 
     public void missionInsert(String mission, Long memberId){
-        // gameService.missionInsert(FWish,memberDetail.getMember().getId());
-        System.out.println(mission);
-        System.out.println(memberId);
-
         Map<String,Object> params = new HashMap<>();
         params.put("mission",mission);
         params.put("memberId",memberId);
         gameMapper.insertMission(params);
     }
 
-    public void attendanceInsert(String attendCnt, Long memberId){
-        System.out.println(attendCnt);
-        System.out.println(memberId);
+    public void missionUpdate(String mission, Long memberId){
+        Map<String,Object> params = new HashMap<>();
+        params.put("mission",mission);
+        params.put("memberId",memberId);
+        gameMapper.updateMission(params);
+    }
+
+    public void deleteMission(String mission, Long memberId){
+        Map<String,Object> params = new HashMap<>();
+        params.put("mission",mission);
+        params.put("memberId",memberId);
+        gameMapper.deleteMission(params);
+    }
+
+    public void attendanceInsert(Integer attendCnt, Long memberId){
         Map<String,Object> value = new HashMap<>();
         value.put("attendCnt",attendCnt);
-        System.out.println("attendCnt ::" + attendCnt);
-        System.out.println("memberId ::" + memberId);
         value.put("memberId",memberId);
         gameMapper.insertAttendance(value);
+    }
 
+    public void deleteAttendanceByCount(Long memberId, Integer attendCnt) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("memberId", memberId);
+        params.put("attendCnt", attendCnt);
+        gameMapper.deleteAttendance(params);
+    }
 
+    public void updateAttendance(Long memberId, Integer attendCnt) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("attendCnt", attendCnt);
+        params.put("memberId", memberId);
+        gameMapper.updateAttendance(params);
     }
 }
