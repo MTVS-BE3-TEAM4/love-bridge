@@ -5,6 +5,7 @@ import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.album.dao.AlbumMapper;
 import com.jolipjo.lovebridge.domain.album.dto.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
@@ -33,6 +34,7 @@ public class AlbumService {
 
 
     //앨범 작성하기
+    @Transactional
     public void albumWrite(AlbumWriteRequestDTO albumWriteRequestDTO) {
         albumMapper.albumWrite(albumWriteRequestDTO);
     }
@@ -48,7 +50,9 @@ public class AlbumService {
 
 
     //앨범 수정 값 보내기
+    @Transactional
     public void albumModifySend(AlbumModifyResponseDTO albumModifyResponseDTO ) {
+        System.out.println("albumModifyResponseDTO = " + albumModifyResponseDTO);
         albumMapper.albumModifySend(albumModifyResponseDTO);
     }
 

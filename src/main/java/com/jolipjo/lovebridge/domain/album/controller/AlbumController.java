@@ -25,6 +25,7 @@ public class AlbumController {
 
 
     private final AlbumService albumService;
+    private final FileUploader fileUploader;
 //    private final MessageSource messageSource;
 //    private final FileUploader fileUploader;
 
@@ -35,6 +36,7 @@ public class AlbumController {
     public AlbumController(AlbumService albumService, FileUploader fileUploader) {
         this.albumService = albumService;
 //        this.fileUploader = fileUploader;
+        this.fileUploader = fileUploader;
     }
 
     // 앨범 화면 불러오기
@@ -45,10 +47,11 @@ public class AlbumController {
         Member member = customMemberDetail.getMember();
 
         List<AlbumListResponseDTO> albumListResponseDTOS = albumService.albumListPage(member.getId());
-        System.out.println(albumListResponseDTOS);
-        System.out.println("member : " + member.getId());
+//        System.out.println(albumListResponseDTOS);
+//        System.out.println("member : " + member.getId());
         model.addAttribute("albumList", albumListResponseDTOS);
 
+//
 
 
 
@@ -95,19 +98,23 @@ public class AlbumController {
     //4. 앨범 작성 하기
     @PostMapping("write")
     public String albumWrite(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+                             @RequestParam(name = "file") MultipartFile file,
                              AlbumWriteRequestDTO albumWriteRequestDTO, Model model) {
 
-
+        //로그인 아이디 넘기기
         Member member = customMemberDetail.getMember();
-
         albumWriteRequestDTO.setMemberId(member.getId());
 
+        //파일럽로더 파일 불러오기
+        String url = fileUploader.saveFile(file);
+        System.out.println("url = " + url);
+        //url을 DTO의 이미지에 넣기
+        albumWriteRequestDTO.setImage(url);
+        //보여주기
+        model.addAttribute("img", url);
+        //서비스 단으로 보내주기
         albumService.albumWrite(albumWriteRequestDTO);
 
-//        albumService.albumWrite(albumWriteRequestDTO);
-
-        System.out.println("dd");
-        System.out.println(albumWriteRequestDTO);
 
 
         return "redirect:/album";
@@ -123,6 +130,7 @@ public class AlbumController {
         model.addAttribute("albumModify", albumModify);
 
 
+
         System.out.println("수정 페이지 호출");
         System.out.println(albumModify);
 
@@ -134,11 +142,18 @@ public class AlbumController {
 
     //6.수정 값 보내기
     @PostMapping("modify/{id}")
-    public String albumModifySend(@PathVariable Long id, AlbumModifyResponseDTO albumModifyResponseDTO) {
+    public String albumModifySend(@PathVariable Long id,
+                                  @RequestParam(name = "file") MultipartFile file,
+                                  AlbumModifyResponseDTO albumModifyResponseDTO) {
+
         albumModifyResponseDTO.setId(id);
+
+        String url = fileUploader.saveFile(file);
+        System.out.println("url = " + url);
+        albumModifyResponseDTO.setImage(url);
+
+
         albumService.albumModifySend(albumModifyResponseDTO);
-
-
 
 
         return "redirect:/album";
