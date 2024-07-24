@@ -25,27 +25,31 @@
             memberId = #{id}
     </select>
 
-
-    <select id="gameCnt" resultType="java.lang.Integer">
-        SELECT
-            attendCnt
-        FROM
-            miniGame
-        WHERE
-            memberId = #{id}
-    </select>
-
     <insert id="insertMission" parameterType="java.util.Map">
-        INSERT INTO mission
+        INSERT INTO miniGame
         (
         mission,
-        member_id
+        memberId
         )
         VALUES
         (
         #{mission},
         #{memberId}
         )
+    </insert>
+    
+    <insert id="insertAttendance" parameterType="java.util.Map">
+        INSERT INTO miniGame
+        (
+        attendCnt,
+        memberId
+        )
+        VALUES
+        (
+        #{attendCnt},
+        #{memberId}
+        )
+
     </insert>
 
 </mapper>

@@ -7,10 +7,10 @@ public class MiniGameDto {
     private Long id;
     private Long memberId;
     private String attendCnt;
-    private Date date;
+    private String date;
     private String mission;
 
-    public MiniGameDto(Long id, Long memberId, String attendCnt, Date date, String mission) {
+    public MiniGameDto(Long id, Long memberId, String attendCnt, String date, String mission) {
         this.id = id;
         this.memberId = memberId;
         this.attendCnt = attendCnt;
@@ -42,11 +42,11 @@ public class MiniGameDto {
         this.attendCnt = attendCnt;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
