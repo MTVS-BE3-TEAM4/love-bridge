@@ -2,22 +2,87 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
 <mapper namespace="com.jolipjo.lovebridge.domain.timecapsule.dao.TimecapsuleMapper">
 
+    <!--type=실제경로 id=별명같은것 -->
     <resultMap id="TimecapsuleViewDTO" type="com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleViewDTO">
+        <!-- property= DTO에 선언한 변수명 / column=DB실제컬럼명 -->
         <id property="tcsealingdate" column="startDate"/>
         <result property="tcreleasedate" column="endDate"/>
         <result property="tctitle" column="title"/>
         <result property="tcdetail" column="content"/>
     </resultMap>
 
+    <resultMap id="TimecapsuleWriteDTO" type="com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleWriteDTO">
+        <!-- property= DTO에 선언한 변수명 / column=DB실제컬럼명 -->
+        <result property="tcsealingdate" column="startDate"/>
+        <result property="tcreleasedate" column="endDate"/>
+        <result property="tctitle" column="title"/>
+        <result property="tcdetail" column="content"/>
+        <result property="memberId" column="memberId"/>
+    </resultMap>
+
+    <parameterMap id="TimecapsuleWriteDTO" type="com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleWriteDTO">
+        <parameter property="tcsealingdate"/>
+        <parameter property="tcreleasedate"/>
+        <parameter property="tctitle"/>
+        <parameter property="tcdetail"/>
+        <parameter property="memberId"/>
+    </parameterMap>
+
+    <resultMap id="TimecapsuleListDTO" type="com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleListDTO">
+        <result property="id" column="id"/>
+        <result property="createdat" column="createdAt"/>
+        <result property="title" column="title"/>
+
+    </resultMap>
+
+    <select id="findAllList" parameterType="Long" resultMap="TimecapsuleListDTO">
+        SELECT
+                id
+              , title
+              , createdAt
+              , startDate
+              , endDate
+              , content
+            FROM timeCapsule
+        WHERE memberId = #{ memberId }
+
+    </select>
+
+    <!-- 서비스에 선언해둔 변수명 / resultMap에 선언해둔 사용할 resultMap 별명  -->
     <select id="findAllView" resultMap="TimecapsuleViewDTO">
         SELECT
-               startDate
+               id
+             , startDate
              , endDate
              , title
              , content
           FROM timeCapsule
     </select>
+
+    <insert id="findAllWrite" parameterMap="TimecapsuleWriteDTO"
+            useGeneratedKeys="true">
+        insert into timeCapsule
+        (
+        startDate
+        , endDate
+        , title
+        , content
+        , memberId
+        , createdAt
+        )
+        values
+        (
+          #{ tcsealingdate }
+        , #{ tcreleasedate }
+        , #{ tctitle }
+        , #{ tcdetail }
+        , #{ memberId }
+        , now()
+        )
+    </insert>
+
 
 </mapper>

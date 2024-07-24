@@ -20,347 +20,152 @@
 <!--</head>-->
 
 <body>
-    <style>
-        /*.container3*/
-        /*{*/
-        /*    width: 70%;*/
-        /*    margin: 0 auto;*/
-        /*    border: 1px solid #ccc;*/
-        /*    padding: 20px;*/
-        /*    border-radius: 10px;*/
-        /*    background-color: rgba(255, 200, 201, 0.55);*/
-        /*    box-shadow: 0 0 10px rgba(0,0,0,100.1);*/
-        /*}*/
-
-        /*.time-capsule {*/
-        /*    display: flex;*/
-        /*    flex-wrap: wrap;*/
-        /*    justify-content: flex-start;*/
-        /*    padding: 20px;*/
-        /*}*/
-
-        /*.capsule {*/
-        /*    margin: 10px;*/
-        /*    border: 1px solid #ddd;*/
-        /*    border-radius: 50px;*/
-        /*    overflow: hidden;*/
-        /*    min-height: 450px;*/
-        /*    flex: 0 1 30%;*/
-        /*    background-color: #fff;*/
-        /*}*/
-
-        /*.capsule img {*/
-        /*    width: 100%;*/
-        /*    height: 80%;*/
-        /*    object-fit: cover;*/
-        /*    cursor: pointer;*/
-
-        /*}*/
-
-        /*.capsule p {*/
-        /*    text-align: center;*/
-        /*    margin: 0;*/
-        /*    padding: 10px;*/
-
-        /*}*/
-
-        /*.pagination {*/
-        /*    margin-top: 10%;*/
-        /*    margin-left: 33%;*/
-
-        /*}*/
-
-        /*.pagination button {*/
-        /*    margin: 0 5px;*/
-        /*    padding: 5px 10px;*/
-        /*    text-align: center;*/
-        /*    border: none;*/
-        /*    border-radius: 3px;*/
-        /*    background-color: #ff7e81;*/
-        /*    color: white;*/
-        /*    cursor: pointer;*/
-        /*}*/
-
-        /*.pagination button.active {*/
-        /*    background-color: #ff4a4a;*/
-        /*}*/
-
-        /*.positioned {*/
-        /*    position: static;*/
-        /*}*/
-        /*.btn-center3 {*/
-        /*    margin-left: 40%;*/
-        /*}*/
-        /*.btn-timecapsulbut-add {*/
-        /*    position: relative;*/
-        /*    bottom: -40px;*/
-        /*    left: 45%;*/
-        /*    width: 100px;*/
-        /*    height: 50px;*/
-        /*}*/
-
-        /* album */
-        .section.album-write{max-width: 800px;}
-        .Bcontainer{display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;min-height: 500px;}
-        .Bcontainer li{padding: 2%; flex: 0 1 31%; display: flex; flex-direction: column; border: 1px solid #ffc8c8; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3); }
-        .Bcontainer li .imgdiv { border: 1px solid #ddd; width: 100%; min-height: 250px; }
-        .Bcontainer li .album-util{display: flex; align-items: center; justify-content: space-between;}
-        .Bcontainer li .album-util .gearbt{cursor: pointer;margin: 0; padding: 0; border: 0; background: nne;}
-        .Bcontainer li .album-util .gearbt i{font-size: 1.3rem; color: #FF646A}
-        .Bcontainer li .album-util .date {font-size: 1.7rem; text-align: right; margin: 10px 0; color: #FF646A;}
-        .Bcontainer li .album-memo{font-size: 1.5rem; color: #333; margin-top: 10px;}
-        @media (max-width: 660px){
-            .Bcontainer li{flex: 0 1 100%; margin-top: 4%; }
-            .section{width: 80%;
-            }
-
-
-        }
-        .wordbreak{
-            word-break: break-all;
-        }
-
-        .centertest{
-            justify-content: center;
-            align-content: center;
-            align-items: center;
-            text-align: center;
-            font-family: Pretendard;
-            font-size: 18px;
-        }
-
-
-
-
-    </style>
+<style>
+    .section.album-write{max-width: 800px;}
+    .Bcontainer{display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-evenly;min-height: 500px;}
+    .Bcontainer li{padding: 2%; flex: 0 1 31%; display: flex; flex-direction: column; border: 1px solid #ffc8c8; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3); }
+    .Bcontainer li .imgdiv { border: 1px solid #ddd; width: 100%; min-height: 250px; }
+    .Bcontainer li .album-util{display: flex; align-items: center; justify-content: space-evenly;}
+    .Bcontainer li .album-util .gearbt{cursor: pointer;margin: 0; padding: 0; border: 0; background: none;}
+    .Bcontainer li .album-util .gearbt i{font-size: 1.3rem; color: #FF646A}
+    .Bcontainer li .album-util .date {font-size: 1.7rem; text-align: right; margin: 10px 0; color: #FF646A;}
+    .Bcontainer li .album-memo{font-size: 1.5rem; color: #333; margin-top: 10px;}
+    @media (max-width: 660px){
+        .Bcontainer li{flex: 0 1 100%; margin-top: 4%; }
+        .section{width: 80%;}
+    }
+    .wordbreak{
+        word-break: break-all;
+    }
+    .centertest{
+        justify-content: center;
+        align-content: center;
+        align-items: center;
+        text-align: center;
+        font-family: Pretendard;
+        font-size: 18px;
+    }
+</style>
 
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 
+<div class="container">
+    <section class="section album">
+        <p class="section-tit">TIME CAPSULE</p>
 
-    <div class="container">
-        <section class="section album">
-            <p class="section-tit">TIME CAPSULE</p>
-
-            <form enctype="multipart/form-data">
-                <ul class="Bcontainer  ">
-
-
-                    <li class="item11 mg-b--20"   >
-                        <div class="imgdiv" >
-                            <img >
+        <form enctype="multipart/form-data">
+            <ul class="Bcontainer" id="Bcontainer">
+                <li class="item11 mg-b--20" th:each="listDTO, iterStat : ${listDTOList}" th:attr="data-index=${iterStat.index}">
+                    <div class="imgdiv">
+<!--                        <img th:src="${listDTO.imgUrl}" />-->
+                    </div>
+                    <div class="album-util">
+                        <div>
+                            <button class="gearbt" type="button" onclick="isDelete(event, [[${listDTO.id}]])">
+                                <i class="fa-solid fa-trash"></i>
+                            </button>
+                            <a class="gearbt" href="/album/[[${listDTO.id}]]">
+                                <i class="fa-solid fa-gear"></i>
+                            </a>
                         </div>
-                        <div class="album-util">
-                            <div>
-                                <button class="gearbt" type="button" onclick="isDelete(event)" >
-                                    <i class="fa-solid fa-trash"   ></i>
-                                </button>
-                                <a class="gearbt" type="submit"  >
-                                    <i class="fa-solid fa-gear"></i>
-                                </a>
-                            </div>
-                            <p class="date" >2087-45-54</p>
-                            <p class="date" >2545-87-84</p>
-                        </div>
-                        <div class="wordbreak">
-                            <p class="centertest " >여름 휴가</p>
-                            <p class="album-memo" >여름휴가를갔다 존나재미잇었다</p>
-                        </div>
-                    </li>
+                        <p class="date" th:text="${listDTO.startdate}"></p>
+                        <p class="date" th:text="${listDTO.enddate}"></p>
+                    </div>
+                    <div class="wordbreak">
+                        <p class="centertest" th:text="${listDTO.title}"></p>
+                        <p class="album-memo" th:text="${listDTO.content}"></p>
+                    </div>
+                </li>
+            </ul>
+        </form>
+        <div class="btn-wrap mg-b--20">
+            <a onclick="location.href='/timecapsule/write'" class="btn btn-pink btn-board">글쓰기</a>
+        </div>
 
+        <div class="pagination">
+            <button type="button" class="prev" onclick="changePage('prev')">prev</button>
+            <button type="button" class="page" data-page="1">1</button>
+            <button type="button" class="page" data-page="2">2</button>
+            <button type="button" class="page" data-page="3">3</button>
+            <button type="button" class="page" data-page="4">4</button>
+            <button type="button" class="page" data-page="5">5</button>
+            <button type="button" class="next" onclick="changePage('next')">next</button>
+        </div>
+    </section>
+</div>
 
-
-
-                    <li class="item11 mg-b--20"   >
-                        <div class="imgdiv" >
-                            <img >
-                        </div>
-                        <div class="album-util">
-                            <div>
-                                <button class="gearbt" type="button" onclick="isDelete(event)" >
-                                    <i class="fa-solid fa-trash"   ></i>
-                                </button>
-                                <a class="gearbt" type="submit"  >
-                                    <i class="fa-solid fa-gear"></i>
-                                </a>
-                            </div>
-                            <p class="date" >2087-45-54</p>
-                            <p class="date" >2545-87-84</p>
-                        </div>
-                        <div class="wordbreak">
-                            <p class="centertest " >여름 휴가</p>
-                            <p class="album-memo" >여름휴가를갔다 존나재미잇었다</p>
-                        </div>
-                    </li>
-                    <li class="item11 mg-b--20"   >
-                        <div class="imgdiv" >
-                            <img >
-                        </div>
-                        <div class="album-util">
-                            <div>
-                                <button class="gearbt" type="button" onclick="isDelete(event)" >
-                                    <i class="fa-solid fa-trash"   ></i>
-                                </button>
-                                <a class="gearbt" type="submit"  >
-                                    <i class="fa-solid fa-gear"></i>
-                                </a>
-                            </div>
-                            <p class="date" >2087-45-54</p>
-                            <p class="date" >2545-87-84</p>
-                        </div>
-                        <div class="wordbreak">
-                            <p class="centertest " >여름 휴가</p>
-                            <p class="album-memo" >여름휴가를갔다 존나재미잇었다</p>
-                        </div>
-                    </li>
-
-
-                </ul>
-            </form>
-            <div class="btn-wrap  mg-b--20 ">
-                <a onclick="location.href='/timecapsule/write'" class="btn btn-pink btn-board ">글쓰기</a>
-            </div>
-
-            <div class="pagination">
-                <button type="button" class="prev">prev</button>
-                <button type="button" class="active">1</button>
-                <button type="button">2</button>
-                <button type="button">3</button>
-                <button type="button">4</button>
-                <button type="button">5</button>
-                <button type="button" class="next">next</button>
-            </div>
-
-        </section>
-    </div>
-
-
-
-
-
-
-
-<!--    <div class="container">-->
-<!--        <div class="container3">-->
-<!--        <section class="section time-capsule">-->
-
-<!--            <div class="capsule" onclick="location.href='timecapsule/view'">-->
-<!--                <img src="images/1.png" alt="타임캡슐 1">-->
-
-<!--                <p class="positioned" >기존 타임캡슐 1<br>YYYY.MM.DD~YYYY.MM.DD </p>-->
-<!--                <button class="btn-center3">삭제하기</button>-->
-<!--            </div>-->
-<!--            <div class="capsule" onclick="location.href='page2.html'">-->
-<!--                <img src="../../images/2.jpg" alt="타임캡슐 2">-->
-<!--                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>-->
-<!--                <button class="btn-center3">삭제하기</button>-->
-
-<!--            </div>-->
-<!--            <div class="capsule" onclick="location.href='page3.html'">-->
-<!--                <img src="../../images/3.jpg" alt="타임캡슐 3">-->
-<!--                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>-->
-<!--                <button class="btn-center3">삭제하기</button>-->
-
-<!--            </div>-->
-<!--            <div class="capsule" onclick="location.href='page4.html'">-->
-<!--                <img src="../../images/4.jpg" alt="타임캡슐 4">-->
-<!--                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>-->
-<!--                <button class="btn-center3">삭제하기</button>-->
-
-<!--            </div>-->
-<!--            <div class="capsule" onclick="location.href='page5.html'">-->
-<!--                <img src="../../images/1.png" alt="타임캡슐 5">-->
-<!--                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>-->
-<!--                <button class="btn-center3">삭제하기</button>-->
-
-<!--            </div>-->
-<!--            <div class="capsule" onclick="location.href='page6.html'">-->
-<!--                <img src="../../images/2.jpg" alt="타임캡슐 6">-->
-<!--                <p>기존 타임캡슐 2<br>YYYY.MM.DD~YYYY.MM.DD</p>-->
-<!--                <button class="btn-center3">삭제하기</button>-->
-<!--            </div>-->
-
-<!--            <button onclick="location.href='/timecapsule/write'" class="btn btn-full btn-pink btn-timecapsulbut-add"> 타임캡슐 추가</button>-->
-
-<!--            <div class="pagination">-->
-<!--                <button class="active">1</button>-->
-<!--                <button>2</button>-->
-<!--                <button>3</button>-->
-<!--                <button>4</button>-->
-<!--                <button>5</button>-->
-<!--            </div>-->
-
-<!--        </section>-->
-<!--        &lt;!&ndash; Add more capsule items here &ndash;&gt;-->
-<!--        </div>-->
-<!--    </div>-->
-    <footer>
+<footer>
     <div th:replace="~{/html/include/footer :: footer}"></div>
-    </footer>
-    <!-- //footer -->
-</body>
-
-</html>
+</footer>
 
 <script>
-    const capsules = document.querySelectorAll('.capsule');
-    const pages = document.querySelectorAll('.pagination button');
-    let currentPage = 1;
-    const capsulesPerPage = 3;
+    document.addEventListener('DOMContentLoaded', function() {
+        const capsules = document.querySelectorAll('.Bcontainer .item11');
+        const pages = document.querySelectorAll('.pagination .page');
+        const prevButton = document.querySelector('.pagination .prev');
+        const nextButton = document.querySelector('.pagination .next');
+        let currentPage = 1;
+        const capsulesPerPage = 3;
 
-    function showPage(page) {
-        currentPage = page;
-        const start = (page - 1) * capsulesPerPage;
-        const end = start + capsulesPerPage;
+        function showPage(page) {
+            currentPage = page;
+            const start = (page - 1) * capsulesPerPage;
+            const end = start + capsulesPerPage;
 
-        capsules.forEach((capsule, index) => {
-            if (index >= start && index < end) {
-                capsule.style.display = 'block';
-            } else {
-                capsule.style.display = 'none';
-            }
-        });
-
-        pages.forEach((button, index) => {
-            if (index + 1 === page) {
-                button.classList.add('active');
-            } else {
-                button.classList.remove('active');
-            }
-        });
-    }
-
-    pages.forEach((button, index) => {
-        button.addEventListener('click', () => {
-            showPage(index + 1);
-        });
-    });
-
-    showPage(currentPage);
-
-    function isDelete(event) {
-        event.preventDefault(); // Prevent default button behavior
-
-        // Get album ID from data-value attribute
-        var id = $(event.target).data('value');
-
-        // Confirm dialog
-        if (confirm("영구적으로 삭제 하시겠습니까?")) {
-            // Send POST request to the server
-            $.ajax({
-                url: '/album/' + id , // URL to send request to
-                type: 'POST', // Use POST for the delete request
-                data: {
-                    id: id
-                },
-                success: function(response) {
-                    // Optionally handle success (e.g., reload the page or remove the item from the DOM)
-                    location.reload();
-                },
-                error: function(error) {
-                    // Optionally handle error
-                    alert("An error occurred while deleting the album.");
+            capsules.forEach((capsule, index) => {
+                if (index >= start && index < end) {
+                    capsule.style.display = 'block';
+                } else {
+                    capsule.style.display = 'none';
                 }
             });
+
+            pages.forEach(button => {
+                if (parseInt(button.getAttribute('data-page')) === page) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
+            });
+
+            prevButton.disabled = currentPage === 1;
+            nextButton.disabled = currentPage === Math.ceil(capsules.length / capsulesPerPage);
         }
-    }
+
+        pages.forEach(button => {
+            button.addEventListener('click', () => {
+                showPage(parseInt(button.getAttribute('data-page')));
+            });
+        });
+
+        function changePage(direction) {
+            if (direction === 'prev' && currentPage > 1) {
+                showPage(currentPage - 1);
+            } else if (direction === 'next' && currentPage < Math.ceil(capsules.length / capsulesPerPage)) {
+                showPage(currentPage + 1);
+            }
+        }
+
+        showPage(currentPage);
+
+        window.isDelete = function(event, id) {
+            event.preventDefault();
+
+            if (confirm("영구적으로 삭제 하시겠습니까?")) {
+                $.ajax({
+                    url: '/album/' + id,
+                    type: 'POST',
+                    data: { id: id },
+                    success: function(response) {
+                        location.reload();
+                    },
+                    error: function(error) {
+                        alert("앨범 삭제 중 오류가 발생했습니다.");
+                    }
+                });
+            }
+        }
+    });
 </script>
+</body>
+</html>

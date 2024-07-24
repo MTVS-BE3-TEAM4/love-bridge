@@ -6,46 +6,57 @@ public class TimecapsuleWriteDTO {
     private String tcreleasedate;  //개봉일
     private String tctitle;     //제목
     private String tcdetail;   //내용
+    private String memberId;
+
 
     public TimecapsuleWriteDTO() {}
 
-    public TimecapsuleWriteDTO(String tcsealingdate, String tcreleasedate, String tctitle, String tcdetail) {
+    public TimecapsuleWriteDTO(String tcsealingdate, String tcreleasedate, String tctitle, String tcdetail, String memberId) {
         this.tcsealingdate = tcsealingdate;
         this.tcreleasedate = tcreleasedate;
         this.tctitle = tctitle;
         this.tcdetail = tcdetail;
+        this.memberId = memberId;
     }
 
     public String getTcsealingdate() {
         return tcsealingdate;
     }
 
-    public String getTcreleasedate() {
-        return tcreleasedate;
-    }
-
-    public String getTctitle() {
-        return tctitle;
-    }
-
-    public String getTcdetail() {
-        return tcdetail;
-    }
-
     public void setTcsealingdate(String tcsealingdate) {
         this.tcsealingdate = tcsealingdate;
+    }
+
+    public String getTcreleasedate() {
+        return tcreleasedate;
     }
 
     public void setTcreleasedate(String tcreleasedate) {
         this.tcreleasedate = tcreleasedate;
     }
 
+    public String getTctitle() {
+        return tctitle;
+    }
+
     public void setTctitle(String tctitle) {
         this.tctitle = tctitle;
     }
 
+    public String getTcdetail() {
+        return tcdetail;
+    }
+
     public void setTcdetail(String tcdetail) {
         this.tcdetail = tcdetail;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
     @Override
@@ -55,6 +66,7 @@ public class TimecapsuleWriteDTO {
                 ", tcreleasedate='" + tcreleasedate + '\'' +
                 ", tctitle='" + tctitle + '\'' +
                 ", tcdetail='" + tcdetail + '\'' +
+                ", memberId='" + memberId + '\'' +
                 '}';
     }
 }

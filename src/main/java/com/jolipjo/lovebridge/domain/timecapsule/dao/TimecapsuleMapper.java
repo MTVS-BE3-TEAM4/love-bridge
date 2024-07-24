@@ -1,6 +1,9 @@
 package com.jolipjo.lovebridge.domain.timecapsule.dao;
 
+import com.jolipjo.lovebridge.domain.member.entity.Member;
+import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleListDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleViewDTO;
+import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleWriteDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,5 +20,18 @@ public interface TimecapsuleMapper {
     * 이것은 별명인것이다
     * DTO는 화면중심
     * */
+    List<TimecapsuleListDTO> findAllList(Long memberId);
+
     List<TimecapsuleViewDTO> findAllView();
+
+
+    void join(Member member);
+
+
+    void registNnewWirte(String sealingdate, String releasedate, String title, String detail);
+
+    void findAllWrite(TimecapsuleWriteDTO timecapsuleWriteDTO);
+
+
+    List<TimecapsuleWriteDTO> findAllWrite();
 }

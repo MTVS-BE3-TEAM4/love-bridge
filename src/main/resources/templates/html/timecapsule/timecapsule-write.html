@@ -66,32 +66,30 @@
     <section class="section album-write">
         <p class="section-tit">타임캡슐 게시물 작성하기</p>
 
-        <form method="" action="">
+        <form method="post" action="/timecapsule/write">
             <label class="input-label required">제목</label>
             <div class="input-wrap">
-                <input type="text" class="input-text" placeholder="제목을 입력해주세요" name=""/>
+                <input type="text" id="tctitle" name="tctitle" class="input-text" placeholder="제목을 입력해주세요"/>
             </div>
             <div class="date-wrap input-wrap mg-t--30">
                 <div class="date-box">
                     <label class="input-label required cnenen">봉인일</label>
-                    <div class="input-wrap ">
-                        <input type="date" class="input-text" placeholder="20XX-XX-XX" name=""/>
+                    <div class="input-wrap">
+                        <input type="date" id="tcsealingdate" name="tcsealingdate" class="input-text" placeholder="20XX-XX-XX" />
                     </div>
                 </div>
                 <div class="date-box">
                     <label class="input-label required cnenen">개봉일</label>
-                    <div class="input-wrap ">
-                        <input type="date" class="input-text" placeholder="20XX-XX-XX" name=""/>
+                    <div class="input-wrap">
+                        <input type="date" id="tcreleasedate" name="tcreleasedate" class="input-text" placeholder="20XX-XX-XX" />
                     </div>
                 </div>
             </div>
 
-
-            <label class="input-label required ">내용</label>
+            <label class="input-label required">내용</label>
             <div class="textarea-wrap">
-                <textarea  placeholder="내용을 입력해주세요" name=""></textarea>
+                <textarea id="tcdetail" name="tcdetail" placeholder="내용을 입력해주세요" ></textarea>
             </div>
-
 
         <div class="mg-t--30">
             <label class="input-label required">첨부파일</label>
@@ -101,19 +99,12 @@
                 </div>
         </div>
 
-
-
-
-
-
-
-
             <div class="btn-wrap type2 mg-t40">
 
                 <button type="button" class="btn btn-half btn-line" onclick="location.href=''">
                     취소
                 </button>
-                <button type="submit" class="btn btn-half type2 btn-pink">
+                <button onclick="submitPost()" type="submit" class="btn btn-half type2 btn-pink">
                     작성완료
                 </button>
 
@@ -347,11 +338,13 @@
         previewImages();
     }
 
-    function submitPost() {
-        const date = document.getElementById('date').value;
-        const openDate = document.getElementById('open-date').value;
-        const title = document.getElementById('title').value;
-        const content = document.getElementById('content').value;
+    function submitPost(event) {
+        event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        const date = document.getElementById('tcsealingdate').value;
+        const openDate = document.getElementById('tcreleasedate').value;
+        const title = document.getElementById('tctitle').value;
+        const content = document.getElementById('tcdetail').value;
 
         if (!date) {
             alert('봉인일을 입력해주세요.');
@@ -364,13 +357,8 @@
             return;
         } else if (!content) {
             alert('내용을 입력해주세요.');
-            return;
+            return ;
         }
-
-        alert('게시물이 등록되었습니다!');
-        location.href = "/timecapsule";
-
-        // 여기에 서버로 데이터를 전송하는 코드를 추가할 수 있습니다.
     }
 
     $("#file").on('change', function () {

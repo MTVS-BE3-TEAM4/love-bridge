@@ -11,6 +11,7 @@ public class Timecapsule {
     5. 내용
     6. 사진 url
      */
+    //xml로 가져갈 변수명들이다
     private String tcsecretcode; //시크릿코드
     private Data tcsealingdate;  //봉인일
     private Data tcreleasedate;  //개봉일

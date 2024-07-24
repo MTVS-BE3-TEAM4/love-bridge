@@ -4,6 +4,7 @@ import javax.xml.crypto.Data;
 
 public class TimecapsuleViewDTO {
 
+    private Long id;
     private String tcsealingdate;  //봉인일
     private String tcreleasedate;  //개봉일
     private String tctitle;     //제목
@@ -11,11 +12,20 @@ public class TimecapsuleViewDTO {
 
     public TimecapsuleViewDTO() {}
 
-    public TimecapsuleViewDTO(String tcsealingdate, String tcreleasedate, String tctitle, String tcdetail) {
+    public TimecapsuleViewDTO( Long id, String tcsealingdate, String tcreleasedate, String tctitle, String tcdetail) {
+        this.id = id;
         this.tcsealingdate = tcsealingdate;
         this.tcreleasedate = tcreleasedate;
         this.tctitle = tctitle;
         this.tcdetail = tcdetail;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTcsealingdate() {
@@ -53,10 +63,12 @@ public class TimecapsuleViewDTO {
     @Override
     public String toString() {
         return "TimecapsuleViewDTO{" +
+                "id=" + id +
                 "tcsealingdate=" + tcsealingdate +
                 ", tcreleasedate=" + tcreleasedate +
                 ", tctitle='" + tctitle + '\'' +
                 ", tcdetail='" + tcdetail + '\'' +
                 '}';
     }
+
 }
