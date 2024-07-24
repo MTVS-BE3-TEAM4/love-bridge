@@ -15,17 +15,20 @@
     </resultMap>
 
     <select id="getQuizList" resultMap="quizListMap">
-        SELECT
-               a.id
-             , b.title
-             , a.complete
-          FROM
-               quizList a
-          JOIN
-               quiz b on a.quizId = b.id
+            SELECT
+                   a.id
+                 , b.title
+                 , a.complete
+                 , a.secretCode
+              FROM
+                   quizList a
+         LEFT JOIN
+                   quiz b on b.id = a.quizId
+             LIMIT 5 OFFSET 0
+
     </select>
 
-    <select id="getQuizDetail" resultType="String" parameterType="integer">
+    <select id="getQuizDetail" resultType="String" parameterType="Long">
         SELECT
                a.title
           FROM

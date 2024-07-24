@@ -4,23 +4,25 @@ import java.util.ArrayList;
 
 public class QuizListResponseDTO {
 
-    private int quizId;
+    private Long quizId;
     private String quizTitle;
     private String quizComplete;
+    private int secretCode;
 
     public QuizListResponseDTO() {}
 
-    public QuizListResponseDTO(int quizId, String quizTitle, String quizComplete) {
+    public QuizListResponseDTO(Long quizId, String quizTitle, String quizComplete, int secretCode) {
         this.quizId = quizId;
         this.quizTitle = quizTitle;
         this.quizComplete = quizComplete;
+        this.secretCode = secretCode;
     }
 
-    public int getQuizId() {
+    public Long getQuizId() {
         return quizId;
     }
 
-    public void setQuizId(int quizId) {
+    public void setQuizId(Long quizId) {
         this.quizId = quizId;
     }
 
@@ -32,12 +34,20 @@ public class QuizListResponseDTO {
         this.quizTitle = quizTitle;
     }
 
-    public String getComplete() {
+    public String getQuizComplete() {
         return quizComplete;
     }
 
-    public void setComplete(String complete) {
-        quizComplete = complete;
+    public void setQuizComplete(String quizComplete) {
+        this.quizComplete = quizComplete;
+    }
+
+    public int getSecretCode() {
+        return secretCode;
+    }
+
+    public void setSecretCode(int secretCode) {
+        this.secretCode = secretCode;
     }
 
     @Override
@@ -45,7 +55,8 @@ public class QuizListResponseDTO {
         return "QuizListResponseDTO{" +
                 "quizId=" + quizId +
                 ", quizTitle='" + quizTitle + '\'' +
-                ", quizComplete=" + quizComplete +
+                ", quizComplete='" + quizComplete + '\'' +
+                ", secretCode=" + secretCode +
                 '}';
     }
 }
