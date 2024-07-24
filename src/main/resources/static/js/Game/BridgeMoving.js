@@ -102,16 +102,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-// 도움말 클릭시 모달창 표시
+const DescriptionModal = new bootstrap.Modal(document.getElementById("DescriptionModal"),{
+    keyboard:false
+})
+
+//도움말 클릭시 모달창 표시
 document.getElementById("DescriptionButton").addEventListener("click",
-    () => {
+    ()=>{
         DescriptionModal.show();
-    });
+    })
 
 document.getElementById("DescriptionCloseButton").addEventListener("click",
-    () => {
+    ()=>{
         DescriptionModal.hide();
-    });
+    })
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {

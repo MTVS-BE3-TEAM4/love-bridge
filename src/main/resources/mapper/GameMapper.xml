@@ -35,4 +35,17 @@
             memberId = #{id}
     </select>
 
+    <insert id="insertMission" parameterType="java.util.Map">
+        INSERT INTO mission
+        (
+        mission,
+        member_id
+        )
+        VALUES
+        (
+        #{mission},
+        #{memberId}
+        )
+    </insert>
+
 </mapper>
