@@ -17,14 +17,10 @@
 
 
     <parameterMap id="SecretCode" type="com.jolipjo.lovebridge.domain.member.entity.SecretCode">
-        <parameter property="id"/>
-        <parameter property="code"/>
-        <parameter property="count"/>
-    </parameterMap>
-
-    <parameterMap id="AddSecretCodeUserDTO" type="com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO">
-        <parameter property="secretCodeId"/>
-        <parameter property="memberId"/>
+        <parameter property="couple_id"/>
+        <parameter property="secret_code"/>
+        <parameter property="m_member_id"/>
+        <parameter property="f_member_id"/>
     </parameterMap>
 
     <parameterMap id="MypageRequestDTO" type="com.jolipjo.lovebridge.domain.member.dto.MypageRequestDTO">
@@ -42,9 +38,10 @@
 
     <!--    ================= 반환값 ==================== -->
     <resultMap id="SecretCode" type="com.jolipjo.lovebridge.domain.member.entity.SecretCode">
-        <id column="id" property="id"/>
-        <result column="code" property="code"/>
-        <result column="count" property="count"/>
+        <id column="couple_id" property="couple_id"/>
+        <result column="secret_code" property="secret_code"/>
+        <result column="fk_m_member_id" property="m_member_id"/>
+        <result column="fk_f_member_id" property="f_member_id"/>
     </resultMap>
 
     <resultMap id="Member" type="com.jolipjo.lovebridge.domain.member.entity.Member">
@@ -90,86 +87,91 @@
 
 <!--    시크릿 코드 생성-->
     <insert id="createSecretCode" parameterMap="SecretCode" useGeneratedKeys="true">
-        INSERT INTO secret_code
+        INSERT INTO COUPLE
         (
-            code,
-            count
+            secret_code,
+            fk_m_member_id,
+            fk_f_member_id
         )
         VALUES
         (
-            #{code},
-            #{count}
+            #{secret_code},
+            #{m_member_id},
+            #{f_member_id}
         )
     </insert>
 
     <select id="findSecretByCode" parameterType="string" resultMap="SecretCode">
         SELECT
-            id,
-            code,
-            count
+            couple_id,
+            secret_code,
+            fk_m_member_id,
+            fk_f_member_id
         FROM
-            secret_code
+            COUPLE
         WHERE
-            code = #{code}
+            secret_code = #{code}
     </select>
 
-    <update id="addSecretCodeUser" parameterMap="AddSecretCodeUserDTO">
+    <update id="updateSecretCode" parameterMap="SecretCode">
         UPDATE
-            member
+            COUPLE
         SET
-            secretId = #{secretCodeId}
+            secret_code = #{secret_code},
+            fk_m_member_id = #{m_member_id},
+            fk_f_member_id = #{f_member_id}
         WHERE
-            id = #{memberId}
+            couple_id = #{couple_id}
     </update>
 
 <!--    사용자 ID로 시크릿 코드 정보 추출-->
     <select id="findSecretCodeByMemberId" parameterType="long" resultMap="SecretCode">
         SELECT
-            a.id,
-            a.code,
-            a.count
+            couple_id,
+            secret_code,
+            fk_m_member_id,
+            fk_f_member_id
         FROM
-            secret_code a
-        JOIN
-            member b
-        ON
-            a.id = b.secretId
+            COUPLE
         WHERE
-            b.id = #{memberId}
+            fk_m_member_id = #{memberId}
+        OR
+            fk_f_member_id = #{memberId}
     </select>
 
 <!--    시크릿코드 id와 연결된 사용자 검색-->
-    <select id="findMembersBySecretCode" parameterType="long" resultType="long">
+    <select id="findMembersBySecretCode" parameterType="String" resultMap="SecretCode">
         SELECT
-            id
+            couple_id,
+            secret_code,
+            fk_m_member_id,
+            fk_f_member_id
         FROM
-            member
+            COUPLE
         WHERE
-            secretId = #{secretCodeId}
-        ORDER BY
-            id asc;
+            secret_code = #{secretCode}
     </select>
 
 <!--    나와 시크릿코드로 연결된 다른 사용자 검색-->
-    <select id="findMyPartner" parameterType="long" resultType="long">
-        SELECT
-            id
-        FROM
-            member
-        WHERE
-            id != #{memberId}
-        AND
-            secretId
-        IN
-            (
-            SELECT
-                secretId
-            FROM
-                member
-            WHERE
-                id = #{memberId}
-            )
-    </select>
+<!--    <select id="findMyPartner" parameterType="long" resultType="long">-->
+<!--        SELECT-->
+<!--            id-->
+<!--        FROM-->
+<!--            member-->
+<!--        WHERE-->
+<!--            id != #{memberId}-->
+<!--        AND-->
+<!--            secretId-->
+<!--        IN-->
+<!--            (-->
+<!--            SELECT-->
+<!--                secretId-->
+<!--            FROM-->
+<!--                member-->
+<!--            WHERE-->
+<!--                id = #{memberId}-->
+<!--            )-->
+<!--    </select>-->
 
     <select id="findByEmail" parameterType="String" resultMap="Member">
         SELECT
@@ -230,22 +232,22 @@
         id = #{id}
     </update>
 
-    <select id="findMyPartnerInfo" parameterType="Long" resultMap="Member">
-        SELECT
-            id,
-            secretId,
-            email,
-            nickname,
-            password,
-            role,
-            birth,
-            gender
-        FROM
-            member
-        WHERE
-        id = #{memberId}
+<!--    <select id="findMyPartnerInfo" parameterType="Long" resultMap="Member">-->
+<!--        SELECT-->
+<!--            id,-->
+<!--            secretId,-->
+<!--            email,-->
+<!--            nickname,-->
+<!--            password,-->
+<!--            role,-->
+<!--            birth,-->
+<!--            gender-->
+<!--        FROM-->
+<!--            member-->
+<!--        WHERE-->
+<!--        id = #{memberId}-->
 
-    </select>
+<!--    </select>-->
 
     <select id="getMemberInfo" parameterType="Long" resultMap="Member">
         SELECT

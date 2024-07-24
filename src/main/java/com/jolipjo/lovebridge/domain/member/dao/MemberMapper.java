@@ -1,6 +1,5 @@
 package com.jolipjo.lovebridge.domain.member.dao;
 
-import com.jolipjo.lovebridge.domain.member.dto.AddSecretCodeUserDTO;
 import com.jolipjo.lovebridge.domain.member.dto.ChangePasswordRequestDTO;
 import com.jolipjo.lovebridge.domain.member.dto.MypageRequestDTO;
 import com.jolipjo.lovebridge.domain.member.dto.MypageResponseDTO;
@@ -16,15 +15,15 @@ public interface MemberMapper {
 
     void createSecretCode(SecretCode secretCode);
 
+    void updateSecretCode(SecretCode secretCode);
+
     SecretCode findSecretByCode(String code);
 
-    void addSecretCodeUser(AddSecretCodeUserDTO dto);
+    SecretCode findSecretCodeByMemberId(Long memberId);// 완료
 
-    SecretCode findSecretCodeByMemberId(Long memberId);
+    SecretCode findMembersBySecretCode(String secretCode);
 
-    List<Long> findMembersBySecretCode(Long secretCodeId);
-
-    Long findMyPartner(Long memberId);
+//    Long findMyPartner(Long memberId);
 
     Member findByEmail(String username);
 
@@ -36,9 +35,7 @@ public interface MemberMapper {
 
     void changePassword(ChangePasswordRequestDTO dto);
 
-    Member findMyPartnerInfo(Long memberId);
+//    Member findMyPartnerInfo(Long memberId);
 
     Member getMemberInfo(Long memberId);
-
-//    void changePassword(ChangePasswordRequestDTO dto);
 }

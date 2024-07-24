@@ -29,15 +29,20 @@ public class MemberController {
     }
 
     /******API 사용법********/
-    @GetMapping
-    public String upload () {
+    @GetMapping("/x")
+    public String upload (@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 
         /*현재 로그인 한 사용자*/
-//        Member member = customMemberDetail.getMember();
-//        System.out.println("member = " + member);
+        Member member = customMemberDetail.getMember();
+        System.out.println("member = " + member);
 //
 //        /*1번 사용자의 시크릿 코드를 새로 생성하는 메소드*/
-//        memberService.createSecretCode(1L);
+//        memberService.createSecretCode(member.getId());
+//        memberService.inviteSecretCode(21L, 15L);
+        String secret = memberService.getSecretCode(member.getId()).getSecret_code();
+        SecretCode secretCode = memberService.getMembersBySecretCode(secret);
+
+        System.out.println("secretCode = " + secretCode);
 //
 //        /*1번 사용자의 시크릿 코드를 가져오는 메소드*/
 //        SecretCode secretCode = memberService.getSecretCode(1L);

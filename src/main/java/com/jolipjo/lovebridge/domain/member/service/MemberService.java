@@ -7,8 +7,10 @@ import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -23,6 +25,7 @@ public class MemberService {
     }
 
     /*회원가입*/
+    @Transactional
     public void join(JoinRequestDTO joinRequestDTO) {
 
         /*회원 엔티티 생성
@@ -46,20 +49,29 @@ public class MemberService {
     }
 
     /*사용자 시크릿코드 생성*/
+    @Transactional
     public SecretCode createSecretCode(Long memberId){
+
         /*시크릿 코드 생성*/
         SecretCode secretCode = generateSecretCode();
-        secretCode.setCount(1);
+        Member member = memberMapper.getMemberInfo(memberId);
+
+        if(member == null){
+            System.out.println("유효하지 않은 사용자! 사용자 id: "+ memberId);
+            return null;
+        }
+
+        /*성별에 따라 멤버값 입력*/
+        if(member.getGender().equals("M")){
+            secretCode.setM_member_id(memberId);
+        } else if(member.getGender().equals("F")){
+            secretCode.setF_member_id(memberId);
+        } else{
+            System.out.println("유효하지 않은 성별입니다. 성별: "+ member.getGender());
+            return null;
+        }
+
         memberMapper.createSecretCode(secretCode);
-
-        /*DB에 저장된 시크릿코드를 가져옴(시크릿코드 ID 가져옴)*/
-        secretCode = memberMapper.findSecretByCode(secretCode.getCode());
-
-        /*사용자와 시크릿코드 연관관계 추가*/
-        AddSecretCodeUserDTO dto = new AddSecretCodeUserDTO();
-        dto.setMemberId(memberId);
-        dto.setSecretCodeId(secretCode.getId());
-        memberMapper.addSecretCodeUser(dto);
 
         return secretCode;
     }
@@ -78,31 +90,43 @@ public class MemberService {
     /*시크릿 코드로 상대방 초대
     * host:     시크릿코드를 갖고 있는 사람
     * guest:    시크릿코드로 초대를 받는 상대방*/
+    @Transactional
     public void inviteSecretCode(Long host, Long guest){
 
-        AddSecretCodeUserDTO dto = new AddSecretCodeUserDTO();
-        dto.setMemberId(guest);
-        dto.setSecretCodeId(memberMapper
-                .findSecretCodeByMemberId(host)
-                .getId()
-        );
+        Member hostInfo = memberMapper.getMemberInfo(host);
+        Member guestInfo = memberMapper.getMemberInfo(guest);
 
-        memberMapper.addSecretCodeUser(dto);
+        if(Objects.equals(hostInfo.getGender(), guestInfo.getGender()) ){
+            System.out.println("게이였누..");
+            return;
+        }
+
+        SecretCode secretCode = memberMapper.findSecretCodeByMemberId(host);
+        if(guestInfo.getGender().equals("M")){
+            secretCode.setM_member_id(guest);
+        } else if(guestInfo.getGender().equals("F")){
+            secretCode.setF_member_id(guest);
+        } else{
+            System.out.println("유효하지 않은 성별입니다. 성별: "+ guestInfo.getGender());
+            return;
+        }
+
+        memberMapper.updateSecretCode(secretCode);
     }
 
     /*해당 시크릿코드와 연결된 사용자들 검색*/
-    public List<Long> getMembersBySecretCode(Long secretCodeId){
-        return memberMapper.findMembersBySecretCode(secretCodeId);
+    public SecretCode getMembersBySecretCode(String secretCode){
+        return memberMapper.findMembersBySecretCode(secretCode);
     }
 
     /*나와 연결된 시크릿코드를 가진 사용자 id 검색*/
-    public Long getPartner(Long memberId){
-        return memberMapper.findMyPartner(memberId);
-    }
+//    public Long getPartner(Long memberId){
+//        return memberMapper.findMyPartner(memberId);
+//    }
 
-    public Member getPartnerInfo(Long memberId){
-        return memberMapper.findMyPartnerInfo(memberId);
-    }
+//    public Member getPartnerInfo(Long memberId){
+//        return memberMapper.findMyPartnerInfo(memberId);
+//    }
 
     public Member getMemberById(Long memberId){
         return memberMapper.getMemberInfo(memberId);
@@ -110,21 +134,6 @@ public class MemberService {
 
     public MypageResponseDTO getMypageInfo(Long memberId){
         return memberMapper.getMypageInfo(memberId);
-    }
-
-
-    /*시크릿 코드 생성 헬퍼 메소드(혁진쨩이 내부적으로만 사용하는 메소드)*/
-    private SecretCode generateSecretCode(){
-
-        /*시크릿 코드 생성*/
-        SecretCode secretCode = new SecretCode();
-        String code = UUID.randomUUID().toString().split("-")[0];
-
-        /*엔티티에 값 입력*/
-        secretCode.setCode(code);
-        secretCode.setCount(0);
-
-        return secretCode;
     }
 
     public void updateMemberInfo(MypageRequestDTO mypageRequestDTO) {
@@ -146,6 +155,21 @@ public class MemberService {
         } 
 
         return false;
+    }
+
+
+
+    /*시크릿 코드 생성 헬퍼 메소드(혁진쨩이 내부적으로만 사용하는 메소드)*/
+    private SecretCode generateSecretCode(){
+
+        /*시크릿 코드 생성*/
+        SecretCode secretCode = new SecretCode();
+        String code = UUID.randomUUID().toString().split("-")[0];
+
+        /*엔티티에 값 입력*/
+        secretCode.setSecret_code(code);
+
+        return secretCode;
     }
 
 }
