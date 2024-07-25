@@ -26,6 +26,7 @@ public class TimecapsuleService {
 
     }
 
+
     public List<TimecapsuleListDTO> findAllList(Long memberId) {
 
         return timecapsulMapper.findAllList(memberId);
@@ -45,28 +46,13 @@ public class TimecapsuleService {
     }
 
 
-//
-//    public void join(TimecapsuleViewDTO timecapsuleViewDTO) {
-//
-//        /* 타임캡슐 게시판 엔티티 생성
-//         *
-//         * 엔티티 생성 이유:
-//         * 춘식아 살려다오
-//         * */
-//        Member member = new Member();
-//
-//        /*DTO -> 데이터값넣어두기 */
-//        member.setEmail(timecapsuleViewDTO.getTcsealingdate());
-//        member.setGender(timecapsuleViewDTO.getTcreleasedate());
-//        member.setBirth(timecapsuleViewDTO.getTctitle());
-//        member.setNickname(timecapsuleViewDTO.getTcdetail());
-//        member.setRole("TIME_WRITE");
-//
-//        /*DB에 회원정보 저장*/
-//        timecapsulMapper.join(member);
-//
-//
-//    }
+    public List<TimecapsuleViewDTO> findidView(long id) {
+        return timecapsulMapper.findidView(id);
+    }
+
+    public void timecapsuleWrite(TimecapsuleWriteDTO timecapsuleWriteDTO) {
+    }
+
 
 
 }

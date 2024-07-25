@@ -45,6 +45,11 @@
         font-family: Pretendard;
         font-size: 18px;
     }
+    .imgfix{width: 100%; height: 250px; }
+    .roww{
+        justify-content: space-evenly;
+    }
+
 </style>
 
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
@@ -54,30 +59,39 @@
         <p class="section-tit">TIME CAPSULE</p>
 
         <form enctype="multipart/form-data">
-            <ul class="Bcontainer" id="Bcontainer">
-                <li class="item11 mg-b--20" th:each="listDTO, iterStat : ${listDTOList}" th:attr="data-index=${iterStat.index}">
-                    <div class="imgdiv">
-<!--                        <img th:src="${listDTO.imgUrl}" />-->
-                    </div>
-                    <div class="album-util">
-                        <div>
-                            <button class="gearbt" type="button" onclick="isDelete(event, [[${listDTO.id}]])">
-                                <i class="fa-solid fa-trash"></i>
-                            </button>
-                            <a class="gearbt" href="/album/[[${listDTO.id}]]">
-                                <i class="fa-solid fa-gear"></i>
-                            </a>
-                        </div>
-                        <p class="date" th:text="${listDTO.startdate}"></p>
-                        <p class="date" th:text="${listDTO.enddate}"></p>
-                    </div>
-                    <div class="wordbreak">
-                        <p class="centertest" th:text="${listDTO.title}"></p>
-                        <p class="album-memo" th:text="${listDTO.content}"></p>
-                    </div>
-                </li>
+            <ul class="Bcontainer" id="Bcontainer" >
+                    <li class="item11 mg-b--20" th:each="listDTO, iterStat : ${listDTOList}" th:attr="data-index=${iterStat.index}">
+
+
+
+                            <div class="imgdiv">
+                                <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}" style="display: inline-block">
+                                <img class="imgfix" th:src="${listDTO.getImage()}" />
+                                </a>
+                            </div>
+                            <div class="album-util" >
+                                <div>
+                                    <button class="gearbt" type="button" onclick="isDelete(event)">
+                                        <i class="fa-solid fa-trash"  th:attr="data-value=${listDTO.id}" ></i>
+                                    </button>
+                                    <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}">
+                                        <i class="fa-solid fa-gear"></i>
+                                    </a>
+                                </div>
+                                <p class="date" th:text="${listDTO.startdate}"></p>
+                                <p class="date" th:text="${listDTO.enddate}"></p>
+                            </div>
+                            <div class="wordbreak">
+                                <p class="centertest" th:text="${listDTO.title}"></p>
+                                <p class="album-memo" th:text="${listDTO.content}"></p>
+                            </div>
+
+                    </li>
+
             </ul>
         </form>
+
+
         <div class="btn-wrap mg-b--20">
             <a onclick="location.href='/timecapsule/write'" class="btn btn-pink btn-board">글쓰기</a>
         </div>

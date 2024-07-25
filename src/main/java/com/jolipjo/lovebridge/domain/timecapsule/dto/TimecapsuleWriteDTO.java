@@ -7,16 +7,18 @@ public class TimecapsuleWriteDTO {
     private String tctitle;     //제목
     private String tcdetail;   //내용
     private String memberId;
+    private String image;
 
 
     public TimecapsuleWriteDTO() {}
 
-    public TimecapsuleWriteDTO(String tcsealingdate, String tcreleasedate, String tctitle, String tcdetail, String memberId) {
+    public TimecapsuleWriteDTO(String tcsealingdate, String tcreleasedate, String tctitle, String tcdetail, String memberId, String image) {
         this.tcsealingdate = tcsealingdate;
         this.tcreleasedate = tcreleasedate;
         this.tctitle = tctitle;
         this.tcdetail = tcdetail;
         this.memberId = memberId;
+        this.image = image;
     }
 
     public String getTcsealingdate() {
@@ -59,6 +61,14 @@ public class TimecapsuleWriteDTO {
         this.memberId = memberId;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "TimecapsuleWriteDTO{" +
@@ -67,6 +77,7 @@ public class TimecapsuleWriteDTO {
                 ", tctitle='" + tctitle + '\'' +
                 ", tcdetail='" + tcdetail + '\'' +
                 ", memberId='" + memberId + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

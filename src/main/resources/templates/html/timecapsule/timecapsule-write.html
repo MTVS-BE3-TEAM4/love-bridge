@@ -66,7 +66,7 @@
     <section class="section album-write">
         <p class="section-tit">타임캡슐 게시물 작성하기</p>
 
-        <form method="post" action="/timecapsule/write">
+        <form method="post" action="/timecapsule/write" enctype="multipart/form-data">
             <label class="input-label required">제목</label>
             <div class="input-wrap">
                 <input type="text" id="tctitle" name="tctitle" class="input-text" placeholder="제목을 입력해주세요"/>
@@ -91,13 +91,25 @@
                 <textarea id="tcdetail" name="tcdetail" placeholder="내용을 입력해주세요" ></textarea>
             </div>
 
-        <div class="mg-t--30">
+<!--        <div class="mg-t&#45;&#45;30">-->
+<!--            <label class="input-label required">첨부파일</label>-->
+<!--                <div class="upload-section input-wrap" onclick="document.getElementById('file-input').click();">-->
+<!--                    <input class="upload-name" type="file" id="file-input" accept="image/*" multiple onchange="previewImages()">-->
+<!--                    <div class="preview" id="preview" style="text-align: center" >눌러서 파일을 첨부해주세요</div>-->
+<!--                </div>-->
+<!--        </div>-->
+
+            <!-- 파일첨부 -->
             <label class="input-label required">첨부파일</label>
-                <div class="upload-section input-wrap" onclick="document.getElementById('file-input').click();">
-                    <input class="upload-name" type="file" id="file-input" accept="image/*" multiple onchange="previewImages()">
-                    <div class="preview" id="preview" style="text-align: center" >눌러서 파일을 첨부해주세요</div>
-                </div>
-        </div>
+            <div class="input-file" >
+                <input class="upload-name" >
+                <label for="file">파일찾기</label>
+                <input type="file" id="file" name="file">
+            </div>
+
+            <div class="input-guide error">
+                첨부파일이 존재하지 않습니다
+            </div>
 
             <div class="btn-wrap type2 mg-t40">
 
@@ -114,12 +126,7 @@
 
 </div>
 <div th:replace="~{/html/include/footer :: footer}"></div>
-<script>
-    $("#file").on('change', function () {
-        var fileName = $("#file").val();
-        $(".upload-name").val(fileName);
-    });
-</script>
+
 </body>
 
 
@@ -361,6 +368,7 @@
         }
     }
 
+    //파일첨부 js
     $("#file").on('change', function () {
         var fileName = $("#file").val();
         $(".upload-name").val(fileName);

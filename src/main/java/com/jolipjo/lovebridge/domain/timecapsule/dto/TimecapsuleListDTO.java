@@ -12,10 +12,11 @@ public class TimecapsuleListDTO {
     private String title;
     private String content;
     private String email;// 이메일
+    private String image;
 
     public TimecapsuleListDTO() {}
 
-    public TimecapsuleListDTO(String id, String memberId, String startdate, String enddate, String createdat, String title, String content) {
+    public TimecapsuleListDTO(String id, String memberId, String startdate, String enddate, String createdat, String title, String content, String image) {
         this.id = id;
         this.memberId = memberId;
         this.startdate = startdate;
@@ -23,6 +24,7 @@ public class TimecapsuleListDTO {
         this.createdat = createdat;
         this.title = title;
         this.content = content;
+        this.image = image;
     }
 
     public String getContent() {
@@ -89,6 +91,14 @@ public class TimecapsuleListDTO {
         this.email = email;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
     @Override
     public String toString() {
         return "TimecapsuleListDTO{" +
@@ -99,6 +109,8 @@ public class TimecapsuleListDTO {
                 ", createdat='" + createdat + '\'' +
                 ", title='" + title + '\'' +
                 ", content='" + content + '\'' +
+                ", email='" + email + '\'' +
+                ", image='" + image + '\'' +
                 '}';
     }
 }

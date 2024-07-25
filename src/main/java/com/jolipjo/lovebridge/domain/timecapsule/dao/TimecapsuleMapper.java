@@ -34,4 +34,12 @@ public interface TimecapsuleMapper {
 
 
     List<TimecapsuleWriteDTO> findAllWrite();
+
+    List<TimecapsuleViewDTO> findidView(long id);
+
+    //TimecapsuleViewDTO findidview(Long id);
+
+    //List<TimecapsuleViewDTO> findidView(long id);
+
+
 }
