@@ -28,14 +28,17 @@ public class SecurityConfig {
         /*url 경로 권한*/
         http
                 .authorizeHttpRequests( (auth) -> auth
-                        .requestMatchers("css/**", "js/**", "images/**")
-                                .permitAll()// 기본 템플릿 경로는 누구나 접근 가능
-                        .requestMatchers("/")
-                                .permitAll()// 메인페이지 누구나 접근 가능
-                        .requestMatchers("/member/mypage")
-                                .authenticated()// 마이페이지는 로그인 해야 접근 가능
-                        .anyRequest().permitAll()
-//                        .anyRequest().authenticated()// 그 외에는 로그인 해야 함
+                                .requestMatchers("css/**", "js/**", "images/**").permitAll()// 템플릿 경로
+                                .requestMatchers("/include/header").permitAll()
+                                .requestMatchers("/").permitAll()// 메인페이지 누구나 접근 가능
+                                .requestMatchers("/member/join").permitAll()// 회원가입 페이지는 누구나 접근 가능
+                                .requestMatchers("/member/joinProc").permitAll()
+                                .requestMatchers("/admin/**").hasRole("ADMIN")// 관리자 페이지는 관리자만 접근
+                                .requestMatchers("/board/notice/write").hasRole("ADMIN")// 공지사항 작성
+                                .requestMatchers("/board/notice/edit/**").hasRole("ADMIN")// 공지사항 수정
+                                .requestMatchers("board/notice/**/delete").hasRole("ADMIN")// 공지사항 삭제
+//                        .anyRequest().permitAll()
+                                .anyRequest().authenticated()// 그 외에는 로그인 해야 함
                 );
 
         /*로그인 페이지*/
