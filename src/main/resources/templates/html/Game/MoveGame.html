@@ -52,12 +52,25 @@
                 </button>
                 <p>출석하기</p>
             </li>
-            <li id="WantInputController_F" class="WantWhichInput"
-            >
+            <th:block th:if="${gameDTO.getMission() == ''}">
+            <li id="WantInputController_F" class="WantWhichInput">
                 <input placeholder="공주님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="FText" >
                 <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_F" class="btn-pink btn-board">저장</button>
             </li>
-            <ul id="resultList" class="result-list"></ul>
+            </th:block>
+            <ul id="resultList" class="result-list">
+                <li class="title">
+                    <h1 style="font-size: 20px;">서로의 소원</h1>
+                </li>
+                <li>
+                    <h1 id="mission-test" class="mission" th:text="${gameDTO.getMission()}"></h1>
+                </li>
+<!--                <li>-->
+<!--                    <h1 class="mission" th:text="${gameDTO.getMission()}"></h1>-->
+<!--                </li>-->
+            </ul>
+
+
             <li id="WantInputController_M" class="WantWhichInput">
                 <input placeholder="왕자님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="MText">
                 <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_M" class="btn-pink btn-board">저장</button>
@@ -74,7 +87,7 @@
 
     <!-- UI -->
     <div class="GameUI">
-        <div class="Dday">{Today}일차</div>
+        <div id="isDay" class="Dday" th:text="${attendCnt} + '일차'"></div>
         <div class="Names"><button type="button" id="DescriptionButton">도움말</button></div>
         <div class="FName">
             <p th:text="${gameDTO.myName} + ' 님'"></p>
@@ -135,6 +148,6 @@
         </div>
     </div>
 </div>
-<script src="/js/Game/BridgeMoving.js"></script>
+<script src="/js/Game/BridgeMoving.js" th:inline="javascript"></script>
 </body>
 </html>

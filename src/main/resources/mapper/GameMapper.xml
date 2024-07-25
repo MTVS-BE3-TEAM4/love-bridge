@@ -12,7 +12,7 @@
         <result property="mission" column="mission"/>
     </resultMap>
 
-    <select id="findAllByMemberId" resultMap="MiniGameDto">
+    <select id="findAllById" resultMap="MiniGameDto" parameterType="java.lang.Long">
         SELECT
         id,
         memberId,
@@ -24,24 +24,32 @@
         WHERE
         memberId = #{id}
     </select>
+    
+<!--    <select id="findAttendCount" resultType="java.lang.Integer" parameterType="String">-->
+<!--        SELECT attendCnt-->
+<!--        FROM miniGame-->
+<!--        WHERE memberId = #{memberId}-->
+<!--    </select>-->
 
     <insert id="insertMission" parameterType="java.util.Map">
         INSERT INTO miniGame
         (
         mission,
-        memberId
+        memberId,
+        attendCnt
         )
         VALUES
         (
         #{mission},
-        #{memberId}
+        #{memberId},
+        0
         )
     </insert>
 
     <update id="updateMission" parameterType="java.util.Map">
         UPDATE miniGame
         SET mission = #{mission}
-        WHERE memberId = #{memberId} AND attendCnt = #{attendCnt} AND mission IS NULL
+        WHERE memberId = #{memberId}
     </update>
 
     <delete id="deleteMission" parameterType="java.util.Map">

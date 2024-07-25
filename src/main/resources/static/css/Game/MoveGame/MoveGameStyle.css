@@ -341,14 +341,43 @@ input::placeholder {
     margin-top: 20px;
     list-style-type: none;
     display: flex;
-}
-.result-item {
-    padding: 10px;
-    background-color: pink;
-    margin-bottom: 5px;
-    font-size: 18px;
+    flex-direction: column;
+    background-color: white;
+    font-size: 30px;
+    width: 100%;
+    max-width: 150px;
+    max-height: 100%;
     border-radius: 15px;
+    align-items: center;
+    border: 1px solid #FF979B;
+    padding: 10px;
 }
+
+.result-list .title {
+    border-radius: 50%;
+    background-color: #FF979B;
+    color: white;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.result-list .mission {
+    font-size: 23px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #FF979B;
+    padding-bottom: 5px;
+    margin: 5px 0;
+}
+
+/*.result-item {*/
+/*    padding: 10px;*/
+/*    background-color: pink;*/
+/*    margin-bottom: 5px;*/
+/*    font-size: 18px;*/
+/*    border-radius: 15px;*/
+/*}*/
 
 .WantTop {
     border-radius: 15px;
