@@ -21,7 +21,7 @@
     <resultMap id="MemberInfoDTO" type="com.jolipjo.lovebridge.domain.admin.dto.MemberInfoDTO">
         <id column="id" property="id"/>
         <result column="email" property="email"/>
-        <result column="code" property="secretCode"/>
+        <result column="secret_code" property="secretCode"/>
         <result column="nickname" property="nickname"/>
         <result column="role" property="role"/>
         <result column="birth" property="birth"/>
@@ -33,7 +33,7 @@
         SELECT
             a.id,
             a.email,
-            b.code,
+            b.secret_code,
             a.nickname,
             a.role,
             a.birth,
@@ -41,9 +41,14 @@
         FROM
             member a
         LEFT JOIN
-            secret_code b
+            COUPLE b
         ON
-        a.secretId = b.id
+            a.id = b.fk_m_member_id
+        OR
+            a.id = b.fk_f_member_id
+        ORDER BY
+            a.id
+        ASC
     </select>
 
 </mapper>
