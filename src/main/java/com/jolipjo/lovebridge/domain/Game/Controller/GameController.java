@@ -5,6 +5,7 @@ import com.jolipjo.lovebridge.domain.Game.DTO.MiniGameDto;
 import com.jolipjo.lovebridge.domain.Game.Service.GameService;
 import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
+import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import org.springframework.security.core.AuthenticatedPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -35,10 +36,14 @@ public class GameController {
 
         System.out.println("Render MoveGame");
         Member member = customMemberDetail.getMember();
-        Member member1 = memberService.getPartnerInfo(member.getId());
+        SecretCode secretCode = memberService.getSecretCode(member.getId());
+        Long F_memberId = secretCode.getF_member_id();
+        Long M_memberId = secretCode.getM_member_id();
+
+        Member F = memberService.getMemberById(F_memberId);
+        Member M = memberService.getMemberById(M_memberId);
 
         MiniGameDto miniGameDto = gameService.getMiniGameDto(member.getId());
-        MiniGameDto miniGameDto1 = gameService.getMiniGameDto(member1.getId());
         try {
             if (miniGameDto == null) {
                 return "redirect:http://localhost:8080";
@@ -52,7 +57,7 @@ public class GameController {
 
         gameDTO.setMission(miniGameDto.getMission());
         gameDTO.setMyName(member.getNickname());
-        gameDTO.setPartnerName(member1.getNickname());
+        gameDTO.setPartnerName(F.getNickname());
         model.addAttribute("gameDTO", gameDTO);
         model.addAttribute("attendCnt", gameDTO.getAttendCnt());
         model.addAttribute("mission", gameDTO.getMission());
