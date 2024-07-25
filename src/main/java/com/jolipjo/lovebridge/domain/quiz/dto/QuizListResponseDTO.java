@@ -5,17 +5,17 @@ import java.util.ArrayList;
 public class QuizListResponseDTO {
 
     private Long quizId;
+    private Long coupleId;
     private String quizTitle;
     private String quizComplete;
-    private int secretCode;
 
     public QuizListResponseDTO() {}
 
-    public QuizListResponseDTO(Long quizId, String quizTitle, String quizComplete, int secretCode) {
+    public QuizListResponseDTO(Long quizId, Long coupleId, String quizTitle, String quizComplete) {
         this.quizId = quizId;
+        this.coupleId = coupleId;
         this.quizTitle = quizTitle;
         this.quizComplete = quizComplete;
-        this.secretCode = secretCode;
     }
 
     public Long getQuizId() {
@@ -30,6 +30,14 @@ public class QuizListResponseDTO {
         return quizTitle;
     }
 
+    public Long getCoupleId() {
+        return coupleId;
+    }
+
+    public void setCoupleId(Long coupleId) {
+        this.coupleId = coupleId;
+    }
+
     public void setQuizTitle(String quizTitle) {
         this.quizTitle = quizTitle;
     }
@@ -42,21 +50,13 @@ public class QuizListResponseDTO {
         this.quizComplete = quizComplete;
     }
 
-    public int getSecretCode() {
-        return secretCode;
-    }
-
-    public void setSecretCode(int secretCode) {
-        this.secretCode = secretCode;
-    }
-
     @Override
     public String toString() {
         return "QuizListResponseDTO{" +
                 "quizId=" + quizId +
+                ", coupleId=" + coupleId +
                 ", quizTitle='" + quizTitle + '\'' +
                 ", quizComplete='" + quizComplete + '\'' +
-                ", secretCode=" + secretCode +
                 '}';
     }
 }
