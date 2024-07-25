@@ -5,9 +5,10 @@
 <mapper namespace="com.jolipjo.lovebridge.domain.quiz.dao.QuizMapper">
 
     <resultMap id="quizListMap" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO">
-        <id property="quizId" column="id"/>
+        <id property="quizId" column="fk_quiz_id"/>
+        <result property="coupleId" column="fk_couple_id"/>
         <result property="quizTitle" column="title"/>
-        <result property="quizComplete" column="complete"/>
+        <result property="quizComplete" column="quiz_complete"/>
     </resultMap>
 
     <resultMap id="quizDetailMap" type="java.lang.String">
@@ -16,15 +17,14 @@
 
     <select id="getQuizList" resultMap="quizListMap">
             SELECT
-                   a.id
+                   a.fk_quiz_id
+                 , a.fk_couple_id
                  , b.title
-                 , a.complete
-                 , a.secretCode
+                 , a.quiz_complete
               FROM
-                   quizList a
+                   QUIZ_LIST a
          LEFT JOIN
-                   quiz b on b.id = a.quizId
-             LIMIT 5 OFFSET 0
+                   QUIZ b on b.quiz_id = a.fk_quiz_id
 
     </select>
 
