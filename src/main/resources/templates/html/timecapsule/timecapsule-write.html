@@ -91,14 +91,6 @@
                 <textarea id="tcdetail" name="tcdetail" placeholder="내용을 입력해주세요" ></textarea>
             </div>
 
-<!--        <div class="mg-t&#45;&#45;30">-->
-<!--            <label class="input-label required">첨부파일</label>-->
-<!--                <div class="upload-section input-wrap" onclick="document.getElementById('file-input').click();">-->
-<!--                    <input class="upload-name" type="file" id="file-input" accept="image/*" multiple onchange="previewImages()">-->
-<!--                    <div class="preview" id="preview" style="text-align: center" >눌러서 파일을 첨부해주세요</div>-->
-<!--                </div>-->
-<!--        </div>-->
-
             <!-- 파일첨부 -->
             <label class="input-label required">첨부파일</label>
             <div class="input-file" >
@@ -116,7 +108,7 @@
                 <button type="button" class="btn btn-half btn-line" onclick="location.href=''">
                     취소
                 </button>
-                <button onclick="submitPost()" type="submit" class="btn btn-half type2 btn-pink">
+                <button  type="submit" class="btn btn-half type2 btn-pink">
                     작성완료
                 </button>
 
@@ -254,57 +246,7 @@
 
 
     </style>
-<!--</head>-->
-<!--<body>-->
-<!--<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>-->
-<!--</header>-->
 
-<!--<div class="container ">-->
-
-<!--        <div class="write ip12pro cenBOX ">-->
-
-<!--            <div class="title">타임캡슐 게시물 생성</div>-->
-
-<!--            <div class="form-group">-->
-<!--                <label for="date" id="texta">봉인일:</label>-->
-<!--                <input type="date" id="date">-->
-<!--            </div>-->
-
-<!--            <div class="form-group">-->
-<!--                <label for="open-date" id="texta">개봉일:</label>-->
-<!--                <input type="date" id="open-date">-->
-<!--            </div>-->
-
-<!--            <div class="form-group">-->
-<!--                <label for="title" id="texta">제목:</label>-->
-<!--                <input type="text" id="title" placeholder="우리의 타임캡슐">-->
-<!--            </div>-->
-
-<!--            <div class="form-group">-->
-<!--                <label for="content" id="texta">내용:</label>-->
-<!--                <textarea id="content" rows="4" placeholder="1년 후 봉인한 타임캡슐을 열 생각하니 벌써부터 두근두근"></textarea>-->
-<!--            </div>-->
-
-<!--            <div class="upload-section" onclick="document.getElementById('file-input').click();">-->
-<!--                <input type="file" id="file-input" accept="image/*" multiple onchange="previewImages()">-->
-<!--                <p>사진 업로드</p>-->
-<!--            </div>-->
-
-<!--            <div class="preview" id="preview"></div>-->
-
-<!--            <button class="submit-button" onclick="submitPost()">게시하기</button>-->
-
-<!--        </div>-->
-
-<!--</div>-->
-
-
-<!-- footer -->
-
-<!-- //footer -->
-<!--</body>-->
-<!--<div th:replace="~{/html/include/footer :: footer}"></div>-->
-<!--</footer>-->
 
 <script>
     function previewImages() {
@@ -345,9 +287,15 @@
         previewImages();
     }
 
-    function submitPost(event) {
-        event.preventDefault(); // Prevent the form from submitting the traditional way
 
+
+
+
+
+    function submitPost(event) {
+        //event.preventDefault(); // Prevent the form from submitting the traditional way
+
+        this.onclick = null;
         const date = document.getElementById('tcsealingdate').value;
         const openDate = document.getElementById('tcreleasedate').value;
         const title = document.getElementById('tctitle').value;

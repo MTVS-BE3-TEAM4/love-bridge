@@ -128,8 +128,6 @@ public class TimecapsuleController {
         //서비스 단으로 보내주기
         timeservice.registNewWirte(dto);
 
-
-
         System.out.println("봉인일 : " + dto.getTcsealingdate());
         System.out.println("개봉일 : " + dto.getTcreleasedate());
         System.out.println("제목 : " + dto.getTctitle());
