@@ -47,16 +47,16 @@
     <section class="section album-write">
       <p class="section-tit">앨범 만들기</p>
 
-<form method="post" action="/album/write" enctype="multipart/form-data" >
+<form id="albumF" method="post" action="/album/write" enctype="multipart/form-data" >
         <label class="input-label required">날짜</label>
         <div class="input-wrap">
-                <input type="date" class="input-text" placeholder="20XX-XX-XX" name="date"/>
+                <input type="date" class="input-text"  name="date" id="date"/>
         </div>
 
         <label class="input-label required ">메모</label>
 
         <div class="textarea-wrap">
-          <textarea name="memo" placeholder="내용을 입력하세요"  ></textarea>
+          <textarea name="memo" id="memo" placeholder="내용을 입력하세요"  ></textarea>
         </div>
 
         <label class="input-label required">첨부파일</label>
@@ -66,7 +66,7 @@
           <input type="file" id="file" name="file">
         </div>
 
-        <div class="input-guide error">
+        <div class="input-guide error" id="fileError" style="display: none;">
           첨부파일이 존재하지 않습니다
         </div>
 
@@ -74,7 +74,7 @@
             <button type="button" class="btn btn-half btn-line" onclick="location.href='/album'">
             취소
             </button>
-            <button type="submit" class="btn btn-half type2 btn-pink">
+            <button type="submit" id="abcd" name="abcd" class="btn btn-half type2 btn-pink test" onclick="return submitPost(event);">
             작성완료
             </button>
         </div>
@@ -85,10 +85,48 @@
 <div th:replace="~{/html/include/footer :: footer}"></div>
 <!--  <footer data-include-file="html/include/footer.html" class="footer includeJs"></footer>-->
   <script>
-    $("#file").on('change', function () {
-      var fileName = $("#file").val();
-      $(".upload-name").val(fileName);
-    });
+      function submitPost(event){
+          event.preventDefault(); //폼을 연속으로 제출 방지
+
+          const date = document.getElementById('date').value;
+          const memo = document.getElementById('memo').value;
+          const file = document.getElementById('file').value;
+
+          if(!date){
+              alert('날짜를 입력해줭');
+              return false;
+          }else if(!memo){
+              alert('내용을 입력해줭');
+              return false;
+          }else if(!file){
+              document.getElementById('fileError').style.display='block';
+              return false;
+          }
+
+          document.getElementById('abcd').disabled = true; //버튼 비활성화
+          document.getElementById('albumF').submit(); //폼 제출
+
+      }
+
+      document.getElementById('file').addEventListener('change',function(){
+          var fileName = this.value.split('\\').pop();
+          document.querySelector('.upload-name').value = 'fileName';
+          document.getElementById('fileError').style.display = 'none';
+      });
+
+
+
+    // $("#file").on('change', function () {
+    //   var fileName = $("#file").val();
+    //   $(".upload-name").val(fileName);
+    // });
+
+    // const testBtn = document.querySelector('.test');
+    //
+    // testBtn.addEventListener('click', () => {
+    //
+    //
+    // })
   </script>
 </body>
 

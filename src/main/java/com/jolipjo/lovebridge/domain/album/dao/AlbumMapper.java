@@ -3,6 +3,7 @@ package com.jolipjo.lovebridge.domain.album.dao;
 
 import com.jolipjo.lovebridge.domain.album.dto.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -10,13 +11,15 @@ import java.util.List;
 public interface AlbumMapper {
 
 
-
     //앨범 화면 불러오기
-    List<AlbumListResponseDTO> albumListPage(long memberId);
-
+    List<AlbumListResponseDTO> albumListPage(@Param("memberId") long memberId,
+                                             @Param("size") int size,
+                                             @Param("offset") int offset);
+    //페이징
+    int getTotalItem(long memberId);
 
     //삭제하기
-    void albumDelete(AlbumDeleteDTO albumDeleteDTO,int id);
+    void albumDelete(AlbumDeleteDTO albumDeleteDTO, int id);
 
 
     //앨범 작성하기

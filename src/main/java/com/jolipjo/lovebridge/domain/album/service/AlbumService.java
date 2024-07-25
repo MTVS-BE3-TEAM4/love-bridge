@@ -23,9 +23,17 @@ public class AlbumService {
 
 
     //화면 출력
-    public List<AlbumListResponseDTO> albumListPage(long memberId) {
-        return albumMapper.albumListPage(memberId);
+    public List<AlbumListResponseDTO> albumListPage(long memberId,int page,int size) {
+        //page*=size;
+        int offset = (page - 1) * size;
+        return albumMapper.albumListPage(memberId,size,page);
     }
+    //페이징
+    public int getTotatlItem(long memberId) {
+        return albumMapper.getTotalItem(memberId);
+    }
+
+
 
     //앨범 삭제
     public void albumDelete(AlbumDeleteDTO albumDeleteDTO,int id) {

@@ -7,12 +7,14 @@
 
 <!--    데이터를 가져올때  resultMap  -->
     <!--      데이터를 저장  prarmeterMap     -->
+
     <resultMap id="AlbumResultMap" type="com.jolipjo.lovebridge.domain.album.dto.AlbumWriteRequestDTO">
         <id property="id" column="id"/>
         <result property="memberId" column="memberId" />
         <result property="image" column="pictureLink"/>
         <result property="memo" column="message"/>
         <result property="date" column="date"/>
+
     </resultMap>
 
     <resultMap id="AlbumModifyResultMap" type="com.jolipjo.lovebridge.domain.album.dto.AlbumModifyRequestDTO">
@@ -35,16 +37,26 @@
 
 
 <!--  리스트 화면 불러오기  -->
-    <select id="albumListPage" parameterType="long" resultMap="AlbumResultMap">
+    <select id="albumListPage" parameterType="map" resultMap="AlbumResultMap">
         SELECT
                pictureLink
-              ,message
-              ,date
-              ,id
+             , message
+             , date
+             , id
           FROM
                album
-            WHERE memberId = #{ memberId }
+         WHERE memberId = #{ memberId }
+         ORDER BY date DESC
+        LIMIT #{size} OFFSET #{offset}
     </select>
+
+    <select id="getTotalItem" parameterType="long" resultType="int">
+        SELECT COUNT(*)
+        FROM album
+        WHERE memberId = #{memberId}
+    </select>
+
+<!--    //페이지네이션객체 -->
 
 <!--  앨범 작성 하기  -->
     <insert id="albumWrite" parameterMap="AlbumWriteRequestDTO">
