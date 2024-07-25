@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.w3.org/1999/xhtml">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <head>
@@ -69,7 +70,9 @@
 				</tbody>
 			</table>
 			<div class="btn-wrap right">
+				<div sec:authorize="isAuthenticated()">
 				<a onclick="location.href='notice/write';" class="btn btn-pink btn-board">글쓰기</a>
+				</div>
 			</div>
 			<div class="pagination">
 				<button type="button" class="prev">prev</button>

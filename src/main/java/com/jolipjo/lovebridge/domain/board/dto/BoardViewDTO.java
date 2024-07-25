@@ -10,14 +10,17 @@ public class BoardViewDTO {
     private int id;
     private LocalDateTime date;
 
+    private int memberId;
+
     public BoardViewDTO() {}
 
-    public BoardViewDTO(String title, String text, String nickName, int id, LocalDateTime date) {
+    public BoardViewDTO(String title, String text, String nickName, int id, LocalDateTime date, int memberId) {
         this.title = title;
         this.text = text;
         this.nickName = nickName;
         this.id = id;
         this.date = date;
+        this.memberId = memberId;
     }
 
     public String getTitle() {
@@ -60,6 +63,14 @@ public class BoardViewDTO {
         this.date = date;
     }
 
+    public int getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(int memberId) {
+        this.memberId = memberId;
+    }
+
     @Override
     public String toString() {
         return "BoardViewDTO{" +
@@ -67,7 +78,8 @@ public class BoardViewDTO {
                 ", text='" + text + '\'' +
                 ", nickName='" + nickName + '\'' +
                 ", id=" + id +
-                ", date='" + date + '\'' +
+                ", date=" + date +
+                ", memberId=" + memberId +
                 '}';
     }
 }

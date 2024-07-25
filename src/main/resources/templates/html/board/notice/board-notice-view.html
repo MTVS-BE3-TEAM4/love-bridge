@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
   <body>
@@ -103,54 +104,56 @@
 
 
         <button class="btn btn-pink btn-md" onclick="location.href='/board/notice'">목록</button>
+        <div sec:authorize="isAuthenticated()">
         <a class="btn btn-pink btn-md" type="submit" th:href="@{edit/{id}(id=${boardViewDTO.id})}">수정</a>
-        <form action="" method="post">
-          <button class="btn btn-pink btn-md delete-btn">삭제</button>
+        <form th:action="@{'/board/notice/' + ${boardViewDTO.id} + '/delete'}" method="post">
+          <button class="btn btn-pink btn-md delete-btn" type="submit">삭제</button>
         </form>
         <!-- <div class="buttons">
           <button onclick="window.location.href='list.html'">목록</button>
           <button onclick="editPost()">수정</button>
           <button onclick="deletePost()">삭제</button>
         </div> -->
+        </div>
       </div>
     </div>
     <footer th:replace="~{/html/include/footer :: footer}"></footer>
   </body>
-<script>
-  function deleteItem(test){
-    const deleteBtn = document.querySelector('.delete-btn');
+<!--<script>-->
+<!--  function deleteItem(test){-->
+<!--    const deleteBtn = document.querySelector('.delete-btn');-->
 
-    deleteBtn.addEventListener('click',() => {
-      if(confirm("삭제하시겠습니까?")) {
-        console.log('123');
-        // th:onclick="${boardViewDTO.id}"
-      } else {
-        console.log("123");
-      }
-    })
-
-
-  }
+<!--    deleteBtn.addEventListener('click',() => {-->
+<!--      if(confirm("삭제하시겠습니까?")) {-->
+<!--        console.log('123');-->
+<!--        // th:onclick="${boardViewDTO.id}"-->
+<!--      } else {-->
+<!--        console.log("123");-->
+<!--      }-->
+<!--    })-->
 
 
+<!--  }-->
 
-  // function isDelete(event) {
-  //   event.preventDefault(); // Prevent default button behavior
-  //
-  //   // Get album ID from data-value attribute
-  //   var id = $(event.target).data('value');
-  //
-  //   // Confirm dialog
-  //   if (confirm("영구적으로 삭제 하시겠습니까?")) {
-  //     // Send POST request to the server
-  //     $.ajax({
-  //       url: 'notice/{id}', // URL to send request to
-  //       type: 'POST', // Use POST for the delete request
-  //       success: function(result) {
-  //         console.log(result);
-  //       }
-  //     });
-  //   }
-  // }
-</script>
+
+
+<!--  // function isDelete(event) {-->
+<!--  //   event.preventDefault(); // Prevent default button behavior-->
+<!--  //-->
+<!--  //   // Get album ID from data-value attribute-->
+<!--  //   var id = $(event.target).data('value');-->
+<!--  //-->
+<!--  //   // Confirm dialog-->
+<!--  //   if (confirm("영구적으로 삭제 하시겠습니까?")) {-->
+<!--  //     // Send POST request to the server-->
+<!--  //     $.ajax({-->
+<!--  //       url: 'notice/{id}', // URL to send request to-->
+<!--  //       type: 'POST', // Use POST for the delete request-->
+<!--  //       success: function(result) {-->
+<!--  //         console.log(result);-->
+<!--  //       }-->
+<!--  //     });-->
+<!--  //   }-->
+<!--  // }-->
+<!--</script>-->
 </html>
