@@ -18,7 +18,6 @@ public class PaginationService {
         this.paginationMapper = paginationMapper;
     }
 
-
     public PaginationDTO<QuizListResponseDTO> getItemsWithPagination(int page, int size) {
 
         int offset = (page - 1) * size;
