@@ -32,7 +32,7 @@ public class BoardController { // 클래스의 선언부
 //
 //    }
     @GetMapping("notice")
-    public String boardNotice(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public String boardNotice(Model model, @RequestParam(defaultValue = "0" , required = false, name = "page") int page, @RequestParam(defaultValue = "10", required = false, name = "size") int size) {
         int offset = page * size;
         BoardPageDTO boardPageDTO = new BoardPageDTO(offset, size);
         List<BoardNoticeDTO> boardList = boardService.getBoardListPage(boardPageDTO);
@@ -46,7 +46,7 @@ public class BoardController { // 클래스의 선언부
 
     //공지사항 상세 글 조회-->완료
     @GetMapping("notice/{id}") // url에 대한 get 요청을 처리
-    public String boardNoticeView(@PathVariable("id") int id, Model model) { // 이 메서드는 특정 게시글의 상세 정보를 조회하여 뷰에 전달
+    public String boardNoticeView(@PathVariable(value = "id", required = false) int id, Model model) { // 이 메서드는 특정 게시글의 상세 정보를 조회하여 뷰에 전달
 
         BoardViewDTO boardViewDTO = boardService.getBoardView(id);
         model.addAttribute("boardViewDTO", boardViewDTO);
@@ -55,7 +55,7 @@ public class BoardController { // 클래스의 선언부
 
     //공지사항 글 수정시 기존 글 갖고오기-->완료
     @GetMapping("notice/edit/{id}")
-    public String boardNoticeEditGet(@PathVariable int id, Model model) {
+    public String boardNoticeEditGet(@PathVariable(value="id", required = false) int id, Model model) {
 
         BoardEditDTO boardEditDTO = boardService.getBoardEdit(id);
         model.addAttribute("boardEditDTO", boardEditDTO);
@@ -64,7 +64,7 @@ public class BoardController { // 클래스의 선언부
 
     //공지사항 글 수정하기-->완료
     @PostMapping("notice/edit/{id}")
-    public String boardNoticeEditPost(@PathVariable int id, BoardEditDTO boardEditDTO) {
+    public String boardNoticeEditPost(@PathVariable(value = "id", required = false) int id, BoardEditDTO boardEditDTO) {
 
         boardEditDTO.setId(id);
         boardService.boardModify(boardEditDTO);
@@ -72,16 +72,18 @@ public class BoardController { // 클래스의 선언부
     }
     //공지사항 글 삭제하기 테스트-->진행 중
     @PostMapping("notice/{id}/delete")
-    public String boardNoticeDelete(@PathVariable int id,
+    public String boardNoticeDelete(@PathVariable(value = "id", required = false) Integer id,
                                     @AuthenticationPrincipal CustomMemberDetail customMemberdeleteDetail,
                                     Model model) {
+
+        System.out.println("id = " + id);
         Member member = customMemberdeleteDetail.getMember();
         BoardViewDTO boardViewDTO = boardService.getBoardView(id);
 
         if(boardViewDTO.getMemberId() == member.getId()) {
             BoardDeleteDTO boardDeleteDTO = new BoardDeleteDTO();
             boardDeleteDTO.setId(id);
-            boardService.boardDelete(boardDeleteDTO, id);
+            boardService.boardDelete(boardDeleteDTO);
             System.out.println("게시글 삭제 완료");
             return "redirect:/board/notice";
         } else {

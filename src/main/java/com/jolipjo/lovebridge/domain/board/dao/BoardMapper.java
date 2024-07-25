@@ -28,7 +28,7 @@ public interface BoardMapper {
     void boardModify(BoardEditDTO boardEditDTO);
 
 
-    void boardDelete(BoardDeleteDTO boardDeleteDTO, int id);
+    void boardDelete(BoardDeleteDTO boardDeleteDTO);
 
     List<BoardNoticeDTO> getBoardListPage(BoardPageDTO boardPageDTO);
 
