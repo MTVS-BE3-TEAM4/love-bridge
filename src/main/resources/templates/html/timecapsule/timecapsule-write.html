@@ -59,17 +59,17 @@
     textarea{resize: none}
 </style>
 
+</head>
 <body>
-<!--  <header data-include-file="html/include/header.html" class="header includeJs"></header>-->
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 <div class="container">
     <section class="section album-write">
         <p class="section-tit">타임캡슐 게시물 작성하기</p>
 
-        <form method="post" action="/timecapsule/write" enctype="multipart/form-data">
+        <form id="timecapsuleForm" method="post" action="/timecapsule/write" enctype="multipart/form-data">
             <label class="input-label required">제목</label>
             <div class="input-wrap">
-                <input type="text" id="tctitle" name="tctitle" class="input-text" placeholder="제목을 입력해주세요"/>
+                <input type="text" id="tctitle" name="tctitle" class="input-text" placeholder="제목을 입력해주세요 (100글자로 제한합니다)" maxlength="100"/>
             </div>
             <div class="date-wrap input-wrap mg-t--30">
                 <div class="date-box">
@@ -88,239 +88,70 @@
 
             <label class="input-label required">내용</label>
             <div class="textarea-wrap">
-                <textarea id="tcdetail" name="tcdetail" placeholder="내용을 입력해주세요" ></textarea>
+                <textarea id="tcdetail" name="tcdetail" placeholder="내용을 입력해주세요(200글자로 제한합니다)" maxlength="200"></textarea>
             </div>
 
             <!-- 파일첨부 -->
             <label class="input-label required">첨부파일</label>
-            <div class="input-file" >
-                <input class="upload-name" >
+            <div class="input-file">
+                <input class="upload-name" readonly>
                 <label for="file">파일찾기</label>
                 <input type="file" id="file" name="file">
             </div>
 
-            <div class="input-guide error">
+            <div class="input-guide error" id="fileError" style="display:none;">
                 첨부파일이 존재하지 않습니다
             </div>
 
             <div class="btn-wrap type2 mg-t40">
-
                 <button type="button" class="btn btn-half btn-line" onclick="location.href=''">
                     취소
                 </button>
-                <button  type="submit" class="btn btn-half type2 btn-pink">
+                <button id="submitButton" type="submit" class="btn btn-half type2 btn-pink" onclick="return submitPost(event);">
                     작성완료
                 </button>
-
             </div>
         </form>
     </section>
-
 </div>
 <div th:replace="~{/html/include/footer :: footer}"></div>
 
-</body>
-
-
-<!--<head>-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-
-    <style>
-
-        .fileBOX{
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-content: center;
-            align-items: center;
-            padding-top: 3%;
-        }
-
-        .upload-section {
-            text-align: center;
-            cursor: pointer;
-            flex: 1; width: 100%;padding: 0 20px;font-size: 1.5rem;background-color: #fff;border: 2px solid #ddd;border-radius: 8px;font-weight: 400;color: #333;height: 50px;
-        }
-
-        .input-file {display: flex; width: 100%;}
-        .input-file .upload-name {flex: 1; width: 100%;padding: 0 20px;font-size: 1.5rem;background-color: #fff;border: 2px solid #ddd;border-radius: 8px;font-weight: 400;color: #333;height: 50px;}
-        .input-file label {display: flex; align-items: center; padding: 0 20px; color: #fff;vertical-align: middle;background-color: #FF979B;cursor: pointer;height: 50px;margin-left: 10px; font-size: 1.4rem; border-radius: 8px;}
-        .input-file input[type="file"] {position: absolute;width: 0;height: 0;padding: 0;overflow: hidden;border: 0;}
-        /*.container{*/
-        /*    display: flex;*/
-        /*}*/
-        .capsule{
-            margin:10px;
-            border:1px solid #ddd;
-            border-radius:50px;
-            overflow:hidden;
-            width: 350px;
-            background-color:#fff
-        }
-        .capsule img{
-            width:100%;
-            cursor:pointer;
-        }
-        .cenBOX{
-            justify-content: center;
-            align-content: center;
-        }
-        .write {
-            background-color: rgba(255, 200, 201, 0.55);
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 40%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-        .title {
-            text-align: center;
-            font-size: 5.6rem;
-            /*font-family: Pretendard;*/
-        }
-        .form-group {
-            display: flex;
-            align-items: center;
-            /*margin-bottom: 10px;*/
-        }
-        .form-group label {
-            /*width: 80px;*/
-            font-weight: bold;
-        }
-        .form-group input, .form-group textarea {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .form-group textarea {
-            resize: vertical;
-        }
-
-        .upload-section:hover {
-            background-color: #ffe6e6;
-        }
-        .upload-section input[type="file"] {
-            display: none;
-        }
-        .preview {
-            height: 100%;
-            width: 100%;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            flex-wrap: wrap;
-            overflow-y: auto;
-        }
-        .preview img {
-            object-fit: cover;
-            position: relative;
-            height: 100px;
-            width: 100px;
-
-        }
-        .preview .remove {
-            /*position: absolute;*/
-            background-color: #ff4a4a;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-
-
-        }
-        .submit-button {
-            background-color: #ff7e81;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-        }
-        #texta{
-            font-size: 20px;
-        }
-
-
-
-    </style>
-
-
 <script>
-    function previewImages() {
-        const preview = document.getElementById('preview');
-        const files = document.getElementById('file-input').files;
-        preview.innerHTML = '';
-
-        Array.from(files).forEach((file, index) => {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                const img = document.createElement('img');
-                img.src = e.target.result;
-
-                const removeButton = document.createElement('button');
-                removeButton.className = 'remove';
-                removeButton.innerText = 'X';
-                removeButton.onclick = () => removeImage(index);
-
-                const imgContainer = document.createElement('div');
-                imgContainer.style.position = 'relative';
-                imgContainer.appendChild(img);
-                imgContainer.appendChild(removeButton);
-
-                preview.appendChild(imgContainer);
-            };
-            reader.readAsDataURL(file);
-        });
-    }
-
-    function removeImage(index) {
-        const files = Array.from(document.getElementById('file-input').files);
-        files.splice(index, 1);
-
-        const dataTransfer = new DataTransfer();
-        files.forEach(file => dataTransfer.items.add(file));
-
-        document.getElementById('file-input').files = dataTransfer.files;
-        previewImages();
-    }
-
-
-
-
-
-
     function submitPost(event) {
-        //event.preventDefault(); // Prevent the form from submitting the traditional way
+        event.preventDefault(); // 폼의 전통적인 제출 방지
 
-        this.onclick = null;
         const date = document.getElementById('tcsealingdate').value;
         const openDate = document.getElementById('tcreleasedate').value;
         const title = document.getElementById('tctitle').value;
         const content = document.getElementById('tcdetail').value;
+        const fileInput = document.getElementById('file').value;
 
         if (!date) {
             alert('봉인일을 입력해주세요.');
-            return;
+            return false;
         } else if (!openDate) {
             alert('개봉일을 입력해주세요.');
-            return;
+            return false;
         } else if (!title) {
             alert('제목을 입력해주세요.');
-            return;
+            return false;
         } else if (!content) {
             alert('내용을 입력해주세요.');
-            return ;
+            return false;
+        } else if (!fileInput) {
+            document.getElementById('fileError').style.display = 'block';
+            return false;
         }
+
+        document.getElementById('submitButton').disabled = true; // 버튼 비활성화
+        document.getElementById('timecapsuleForm').submit(); // 폼 제출
     }
 
-    //파일첨부 js
-    $("#file").on('change', function () {
-        var fileName = $("#file").val();
-        $(".upload-name").val(fileName);
+    document.getElementById('file').addEventListener('change', function () {
+        var fileName = this.value.split('\\').pop();
+        document.querySelector('.upload-name').value = fileName;
+        document.getElementById('fileError').style.display = 'none';
     });
-
 </script>
+</body>
 </html>

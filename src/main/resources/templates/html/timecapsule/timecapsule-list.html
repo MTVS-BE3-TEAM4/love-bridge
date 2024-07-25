@@ -70,14 +70,14 @@
                                 </a>
                             </div>
                             <div class="album-util" >
-                                <div>
-                                    <button class="gearbt" type="button" onclick="isDelete(event)">
-                                        <i class="fa-solid fa-trash"  th:attr="data-value=${listDTO.id}" ></i>
-                                    </button>
-                                    <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}">
-                                        <i class="fa-solid fa-gear"></i>
-                                    </a>
-                                </div>
+<!--                                <div>-->
+<!--                                    <button class="gearbt" type="button" onclick="isDelete(event)">-->
+<!--                                        <i class="fa-solid fa-trash"  th:attr="data-value=${listDTO.id}" ></i>-->
+<!--                                    </button>-->
+<!--                                    <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}">-->
+<!--                                        <i class="fa-solid fa-gear"></i>-->
+<!--                                    </a>-->
+<!--                                </div>-->
                                 <p class="date" th:text="${listDTO.startdate}"></p>
                                 <p class="date" th:text="${listDTO.enddate}"></p>
                             </div>

@@ -26,6 +26,8 @@
 
         .datedate{display: flex;height: 50px;justify-content: center ;align-items: center;margin-bottom: 5%}
 
+        .datedate2{display: flex;height: 50px;justify-content: center ;align-items: center;margin-bottom: 5%; flex-direction: column;font-size: 25px;}
+
         .dateopen{width: 40% ;font-size: 2rem;text-align: center;color: #FF646A;align-items: center;}
         .dateclose{width: 40%;font-size: 2rem;text-align: center;color: #FF646A;align-items: center;}
 
@@ -33,15 +35,16 @@
             font-size: 1.5rem;
         }
 
-        .storyA{display: flex; border: 1px solid #ffc8c8; align-items: center;justify-content: center;}
+        .storyA{  word-break:break-all; display: flex; border: 1px solid #ffc8c8; align-items: center;justify-content: center;}
 
         .ohmygod {width: 100%;  font-size: 3rem; font-weight: 700;  justify-content: center;align-items: center; font-family: inherit;}
         .storyA{
+            word-break:break-all;
             height: 150px;
             /*word-break: break-all;*/
             font-size: 2rem;
             text-align: center;
-            word-break:keep-all;
+
         }
         .storyA2{display: flex; border: 1px solid #ffc8c8; align-items: center;justify-content: center;}
         .storyA2{
@@ -75,11 +78,14 @@
                 <div class="smallcon2">
 
                     <div class="datedate" >
-                       <div class="dateclose"> <label class="lab">봉인일 :  <p class="date" th:text="${ viewE.getTcsealingdate() }"/> </label></div>
+                       <div class="dateclose"> <label class="lab">봉인일 :  <p class="ddat1" id="ddat1" th:text="${ viewE.getTcsealingdate() }"/> </label></div>
 
 
-                       <div class="dateopen"> <label class="lab">개봉일 :   <p class="date" th:text="${ viewE.getTcreleasedate() }"/></label></div>
+                       <div class="dateopen"> <label class="lab">개봉일 :   <p class="ddat2" id="ddat2" th:text="${ viewE.getTcreleasedate() }"/></label></div>
 
+                    </div>
+                    <div class="datedate2">
+                        <p>타임캡슐이 열리기까지 남은시간 <div id="sumddat"></div></p>
                     </div>
 
                     <div class="sbcon1">
@@ -96,19 +102,13 @@
                         <p class="date" th:text="${ viewE.getTcdetail() }"/>
                     </div>
 
-                    <div class="storyA2">
-                        <span class="ddat1" id="ddat1" th:text="${ viewE.getTcsealingdate() }"></span><br>
 
-                        <span class="ddat2" id="ddat2" th:text="${ viewE.getTcreleasedate() }"></span><br>
-
-                        <p>타임캡슐이 열리기까지 남은시간은 <div id="sumddat"></div> 입니다.</p>
-                    </div>
 
 
 
 
                     <div class="btn-wrap  mg-b--20 ">
-                        <a onclick="location.href='/timecapsule/write'" class="btn btn-pink btn-board ">돌아가기</a>
+                        <a onclick="location.href='/timecapsule'" class="btn btn-pink btn-board ">돌아가기</a>
                     </div>
                 </div>
             </div>
