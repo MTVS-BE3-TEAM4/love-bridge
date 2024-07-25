@@ -7,15 +7,16 @@ public class BoardNoticeDTO {
     private int memberId;
     private String title;
     private String date;
+    private String nickname;
 
-    public BoardNoticeDTO() {
-    }
+    public BoardNoticeDTO() {}
 
-    public BoardNoticeDTO(int id, int memberId, String title, String date) {
+    public BoardNoticeDTO(int id, int memberId, String title, String date, String nickname) {
         this.id = id;
         this.memberId = memberId;
         this.title = title;
         this.date = date;
+        this.nickname = nickname;
     }
 
     public int getId() {
@@ -50,6 +51,14 @@ public class BoardNoticeDTO {
         this.date = date;
     }
 
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
     @Override
     public String toString() {
         return "BoardNoticeDTO{" +
@@ -57,6 +66,7 @@ public class BoardNoticeDTO {
                 ", memberId=" + memberId +
                 ", title='" + title + '\'' +
                 ", date='" + date + '\'' +
+                ", nickname='" + nickname + '\'' +
                 '}';
     }
 }
