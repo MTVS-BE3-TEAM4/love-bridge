@@ -76,6 +76,23 @@
          WHERE a.id = #{ id }
     </select>
 
+    <select id="getBoardListPage" resultMap="BoardNoticeDTO">
+        SELECT
+               a.id
+             , a.title
+             , a.memberId
+             , a.date
+             , b.nickname
+         FROM notice a
+        join member b on a.memberId = b.id
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="countBoardList" resultType="int">
+        SELECT COUNT(*)
+         FROM notice
+    </select>
+
 <!--    공지사항 수정시 기존 글 불러오기 쿼리-->
     <select id="getBoardEdit" resultMap="BoardEditDTO">
         SELECT

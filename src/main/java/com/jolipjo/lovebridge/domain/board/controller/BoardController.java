@@ -7,10 +7,7 @@ import com.jolipjo.lovebridge.domain.member.entity.Member;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,15 +21,27 @@ public class BoardController { // 클래스의 선언부
         this.boardService = boardService;
     }
 
-    //공지사항 목록 갖고오기-->완료
-    @GetMapping("notice") // /board/notice url에 대한 GET 요청을 처리
-    public String boardNotice(Model model) { // 이 메서드는 게시판 목록을 조회하여 뷰에 전달
-
-        BoardNoticeDTO boardNoticeDTO = new BoardNoticeDTO(); // new BoardNoticeDTO 클래스의 기본 생성자를 호출하여 새로운 객체를 생성
-        List<BoardNoticeDTO> boardList = boardService.getBoardList(boardNoticeDTO); // boardservice를 사용하여 게시판 목록을 가져온다.
-        model.addAttribute("boardList", boardList); // 가져온 게시판 목록을 모델에 추가하여 뷰에 전달
-        return "html/board/notice/board-notice"; // board-notice라는 뷰 이름을 반환. 스프링은 이 이름을 사용하여 적절한 뷰를 렌더링
-
+//    //공지사항 목록 갖고오기-->완료
+//    @GetMapping("notice") // /board/notice url에 대한 GET 요청을 처리
+//    public String boardNotice(Model model) { // 이 메서드는 게시판 목록을 조회하여 뷰에 전달
+//
+//        BoardNoticeDTO boardNoticeDTO = new BoardNoticeDTO(); // new BoardNoticeDTO 클래스의 기본 생성자를 호출하여 새로운 객체를 생성
+//        List<BoardNoticeDTO> boardList = boardService.getBoardList(boardNoticeDTO); // boardservice를 사용하여 게시판 목록을 가져온다.
+//        model.addAttribute("boardList", boardList); // 가져온 게시판 목록을 모델에 추가하여 뷰에 전달
+//        return "html/board/notice/board-notice"; // board-notice라는 뷰 이름을 반환. 스프링은 이 이름을 사용하여 적절한 뷰를 렌더링
+//
+//    }
+    @GetMapping("notice")
+    public String boardNotice(Model model, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        int offset = page * size;
+        BoardPageDTO boardPageDTO = new BoardPageDTO(offset, size);
+        List<BoardNoticeDTO> boardList = boardService.getBoardListPage(boardPageDTO);
+        int totalItems = boardService.countBoardList();
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("currentPage", page);
+        model.addAttribute("pageSize", size);
+        model.addAttribute("totalItems", totalItems);
+        return "html/board/notice/board-notice";
     }
 
     //공지사항 상세 글 조회-->완료

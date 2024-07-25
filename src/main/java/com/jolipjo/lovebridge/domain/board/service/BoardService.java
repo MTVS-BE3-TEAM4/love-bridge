@@ -46,4 +46,12 @@ public class BoardService {
     public void boardDelete(BoardDeleteDTO boardDeleteDTO, int id) {
         boardMapper.boardDelete(boardDeleteDTO,id);
     }
+
+    public List<BoardNoticeDTO> getBoardListPage(BoardPageDTO boardPageDTO) {
+        return boardMapper.getBoardListPage(boardPageDTO);
+    }
+
+    public int countBoardList() {
+        return boardMapper.countBoardList();
+    }
 }

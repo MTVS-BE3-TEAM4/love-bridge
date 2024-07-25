@@ -104,10 +104,9 @@
 
 
         <button class="btn btn-pink btn-md" onclick="location.href='/board/notice'">목록</button>
-        <div sec:authorize="isAuthenticated()">
-        <a class="btn btn-pink btn-md" type="submit" th:href="@{edit/{id}(id=${boardViewDTO.id})}">수정</a>
-        <form th:action="@{'/board/notice/' + ${boardViewDTO.id} + '/delete'}" method="post">
-          <button class="btn btn-pink btn-md delete-btn" type="submit">삭제</button>
+        <a class="btn btn-pink btn-md" sec:authorize="isAuthenticated()" th:href="@{edit/{id}(id=${boardViewDTO.id})}">수정</a>
+        <form th:action="@{'/board/notice/' + ${boardViewDTO.id} + '/delete'}" method="post" style="display:inline;">
+          <button class="btn btn-pink btn-md delete-btn" sec:authorize="isAuthenticated()" type="submit">삭제</button>
         </form>
         <!-- <div class="buttons">
           <button onclick="window.location.href='list.html'">목록</button>
