@@ -45,17 +45,20 @@ document.addEventListener("DOMContentLoaded", function() {
             // 데이터를 받아와서 화면에 표시하거나 필요한 처리를 수행
             const attendCnt = data.attendCnt;
             const mission = data.mission;
-            F_character.style.left = F_position + attendCnt + "%";
-            //else window.location.href = '/Game/MoveGame';
+            F_character.style.left = F_position = attendCnt + "%";
+            console.log("F_character.style.left 전 :: " + F_character.style.left);
         })
         .catch(error => {
             console.error('Error:', error);
         });
 
     document.getElementById("F_btn").addEventListener("click", function() {
+        console.log("F_position 현재 :: " + F_position);
         if (F_position < 30) {
             F_position++;
+            console.log("F_position ++ :" + F_position);
             F_character.style.left = (F_position * 1) + "%"; // 변수 사용
+            console.log("F_character.style.left 후 :: " + F_character.style.left);
             if (F_position === 30) {
                 sendPosition(F_position, "F", "Win_F");
                 document.getElementById("F_heart").style.display = "flex";
