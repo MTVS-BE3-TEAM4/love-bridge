@@ -36,7 +36,6 @@ public class SecurityConfig {
                                 .requestMatchers("/admin/**").hasRole("ADMIN")// 관리자 페이지는 관리자만 접근
                                 .requestMatchers("/board/notice/write").hasRole("ADMIN")// 공지사항 작성
                                 .requestMatchers("/board/notice/edit/**").hasRole("ADMIN")// 공지사항 수정
-                                .requestMatchers("board/notice/**/delete").hasRole("ADMIN")// 공지사항 삭제
 //                        .anyRequest().permitAll()
                                 .anyRequest().authenticated()// 그 외에는 로그인 해야 함
                 );
