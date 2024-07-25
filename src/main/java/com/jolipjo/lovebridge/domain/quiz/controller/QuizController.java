@@ -25,7 +25,10 @@ public class QuizController {
     }
 
     @GetMapping
-    public String quizGetList(QuizListResponseDTO quizListResponseDTO, Model model) {
+    public String quizGetList(
+                              QuizListResponseDTO quizListResponseDTO, Model model) {
+
+//        Member member = customMemberDetail.getMember();
 
         List<QuizListResponseDTO> quizList = quizService.getQuizList();
         model.addAttribute("quizList", quizList);
