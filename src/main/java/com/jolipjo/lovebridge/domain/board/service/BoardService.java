@@ -27,8 +27,6 @@ public class BoardService {
         return boardMapper.getBoardList(boardNoticeDTO);
     }
 
-
-
     public String getBoardViewText(BoardViewDTO boardViewDTO) {
         return boardMapper.getBoardViewText(boardViewDTO);
     }
@@ -49,12 +47,11 @@ public class BoardService {
         boardMapper.boardDelete(boardDeleteDTO,id);
     }
 
+    public List<BoardNoticeDTO> getBoardListPage(BoardPageDTO boardPageDTO) {
+        return boardMapper.getBoardListPage(boardPageDTO);
+    }
 
-//    @Transactional
-//    public void editPost(BoardEditDTO editPost) {
-//        boardMapper.editPost(editPost);
-//    }
-
-
-
+    public int countBoardList() {
+        return boardMapper.countBoardList();
+    }
 }

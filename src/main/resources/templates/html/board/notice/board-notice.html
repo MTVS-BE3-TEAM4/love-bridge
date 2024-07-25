@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.w3.org/1999/xhtml">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <head>
@@ -69,16 +70,17 @@
 				</tbody>
 			</table>
 			<div class="btn-wrap right">
+				<div sec:authorize="isAuthenticated()">
 				<a onclick="location.href='notice/write';" class="btn btn-pink btn-board">글쓰기</a>
+				</div>
 			</div>
 			<div class="pagination">
-				<button type="button" class="prev">prev</button>
-				<button type="button" class="active">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">4</button>
-				<button type="button">5</button>
-				<button type="button" class="next">next</button>
+				<button type="button" class="prev" th:onclick="|location.href='/board/notice?page=${currentPage - 1 < 0 ? 0 : currentPage - 1}'|">prev</button>
+				<span th:each="i : ${#numbers.sequence(1, (totalItems / pageSize) + (totalItems % pageSize == 0 ? 0 : 1))}">
+          <button type="button" th:classappend="${i == currentPage + 1} ? 'active'" th:onclick="|location.href='/board/notice?page=${i - 1}'|"
+				  th:text="${i}"></button>
+        </span>
+				<button type="button" class="next" th:onclick="|location.href='/board/notice?page=${currentPage + 1}'|">next</button>
 			</div>
 		</div>
 	</section>

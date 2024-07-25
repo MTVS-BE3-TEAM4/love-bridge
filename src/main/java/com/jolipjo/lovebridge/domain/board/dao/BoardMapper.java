@@ -29,4 +29,8 @@ public interface BoardMapper {
 
 
     void boardDelete(BoardDeleteDTO boardDeleteDTO, int id);
-} 
+
+    List<BoardNoticeDTO> getBoardListPage(BoardPageDTO boardPageDTO);
+
+    int countBoardList();
+}

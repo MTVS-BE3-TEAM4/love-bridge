@@ -4,6 +4,7 @@
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.jolipjo.lovebridge.domain.board.dao.BoardMapper">
 
+<!--    공지사항 목록 resultMap-->
     <resultMap id="BoardNoticeDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardNoticeDTO">
         <id property="id" column="id"/>
         <result property="memberId" column="memberId"/>
@@ -12,6 +13,7 @@
         <result property="nickname" column="nickname"/>
     </resultMap>
 
+<!--    공지사항 작성 resultMap-->
     <resultMap id="BoardWriteDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO">
         <id property="id" column="id"/>
         <result property="memberId" column="memberId"/>
@@ -21,14 +23,17 @@
         <result property="field" column="Field"/>
     </resultMap>
 
+<!--    공지사항 글 조회 resultMap-->
     <resultMap id="BoardViewDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardViewDTO">
         <id property="title" column="title"/>
         <result property="text" column="text"/>
         <result property="id" column="id"/>
         <result property="nickName" column="nickname"/>
         <result property="date" column="date"/>
+        <result property="memberId" column="memberId"/>
     </resultMap>
 
+<!--    공지사항 글 수정 resultMap-->
     <resultMap id="BoardEditDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardEditDTO">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
@@ -37,6 +42,7 @@
         <result property="memberId" column="memberId"/>
     </resultMap>
 
+<!--    공지사항 작성 parameter-->
     <parameterMap id="BoardWriteDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO">
         <parameter property="id"/>
         <parameter property="memberId"/>
@@ -44,13 +50,7 @@
         <parameter property="text"/>
     </parameterMap>
 
-<!--    <parameterMap id="BoardEditDTO" type="com.jolipjo.lovebridge.domain.board.dto.BoardEditDTO">-->
-<!--        <parameter property="id"/>-->
-<!--        <parameter property="memberId"/>-->
-<!--        <parameter property="title"/>-->
-<!--        <parameter property="text"/>-->
-<!--    </parameterMap>-->
-
+<!--    공지사항 목록 쿼리-->
     <select id="getBoardList" resultMap="BoardNoticeDTO">
         SELECT
                a.id
@@ -61,7 +61,8 @@
           FROM notice a
          join member b on a.memberId = b.id
     </select>
-    <!--    게시글 상세보기-->
+
+<!--    공지사항 상세 글 조회 쿼리-->
     <select id="getBoardView" resultMap="BoardViewDTO">
         SELECT
                a.id
@@ -69,12 +70,30 @@
              , a.title
              , b.nickname
              , a.date
+             , a.memberId
           FROM notice a
         join member b on a.memberId = b.id
          WHERE a.id = #{ id }
     </select>
 
-    <!--    수정 보기 페이지-->
+    <select id="getBoardListPage" resultMap="BoardNoticeDTO">
+        SELECT
+               a.id
+             , a.title
+             , a.memberId
+             , a.date
+             , b.nickname
+         FROM notice a
+        join member b on a.memberId = b.id
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <select id="countBoardList" resultType="int">
+        SELECT COUNT(*)
+         FROM notice
+    </select>
+
+<!--    공지사항 수정시 기존 글 불러오기 쿼리-->
     <select id="getBoardEdit" resultMap="BoardEditDTO">
         SELECT
                id
@@ -85,7 +104,7 @@
         WHERE id = #{memberId}
     </select>
 
-
+<!--    공지사항 상세 글 불러오기 쿼리-->
     <select id="getBoardText" resultMap="BoardViewDTO">
         SELECT
                title
@@ -93,8 +112,7 @@
         FROM notice
     </select>
 
-
-<!-- 작성하기   -->
+<!--    공지사항 작성 insert문-->
     <insert id="writeNewPost" parameterType="com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO">
         insert into notice
         (
@@ -112,6 +130,7 @@
         )
     </insert>
 
+<!--    공지사항 수정 update문-->
     <update id="boardModify" parameterType="com.jolipjo.lovebridge.domain.board.dto.BoardEditDTO">
         update notice
            set
@@ -121,6 +140,7 @@
           where id = #{ id }
     </update>
 
+<!--    공지사항 삭제 delete문-->
     <delete id="boardDelete" parameterType="com.jolipjo.lovebridge.domain.board.dto.BoardDeleteDTO">
         delete from notice
         where id = #{ id }
