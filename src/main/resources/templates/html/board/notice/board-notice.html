@@ -60,8 +60,10 @@
 				<tbody>
 				<tr class="jack" th:each="board : ${boardList}">
 					<td class="jack" th:text="${board.id}"></td>
-					<td class="left jack" th:text="${board.title}"><a href="#" onclick="location.href='notice/{id}'"></a></td>
-					<td class="author-column jack" th:text="${board.memberId}"></td>
+					<td class="left jack">
+						<a th:href="@{'/board/notice/' + ${board.id}}" th:text="${board.title}"></a>
+					</td>
+					<td class="author-column jack" th:text="${board.nickname}"></td>
 					<td class="jack" th:text="${board.date}"></td>
 				</tr>
 				</tbody>

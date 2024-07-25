@@ -1,23 +1,32 @@
 package com.jolipjo.lovebridge.domain.board.dao;
 
-import com.jolipjo.lovebridge.domain.board.dto.BoardEditDTO;
-import com.jolipjo.lovebridge.domain.board.dto.BoardNoticeDTO;
-import com.jolipjo.lovebridge.domain.board.dto.BoardViewDTO;
-import com.jolipjo.lovebridge.domain.board.dto.BoardWriteDTO;
+import com.jolipjo.lovebridge.domain.board.dto.*;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.ui.Model;
 
 import java.util.List;
 
 @Mapper
 public interface BoardMapper {
+
     List<BoardNoticeDTO> getBoardList(BoardNoticeDTO boardNoticeDTO);
 
-    List<BoardEditDTO> getBoardText(BoardEditDTO boardEditDTO);
 
-    void writeNewMenu(BoardWriteDTO boardWriteDTO);
+    void writeNewPost(BoardWriteDTO newPost);
 
     String getBoardViewTitle(BoardViewDTO boardViewDTO);
 
-    String getBoardTitle(BoardViewDTO boardViewDTO);
-}
+
+    String getBoardViewText(BoardViewDTO boardViewDTO);
+
+
+    BoardViewDTO getBoardView(int id);
+
+    BoardEditDTO getBoardEdit(int id);
+
+    void boardModify(BoardEditDTO boardEditDTO);
+
+
+    void boardDelete(BoardDeleteDTO boardDeleteDTO, int id);
+} 
