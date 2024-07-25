@@ -1,5 +1,6 @@
 package com.jolipjo.lovebridge.domain.quiz.service;
 
+import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
 import com.jolipjo.lovebridge.domain.quiz.dao.QuizMapper;
 import com.jolipjo.lovebridge.domain.quiz.dto.QuizDetailAnswer;
 import com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO;
@@ -19,9 +20,9 @@ public class QuizService {
         this.quizMapper = quizMapper;
     }
 
-    public List<QuizListResponseDTO> getQuizList() {
+    public List<QuizListResponseDTO> getQuizList(Long id) {
 
-        List<QuizListResponseDTO> quizList = quizMapper.getQuizList();
+        List<QuizListResponseDTO> quizList = quizMapper.getQuizList(id);
         List<QuizListResponseDTO> subset = new ArrayList<>();
         List<Integer> indices = new ArrayList<>();
 
@@ -54,6 +55,27 @@ public class QuizService {
     public void registAnswer(QuizDetailAnswer quizDetailAnswer) {
         quizMapper.registAnswer(quizDetailAnswer);
     }
+
+    @Transactional
+    public void quizAdd(Long coupleId) {
+        quizMapper.quizAdd(coupleId);
+    }
+
+    public PaginationDTO<QuizService> getItemsWithPagination(int page, int size) {
+        PaginationDTO<QuizService> paginationDTO = new PaginationDTO<>();
+        paginationDTO.setCurrentPage(page);
+        paginationDTO.setPageSize(size);
+
+        int offset = (page - 1) * size;
+        List<QuizService> items = quizMapper.selectItemsWithPagination(offset, size);
+        paginationDTO.setItems(items);
+
+        int totalItems = quizMapper.countTotalItems();
+        paginationDTO.setTotalItems(totalItems);
+
+        return paginationDTO;
+    }
+
 
 //    public String getImgSrc() {
 //        return quizMapper.getImgSrc();
