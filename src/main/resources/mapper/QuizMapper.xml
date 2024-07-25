@@ -62,24 +62,4 @@
                a.id = #{ id }
     </select>
 
-    <select id="selectItemsWithPagination" parameterType="map" resultType="AnotherCategoryItem">
-    SELECT
-           *
-      FROM
-           another_category_table
-    ORDER BY
-           item_id
-    OFFSET
-            #{offset} ROWS FETCH NEXT #{size} ROWS ONLY
-    </select>
-
-<!--    <select id="findAllByPage" resultType="com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO">-->
-<!--        SELECT-->
-<!--               *-->
-<!--          FROM-->
-<!--               items-->
-<!--        ORDER BY id-->
-<!--        LIMIT #{size} OFFSET #{offset}-->
-<!--    </select>-->
-
 </mapper>
