@@ -2,24 +2,44 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
+<head>
+  <style>
+
+    /* 작은 화면에서 작성자 열 숨기기 */
+    @media (max-width: 660px) {
+
+      .section{
+        width: 100%;
+        padding: 5%;
+      }
+
+      /* 작성자 열 숨겼을 때 남은 열 너비 조정 */
+      .table-wrap table {
+        table-layout: fixed;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+
 <body>
   <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 
   <div class="container">
     <section class="section board notice-write">
-      <form>
+      <form th:action="@{/board/notice/write}" method="post">
         <p class="section-tit">공지사항 작성</p>
-        
+        <p th:text="${#dates.format(message.date, 'yyyy-MM-dd')}"></p>
         <label class="input-label">제목</label>
-        <div class="input-wrap" >
-          <input type="text" class="input-text" th:value="${message.getTitle()}" >
+        <div class="input-wrap">
+          <input placeholder="제목을 입력하세요" type="text" class="input-text" name="title" th:value="${message.title}" required >
         </div>
         <label class="input-label">내용</label>
         <div class="textarea-wrap">
-          <textarea placeholder="내용을 입력하세요" name="detail" th:text="${message.getText()}" required></textarea>
+          <textarea placeholder="내용을 입력하세요" type="text" name="text" th:text="${message.text}" required></textarea>
         </div>
         <div class="btn_wrap mg-t--30">
-          <button class="btn btn-full btn-pink" onclick="location.href='/board/notice'">글쓰기</button>
+          <button class="btn btn-full btn-pink" type="submit">글쓰기</button>
         </div>
       </form>
     </section>

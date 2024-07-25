@@ -2,28 +2,51 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
+<head>
+    <style>
+
+        /* 작은 화면에서 작성자 열 숨기기 */
+        @media (max-width: 660px) {
+
+            .section{
+                width: 100%;
+                padding: 5%;
+            }
+
+            /* 작성자 열 숨겼을 때 남은 열 너비 조정 */
+            .table-wrap table {
+                table-layout: fixed;
+                white-space: nowrap;
+            }
+        }
+    </style>
+</head>
+
 <body>
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
-
+<form method="post">
 <div class="container">
     <section class="section board notice-write">
-        <form>
+        <form method="post" action="">
             <p class="section-tit">공지사항 수정</p>
-
+<!--            <p th:value="${boardEditDTO.getDate()}"></p>-->
+            <p th:value="${boardEditDTO.getDate()}"></p>
+<!--            th:text="${#dates.format(boardEditDTO.date, 'yyyy-MM-dd')}"-->
             <label class="input-label">제목</label>
             <div class="input-wrap">
-                <input type="text" class="input-text" th:value="${message.getTitle()}" required >
+                <input placeholder="제목을 입력하세요" type="text" name="title" class="input-text" th:value="${boardEditDTO.getTitle()}" required >
             </div>
             <label class="input-label">내용</label>
             <div class="textarea-wrap">
-                <textarea placeholder="내용을 입력하세요" name="detail" th:text="${message.getText()}" required></textarea>
+                <textarea placeholder="내용을 입력하세요" name="text" th:text="${boardEditDTO.getText()}" required></textarea>
             </div>
             <div class="btn_wrap mg-t--30">
-                <button class="btn btn-full btn-pink" onclick="location.href='/board/notice'">글수정</button>
+                <button class="btn btn-full btn-pink" type="submit">글수정</button>
             </div>
         </form>
     </section>
 </div>
+</form>
 <footer th:replace="~{/html/include/footer :: footer}"></footer>
 </body>
 

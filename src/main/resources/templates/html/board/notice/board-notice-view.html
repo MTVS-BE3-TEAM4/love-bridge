@@ -94,20 +94,19 @@
     <div class="container">
       <div class="content">
         <div class="post-details">
-          <h2 class="post-title">제목입니다.</h2>
-          <p class="post-meta"> 번호: 1 | 작성자: 작성자입니다. 1 | 작성일: 24-01-20</p>
+          <h2 class="post-title" th:text="${boardViewDTO.getTitle()}" style="font-size: 1.9rem">제목입니다.</h2>
+          <p class="post-meta" th:text="'번호: ' + ${boardViewDTO.getId()} + ' | ' + '작성자: ' + ${boardViewDTO.getNickName()} + ' | 작성일: ' + ${boardViewDTO.getDate()}"></p>
           <div class="post-content">
-            <p>
-              th:text="${postTitle.title}
-            </p>
-            <p>
-              게시물 내용이 여기에 표시됩니다. 게시물 내용이 여기에 표시됩니다.
-            </p>
+            <p th:text="${boardViewDTO.getText()}" style="font-size: 2.3rem"></p>
           </div>
         </div>
+
+
         <button class="btn btn-pink btn-md" onclick="location.href='/board/notice'">목록</button>
-        <button class="btn btn-pink btn-md" onclick="location.href='/board/notice/edit'">수정</button>
-        <button class="btn btn-pink btn-md" onclick="location.href='board-notice-write.html'">삭제</button>
+        <a class="btn btn-pink btn-md" type="submit" th:href="@{edit/{id}(id=${boardViewDTO.id})}">수정</a>
+        <form action="" method="post">
+          <button class="btn btn-pink btn-md delete-btn">삭제</button>
+        </form>
         <!-- <div class="buttons">
           <button onclick="window.location.href='list.html'">목록</button>
           <button onclick="editPost()">수정</button>
@@ -117,4 +116,41 @@
     </div>
     <footer th:replace="~{/html/include/footer :: footer}"></footer>
   </body>
+<script>
+  function deleteItem(test){
+    const deleteBtn = document.querySelector('.delete-btn');
+
+    deleteBtn.addEventListener('click',() => {
+      if(confirm("삭제하시겠습니까?")) {
+        console.log('123');
+        // th:onclick="${boardViewDTO.id}"
+      } else {
+        console.log("123");
+      }
+    })
+
+
+  }
+
+
+
+  // function isDelete(event) {
+  //   event.preventDefault(); // Prevent default button behavior
+  //
+  //   // Get album ID from data-value attribute
+  //   var id = $(event.target).data('value');
+  //
+  //   // Confirm dialog
+  //   if (confirm("영구적으로 삭제 하시겠습니까?")) {
+  //     // Send POST request to the server
+  //     $.ajax({
+  //       url: 'notice/{id}', // URL to send request to
+  //       type: 'POST', // Use POST for the delete request
+  //       success: function(result) {
+  //         console.log(result);
+  //       }
+  //     });
+  //   }
+  // }
+</script>
 </html>
