@@ -1,5 +1,7 @@
 package com.jolipjo.lovebridge.domain.quiz.dto;
 
+import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
+
 import java.util.ArrayList;
 
 public class QuizListResponseDTO {

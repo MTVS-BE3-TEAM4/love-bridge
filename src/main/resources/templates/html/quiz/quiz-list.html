@@ -18,6 +18,11 @@
 					</li>
 				</ul>
 			</div>
+			<div class="btn-wrap mg-t--30">
+				<form action="" method="post">
+					<button type="submit" class="btn btn-full btn-pink">퀴즈 생성</button>
+				</form>
+			</div>
 			<div class="pagination">
 				<button type="button" class="prev">prev</button>
 				<button type="button" class="active">1</button>
@@ -28,6 +33,12 @@
 				<button type="button" class="next">next</button>
 			</div>
 		</section>
+		<div class="pagination">
+			<button type="button" class="prev" th:attr="disabled=${currentPage == 1}"
+					th:onclick="|window.location.href='?page=${currentPage - 1}&size=${pageSize}'|">prev</button>
+			<button type="button"><span th:text="${currentPage}"></span></button>
+			<button type="button" class="next" th:onclick="|window.location.href='?page=${currentPage + 1}&size=${pageSize}'|">next</button>
+		</div>
 	</div>
 
 	<footer th:replace="~{/html/include/footer :: footer}"></footer>

@@ -15,18 +15,39 @@
         <result property="quizGetTitle" column="title"/>
     </resultMap>
 
-    <select id="getQuizList" resultMap="quizListMap">
-            SELECT
-                   a.fk_quiz_id
-                 , a.fk_couple_id
-                 , b.title
-                 , a.quiz_complete
-              FROM
-                   QUIZ_LIST a
-         LEFT JOIN
-                   QUIZ b on b.quiz_id = a.fk_quiz_id
+    <parameterMap id="quizAddMap" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO">
+        <parameter property="quizId"/>
+        <parameter property="coupleId"/>
+        <parameter property="quizTitle"/>
+        <parameter property="quizComplete"/>
+    </parameterMap>
 
+    <select id="getQuizList" resultMap="quizListMap" parameterType="Long">
+        SELECT
+               a.fk_quiz_id
+             , a.fk_couple_id
+             , b.title
+             , a.quiz_complete
+        FROM
+               QUIZ_LIST a
+        LEFT JOIN
+               QUIZ b on b.quiz_id = a.fk_quiz_id
+        WHERE
+                a.fk_couple_id = #{id}
+        LIMIT 5
     </select>
+
+    <insert id="quizAdd" useGeneratedKeys="true" parameterMap="quizAddMap">
+        INSERT INTO QUIZ_LIST (quiz_complete, fk_quiz_id, fk_couple_id)
+        SELECT FALSE, quiz_id, #{coupleId}
+        FROM QUIZ
+        WHERE quiz_id NOT IN (
+            SELECT fk_quiz_id
+            FROM QUIZ_LIST
+            WHERE fk_couple_id = #{coupleId}
+        )
+        LIMIT 5
+    </insert>
 
     <select id="getQuizDetail" resultType="String" parameterType="Long">
         SELECT
@@ -41,16 +62,24 @@
                a.id = #{ id }
     </select>
 
-    <insert id="registAnswer" parameterType="String" useGeneratedKeys="true" keyProperty="code">
-        insert into
-        (
+    <select id="selectItemsWithPagination" parameterType="map" resultType="AnotherCategoryItem">
+    SELECT
+           *
+      FROM
+           another_category_table
+    ORDER BY
+           item_id
+    OFFSET
+            #{offset} ROWS FETCH NEXT #{size} ROWS ONLY
+    </select>
 
-        )
-        value
-        (
-
-        )
-    </insert>
-
+<!--    <select id="findAllByPage" resultType="com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO">-->
+<!--        SELECT-->
+<!--               *-->
+<!--          FROM-->
+<!--               items-->
+<!--        ORDER BY id-->
+<!--        LIMIT #{size} OFFSET #{offset}-->
+<!--    </select>-->
 
 </mapper>
