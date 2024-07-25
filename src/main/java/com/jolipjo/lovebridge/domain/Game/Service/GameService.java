@@ -18,7 +18,7 @@ public class GameService {
     }
 
     public MiniGameDto getMiniGameDto(Long memberId) {
-        return gameMapper.getMiniGameDto(memberId);
+        return gameMapper.findAllById(memberId);
     }
 
 

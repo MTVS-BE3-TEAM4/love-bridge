@@ -26,22 +26,47 @@ const WantEntire_M = document.getElementById("WantInputController_M");
 const resultList = document.getElementById("resultList");
 const F_btn = document.getElementById("F_btn");
 const M_btn = document.getElementById("M_btn");
+let mission_test = document.getElementById("mission-test");
+
+
 
 // 여자
-document.getElementById("F_btn").addEventListener("click", function() {
+document.addEventListener("DOMContentLoaded", function() {
 
-    if (F_position < 30) {
-        F_position++;
-        F_character.style.left = (F_position * 1) + "%";
-        if (F_position === 30) {
-            sendPosition(F_position, "F", "Win_F");
-            document.getElementById("F_heart").style.display = "flex";
-            WinnerOkDialog.textContent = " 여자친구분이 이겼어요.";
-        } else {
-            sendPosition(F_position, "F", "NotWinner");
+    fetch('/Game/MoveGameApi', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
         }
-    }
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            // 데이터를 받아와서 화면에 표시하거나 필요한 처리를 수행
+            const attendCnt = data.attendCnt;
+            const mission = data.mission;
+            F_character.style.left = F_position + attendCnt + "%";
+            //else window.location.href = '/Game/MoveGame';
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+
+    document.getElementById("F_btn").addEventListener("click", function() {
+        if (F_position < 30) {
+            F_position++;
+            F_character.style.left = (F_position * 1) + "%"; // 변수 사용
+            if (F_position === 30) {
+                sendPosition(F_position, "F", "Win_F");
+                document.getElementById("F_heart").style.display = "flex";
+                WinnerOkDialog.textContent = " 여자친구분이 이겼어요.";
+            } else {
+                sendPosition(F_position, "F", "NotWinner");
+            }
+        }
+    });
 });
+
 
 // 남자
 document.getElementById("M_btn").addEventListener("click", function() {
@@ -158,30 +183,10 @@ document.addEventListener("DOMContentLoaded", () => {
         F_btn.disabled = WANTTEXT_F.value === "";
     });
 
-    const addToList = (text, gender) => {
-        const listItem = document.createElement("li");
-        resultList.appendChild(listItem);
-        listItem.style.margin = "20px";
-        listItem.style.borderRadius = '8px';
-        listItem.style.backgroundColor = '#fff';
-        listItem.style.width = '100%';
-        listItem.style.textAlign = 'center';
-        listItem.style.display = 'flex';
-        listItem.style.justifyContent = 'center';
-        listItem.style.flexDirection = 'column';
-        listItem.style.marginTop = '20px';
-        listItem.style.fontSize = '15px';
-        listItem.style.border = '1px solid #FF979B';
-        listItem.style.minHeight = '80px';
-        listItem.classList.add("result-item");
-        listItem.textContent = `${gender}: ${text}`;
-        resultList.appendChild(listItem);
-    };
     // 'WantBtn_M' 버튼 클릭 시 'MText' 입력 요소의 텍스트를 확인하고 컨트롤러 숨김 및 리스트에 추가
     WantBtn_M.addEventListener("click", () => {
         if (WANTTEXT_M.value !== "") {
             WantEntire_M.classList.add("hidden");
-            addToList(WANTTEXT_M.value, "남자");
             sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
         }
     });
@@ -189,9 +194,9 @@ document.addEventListener("DOMContentLoaded", () => {
     WantBtn_F.addEventListener("click", () => {
         if (WANTTEXT_F.value !== "") {
             WantEntire_F.classList.add("hidden");
-            addToList(WANTTEXT_F.value, "여자");
             sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
         }
+
     });
 
 });
@@ -210,7 +215,7 @@ const sendPosition = (position, gender, winner) => {
     })
         .then(response => response.text())
         .then(data => {
-            console.log(data);
+
         })
         .catch(error => {
             console.error('Error:', error);
@@ -218,6 +223,7 @@ const sendPosition = (position, gender, winner) => {
 };
 
 const sendWish = (fwish, mwish) => {
+    console.log("fwish ::" + fwish)
     fetch('/Game/Wish', {
         method: 'POST',
         headers: {
@@ -228,9 +234,9 @@ const sendWish = (fwish, mwish) => {
             'mwish': mwish
         }).toString()
     })
-        .then(response => response.text())
+        .then(response => response.json())
         .then(data => {
-            console.log(data);
+            document.getElementById("mission-test").innerText = data.mission;
         })
         .catch(error => {
             console.error('Error:', error);

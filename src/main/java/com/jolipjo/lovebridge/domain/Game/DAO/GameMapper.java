@@ -9,10 +9,11 @@ import java.util.Map;
 @Mapper
 public interface GameMapper {
 
-    MiniGameDto getMiniGameDto(Long memberId);
+    //MiniGameDto getMiniGameDto(Long memberId);
 
     GameDTO SetCount(Integer count);
 
+    MiniGameDto findAllById(Long memberId);
     
     void insertMission(Map<String, Object> parmas);
 
