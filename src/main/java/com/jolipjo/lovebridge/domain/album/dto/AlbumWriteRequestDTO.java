@@ -7,16 +7,10 @@ public class AlbumWriteRequestDTO {
     private String memo;
     private String date;
     private Long memberId;
+    private int totalItems;
 
-   public AlbumWriteRequestDTO() {}
 
-    public AlbumWriteRequestDTO(int id, String image, String memo, String date, Long memberId) {
-        this.id = id;
-        this.image = image;
-        this.memo = memo;
-        this.date = date;
-        this.memberId = memberId;
-    }
+    public AlbumWriteRequestDTO() {}
 
     @Override
     public String toString() {
@@ -25,8 +19,18 @@ public class AlbumWriteRequestDTO {
                 ", image='" + image + '\'' +
                 ", memo='" + memo + '\'' +
                 ", date='" + date + '\'' +
-                ", memberId='" + memberId + '\'' +
+                ", memberId=" + memberId +
+                ", totalItems=" + totalItems +
                 '}';
+    }
+
+    public AlbumWriteRequestDTO(int id, String image, String memo, String date, Long memberId, int totalItems) {
+        this.id = id;
+        this.image = image;
+        this.memo = memo;
+        this.date = date;
+        this.memberId = memberId;
+        this.totalItems = totalItems;
     }
 
     public int getId() {
@@ -68,4 +72,14 @@ public class AlbumWriteRequestDTO {
     public void setMemberId(Long memberId) {
         this.memberId = memberId;
     }
+
+    public int getTotalItems() {
+        return totalItems;
+    }
+
+    public void setTotalItems(int totalItems) {
+        this.totalItems = totalItems;
+    }
 }
+
+
