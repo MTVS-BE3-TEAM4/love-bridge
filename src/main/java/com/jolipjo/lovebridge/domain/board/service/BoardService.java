@@ -43,8 +43,8 @@ public class BoardService {
         boardMapper.boardModify(boardEditDTO);
     }
 
-    public void boardDelete(BoardDeleteDTO boardDeleteDTO, int id) {
-        boardMapper.boardDelete(boardDeleteDTO,id);
+    public void boardDelete(BoardDeleteDTO boardDeleteDTO) {
+        boardMapper.boardDelete(boardDeleteDTO);
     }
 
     public List<BoardNoticeDTO> getBoardListPage(BoardPageDTO boardPageDTO) {
