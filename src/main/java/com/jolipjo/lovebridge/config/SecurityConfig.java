@@ -72,7 +72,7 @@ public class SecurityConfig {
         http
                 .sessionManagement((session) -> session
                         .sessionFixation().changeSessionId()// 세션 고정 공격 방어
-                        .maximumSessions(3)// 동시 로그인 기기는 3대가 최대
+                        .maximumSessions(50)// 동시 로그인 기기는 50대가 최대
                         .maxSessionsPreventsLogin(false)// 3대 넘게 로그인하면 하나 강제로 로그아웃 시킴
                 );
 
