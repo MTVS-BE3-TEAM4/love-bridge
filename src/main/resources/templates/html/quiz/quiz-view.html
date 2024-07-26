@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
-
+<head>
+    <title>퀴즈 답변 작성하는 페이지</title>
+    <style>
+        .disabled-form {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
 <body>
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 <div class="container">
@@ -27,18 +35,20 @@
                 </ul>
             </div>
             <form th:action="@{/quiz/{quizNum}/{quizId}(quizNum=${quizNum}, quizId=${quizId})}" th:object="${requestDTO}" method="post">
-                <div class="answer-wrap">
-                    <label for="answer">답변등록</label>
-                    <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
-                    <div class="btn-wrap type2 mg-t--20">
-                        <button type="button" class="btn btn-half btn-line">
-                            취소
-                        </button>
-                        <button type="submit" class="btn btn-half btn-pink">
-                            등록
-                        </button>
+                <fieldset th:attr="disabled=${isDisabled} ? 'disabled' : null">
+                    <div class="answer-wrap">
+                        <label for="answer">답변등록</label>
+                        <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
+                        <div class="btn-wrap type2 mg-t--20">
+                            <button type="button" class="btn btn-half btn-line">
+                                취소
+                            </button>
+                            <button type="submit" class="btn btn-half btn-pink">
+                                등록
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </fieldset>
             </form>
         </div>
     </section>
