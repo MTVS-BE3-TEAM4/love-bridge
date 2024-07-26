@@ -30,7 +30,7 @@
         <result property="title" column="title"/>
     </resultMap>
 
-    <parameterMap id="quizAnswerDbParameter" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizAnswerDbParameter">
+    <parameterMap id="quizAnswerPKParameter" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizAnswerPKParameter">
         <parameter property="quizId"/>
         <parameter property="coupleId"/>
         <parameter property="quizNum"/>
@@ -63,7 +63,7 @@
         LIMIT 5
     </insert>
 
-    <select id="getQuizDetail" parameterMap="quizAnswerDbParameter" resultMap="quizDetailAnswerResponseDTO" >
+    <select id="getQuizDetail" parameterMap="quizAnswerPKParameter" resultMap="quizDetailAnswerResponseDTO" >
         SELECT
             qa.quiz_answer AS quizAnswer,
             qa.createdAt AS createdAt,
@@ -92,5 +92,26 @@
         WHERE
             quiz_id = #{quizId}
     </select>
+
+    <insert id="registAnswer" parameterType="com.jolipjo.lovebridge.domain.quiz.entity.QuizAnswer" >
+        INSERT INTO QUIZ_ANSWER
+        (
+            quiz_answer
+            , createdAt
+            , fk_quiz_id
+            , fk_couple_id
+            , fk_quiz_num
+            , fk_member_id
+        )
+        VALUE
+        (
+            #{ quizAnswer }
+            , #{ createdAt }
+            , #{ quizId }
+            , #{ coupleId }
+            , #{ quizNum }
+            , #{ memberId }
+        )
+    </insert>
 
 </mapper>

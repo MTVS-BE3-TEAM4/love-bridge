@@ -63,7 +63,8 @@ public class QuizController {
             @PathVariable("quizNum") Long quizNum,
             @PathVariable("quizId") Long quizId,
             Model model,
-            @AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+            QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO) {
 
         List<QuizDetailAnswerResponseDTO> responseDTO = quizService.getQuizDetail(
                 quizId,
@@ -73,16 +74,24 @@ public class QuizController {
         model.addAttribute("responseDTOs", responseDTO);
         model.addAttribute("quizNum", quizNum);
         model.addAttribute("title", quizService.getOneQuizTitle(quizId));
-
+        model.addAttribute("requestDTO", quizDetailAnswerRequestDTO);
         return "html/quiz/quiz-view";
     }
 
-    @PostMapping("/{id}")
-    public String quizAnswerRegist(QuizDetailAnswer quizDetailAnswer) {
+    @PostMapping("/{quizNum}/{quizId}")
+    public String quizAnswerRegist(
+            @PathVariable("quizNum") Long quizNum,
+            @PathVariable("quizId") Long quizId,
+            @ModelAttribute("requestDTO") QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO,
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 
-        quizService.registAnswer(quizDetailAnswer);
+        quizService.registAnswer(
+                quizDetailAnswerRequestDTO,
+                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                customMemberDetail.getMember().getId()
+        );
 
-        return "html/quiz/quiz-view";
+        return "redirect:/quiz/" + quizNum + "/" + quizId;
     }
 
 

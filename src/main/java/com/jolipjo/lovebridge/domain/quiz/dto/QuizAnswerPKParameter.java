@@ -1,12 +1,12 @@
 package com.jolipjo.lovebridge.domain.quiz.dto;
 
-public class QuizAnswerDbParameter {
+public class QuizAnswerPKParameter {
 
     private Long quizId;
     private Long coupleId;
     private Long quizNum;
 
-    public QuizAnswerDbParameter(Long quizId, Long coupleId, Long quizNum) {
+    public QuizAnswerPKParameter(Long quizId, Long coupleId, Long quizNum) {
         this.coupleId = coupleId;
         this.quizId = quizId;
         this.quizNum = quizNum;
