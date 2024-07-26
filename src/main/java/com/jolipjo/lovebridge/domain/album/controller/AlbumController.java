@@ -55,7 +55,6 @@ public class AlbumController {
                                 Model model) {
 
 
-
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
 
@@ -64,10 +63,7 @@ public class AlbumController {
 
         List<AlbumListResponseDTO> albumListResponseDTOS1 = albumService.albumListPage(m);
         List<AlbumListResponseDTO> albumListResponseDTOS2 = albumService.albumListPage(f);
-        //model.addAttribute("albumList", albumListResponseDTOS);
-
-       albumListResponseDTOS1.addAll(albumListResponseDTOS2);
-
+        albumListResponseDTOS1.addAll(albumListResponseDTOS2);
 
         PaginationDTO<AlbumListResponseDTO> paginationDTO = new PaginationDTO<>(page, size, albumListResponseDTOS1, albumListResponseDTOS1.size());
         model.addAttribute("paginationDTO", paginationDTO);
@@ -77,7 +73,7 @@ public class AlbumController {
     }
 
 
-  //삭제하기
+    //삭제하기
     @PostMapping("{id}")
     public ResponseEntity<Void> albumDelete(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                                             @PathVariable(name = "id") int id, AlbumDeleteDTO albumDeleteDTO) {

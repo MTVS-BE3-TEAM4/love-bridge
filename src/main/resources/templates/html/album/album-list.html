@@ -33,13 +33,37 @@
     @media(max-width: 844px ){
         .ip12pro{
             padding-top: 20%;
+            /*.qwert{*/
+            /*    white-space: nowrap;*/
+            /*    overflow: hidden;*/
+            /*    text-overflow: ellipsis;*/
+            /*    display: block;*/
+            /*    width: 24%;*/
+            /*}*/
+            /*.item11{*/
+            /*    width: 24%;*/
+            /*}*/
         }
+
 
     }
     .imgfix{width: 100%; height: 250px; object-fit: cover;}
-    .roww{
-        justify-content: space-evenly;
+
+    .roww{justify-content: space-evenly;}
+
+    .qwert{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: block;
+        width: 24%;
     }
+    .item11{
+        width: 24%;
+    }
+
+
+
 
 </style>
 
@@ -69,7 +93,9 @@
                         </div>
                             <p class="date" th:text="${album.date}" ></p>
                     </div>
-                    <p class="album-memo" th:text="${album.memo}"></p>
+
+                        <p class="album-memo qwert" th:text="${album.memo}"></p>
+
                 </li>
             </ul>
 
