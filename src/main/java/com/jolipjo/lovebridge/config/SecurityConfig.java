@@ -28,7 +28,7 @@ public class SecurityConfig {
         /*url 경로 권한*/
         http
                 .authorizeHttpRequests( (auth) -> auth
-                                .requestMatchers("css/**", "js/**", "images/**").permitAll()// 템플릿 경로
+                                .requestMatchers("css/**", "js/**", "images/**", "/error").permitAll()// 템플릿 경로
                                 .requestMatchers("/include/header").permitAll()
                                 .requestMatchers("/").permitAll()// 메인페이지 누구나 접근 가능
                                 .requestMatchers("/member/join").permitAll()// 회원가입 페이지는 누구나 접근 가능
@@ -74,7 +74,7 @@ public class SecurityConfig {
         http
                 .sessionManagement((session) -> session
                         .sessionFixation().changeSessionId()// 세션 고정 공격 방어
-                        .maximumSessions(3)// 동시 로그인 기기는 3대가 최대
+                        .maximumSessions(50)// 동시 로그인 기기는 50대가 최대
                         .maxSessionsPreventsLogin(false)// 3대 넘게 로그인하면 하나 강제로 로그아웃 시킴
                 );
 

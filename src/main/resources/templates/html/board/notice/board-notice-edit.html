@@ -34,11 +34,11 @@
 <!--            th:text="${#dates.format(boardEditDTO.date, 'yyyy-MM-dd')}"-->
             <label class="input-label">제목</label>
             <div class="input-wrap">
-                <input placeholder="제목을 입력하세요" type="text" name="title" class="input-text" th:value="${boardEditDTO.getTitle()}" required >
+                <input placeholder="제목을 입력하세요" type="text" name="title" class="input-text" maxlength="30" th:value="${boardEditDTO.getTitle()}" required >
             </div>
             <label class="input-label">내용</label>
             <div class="textarea-wrap">
-                <textarea placeholder="내용을 입력하세요" name="text" th:text="${boardEditDTO.getText()}" required></textarea>
+                <textarea placeholder="내용을 입력하세요" name="text" maxlength="200" th:text="${boardEditDTO.getText()}" required></textarea>
             </div>
             <div class="btn_wrap mg-t--30">
                 <button class="btn btn-full btn-pink" type="submit">글수정</button>

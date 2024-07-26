@@ -61,7 +61,7 @@
         <label class="input-label required ">메모</label>
 
         <div class="textarea-wrap">
-          <textarea name="memo" placeholder="내용을 입력하세요" id="memo" th:text="${albumModify.memo}"></textarea>
+          <textarea name="memo" placeholder="내용을 입력하세요" id="memo" maxlength="200" th:text="${albumModify.memo}"></textarea>
         </div>
 
         <label class="input-label required">첨부파일</label>

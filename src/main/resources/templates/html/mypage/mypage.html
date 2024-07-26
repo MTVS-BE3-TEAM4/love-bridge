@@ -3,7 +3,7 @@
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <body>
-<header th:include="~{/html/include/header :: header}" class="header includeJs"></header><header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<header th:include="~{html/include/header :: header}" class="header includeJs"></header>
 
 	<div class="container">
 		<section class="section mypage">
@@ -17,10 +17,10 @@
 				</div>
 
 				<div style="display: flex; justify-content: end;">
-				<button type="button" onclick="generateSecretCode('mypage-secret')" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn">
+				<button type="button" onclick="generateSecretCode('mypage-secret')" class="btn btn-lg btn-line btn-round type2 mg-t--10" id="mypage-secretBtn">
 					시크릿 코드 생성
 				</button>
-				<button type="button" onclick="modalEnable('mypage-inviteSecretCodeModal')" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn2">
+				<button type="button" onclick="modalEnable('mypage-inviteSecretCodeModal')" class="btn btn-lg btn-line btn-round type2 mg-t--10" id="mypage-secretBtn2">
 					시크릿 코드 초대
 				</button>
 				</div>
@@ -124,7 +124,7 @@
 </div>
 
 
-<div th:replace="~{/html/include/footer :: footer}"></div>
+<div th:replace="~{html/include/footer :: footer}"></div>
 <script>
 	const localAutoHyphen = (target) => {
 		target.value = target.value
@@ -181,7 +181,7 @@
 			type : "post",
 			success : function(result) {
 				console.log(result.code);
-				document.getElementById(target).value=result.code;
+				document.getElementById(target).value=result.secret_code;
 				secretCodeButtonDisplay();
 			}
 		});

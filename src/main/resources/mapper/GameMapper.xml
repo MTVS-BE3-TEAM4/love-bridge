@@ -12,17 +12,30 @@
         <result property="mission" column="mission"/>
     </resultMap>
 
-    <select id="findAllById" resultMap="MiniGameDto" parameterType="java.lang.Long">
+    <select id="findAllByMe" resultMap="MiniGameDto" parameterType="java.lang.Long">
         SELECT
-        id,
-        memberId,
-        attendCnt,
-        date,
-        mission
+            id,
+            memberId,
+            attendCnt,
+            date,
+            mission
         FROM
-        miniGame
+            miniGame
         WHERE
-        memberId = #{id}
+            memberId = #{id}
+    </select>
+
+    <select id="findAllByPartner" resultMap="MiniGameDto" parameterType="java.lang.Long">
+        SELECT
+            id,
+            memberId,
+            attendCnt,
+            date,
+            mission
+        FROM
+            miniGame
+        WHERE
+            memberId = #{secretId}
     </select>
     
 <!--    <select id="findAttendCount" resultType="java.lang.Integer" parameterType="String">-->

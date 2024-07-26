@@ -12,11 +12,11 @@ public interface AlbumMapper {
 
 
     //앨범 화면 불러오기
-    List<AlbumListResponseDTO> albumListPage(@Param("memberId") long memberId,
-                                             @Param("size") int size,
-                                             @Param("offset") int offset);
-    //페이징
-    int getTotalItem(long memberId);
+    List<AlbumListResponseDTO> albumListPage(Long memberId);
+//    //페이징
+//    int getTotalItem(@Param("memberId") long memberId,
+//                     @Param("size")int size,
+//                     @Param("offset")int offset);
 
     //삭제하기
     void albumDelete(AlbumDeleteDTO albumDeleteDTO, int id);

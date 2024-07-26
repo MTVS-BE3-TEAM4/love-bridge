@@ -1,6 +1,7 @@
 
     const open = document.querySelector('.menu');
     const close = document.querySelector('.close');
+    const headerWrap = document.querySelector('.header');
     var tl = gsap.timeline({ defaults: { duration: 0.6, ease: 'expo.inOut' } }); // duration을 0.6초로 변경
 
     open.addEventListener('click', () => {
@@ -10,18 +11,25 @@
 
 
         } else {
-            tl.to('nav', { right: 0, duration: 0.2 }) // 각각의 애니메이션 스텝의 duration을 더 짧게 설정
+            tl.to('.menu', { opacity: 0, display: 'none', pointerEvents: 'all', duration: 0.2 })
+                .to('nav', { top: 0, display: 'flex', duration: 0.2 }) // 각각의 애니메이션 스텝의 duration을 더 짧게 설정
                 .to('nav', { height: '100vh', duration: 0.2 }, '-=.1')
-                .to('.menu', { opacity: 0, display: 'none', pointerEvents: 'all', duration: 0.2 }, "-=.2")
-                .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }, '-=.2') // stagger 값을 0.1로 줄임
-                .to('.close', { opacity: 1, pointerEvents: 'all', duration: 0.2 }, "-=.2") // duration을 0.3초로 변경
-                .to('nav h2', { opacity: 1, pointerEvents: 'all', duration: 0.2 }, '-=0.2'); // duration을 0.4초로 변경
+                .to('.close', { opacity: 1, pointerEvents: 'all', duration: 0.2 })// duration을 0.3초로 변경
+                .to('nav h2', { opacity: 1, pointerEvents: 'all', duration: 0.2 }) // duration을 0.4초로 변경
+                .to('nav ul li a', { opacity: 1, pointerEvents: 'all', stagger: 0.1 }); // stagger 값을 0.1로 줄임
+
+
         }
+
+        headerWrap.classList.add('open');
+
     });
 
     close.addEventListener('click', () => {
+        headerWrap.classList.remove('open');
         tl.reverse();
-    });
+    })
+
 
     // gsap.registerPlugin(ScrollTrigger);
 

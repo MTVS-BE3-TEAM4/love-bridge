@@ -4,7 +4,9 @@ import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
+import com.jolipjo.lovebridge.domain.paginaition.controller.paginationController;
 import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
+import com.jolipjo.lovebridge.domain.paginaition.service.PaginationService;
 import com.jolipjo.lovebridge.domain.quiz.dto.*;
 import com.jolipjo.lovebridge.domain.quiz.service.QuizService;
 import org.springframework.context.MessageSource;
@@ -23,26 +25,35 @@ public class QuizController {
     private final QuizService quizService;
     private final MessageSource messageSource;
     private final MemberService memberService;
+    private final PaginationService itemService;
 
-    public QuizController(QuizService quizService, MessageSource messageSource, MemberService memberService) {
+    public QuizController(QuizService quizService, MessageSource messageSource, MemberService memberService, PaginationService itemService) {
         this.quizService = quizService;
         this.messageSource = messageSource;
         this.memberService = memberService;
+        this.itemService = itemService;
     }
 
     @GetMapping
     public String quizGetList(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                               RedirectAttributes redirectAttributes,
+                              @RequestParam(value = "size", defaultValue = "5") int size,
+                              @RequestParam(value = "page", defaultValue = "1") int page,
                               Model model) {
 
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
-        if(secretCode == null){
+        if (secretCode == null) {
             redirectAttributes.addFlashAttribute("message", "커플이 아닙니다. Quiz 리스트를 볼 수 없습니다.");
             return "redirect:/";
         }
+
         List<QuizListResponseDTO> quizList = quizService.getQuizList(secretCode.getCouple_id());
         model.addAttribute("quizList", quizList);
+        System.out.println("@@@size: " + quizList.size());
+
+        PaginationDTO<QuizListResponseDTO> paginationDTO = new PaginationDTO<>(page, size, quizList, quizList.size());
+        model.addAttribute("paginationDTO", paginationDTO);
 
         return "html/quiz/quiz-list";
     }
@@ -58,21 +69,40 @@ public class QuizController {
         return "redirect:/quiz";
     }
 
-    @GetMapping("{id}")
-    public String quizDetailView(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/{quizNum}/{quizId}")
+    public String quizDetailView(
+            @PathVariable("quizNum") Long quizNum,
+            @PathVariable("quizId") Long quizId,
+            Model model,
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+            QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO) {
 
-        String quizGetTitle = quizService.getQuizDetail(id);
-        model.addAttribute("quizGetTitle", quizGetTitle);
-
+        List<QuizDetailAnswerResponseDTO> responseDTO = quizService.getQuizDetail(
+                quizId,
+                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                quizNum
+        );
+        model.addAttribute("responseDTOs", responseDTO);
+        model.addAttribute("quizNum", quizNum);
+        model.addAttribute("title", quizService.getOneQuizTitle(quizId));
+        model.addAttribute("requestDTO", quizDetailAnswerRequestDTO);
         return "html/quiz/quiz-view";
     }
 
-    @PostMapping("/{id}")
-    public String quizAnswerRegist(QuizDetailAnswer quizDetailAnswer) {
+    @PostMapping("/{quizNum}/{quizId}")
+    public String quizAnswerRegist(
+            @PathVariable("quizNum") Long quizNum,
+            @PathVariable("quizId") Long quizId,
+            @ModelAttribute("requestDTO") QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO,
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 
-        quizService.registAnswer(quizDetailAnswer);
+        quizService.registAnswer(
+                quizDetailAnswerRequestDTO,
+                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                customMemberDetail.getMember().getId()
+        );
 
-        return "html/quiz/quiz-view";
+        return "redirect:/quiz/" + quizNum + "/" + quizId;
     }
 
 

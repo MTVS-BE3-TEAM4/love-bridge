@@ -10,9 +10,9 @@
 			<p class="section-tit">QUIZ</p>
 			<div class="quiz-complete">
 				<ul class="quiz-list">
-					<li class="" th:each="quiz : ${ quizList }">
-						<a th:href="@{quiz/{id}(id = ${quiz.quizId})}">
-							<span class="num">Q</span>
+					<li class="" th:each="quiz : ${ paginationDTO.items }">
+						<a th:href="@{quiz/{id}(id = ${quiz.quizNum})/{id}(id = ${quiz.quizId})}">
+							<span class="num" th:text="'Q' + ${quiz.quizId}"></span>
 							<span th:text="${ quiz.getQuizTitle() }"></span>
 						</a>
 					</li>
@@ -24,21 +24,20 @@
 				</form>
 			</div>
 			<div class="pagination">
-				<button type="button" class="prev">prev</button>
-				<button type="button" class="active">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">4</button>
-				<button type="button">5</button>
-				<button type="button" class="next">next</button>
+				<!-- 이전 페이지 버튼 -->
+				<button type="button" class="prev" th:attr="disabled=${!paginationDTO.hasPreviousPage}"
+						th:onclick="|window.location.href='?page=${paginationDTO.currentPage - 1}&size=${paginationDTO.pageSize}'|">prev</button>
+				<!-- 페이지 번호 버튼들 -->
+				<span th:each="i : ${#numbers.sequence(1, paginationDTO.totalPages)}">
+                    <button type="button" th:classappend="${i == paginationDTO.currentPage} ? 'active'"
+							th:text="${i}"
+							th:onclick="|window.location.href='?page=${i}&size=${paginationDTO.pageSize}'|">1</button>
+                </span>
+				<!-- 다음 페이지 버튼 -->
+				<button type="button" class="next" th:attr="disabled=${!paginationDTO.hasNextPage}"
+						th:onclick="|window.location.href='?page=${paginationDTO.currentPage + 1}&size=${paginationDTO.pageSize}'|">next</button>
 			</div>
 		</section>
-		<div class="pagination">
-			<button type="button" class="prev" th:attr="disabled=${currentPage == 1}"
-					th:onclick="|window.location.href='?page=${currentPage - 1}&size=${pageSize}'|">prev</button>
-			<button type="button"><span th:text="${currentPage}"></span></button>
-			<button type="button" class="next" th:onclick="|window.location.href='?page=${currentPage + 1}&size=${pageSize}'|">next</button>
-		</div>
 	</div>
 
 	<footer th:replace="~{/html/include/footer :: footer}"></footer>

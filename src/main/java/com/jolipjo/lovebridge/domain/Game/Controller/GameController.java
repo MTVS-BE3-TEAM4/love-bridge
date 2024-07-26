@@ -33,34 +33,59 @@ public class GameController {
     @GetMapping("/MoveGame")
     public String MoveGamePage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail, Model model) {
         GameDTO gameDTO = new GameDTO();
-
-        System.out.println("Render MoveGame");
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
-        Long F_memberId = secretCode.getF_member_id();
-        Long M_memberId = secretCode.getM_member_id();
+        Member my = member;
+        Long partnerId;
 
-        Member F = memberService.getMemberById(F_memberId);
-        Member M = memberService.getMemberById(M_memberId);
+        // 내가 남자인지 여자인지 게이인지 레즈인지
+        if(member.getId() == secretCode.getF_member_id() ){
+            partnerId = secretCode.getM_member_id();
+            System.out.println("내 성별 ::" + member.getId());
+            System.out.println("파트너의 성별은 남자여야되 :: " + partnerId);
+        } else{
+            partnerId = secretCode.getF_member_id();
+            System.out.println("내 성별 ::" + member.getId());
+            System.out.println("파트너의 성별은 남자여야되 :: " + partnerId);}
 
-        MiniGameDto miniGameDto = gameService.getMiniGameDto(member.getId());
+        Long MyMemberId = secretCode.getF_member_id();
+        Long PartnerId = secretCode.getM_member_id();
+        Member partner = memberService.getMemberById(PartnerId);
+
+        MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(my.getId());
+        MiniGameDto miniGameDtoPartner = gameService.getMiniGameDtoPartner(partner.getId());
+
+        System.out.println("Render MoveGame");
+        System.out.println("member ::" + member);
+        System.out.println("secretCode :: " + secretCode);
+        System.out.println("My ::" + my);
+        System.out.println("Partner ::" + my);
+        System.out.println("miniGameDtoMy ::" + miniGameDtoMy);
+        System.out.println("miniGameDtoPartner ::" + miniGameDtoPartner);
+
         try {
-            if (miniGameDto == null) {
+            if (miniGameDtoMy == null || miniGameDtoPartner == null) {
                 return "redirect:http://localhost:8080";
             } else {
-                gameDTO.setAttendCnt(miniGameDto.getAttendCnt());
+                gameDTO.setAttendCnt(miniGameDtoMy.getAttendCnt());
             }
         } catch (NullPointerException e) {
             return "redirect:http://localhost:8080";
         }
 
 
-        gameDTO.setMission(miniGameDto.getMission());
+        gameDTO.setMission(miniGameDtoMy.getMission());
+        gameDTO.setMission(miniGameDtoPartner.getMission());
+        System.out.println("내 미션 ::" + miniGameDtoMy.getMission());
+        System.out.println("상대 미션 ::" + miniGameDtoPartner.getMission());
         gameDTO.setMyName(member.getNickname());
-        gameDTO.setPartnerName(F.getNickname());
+        gameDTO.setPartnerName(partner.getNickname());
         model.addAttribute("gameDTO", gameDTO);
         model.addAttribute("attendCnt", gameDTO.getAttendCnt());
-        model.addAttribute("mission", gameDTO.getMission());
+        model.addAttribute("mission", miniGameDtoMy.getMission());
+        model.addAttribute("partnerMission",miniGameDtoPartner.getMission());
+
+
 
         return "html/Game/MoveGame";
     }
@@ -72,10 +97,11 @@ public class GameController {
 
         GameDTO gameDTO = new GameDTO();
         Member member = memberService.getByEmail(memberDetail.getUsername());
-        System.out.println("member :: " + member);
-        MiniGameDto miniGameDto = gameService.getMiniGameDto(member.getId());
-        gameDTO.setAttendCnt(miniGameDto.getAttendCnt());
-        gameDTO.setMission(miniGameDto.getMission());
+        System.out.println("MoveGameApi_member :: " + member);
+        MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(member.getId());
+
+        gameDTO.setAttendCnt(miniGameDtoMy.getAttendCnt());
+        gameDTO.setMission(miniGameDtoMy.getMission());
 
         model.addAttribute("attendCnt", gameDTO.getAttendCnt());
         model.addAttribute("mission", gameDTO.getMission());
