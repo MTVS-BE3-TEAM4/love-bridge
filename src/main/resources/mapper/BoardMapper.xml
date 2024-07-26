@@ -60,6 +60,7 @@
              , b.nickname
           FROM notice a
          join member b on a.memberId = b.id
+        ORDER BY a.date DESC
     </select>
 
 <!--    공지사항 상세 글 조회 쿼리-->
@@ -76,6 +77,7 @@
          WHERE a.id = #{ id }
     </select>
 
+<!--    공지사항 목록 페이징 쿼리-->
     <select id="getBoardListPage" resultMap="BoardNoticeDTO">
         SELECT
                a.id
@@ -85,6 +87,7 @@
              , b.nickname
          FROM notice a
         join member b on a.memberId = b.id
+        ORDER BY a.date DESC
         LIMIT #{offset}, #{limit}
     </select>
 

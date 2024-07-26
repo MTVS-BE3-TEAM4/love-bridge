@@ -32,11 +32,11 @@
         <p th:text="${#dates.format(message.date, 'yyyy-MM-dd')}"></p>
         <label class="input-label">제목</label>
         <div class="input-wrap">
-          <input placeholder="제목을 입력하세요" type="text" class="input-text" id="title" name="title" th:value="${message.title}" required >
+          <input placeholder="제목을 입력하세요(30글자 제한)" type="text" class="input-text" id="title" name="title" maxlength="30" th:value="${message.title}" required >
         </div>
         <label class="input-label">내용</label>
         <div class="textarea-wrap">
-          <textarea placeholder="내용을 입력하세요" type="text" id="text" name="text" th:text="${message.text}" required></textarea>
+          <textarea placeholder="내용을 입력하세요(200글자 제한)" type="text" id="text" name="text" maxlength="200" th:text="${message.text}" required></textarea>
         </div>
         <div class="btn_wrap mg-t--30">
           <button class="btn btn-full btn-pink" type="submit" id="submitButton" onclick="return submitPost(event);">글쓰기</button>

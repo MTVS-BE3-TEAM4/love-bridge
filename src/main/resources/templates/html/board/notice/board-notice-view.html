@@ -58,6 +58,9 @@
 
       .post-content p {
         line-height: 1.6;
+        white-space: pre-wrap; /* 추가 */
+        max-height: 400px; /* 추가: 최대 높이 설정 */
+        overflow-y: auto; /* 추가: 세로 스크롤 추가 */
       }
 
       .buttons {
@@ -98,7 +101,7 @@
           <h2 class="post-title" th:text="${boardViewDTO.getTitle()}" style="font-size: 1.9rem">제목입니다.</h2>
           <p class="post-meta" th:text="'번호: ' + ${boardViewDTO.getId()} + ' | ' + '작성자: ' + ${boardViewDTO.getNickName()} + ' | 작성일: ' + ${boardViewDTO.getDate()}"></p>
           <div class="post-content">
-            <p th:text="${boardViewDTO.getText()}" style="font-size: 2.3rem"></p>
+            <p th:text="${boardViewDTO.getText()}" style="white-space: pre-wrap; font-size: 2.3rem"></p>
           </div>
         </div>
 
