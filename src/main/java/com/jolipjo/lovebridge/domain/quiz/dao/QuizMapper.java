@@ -20,4 +20,6 @@ public interface QuizMapper {
     int countTotalItems();
 
     String getOneQuiz(Long quizId);
+
+    void updateIsQuizComplete(QuizAnswerPKParameter quizAnswerPKParameter);
 }

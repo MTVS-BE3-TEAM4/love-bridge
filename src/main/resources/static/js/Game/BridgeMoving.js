@@ -43,24 +43,23 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             console.log(data);
             // 데이터를 받아와서 화면에 표시하거나 필요한 처리를 수행
-            const attendCnt = data.attendCnt;
-            let partnerAttendCnt;
-            const mission = data.mission;
-            let partnerMission;
-            F_character.style.left = F_position = attendCnt + "%";
-            console.log("F_character.style.left 전 :: " + F_character.style.left);
+            const myAttendCnt = data.myAttendCnt;
+            const partnerAttendCnt = data.partnerAttendCnt;
+            const myGender = data.MyGender;
+            const partnerGender = data.partnerGender;
+            F_character.style.right = F_position = myAttendCnt + "%";
+            M_character.style.left = M_position = partnerAttendCnt + "%";
         })
         .catch(error => {
             console.error('Error:', error);
         });
+});
 
     document.getElementById("F_btn").addEventListener("click", function() {
-        console.log("F_position 현재 :: " + F_position);
         if (F_position < 30) {
             F_position++;
-            console.log("F_position ++ :" + F_position);
-            F_character.style.left = (F_position * 1) + "%"; // 변수 사용
-            console.log("F_character.style.left 후 :: " + F_character.style.left);
+            F_character.style.right = (F_position * 1) + "%"; // 변수 사용
+            console.log("F_character.style.left 후 :: " + F_character.style.right);
             if (F_position === 30) {
                 sendPosition(F_position, "F", "Win_F");
                 document.getElementById("F_heart").style.display = "flex";
@@ -70,7 +69,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         }
     });
-});
+
 
 
 // 남자
@@ -78,7 +77,7 @@ document.getElementById("M_btn").addEventListener("click", function() {
 
     if (M_position < 30) {
         M_position++;
-        M_character.style.right = (M_position * 1) + "%";
+        M_character.style.left = (M_position * 1) + "%";
         if (M_position === 30) {
             sendPosition(M_position, "M", "Win_M");
             WinnerOkDialog.textContent = "남자친구분이 이겼어요.";
@@ -153,17 +152,17 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-function updateTime() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
-    const minutes = String(now.getMinutes()).padStart(2, '0');
-    const seconds = String(now.getSeconds()).padStart(2, '0');
-    const currentTime = `${hours}:${minutes}:${seconds}`;
-
-    document.querySelector('.Time').textContent = currentTime;
-}
-setInterval(updateTime, 1000);
-updateTime();
+// function updateTime() {
+//     const now = new Date();
+//     const hours = String(now.getHours()).padStart(2, '0');
+//     const minutes = String(now.getMinutes()).padStart(2, '0');
+//     const seconds = String(now.getSeconds()).padStart(2, '0');
+//     const currentTime = `${hours}:${minutes}:${seconds}`;
+//
+//     document.querySelector('.Time').textContent = currentTime;
+// }
+// setInterval(updateTime, 1000);
+// updateTime();
 
 document.addEventListener("DOMContentLoaded", () => {
 

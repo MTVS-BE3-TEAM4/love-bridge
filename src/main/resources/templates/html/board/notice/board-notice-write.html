@@ -36,7 +36,7 @@
         </div>
         <label class="input-label">내용</label>
         <div class="textarea-wrap">
-          <textarea placeholder="내용을 입력하세요(200글자 제한)" type="text" id="text" name="text" maxlength="200" th:text="${message.text}" required></textarea>
+          <textarea placeholder="내용을 입력하세요(200글자 제한)" type="text" id="text" name="text" maxlength="250" th:text="${message.text}" required></textarea>
         </div>
         <div class="btn_wrap mg-t--30">
           <button class="btn btn-full btn-pink" type="submit" id="submitButton" onclick="return submitPost(event);">글쓰기</button>
