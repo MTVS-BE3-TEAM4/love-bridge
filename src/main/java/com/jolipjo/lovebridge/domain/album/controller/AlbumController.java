@@ -7,6 +7,8 @@ import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
 import com.jolipjo.lovebridge.domain.member.dto.FindPasswordRequestDTO;
 import com.jolipjo.lovebridge.domain.member.dto.FindPasswordResponseDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
+import com.jolipjo.lovebridge.domain.paginaition.dao.PaginationMapper;
+import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.Timecapsule;
 import jakarta.servlet.annotation.MultipartConfig;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,48 +50,44 @@ public class AlbumController {
                                 @RequestParam(defaultValue = "8", name = "size") int size,
                                 Model model) {
 
-        //페이지와 사이즈가 1이상의 값으로 설정되도록 보장
-        if (page < 1) page = 1;
-        if (size < 1) size = 8;
-
-
         Member member = customMemberDetail.getMember();
         long memberId = member.getId();
 
-        int totalItems = albumService.getTotatlItem(memberId);
-        int totalPages = (int) Math.ceil((double) totalItems/size);
-
-        // 현재 페이지가 총 페이지 수를 초과하면 마지막 페이지로 설정
-        if (page > totalPages) page = totalPages;
+        List<AlbumListResponseDTO> albumListResponseDTOS = albumService.albumListPage(member.getId());
+        //model.addAttribute("albumList", albumListResponseDTOS);
 
 
-//        PageAA<Timecapsule> pageAlbum = new PageAA<>();
-//        List<Timecapsule> dtos = pageAlbum.getContents();
+        PaginationDTO<AlbumListResponseDTO> paginationDTO = new PaginationDTO<>(page, size, albumListResponseDTOS, albumListResponseDTOS.size());
+        model.addAttribute("paginationDTO", paginationDTO);
 
-        // 총 항목수가 0인 경우를 처리
-        if (totalItems == 0) {
-            model.addAttribute("albumList", Collections.emptyList());
-            model.addAttribute("currentPage", 1);
-            model.addAttribute("pageSize", size);
-            model.addAttribute("totalPages", 1);
-            model.addAttribute("startPage", 1);
-            model.addAttribute("endPage", 1);
-            return "html/album/album-list";
-        }
-
-
-        List<AlbumListResponseDTO> albumListResponseDTOS = albumService.albumListPage(member.getId(),page,size);
-
-
-        int startPage = Math.max(1, page - 2);
-        int endPage = Math.min(totalPages, page + 2);
-
-        model.addAttribute("albumList", albumListResponseDTOS);
-        model.addAttribute("currentPage", page);
-        model.addAttribute("pageSize", size);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("startPage", startPage);
-        model.addAttribute("endPage", endPage);
+//        int totalItems = albumService.getTotatlItem(memberId , page, size);
+//        int totalPages = (int) Math.ceil((double) totalItems/size);
+//
+//        //페이지와 사이즈가 1이상의 값으로 설정되도록 보장
+//        if (page < 1) page = 1;
+//        if (size < 1) size = 8;
+//
+//        // 총 항목수가 0인 경우를 처리
+//        if (totalItems == 0) {
+//            model.addAttribute("albumList", Collections.emptyList());
+//            model.addAttribute("currentPage", 1);
+//            model.addAttribute("pageSize", size);
+//            model.addAttribute("totalPages", 1);
+//            model.addAttribute("startPage", 1);
+//            model.addAttribute("endPage", 1);
+//            return "html/album/album-list";
+//        }
+//
+//        if (page > totalPages) page = totalPages;
+//        int startPage = Math.max(1, page - 2);
+//        int endPage = Math.min(totalPages, page + 2);
+//
+//        model.addAttribute("albumList", albumListResponseDTOS);
+//        model.addAttribute("currentPage", page);
+//        model.addAttribute("pageSize", size);
+//        model.addAttribute("totalPages", totalPages);
+//        model.addAttribute("startPage", startPage);
+//        model.addAttribute("endPage", endPage);
 
         return "html/album/album-list";
     }
