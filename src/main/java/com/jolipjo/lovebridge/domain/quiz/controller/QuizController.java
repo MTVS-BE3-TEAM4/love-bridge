@@ -58,11 +58,21 @@ public class QuizController {
         return "redirect:/quiz";
     }
 
-    @GetMapping("{id}")
-    public String quizDetailView(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/{quizNum}/{quizId}")
+    public String quizDetailView(
+            @PathVariable("quizNum") Long quizNum,
+            @PathVariable("quizId") Long quizId,
+            Model model,
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 
-        String quizGetTitle = quizService.getQuizDetail(id);
-        model.addAttribute("quizGetTitle", quizGetTitle);
+        List<QuizDetailAnswerResponseDTO> responseDTO = quizService.getQuizDetail(
+                quizId,
+                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                quizNum
+        );
+        model.addAttribute("responseDTOs", responseDTO);
+        model.addAttribute("quizNum", quizNum);
+        model.addAttribute("title", quizService.getOneQuizTitle(quizId));
 
         return "html/quiz/quiz-view";
     }

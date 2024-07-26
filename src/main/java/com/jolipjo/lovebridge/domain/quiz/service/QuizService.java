@@ -2,7 +2,9 @@ package com.jolipjo.lovebridge.domain.quiz.service;
 
 import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
 import com.jolipjo.lovebridge.domain.quiz.dao.QuizMapper;
+import com.jolipjo.lovebridge.domain.quiz.dto.QuizAnswerDbParameter;
 import com.jolipjo.lovebridge.domain.quiz.dto.QuizDetailAnswer;
+import com.jolipjo.lovebridge.domain.quiz.dto.QuizDetailAnswerResponseDTO;
 import com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,8 +49,12 @@ public class QuizService {
         return subset;
     }
 
-    public String getQuizDetail(Long id) {
-        return quizMapper.getQuizDetail(id);
+    public List<QuizDetailAnswerResponseDTO> getQuizDetail(Long quizId, Long coupleId, Long quizNum) {
+        QuizAnswerDbParameter quizAnswerDbParameter = new QuizAnswerDbParameter(
+                quizId, coupleId, quizNum
+        );
+
+        return quizMapper.getQuizDetail(quizAnswerDbParameter);
     }
 
     @Transactional
@@ -74,6 +80,10 @@ public class QuizService {
         paginationDTO.setTotalItems(totalItems);
 
         return paginationDTO;
+    }
+
+    public String getOneQuizTitle(Long quizId) {
+        return quizMapper.getOneQuiz(quizId);
     }
 
 

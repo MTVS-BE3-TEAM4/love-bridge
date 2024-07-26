@@ -22,6 +22,20 @@
         <parameter property="quizComplete"/>
     </parameterMap>
 
+    <resultMap id="quizDetailAnswerResponseDTO" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizDetailAnswerResponseDTO">
+        <result property="quizAnswer" column="quiz_answer"/>
+        <result property="createdAt" column="createdAt" javaType="java.time.LocalDateTime"/>
+        <result property="quizId" column="fk_quiz_id"/>
+        <result property="quizNum" column="fk_quiz_num"/>
+        <result property="title" column="title"/>
+    </resultMap>
+
+    <parameterMap id="quizAnswerDbParameter" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizAnswerDbParameter">
+        <parameter property="quizId"/>
+        <parameter property="coupleId"/>
+        <parameter property="quizNum"/>
+    </parameterMap>
+
     <select id="getQuizList" resultMap="quizListMap" parameterType="Long">
         SELECT
                a.fk_quiz_id
@@ -49,17 +63,34 @@
         LIMIT 5
     </insert>
 
-    <select id="getQuizDetail" resultType="String" parameterType="Long">
+    <select id="getQuizDetail" parameterMap="quizAnswerDbParameter" resultMap="quizDetailAnswerResponseDTO" >
         SELECT
-               a.title
-          FROM
-               quiz a
-          LEFT JOIN
-               quizList b on a.id = b.quizId
-          LEFT JOIN
-               quizAnswer c on c.list_id = b.id
-         WHERE
-               a.id = #{ id }
+            qa.quiz_answer AS quizAnswer,
+            qa.createdAt AS createdAt,
+            q.quiz_id AS quizId,
+            ql.quiz_num AS quizNum,
+            q.title AS title
+        FROM
+            QUIZ_ANSWER qa
+        LEFT JOIN
+            QUIZ_LIST ql ON qa.fk_quiz_id = ql.fk_quiz_id AND qa.fk_couple_id = ql.fk_couple_id AND qa.fk_quiz_num = ql.quiz_num
+        LEFT JOIN
+            QUIZ q ON ql.fk_quiz_id = q.quiz_id
+        WHERE
+            qa.fk_quiz_id = #{quizId}
+            AND qa.fk_couple_id = #{coupleId}
+            AND qa.fk_quiz_num = #{quizNum}
+<!--            AND qa.fk_member_id = #{member_id}-->
+
+    </select>
+
+    <select id="getOneQuiz" parameterType="Long" resultType="String">
+        SELECT
+            title
+        FROM
+            QUIZ
+        WHERE
+            quiz_id = #{quizId}
     </select>
 
 </mapper>
