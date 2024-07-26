@@ -21,13 +21,15 @@ public class GameDTO {
         return myName;
     }
 
+    public String getPartnerName() {
+
+        return partnerName;
+    }
+
     public void setMyName(String myName) {
         this.myName = myName;
     }
 
-    public String getPartnerName() {
-        return partnerName;
-    }
 
     public void setPartnerName(String partnerName) {
         this.partnerName = partnerName;
