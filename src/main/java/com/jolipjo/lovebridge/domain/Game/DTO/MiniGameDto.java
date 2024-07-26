@@ -9,13 +9,25 @@ public class MiniGameDto {
     private Integer attendCnt;
     private String date;
     private String mission;
+    private String gender;
 
-    public MiniGameDto(Long id, Long memberId, Integer attendCnt, String date, String mission) {
+    public MiniGameDto(){}
+
+    public MiniGameDto(Long id, Long memberId, Integer attendCnt, String date, String mission, String gender) {
         this.id = id;
         this.memberId = memberId;
         this.attendCnt = attendCnt;
         this.date = date;
         this.mission = mission;
+        this.gender = gender;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public Long getId() {
