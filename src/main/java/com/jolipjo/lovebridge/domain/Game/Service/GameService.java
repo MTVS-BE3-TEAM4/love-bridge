@@ -17,8 +17,12 @@ public class GameService {
         this.gameMapper = gameMapper;
     }
 
-    public MiniGameDto getMiniGameDto(Long memberId) {
-        return gameMapper.findAllById(memberId);
+    public MiniGameDto getMiniGameDtoMe(Long memberId) {
+        return gameMapper.findAllByMe(memberId);
+    }
+
+    public MiniGameDto getMiniGameDtoPartner(Long PartnerId){
+        return gameMapper.findAllByPartner(PartnerId);
     }
 
 
