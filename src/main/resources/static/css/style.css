@@ -211,9 +211,9 @@ textarea::placeholder{color: #bbb;}
     .header .bars::after { margin-top: 16px; width: 18px; right: 5px; }
     .mobile-logo{display: block; z-index: 9}
     .logo-wrap{display: none;}
-    .header nav ul li a{font-size: 2.8rem; letter-spacing: 1.5px;}
+    .header nav ul li a{font-size: 2.6rem; letter-spacing: 1.5px;}
     .header.open .menu{display: none}
-
+    .header nav ul.login li + li{margin-top: 20px;}
 }
 
 /* footer */
@@ -485,13 +485,13 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 }
 .section.main {max-width: unset; height: 100%; min-height: 100vh; overflow: hidden;}
 
-.section.login, .section.reset { max-width: 530px; margin: 0 auto; flex: 1; } 
+.section.login, .section.reset { max-width: 530px; margin: 0 auto; flex: 1; width: 100%}
 @media (max-width: 660px){
   .section.mobile { position: relative; height: calc(100vh - 160px); } 
   .section.mobile .btn-wrap { position: absolute; left: 0; bottom: -50px; width: 100%; } 
   .section.mobile .btn-wrap .btn { margin: 0; } 
 }
-.section.join { max-width: 600px; } 
+.section.join { max-width: 600px; width: 100%}
 @media (max-width: 660px) { } 
 .section.secession  { min-height: 500px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 2rem; text-align: center; line-height: 1.5; }
 .section.secession .guide-none { font-size: 1.4rem; color: #999; height: 187px; display: flex; align-items: center; justify-content: center; flex-direction: column; border-top: 1px solid #eee; border-bottom: 1px solid #eee; width: 100%; margin-top: 20px; } 
@@ -538,8 +538,8 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
   .section.guide .btn-wrap { margin-top: 30px; } 
 }
 
-.section.mypage{ max-width: 800px;}
-.section.wheel{ max-width: 700px;}
+.section.mypage{ max-width: 800px; width: 100%}
+.section.wheel{ max-width: 700px; width: 100%}
 
 /* login */
 .login-logo { width: 144px; height: 34px; background: url(../../images/logo.svg) no-repeat center/100%; margin: 0 auto 53px; } 
@@ -641,7 +641,7 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 .table-wrap table tr.strong th, .table-wrap table tr.strong td { color: #4c81e6; font-weight: 900; } 
 
 /* album */
-.section.album-write{max-width: 800px;}
+.section.album-write{max-width: 800px; width: 100%}
 .Acontainer{display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-between;}
 .Acontainer li{padding: 2%; flex: 0 1 24%; display: flex; flex-direction: column; border: 1px solid #ffc8c8; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3); }
 .Acontainer li .imgdiv { border: 1px solid #ddd; width: 100%; min-height: 250px; }
@@ -655,7 +655,7 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 }
 
 /* board */
-.section.notice-write { max-width: 600px; } 
+.section.notice-write { max-width: 600px; width: 100% }
 
 /* pagination */
 .pagination{text-align: center; margin-top: 30px;}
@@ -665,7 +665,7 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 .pagination button.next{background: url(../../images/icons/icon_next.svg) no-repeat center center / contain; text-indent: -9999px; border: 0; margin-right: 0; background-size: 19px;}
 
 /* quiz */
-.section.quiz{max-width: 600px; display: flex; flex-direction: column;}
+.section.quiz{max-width: 600px; display: flex; flex-direction: column; width: 100%;}
 .quiz-wrap{background: #fff; padding-bottom: 15px; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3);border: 2px solid #FF646A; border-radius: 8px;  }
 .question{padding: 24px;}
 .answer-wrap{padding: 24px;background: #fff;border-top: 1px solid #FF646A;}
@@ -674,14 +674,13 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 .answer-wrap .btn-wrap{justify-content: flex-end}
 .answer-wrap .btn-wrap button{height: 40px; font-size: 1.4rem; padding: 0 15px; flex:0;}
 .answer-list {display: flex; flex-direction: column; margin-top: 45px; min-height: 300px;}
-.answer-list li{position: relative; padding-left: 55px;}
+.answer-list li{position: relative; padding-left: 10px;}
 .answer-list li div p{ font-size: 1.7rem; border-radius: 25px; background: #ededed; display: inline-flex; flex: 0; align-items: center; padding: 0 30px; height: 45px; word-wrap: break-word;word-break: keep-all;}
-.answer-list li::before{content: ''; position: absolute; left: 0; top: 0; width: 45px; height: 45px; background: url(https://dummyimage.com/500x500/000/fff) no-repeat center center / cover; border-radius: 50%;}
-.answer-list li:nth-child(even){align-self: flex-end; padding-right: 55px;}
-.answer-list li:nth-child(even) .answer-date{text-align: right;padding: 5px 15px 0 0}
+.answer-list li:nth-child(even){align-self: flex-end; padding-right: 10px;text-align: right}
+.answer-list li:nth-child(even) .answer-date{text-align: right;padding: 5px 0}
 .answer-list li:nth-child(even)::before{right: 0; left: auto;}
 .answer-list li + li{margin-top: 20px;}
-.answer-date{font-size: 1.4rem; color: #777; padding: 5px 0 0 15px; text-align: left}
+.answer-date{font-size: 1.4rem; color: #777; padding: 5px 0; text-align: left}
 .question .question-tit{font-size: 2.2rem; color: #333; font-weight: 600; display: flex; align-items: center;}
 .question .question-tit .title-line{position: relative; font-size: 1.9rem; color: #FF646A; font-weight: 700; display: block; margin-right: 10px; padding-right: 10px;}
 .question .question-tit .title-line::before{content: ''; width: 2px; height: 6px; background: #fda3a6; display: block; position: absolute; right: 0; top: 0; z-index: 1;}
@@ -700,12 +699,12 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 #quizHeart, #quizHeart2 {color: #ddd;font-size: 1.5rem; cursor: pointer}
 #quizHeart.red,#quizHeart2.red {color: #FF646A;}
 @media (max-width: 660px){
+    .question{padding:12px}
     .quiz-list li a{display: block;font-size: 1.5rem;}
     .question .question-tit{font-size: 1.6rem;}
-    .question .question-tit .title-line{font-size: 1.4rem}
+    .question .question-tit .title-line{font-size: 1.4rem;min-width: 45px;}
     .question .question-tit .title-line::after{height: 14px; width: 1px}
     .question .question-tit .title-line::before{width: 1px}
     .question .question-tit .title-line{margin-right: 5px; padding-right: 5px}
     .answer-list li div p{font-size: 1.4rem; height: 40px}
-    .answer-list li{padding-left: 35px;}
 }
