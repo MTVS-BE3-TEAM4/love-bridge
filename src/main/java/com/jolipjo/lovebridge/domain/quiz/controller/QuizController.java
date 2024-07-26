@@ -37,22 +37,22 @@ public class QuizController {
     @GetMapping
     public String quizGetList(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                               RedirectAttributes redirectAttributes,
-                              @RequestParam(value = "size", defaultValue = "1") int size,
-                              @RequestParam(value = "page", defaultValue = "5") int page,
+                              @RequestParam(value = "size", defaultValue = "5") int size,
+                              @RequestParam(value = "page", defaultValue = "1") int page,
                               Model model) {
 
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
-        if(secretCode == null){
+        if (secretCode == null) {
             redirectAttributes.addFlashAttribute("message", "커플이 아닙니다. Quiz 리스트를 볼 수 없습니다.");
             return "redirect:/";
         }
 
         List<QuizListResponseDTO> quizList = quizService.getQuizList(secretCode.getCouple_id());
         model.addAttribute("quizList", quizList);
+        System.out.println("@@@size: " + quizList.size());
 
-        PaginationDTO<QuizListResponseDTO> paginationDTO = itemService.getItemsWithPagination(page, size);
-
+        PaginationDTO<QuizListResponseDTO> paginationDTO = new PaginationDTO<>(page, size, quizList, quizList.size());
         model.addAttribute("paginationDTO", paginationDTO);
 
         return "html/quiz/quiz-list";
