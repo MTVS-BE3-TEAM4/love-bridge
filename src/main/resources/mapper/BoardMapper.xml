@@ -60,7 +60,7 @@
              , b.nickname
           FROM notice a
          join member b on a.memberId = b.id
-        ORDER BY a.date DESC
+        ORDER BY a.id DESC
     </select>
 
 <!--    공지사항 상세 글 조회 쿼리-->
@@ -87,7 +87,7 @@
              , b.nickname
          FROM notice a
         join member b on a.memberId = b.id
-        ORDER BY a.date DESC
+        ORDER BY a.id DESC
         LIMIT #{offset}, #{limit}
     </select>
 

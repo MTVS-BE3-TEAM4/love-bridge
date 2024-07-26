@@ -16,17 +16,10 @@
                         background-image: url([[${imgSrc}]]);
                     }
                 </style>
-                <ul class="answer-list" th:each="responseDTO : ${responseDTOs}">
-<!--                    <li class="first">-->
-<!--                        &lt;!&ndash;                <div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                  <p>hello,are we meeting today?</p>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                  <i class="fa fa-heart" id="quizHeart"></i>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                </div>&ndash;&gt;-->
-<!--                        &lt;!&ndash;                <p class="answer-date">yy.mm.dd hh:mm</p>&ndash;&gt;-->
-<!--                    </li>-->
-                    <li class="second">
+                <ul class="answer-list">
+                    <li th:class="${iterStat.index == 0} ? 'first' : 'second'" th:each="responseDTO, iterStat : ${responseDTOs}">
                         <div>
-                            <i class="fa fa-heart" id="quizHeart2"></i>
+<!--                            <i class="fa fa-heart" id="quizHeart"></i>-->
                             <p th:text="${responseDTO.quizAnswer}"></p>
                         </div>
                         <p class="answer-date" th:text="${responseDTO.createdAt}"></p>
