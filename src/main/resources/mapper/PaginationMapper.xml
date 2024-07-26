@@ -14,9 +14,12 @@
 
     <select id="findAllByPage" resultMap="quizListMap">
         SELECT
-               *
+               quiz_num
+             ,
           FROM
                QUIZ_LIST
+     LEFT JOIN
+               QUIZ b on b.quiz_id = a.fk_quiz_id
       ORDER BY
                quiz_num
          LIMIT
