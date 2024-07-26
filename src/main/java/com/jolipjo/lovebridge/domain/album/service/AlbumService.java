@@ -29,16 +29,18 @@ public class AlbumService {
 
 
     //화면 출력
-    public List<AlbumListResponseDTO> albumListPage(long memberId, int page, int size) {
-        //page*=size;
-        int offset = (page - 1) * size;
-        return albumMapper.albumListPage(memberId, size, page);
+    public List<AlbumListResponseDTO> albumListPage(long memberId) {
+
+        List<AlbumListResponseDTO> albumList = albumMapper.albumListPage(memberId);
+
+        return albumList;
     }
 
-    //페이징
-    public int getTotatlItem(long memberId) {
-        return albumMapper.getTotalItem(memberId);
-    }
+//    //페이징
+//    public int getTotatlItem(long memberId, int page, int size) {
+//        int offset = (page - 1) * size;
+//        return albumMapper.getTotalItem(memberId,page,size);
+//    }
 
 
     //앨범 삭제

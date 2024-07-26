@@ -119,4 +119,13 @@
         )
     </insert>
 
+    <update id="updateIsQuizComplete" parameterMap="quizAnswerPKParameter">
+        UPDATE
+            QUIZ_LIST
+        SET
+            quiz_complete = 1
+        WHERE
+            quiz_num = #{quizNum} AND fk_quiz_id = #{quizId} AND fk_couple_id = #{coupleId}
+    </update>
+
 </mapper>

@@ -2,8 +2,9 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
-<body>
+
 <header th:include="~{html/include/header :: header}" class="header includeJs"></header>
+
 
 	<div class="container">
 		<section class="section mypage">
@@ -17,10 +18,10 @@
 				</div>
 
 				<div style="display: flex; justify-content: end;">
-				<button type="button" onclick="generateSecretCode('mypage-secret')" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn">
+				<button type="button" onclick="generateSecretCode('mypage-secret')" class="btn btn-lg btn-line btn-round type2 mg-t--10" id="mypage-secretBtn">
 					시크릿 코드 생성
 				</button>
-				<button type="button" onclick="modalEnable('mypage-inviteSecretCodeModal')" class="btn btn-lg btn-line btn-round type2" id="mypage-secretBtn2">
+				<button type="button" onclick="modalEnable('mypage-inviteSecretCodeModal')" class="btn btn-lg btn-line btn-round type2 mg-t--10" id="mypage-secretBtn2">
 					시크릿 코드 초대
 				</button>
 				</div>
@@ -54,10 +55,10 @@
 			</div>
 
 
-			<div class="mg-t--30 mg-b--80 txt-right">
-				<button type="button" class="btn txt-c--grey" onclick="location.href='user_secession.html'">회원 탈퇴
-					하시겠습니까?</button>
-			</div>
+<!--			<div class="mg-t&#45;&#45;30 mg-b&#45;&#45;80 txt-right">-->
+<!--				<button type="button" class="btn txt-c&#45;&#45;grey" onclick="location.href='user_secession.html'">회원 탈퇴-->
+<!--					하시겠습니까?</button>-->
+<!--			</div>-->
 			<div class="btn-wrap type2 mg-t40">
 				<button type="button" class="btn btn-half btn-line">
 					취소

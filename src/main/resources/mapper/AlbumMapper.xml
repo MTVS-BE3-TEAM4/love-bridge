@@ -8,7 +8,7 @@
 <!--    데이터를 가져올때  resultMap  -->
     <!--      데이터를 저장  prarmeterMap     -->
 
-    <resultMap id="AlbumResultMap" type="com.jolipjo.lovebridge.domain.album.dto.AlbumWriteRequestDTO">
+    <resultMap id="AlbumResultMap" type="com.jolipjo.lovebridge.domain.album.dto.AlbumListResponseDTO">
         <id property="id" column="id"/>
         <result property="memberId" column="memberId" />
         <result property="image" column="pictureLink"/>
@@ -37,7 +37,7 @@
 
 
 <!--  리스트 화면 불러오기  -->
-    <select id="albumListPage" parameterType="map" resultMap="AlbumResultMap">
+    <select id="albumListPage" parameterType="Long" resultMap="AlbumResultMap">
         SELECT
                pictureLink
              , message
@@ -47,7 +47,7 @@
                album
          WHERE memberId = #{ memberId }
          ORDER BY date DESC
-        LIMIT #{size} OFFSET #{offset}
+
     </select>
 
     <select id="getTotalItem" parameterType="long" resultType="int">

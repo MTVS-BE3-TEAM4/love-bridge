@@ -10,9 +10,9 @@
 			<p class="section-tit">QUIZ</p>
 			<div class="quiz-complete">
 				<ul class="quiz-list">
-					<li class="" th:each="quiz : ${ paginationDTO.items }">
+					<li class="" th:each="quiz : ${ paginationDTO.items }" th:classappend="${quiz.quizComplete} == 0 ? 'highlight'">
 						<a th:href="@{quiz/{quizNum}/{quizId}(quizNum=${quiz.quizNum}, quizId=${quiz.quizId})}">
-							<span class="num" th:text="'Q' + ${quiz.quizId}"></span>
+							<span class="num" th:text="'Q' + ${quiz.quizId} + '.'"></span>
 							<span th:text="${ quiz.getQuizTitle() }"></span>
 						</a>
 					</li>
