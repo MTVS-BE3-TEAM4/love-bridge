@@ -2,67 +2,66 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
-  <body>
-    <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
-    <form th:action="@{/quiz/test}" th:object="${quizDetailRequestDTO}" method="post">
-    <div class="container">
-      <section class="section quiz">
+<body>
+<header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<div class="container">
+    <section class="section quiz">
         <p class="section-tit">QUIZ</p>
         <div class="quiz-wrap">
-          <div class="question">
-            <p class="question-tit"><span class="title-line" th:text="Q + ${id}"></span><span th:text="${quizGetTitle}"></span></p>
-            <style th:inline="css">
-              .answer-list li::before{
-                background-image: url([[${imgSrc}]]) ;
-              }
-            </style>
-            <ul class="answer-list">
-              <li class="first">
-<!--                <div>-->
-<!--                  <p>hello,are we meeting today?</p>-->
-<!--                  <i class="fa fa-heart" id="quizHeart"></i>-->
-<!--                </div>-->
-<!--                <p class="answer-date">yy.mm.dd hh:mm</p>-->
-              </li>
-              <li class="second">
-                <div>
-                  <i class="fa fa-heart" id="quizHeart2"></i>
-                  <p>yes,what time suits you?</p>
-                </div>
-                <p class="answer-date">yy.mm.dd hh:mm</p>
-              </li>
-            </ul>
-          </div>
-          <form action="" method="post">
-            <div class="answer-wrap">
-              <label for="answer">답변등록</label>
-              <textarea id="answer" name="quizAnswer"></textarea>
-              <div class="btn-wrap type2 mg-t--20">
-                <button type="button" class="btn btn-half btn-line">
-                  취소
-                </button>
-                <button type="submit" class="btn btn-half btn-pink">
-                  등록
-                </button>
-              </div>
+            <div class="question">
+                <p class="question-tit"><span class="title-line" th:text="|Q ${quizNum}|"></span><span
+                        th:text="${title}"></span></p>
+                <style th:inline="css">
+                    .answer-list li::before {
+                        background-image: url([[${imgSrc}]]);
+                    }
+                </style>
+                <ul class="answer-list" th:each="responseDTO : ${responseDTOs}">
+<!--                    <li class="first">-->
+<!--                        &lt;!&ndash;                <div>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                  <p>hello,are we meeting today?</p>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                  <i class="fa fa-heart" id="quizHeart"></i>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                <p class="answer-date">yy.mm.dd hh:mm</p>&ndash;&gt;-->
+<!--                    </li>-->
+                    <li class="second">
+                        <div>
+                            <i class="fa fa-heart" id="quizHeart2"></i>
+                            <p th:text="${responseDTO.quizAnswer}"></p>
+                        </div>
+                        <p class="answer-date" th:text="${responseDTO.createdAt}"></p>
+                    </li>
+                </ul>
             </div>
-          </form>
+            <form th:action="@{/quiz/{quizNum}/{quizId}(quizNum=${quizNum}, quizId=${quizId})}" th:object="${requestDTO}" method="post">
+                <div class="answer-wrap">
+                    <label for="answer">답변등록</label>
+                    <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
+                    <div class="btn-wrap type2 mg-t--20">
+                        <button type="button" class="btn btn-half btn-line">
+                            취소
+                        </button>
+                        <button type="submit" class="btn btn-half btn-pink">
+                            등록
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-      </section>
-    </div>
-    </form>
-    <footer th:replace="~{/html/include/footer :: footer}"></footer>
-    <script>
-      (function() {
+    </section>
+</div>
+<footer th:replace="~{/html/include/footer :: footer}"></footer>
+<script>
+    (function () {
         const heart = document.getElementById('quizHeart');
         const heart2 = document.getElementById('quizHeart2');
-        heart.addEventListener('click', function() {
-          heart.classList.toggle('red');
+        heart.addEventListener('click', function () {
+            heart.classList.toggle('red');
         });
-        heart2.addEventListener('click', function() {
-          heart2.classList.toggle('red');
+        heart2.addEventListener('click', function () {
+            heart2.classList.toggle('red');
         });
-      })();
-    </script>
-  </body>
+    })();
+</script>
+</body>
 </html>
