@@ -38,15 +38,7 @@ public class GameController {
         Member my = member;
         Long partnerId;
 
-        // 내가 남자인지 여자인지 게이인지 레즈인지
-        if(member.getId() == secretCode.getF_member_id() ){
-            partnerId = secretCode.getM_member_id();
-            System.out.println("내 성별 ::" + member.getId());
-            System.out.println("파트너의 성별은 남자여야되 :: " + partnerId);
-        } else{
-            partnerId = secretCode.getF_member_id();
-            System.out.println("내 성별 ::" + member.getId());
-            System.out.println("파트너의 성별은 남자여야되 :: " + partnerId);}
+        Boolean isMale=false;
 
         Long MyMemberId = secretCode.getF_member_id();
         Long PartnerId = secretCode.getM_member_id();
@@ -55,13 +47,25 @@ public class GameController {
         MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(my.getId());
         MiniGameDto miniGameDtoPartner = gameService.getMiniGameDtoPartner(partner.getId());
 
-        System.out.println("Render MoveGame");
-        System.out.println("member ::" + member);
-        System.out.println("secretCode :: " + secretCode);
-        System.out.println("My ::" + my);
-        System.out.println("Partner ::" + my);
-        System.out.println("miniGameDtoMy ::" + miniGameDtoMy);
-        System.out.println("miniGameDtoPartner ::" + miniGameDtoPartner);
+        // 내가 남자인지 여자인지 게이인지 레즈인지
+        if(member.getId() == secretCode.getF_member_id() ){
+            partnerId = secretCode.getM_member_id();
+        } else{
+            partnerId = secretCode.getF_member_id();
+            isMale=true;
+        }
+
+        //남 여 판별
+        if (isMale){
+            miniGameDtoMy.setGender("M");
+            miniGameDtoPartner.setGender("F");
+        }else {
+            miniGameDtoMy.setGender("F");
+            miniGameDtoPartner.setGender("M");
+        }
+
+        model.addAttribute("MyGender", miniGameDtoMy.getGender());
+        model.addAttribute("partnerGender", miniGameDtoPartner.getGender());
 
         try {
             if (miniGameDtoMy == null || miniGameDtoPartner == null) {
@@ -73,11 +77,9 @@ public class GameController {
             return "redirect:http://localhost:8080";
         }
 
-
+        gameDTO.setAttendCnt(miniGameDtoPartner.getAttendCnt());
         gameDTO.setMission(miniGameDtoMy.getMission());
         gameDTO.setMission(miniGameDtoPartner.getMission());
-        System.out.println("내 미션 ::" + miniGameDtoMy.getMission());
-        System.out.println("상대 미션 ::" + miniGameDtoPartner.getMission());
         gameDTO.setMyName(member.getNickname());
         gameDTO.setPartnerName(partner.getNickname());
         model.addAttribute("gameDTO", gameDTO);
@@ -96,18 +98,45 @@ public class GameController {
         Map<String, Object> result = new HashMap<>();
 
         GameDTO gameDTO = new GameDTO();
-        Member member = memberService.getByEmail(memberDetail.getUsername());
-        System.out.println("MoveGameApi_member :: " + member);
-        MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(member.getId());
+        Member member = memberDetail.getMember();
+        SecretCode secretCode = memberService.getSecretCode(member.getId());
+        Member my = member;
+        Long partnerId;
+        Boolean isMale=false;
 
-        gameDTO.setAttendCnt(miniGameDtoMy.getAttendCnt());
-        gameDTO.setMission(miniGameDtoMy.getMission());
+        // 내가 남자인지 여자인지 게이인지 레즈인지
+        if(member.getId() == secretCode.getF_member_id() ){
+            partnerId = secretCode.getM_member_id();
+        } else{
+            partnerId = secretCode.getF_member_id();
+            isMale=true;
+        }
 
-        model.addAttribute("attendCnt", gameDTO.getAttendCnt());
-        model.addAttribute("mission", gameDTO.getMission());
+        Long MyMemberId = secretCode.getF_member_id();
+        Long PartnerId = secretCode.getM_member_id();
+        Member partner = memberService.getMemberById(PartnerId);
 
-        result.put("attendCnt", gameDTO.getAttendCnt());
-        result.put("mission", gameDTO.getMission());
+        MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(my.getId());
+        MiniGameDto miniGameDtoPartner = gameService.getMiniGameDtoPartner(partner.getId());
+
+        //남 여 판별
+        if (isMale){
+            miniGameDtoMy.setGender("M");
+            miniGameDtoPartner.setGender("F");
+        }else {
+            miniGameDtoMy.setGender("F");
+            miniGameDtoPartner.setGender("M");
+        }
+
+        // 출석일수
+        model.addAttribute("myAttendCnt", miniGameDtoMy.getAttendCnt());
+        model.addAttribute("partnerAttendCnt", miniGameDtoPartner.getAttendCnt());
+        model.addAttribute("myGender", miniGameDtoMy.getGender());
+        model.addAttribute("partnerGender", miniGameDtoPartner.getGender());
+        result.put("myAttendCnt", miniGameDtoMy.getAttendCnt());
+        result.put("partnerAttendCnt", miniGameDtoPartner.getAttendCnt());
+        result.put("MyGender", miniGameDtoMy.getGender());
+        result.put("partnerGender", miniGameDtoPartner.getGender());
         return result;
     }
 
@@ -149,13 +178,10 @@ public class GameController {
             System.out.println("count :: " + count);
             if (count == 0) {
                 gameService.attendanceInsert(count, memberDetail.getMember().getId());
-                System.out.println("추가");
             } else if (count < 31) {
                 gameService.updateAttendance(memberDetail.getMember().getId(), count);
-                System.out.println("수정");
                 if (count == 30){
                     gameService.deleteAttendanceByCount(memberDetail.getMember().getId(), count);
-                    System.out.println("30이니까 삭제");
                 }
             }
                 model.addAttribute("gameDTO", gameDTO);

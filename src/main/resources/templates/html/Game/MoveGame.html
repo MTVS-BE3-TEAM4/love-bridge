@@ -46,12 +46,14 @@
         </div>
 
         <ul class="attendancetransfer">
+            <th:block th:if="${MyGender == 'M'}">
             <li id="M_attendance">
                 <button class="attendacetransferButton" id="F_btn">
                     <span class="game-heart-btn" id="F_btnSpan"></span>
                 </button>
                 <p>출석하기</p>
             </li>
+            </th:block>
             <th:block th:if="${mission == ''}">
             <li id="WantInputController_F" class="WantWhichInput">
                 <input placeholder="공주님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="FText" >
@@ -75,20 +77,23 @@
                 <input placeholder="왕자님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="MText">
                 <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_M" class="btn-pink btn-board">저장</button>
             </li>
-            </th:block>
+           </th:block>
             <li id="F_attendance">
+                <th:block th:if="${MyGender == 'F'}">
                 <button class="attendacetransferButton" id="M_btn">
                     <span class="game-heart-btn" id="M_btnSpan"></span>
                 </button>
                 <p>출석하기</p>
+                </th:block>
             </li>
+
         </ul>
     </div>
 
 
     <!-- UI -->
     <div class="GameUI">
-<!--        <div id="isDay" class="Dday" th:text="${attendCnt} + '일차'"></div>-->
+        <div id="isDay" class="Dday" th:text="${MyGender}"></div>
         <div class="Names"><button type="button" id="DescriptionButton">도움말</button></div>
         <div class="FName">
             <p th:text="${gameDTO.myName} + ' 님'"></p>
@@ -96,7 +101,7 @@
         <div class="MName">
             <p th:text="${gameDTO.partnerName} + ' 님'">님</p>
         </div>
-        <div class="Time">{Time}</div>
+<!--        <div class="Time">{Time}</div>-->
     </div>
 </div>
 
