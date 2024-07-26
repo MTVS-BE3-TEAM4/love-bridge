@@ -4,6 +4,8 @@ import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
 import com.jolipjo.lovebridge.domain.member.dto.JoinRequestDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
+import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
+import com.jolipjo.lovebridge.domain.member.service.MemberService;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleListDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleViewDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleWriteDTO;
@@ -38,12 +40,13 @@ public class TimecapsuleController {
 
     private final TimecapsuleService timeservice;
     private final FileUploader fileUploader;
+    private final MemberService memberService;
 
-    public TimecapsuleController(TimecapsuleService timeservice, FileUploader fileUploader) {
+    public TimecapsuleController(TimecapsuleService timeservice, FileUploader fileUploader, MemberService memberService) {
 
         this.timeservice = timeservice;
         this.fileUploader = fileUploader;
-
+        this.memberService = memberService;
     }
 
     //타임캡슐메인
@@ -51,43 +54,17 @@ public class TimecapsuleController {
     public String gettimeMain(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                               Model model){
 
+//        Member member = customMemberDetail.getMember();
+//        List<TimecapsuleListDTO> listDTOList = timeservice.findAllList(member.getId());
+
         Member member = customMemberDetail.getMember();
-        List<TimecapsuleListDTO> listDTOList = timeservice.findAllList(member.getId());
+        SecretCode secretCode = memberService.getSecretCode(member.getId());
+
+        List<TimecapsuleListDTO> listDTOList = timeservice.findAllList(secretCode.getF_member_id());
+        List<TimecapsuleListDTO> listDTOList2 = timeservice.findAllList(secretCode.getM_member_id());
+        listDTOList.addAll(listDTOList2);
 
         //현재시간 가져오기
-//        LocalDate now = LocalDate.now();
-//        System.out.println("현재시간 = " + now);
-
-
-//        for(int i=0; i<listDTOList.size(); i++){
-//            TimecapsuleListDTO temp = listDTOList.get(i);
-//            if(temp.getEnddate() < now()){// 아직 개봉일 안됬으면
-//                temp.setContent("기간이 지났슴다");
-//                temp.setImage("샘플 이미지");
-//                listDTOList.set(i, temp);
-//            }
-//        }
-//
-//        LocalDate now = LocalDate.now();
-//
-//        for (int i = 0; i < listDTOList.size(); i++) {
-//            TimecapsuleListDTO temp = listDTOList.get(i);
-//            System.out.println("temp : " + temp);
-//
-//            if (temp.getEnddate().compareTo(String.valueOf(now)) <= 0) { // 아직 개봉일 안 됐으면
-////                temp.setContent("기간이 지났습니다");
-////                temp.setImage("샘플 이미지");
-////                listDTOList.set(i, temp);
-//                System.out.println("@@@+ " + temp.getEnddate().compareTo(String.valueOf(now)) );
-//                System.out.println("개봉일안지낫다이놈아");
-//                System.out.println("날짜" + temp.getEnddate());
-//                System.out.println("now: " + now.toString());
-//            }else{
-//                System.out.println("개봉일이지났다");
-//            }
-//
-//        }
-
         for (int i = 0; i < listDTOList.size(); i++) {
             TimecapsuleListDTO temp = listDTOList.get(i);
             System.out.println("temp : " + temp);
