@@ -44,8 +44,8 @@ public class AlbumController {
     // 앨범 화면 불러오기
     @GetMapping
     public String albumListPage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
-                                @RequestParam(defaultValue = "1") int page,
-                                @RequestParam(defaultValue = "8") int size,
+                                @RequestParam(defaultValue = "1", name = "page") int page,
+                                @RequestParam(defaultValue = "8", name = "size") int size,
                                 Model model) {
 
         //페이지와 사이즈가 1이상의 값으로 설정되도록 보장
@@ -91,11 +91,6 @@ public class AlbumController {
         model.addAttribute("startPage", startPage);
         model.addAttribute("endPage", endPage);
 
-
-
-
-
-
         return "html/album/album-list";
     }
 
@@ -103,7 +98,7 @@ public class AlbumController {
   //삭제하기
     @PostMapping("{id}")
     public ResponseEntity<Void> albumDelete(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
-                                            @PathVariable int id, AlbumDeleteDTO albumDeleteDTO) {
+                                            @PathVariable(name = "id") int id, AlbumDeleteDTO albumDeleteDTO) {
 
         albumService.albumDelete(albumDeleteDTO, id);
 
@@ -158,7 +153,7 @@ public class AlbumController {
 
     //5.수정 값 가져오기
     @GetMapping("modify/{id}")
-    public String albumModifyLoad(@PathVariable Long id, Model model) {
+    public String albumModifyLoad(@PathVariable(name = "id") Long id, Model model) {
 
         AlbumModifyRequestDTO albumModify = albumService.albumModifyLoad(id);
         model.addAttribute("albumModify", albumModify);
