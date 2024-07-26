@@ -23,22 +23,23 @@
 					<button type="submit" class="btn btn-full btn-pink">퀴즈 생성</button>
 				</form>
 			</div>
-			<div class="pagination">
-				<button type="button" class="prev">prev</button>
-				<button type="button" class="active">1</button>
-				<button type="button">2</button>
-				<button type="button">3</button>
-				<button type="button">4</button>
-				<button type="button">5</button>
-				<button type="button" class="next">next</button>
+			<div class="pagination" th:if="${paginationDTO != null}">
+				<!-- 이전 페이지 버튼 -->
+				<button type="button" class="prev" th:attr="disabled=${paginationDTO.currentPage == 1}"
+						th:onclick="|window.location.href='?page=${paginationDTO.currentPage - 1}&size=${paginationDTO.pageSize}'|">prev</button>
+
+				<!-- 페이지 번호 버튼들 -->
+				<span th:each="i : ${#numbers.sequence(1, (paginationDTO.totalItems / paginationDTO.pageSize) + 1)}">
+                    <button type="button" th:classappend="${i == paginationDTO.currentPage} ? 'active'"
+							th:text="${i}"
+							th:onclick="|window.location.href='?page=${i}&size=${paginationDTO.pageSize}'|">1</button>
+                </span>
+
+				<!-- 다음 페이지 버튼 -->
+				<button type="button" class="next" th:attr="disabled=${paginationDTO.currentPage == (paginationDTO.totalItems / paginationDTO.pageSize) + 1}"
+						th:onclick="|window.location.href='?page=${paginationDTO.currentPage + 1}&size=${paginationDTO.pageSize}'|">next</button>
 			</div>
 		</section>
-		<div class="pagination">
-			<button type="button" class="prev" th:attr="disabled=${currentPage == 1}"
-					th:onclick="|window.location.href='?page=${currentPage - 1}&size=${pageSize}'|">prev</button>
-			<button type="button"><span th:text="${currentPage}"></span></button>
-			<button type="button" class="next" th:onclick="|window.location.href='?page=${currentPage + 1}&size=${pageSize}'|">next</button>
-		</div>
 	</div>
 
 	<footer th:replace="~{/html/include/footer :: footer}"></footer>

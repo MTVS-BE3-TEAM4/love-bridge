@@ -61,21 +61,6 @@ public class QuizService {
         quizMapper.quizAdd(coupleId);
     }
 
-    public PaginationDTO<QuizService> getItemsWithPagination(int page, int size) {
-        PaginationDTO<QuizService> paginationDTO = new PaginationDTO<>();
-        paginationDTO.setCurrentPage(page);
-        paginationDTO.setPageSize(size);
-
-        int offset = (page - 1) * size;
-        List<QuizService> items = quizMapper.selectItemsWithPagination(offset, size);
-        paginationDTO.setItems(items);
-
-        int totalItems = quizMapper.countTotalItems();
-        paginationDTO.setTotalItems(totalItems);
-
-        return paginationDTO;
-    }
-
 
 //    public String getImgSrc() {
 //        return quizMapper.getImgSrc();

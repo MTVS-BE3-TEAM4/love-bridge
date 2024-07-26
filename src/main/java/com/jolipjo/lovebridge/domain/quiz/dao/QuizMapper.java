@@ -15,10 +15,7 @@ public interface QuizMapper {
 
     void registAnswer(QuizDetailAnswer quizDetailAnswer);
 
-
     void quizAdd(Long coupleId);
-
-    List<QuizService> selectItemsWithPagination(int offset, int size);
 
     int countTotalItems();
 }
