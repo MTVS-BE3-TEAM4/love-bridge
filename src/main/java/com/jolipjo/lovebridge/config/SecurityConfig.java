@@ -28,7 +28,7 @@ public class SecurityConfig {
         /*url 경로 권한*/
         http
                 .authorizeHttpRequests( (auth) -> auth
-                                .requestMatchers("css/**", "js/**", "images/**").permitAll()// 템플릿 경로
+                                .requestMatchers("css/**", "js/**", "images/**", "/error").permitAll()// 템플릿 경로
                                 .requestMatchers("/include/header").permitAll()
                                 .requestMatchers("/").permitAll()// 메인페이지 누구나 접근 가능
                                 .requestMatchers("/member/join").permitAll()// 회원가입 페이지는 누구나 접근 가능
