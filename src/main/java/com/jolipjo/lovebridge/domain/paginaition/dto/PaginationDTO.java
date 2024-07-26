@@ -103,7 +103,7 @@ public class PaginationDTO<T> {
     private void updateItems() {
         if (items != null && !items.isEmpty()) {
             int start = (currentPage - 1) * pageSize;
-            int end = Math.min(start + pageSize, totalItems);
+            int end = Math.min(start + pageSize, totalItems-1);
             this.items = items.subList(start, end);
         }
     }

@@ -56,7 +56,7 @@
         <label class="input-label required ">메모</label>
 
         <div class="textarea-wrap">
-          <textarea name="memo" id="memo" placeholder="내용을 입력하세요"  ></textarea>
+          <textarea maxlength="200" name="memo" id="memo" placeholder="내용을 입력하세요"  ></textarea>
         </div>
 
         <label class="input-label required">첨부파일</label>
@@ -110,7 +110,7 @@
 
       document.getElementById('file').addEventListener('change',function(){
           var fileName = this.value.split('\\').pop();
-          document.querySelector('.upload-name').value = 'fileName';
+          document.querySelector('.upload-name').value = fileName;
           document.getElementById('fileError').style.display = 'none';
       });
 
