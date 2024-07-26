@@ -83,7 +83,7 @@ public class QuizController {
                 quizNum
         );
 
-        boolean allMatchResult = (!responseDTO.isEmpty()) && responseDTO.stream().allMatch(
+        boolean allMatchResult = (!responseDTO.isEmpty()) && responseDTO.stream().anyMatch(
                 a -> a.getMemberId().equals(customMemberDetail.getMember().getId())
         );
 

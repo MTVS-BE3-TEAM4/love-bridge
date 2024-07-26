@@ -35,7 +35,7 @@
                 </ul>
             </div>
             <form th:action="@{/quiz/{quizNum}/{quizId}(quizNum=${quizNum}, quizId=${quizId})}" th:object="${requestDTO}" method="post">
-                <fieldset th:classappend="${isDisabled} ? 'disabled-form' : ''" th:attr="disabled=${isDisabled ? 'disabled' : ''}">
+                <fieldset th:attr="disabled=${isDisabled} ? 'disabled' : null">
                     <div class="answer-wrap">
                         <label for="answer">답변등록</label>
                         <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
