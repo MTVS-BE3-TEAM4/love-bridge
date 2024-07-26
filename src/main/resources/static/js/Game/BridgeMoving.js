@@ -44,7 +44,9 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log(data);
             // 데이터를 받아와서 화면에 표시하거나 필요한 처리를 수행
             const attendCnt = data.attendCnt;
+            let partnerAttendCnt;
             const mission = data.mission;
+            let partnerMission;
             F_character.style.left = F_position = attendCnt + "%";
             console.log("F_character.style.left 전 :: " + F_character.style.left);
         })
@@ -165,28 +167,6 @@ updateTime();
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 초기 로드 시 입력 필드에 텍스트가 없는 경우 버튼 비활성화
-    if (WANTTEXT_M.value === "") {
-        WantBtn_M.disabled = true;
-        M_btn.disabled = true;
-    }
-    if (WANTTEXT_F.value === "") {
-        WantBtn_F.disabled = true;
-        F_btn.disabled = true;
-    }
-
-    // 입력 필드 내용이 변경될 때마다 버튼 활성화/비활성화
-    WANTTEXT_M.addEventListener("input", () => {
-        WantBtn_M.disabled = WANTTEXT_M.value === "";
-        M_btn.disabled = WANTTEXT_M.value === "";
-    });
-
-    WANTTEXT_F.addEventListener("input", () => {
-        WantBtn_F.disabled = WANTTEXT_F.value === "";
-        F_btn.disabled = WANTTEXT_F.value === "";
-    });
-
-    // 'WantBtn_M' 버튼 클릭 시 'MText' 입력 요소의 텍스트를 확인하고 컨트롤러 숨김 및 리스트에 추가
     WantBtn_M.addEventListener("click", () => {
         if (WANTTEXT_M.value !== "") {
             WantEntire_M.classList.add("hidden");
@@ -227,6 +207,7 @@ const sendPosition = (position, gender, winner) => {
 
 const sendWish = (fwish, mwish) => {
     console.log("fwish ::" + fwish)
+    console.log("mwish ::" + mwish)
     fetch('/Game/Wish', {
         method: 'POST',
         headers: {

@@ -6,6 +6,7 @@
 
     <resultMap id="quizListMap" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizListResponseDTO">
         <id property="quizId" column="fk_quiz_id"/>
+        <result property="quizNum" column="quiz_num"/>
         <result property="coupleId" column="fk_couple_id"/>
         <result property="quizTitle" column="title"/>
         <result property="quizComplete" column="quiz_complete"/>
@@ -39,6 +40,7 @@
     <select id="getQuizList" resultMap="quizListMap" parameterType="Long">
         SELECT
                a.fk_quiz_id
+             , a.quiz_num
              , a.fk_couple_id
              , b.title
              , a.quiz_complete
@@ -48,7 +50,8 @@
                QUIZ b on b.quiz_id = a.fk_quiz_id
         WHERE
                 a.fk_couple_id = #{id}
-        LIMIT 5
+        ORDER BY
+                a.fk_quiz_id ASC;
     </select>
 
     <insert id="quizAdd" useGeneratedKeys="true" parameterMap="quizAddMap">
