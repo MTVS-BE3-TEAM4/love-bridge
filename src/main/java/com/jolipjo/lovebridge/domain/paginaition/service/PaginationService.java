@@ -27,12 +27,15 @@ public class PaginationService {
         // 퀴즈 리스트
         paginationDTO.setItems(paginationMapper.findAllByPage(offset, size));
 
+        // total
+        int totalItems = paginationMapper.countTotalItems();
+        paginationDTO.setTotalItems(totalItems);
 
-        // 총 몇개의 퀴즈가 있는가?
-        paginationDTO.setTotalItems(offset);
-
-        // 페이지 수
+        // 페이지 크기 설정
         paginationDTO.setPageSize(size);
+
+        // 현재 페이지 설정
+        paginationDTO.setCurrentPage(page);
 
         return paginationDTO;
     }

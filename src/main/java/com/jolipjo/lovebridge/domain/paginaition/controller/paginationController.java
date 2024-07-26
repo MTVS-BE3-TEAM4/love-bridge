@@ -19,12 +19,13 @@ public class paginationController {
         this.itemService = itemService;
     }
 
-    @GetMapping("/quiz")
+    @GetMapping("/x")
     public String getItemListQuiz(@RequestParam(name = "page", defaultValue = "1") int page,
                               @RequestParam(name = "size", defaultValue = "5") int size,
                               Model model) {
         PaginationDTO<QuizListResponseDTO> paginationDTO = itemService.getItemsWithPagination(page, size);
-        model.addAttribute("paginationDTO", paginationDTO);
+        System.out.println("paginationDTO = " + paginationDTO);
+
         return "html/quiz/quiz-list";
     }
 }
