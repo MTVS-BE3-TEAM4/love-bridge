@@ -69,21 +69,40 @@ public class QuizController {
         return "redirect:/quiz";
     }
 
-    @GetMapping("{id}")
-    public String quizDetailView(@PathVariable("id") Long id, Model model) {
+    @GetMapping("/{quizNum}/{quizId}")
+    public String quizDetailView(
+            @PathVariable("quizNum") Long quizNum,
+            @PathVariable("quizId") Long quizId,
+            Model model,
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail,
+            QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO) {
 
-        String quizGetTitle = quizService.getQuizDetail(id);
-        model.addAttribute("quizGetTitle", quizGetTitle);
-
+        List<QuizDetailAnswerResponseDTO> responseDTO = quizService.getQuizDetail(
+                quizId,
+                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                quizNum
+        );
+        model.addAttribute("responseDTOs", responseDTO);
+        model.addAttribute("quizNum", quizNum);
+        model.addAttribute("title", quizService.getOneQuizTitle(quizId));
+        model.addAttribute("requestDTO", quizDetailAnswerRequestDTO);
         return "html/quiz/quiz-view";
     }
 
-    @PostMapping("/{id}")
-    public String quizAnswerRegist(QuizDetailAnswer quizDetailAnswer) {
+    @PostMapping("/{quizNum}/{quizId}")
+    public String quizAnswerRegist(
+            @PathVariable("quizNum") Long quizNum,
+            @PathVariable("quizId") Long quizId,
+            @ModelAttribute("requestDTO") QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO,
+            @AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 
-        quizService.registAnswer(quizDetailAnswer);
+        quizService.registAnswer(
+                quizDetailAnswerRequestDTO,
+                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                customMemberDetail.getMember().getId()
+        );
 
-        return "html/quiz/quiz-view";
+        return "redirect:/quiz/" + quizNum + "/" + quizId;
     }
 
 

@@ -133,7 +133,12 @@ public class MemberService {
     }
 
     public MypageResponseDTO getMypageInfo(Long memberId){
-        return memberMapper.getMypageInfo(memberId);
+
+        MypageResponseDTO mypageInfo = memberMapper.getMypageInfo(memberId);
+        if(getSecretCode(memberId) != null){
+            mypageInfo.setSecretCode(getSecretCode(memberId).getSecret_code());
+        }
+        return mypageInfo;
     }
 
     public void updateMemberInfo(MypageRequestDTO mypageRequestDTO) {

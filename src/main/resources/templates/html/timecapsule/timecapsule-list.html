@@ -1,23 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
-<!--<head>-->
-<!--    <meta charset="UTF-8" />-->
-<!--    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />-->
-<!--    <meta content="IE=edge" http-equiv="X-UA-Compatible" />-->
-<!--    <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"-->
-<!--        name="viewport" />-->
-<!--    <title>Love Bridge</title>-->
-<!--    <link href="../css/reset.css" rel="stylesheet" type="text/css" />-->
-<!--    <link href="../css/style.css" rel="stylesheet" type="text/css" />-->
-<!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet"-->
-<!--        type="text/css" />-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>-->
-<!--    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scrollbar/8.5.2/smooth-scrollbar.js"></script>-->
-<!--    <script defer="defer" src="../js/include.js"></script>-->
-<!--</head>-->
 
 <body>
 <style>
@@ -49,6 +32,9 @@
     .roww{
         justify-content: space-evenly;
     }
+    .imgdiv_1{
+        text-align: center;
+    }
 
 </style>
 
@@ -59,38 +45,24 @@
         <p class="section-tit">TIME CAPSULE</p>
 
         <form enctype="multipart/form-data">
-            <ul class="Bcontainer" id="Bcontainer" >
-                    <li class="item11 mg-b--20" th:each="listDTO, iterStat : ${listDTOList}" th:attr="data-index=${iterStat.index}">
-
-
-
-                            <div class="imgdiv">
-                                <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}" style="display: inline-block">
-                                <img class="imgfix" th:src="${listDTO.getImage()}" />
-                                </a>
-                            </div>
-                            <div class="album-util" >
-<!--                                <div>-->
-<!--                                    <button class="gearbt" type="button" onclick="isDelete(event)">-->
-<!--                                        <i class="fa-solid fa-trash"  th:attr="data-value=${listDTO.id}" ></i>-->
-<!--                                    </button>-->
-<!--                                    <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}">-->
-<!--                                        <i class="fa-solid fa-gear"></i>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-                                <p class="date" th:text="${listDTO.startdate}"></p>
-                                <p class="date" th:text="${listDTO.enddate}"></p>
-                            </div>
-                            <div class="wordbreak">
-                                <p class="centertest" th:text="${listDTO.title}"></p>
-                                <p class="album-memo" th:text="${listDTO.content}"></p>
-                            </div>
-
-                    </li>
-
+            <ul class="Bcontainer" id="Bcontainer">
+                <li class="item11 mg-b--20" th:each="listDTO, iterStat : ${listDTOList}" th:attr="data-index=${iterStat.index}">
+                    <div class="imgdiv imgdiv_1">
+                        <a class="gearbt" type="submit" th:href="@{timecapsule/view/{id}(id=${listDTO.id})}" style="display: inline-block">
+                            <img class="imgfix" th:src="${listDTO.getImage()}" />
+                        </a>
+                    </div>
+                    <div class="album-util">
+                        <p class="date" th:text="${listDTO.startdate}"></p>
+                        <p class="date" th:text="${listDTO.enddate}"></p>
+                    </div>
+                    <div class="wordbreak">
+                        <p class="centertest" th:text="${listDTO.title}"></p>
+                        <p class="album-memo" th:text="${listDTO.content}"></p>
+                    </div>
+                </li>
             </ul>
         </form>
-
 
         <div class="btn-wrap mg-b--20">
             <a onclick="location.href='/timecapsule/write'" class="btn btn-pink btn-board">글쓰기</a>
@@ -98,11 +70,7 @@
 
         <div class="pagination">
             <button type="button" class="prev" onclick="changePage('prev')">prev</button>
-            <button type="button" class="page" data-page="1">1</button>
-            <button type="button" class="page" data-page="2">2</button>
-            <button type="button" class="page" data-page="3">3</button>
-            <button type="button" class="page" data-page="4">4</button>
-            <button type="button" class="page" data-page="5">5</button>
+            <div id="pageNumbers"></div>
             <button type="button" class="next" onclick="changePage('next')">next</button>
         </div>
     </section>
@@ -115,11 +83,29 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const capsules = document.querySelectorAll('.Bcontainer .item11');
-        const pages = document.querySelectorAll('.pagination .page');
+        const pageNumbers = document.getElementById('pageNumbers');
         const prevButton = document.querySelector('.pagination .prev');
         const nextButton = document.querySelector('.pagination .next');
         let currentPage = 1;
         const capsulesPerPage = 3;
+
+        function generatePageNumbers() {
+            pageNumbers.innerHTML = '';
+            const totalPages = Math.ceil(capsules.length / capsulesPerPage);
+
+            for (let i = 1; i <= totalPages; i++) {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.classList.add('page');
+                button.setAttribute('data-page', i);
+                button.textContent = i;
+                pageNumbers.appendChild(button);
+
+                button.addEventListener('click', () => {
+                    showPage(i);
+                });
+            }
+        }
 
         function showPage(page) {
             currentPage = page;
@@ -134,7 +120,8 @@
                 }
             });
 
-            pages.forEach(button => {
+            const pageButtons = pageNumbers.querySelectorAll('.page');
+            pageButtons.forEach(button => {
                 if (parseInt(button.getAttribute('data-page')) === page) {
                     button.classList.add('active');
                 } else {
@@ -146,12 +133,6 @@
             nextButton.disabled = currentPage === Math.ceil(capsules.length / capsulesPerPage);
         }
 
-        pages.forEach(button => {
-            button.addEventListener('click', () => {
-                showPage(parseInt(button.getAttribute('data-page')));
-            });
-        });
-
         function changePage(direction) {
             if (direction === 'prev' && currentPage > 1) {
                 showPage(currentPage - 1);
@@ -160,6 +141,7 @@
             }
         }
 
+        generatePageNumbers();
         showPage(currentPage);
 
         window.isDelete = function(event, id) {

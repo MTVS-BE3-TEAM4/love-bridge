@@ -29,10 +29,12 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests( (auth) -> auth
                                 .requestMatchers("css/**", "js/**", "images/**", "/error").permitAll()// 템플릿 경로
+                                .requestMatchers("/member/find-email", "/member/find-password").permitAll()
                                 .requestMatchers("/include/header").permitAll()
                                 .requestMatchers("/").permitAll()// 메인페이지 누구나 접근 가능
                                 .requestMatchers("/member/join").permitAll()// 회원가입 페이지는 누구나 접근 가능
                                 .requestMatchers("/member/joinProc").permitAll()
+                                .requestMatchers("/member/join-complete").permitAll()
                                 .requestMatchers("/admin/**").hasRole("ADMIN")// 관리자 페이지는 관리자만 접근
                                 .requestMatchers("/board/notice/write").hasRole("ADMIN")// 공지사항 작성
                                 .requestMatchers("/board/notice/edit/**").hasRole("ADMIN")// 공지사항 수정

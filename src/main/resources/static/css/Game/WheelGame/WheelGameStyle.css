@@ -70,7 +70,8 @@ canvas {
 }
 
 .Wheel {
-  width: 450px;
+  width: 100%;
+  max-width: 450px;
   display: flex;
   align-items: center;
   flex-direction: column;
