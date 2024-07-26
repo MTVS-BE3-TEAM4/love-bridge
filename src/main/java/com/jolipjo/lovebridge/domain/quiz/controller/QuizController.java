@@ -96,11 +96,21 @@ public class QuizController {
             @ModelAttribute("requestDTO") QuizDetailAnswerRequestDTO quizDetailAnswerRequestDTO,
             @AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 
+        Long coupleId = memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id();
+
+        // 답변 등록
         quizService.registAnswer(
                 quizDetailAnswerRequestDTO,
-                memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
+                coupleId,
                 customMemberDetail.getMember().getId()
         );
+
+        // 상대방과 자신 모두 등록되었는지 확인
+        List<QuizListResponseDTO> quizList = quizService.getQuizList(coupleId);
+        if (quizList.size() > 1) {
+            // DB QUIZ_LIST 에 완료여부 업데이트
+            quizService.updateIsQuizComplete(coupleId, quizId, quizNum);
+        }
 
         return "redirect:/quiz/" + quizNum + "/" + quizId;
     }

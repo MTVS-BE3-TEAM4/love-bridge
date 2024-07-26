@@ -61,6 +61,10 @@ public class QuizService {
         return quizMapper.getOneQuiz(quizId);
     }
 
+    public void updateIsQuizComplete(Long coupleId, Long quizId, Long quizNum) {
+        quizMapper.updateIsQuizComplete(new QuizAnswerPKParameter(quizId, coupleId, quizNum));
+    }
+
 //    public String getImgSrc() {
 //        return quizMapper.getImgSrc();
 //    }
