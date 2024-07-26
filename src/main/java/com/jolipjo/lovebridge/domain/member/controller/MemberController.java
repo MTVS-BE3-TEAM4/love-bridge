@@ -103,8 +103,7 @@ public class MemberController {
 
     /*비번 찾기 페이지*/
     @GetMapping("/find-password")
-    public String findPassword(@AuthenticationPrincipal CustomMemberDetail member) {
-        System.out.println("member = " + member.getMember());
+    public String findPassword() {
         return "html/member/find_password";
     }
 
