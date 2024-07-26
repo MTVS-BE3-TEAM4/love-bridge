@@ -29,6 +29,7 @@
         <result property="quizId" column="fk_quiz_id"/>
         <result property="quizNum" column="fk_quiz_num"/>
         <result property="title" column="title"/>
+        <result property="memberId" column="fk_member_id"/>
     </resultMap>
 
     <parameterMap id="quizAnswerPKParameter" type="com.jolipjo.lovebridge.domain.quiz.dto.QuizAnswerPKParameter">
@@ -72,7 +73,8 @@
             qa.createdAt AS createdAt,
             q.quiz_id AS quizId,
             ql.quiz_num AS quizNum,
-            q.title AS title
+            q.title AS title,
+            qa.fk_member_id AS memberId
         FROM
             QUIZ_ANSWER qa
         LEFT JOIN
