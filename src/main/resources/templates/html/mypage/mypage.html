@@ -3,7 +3,7 @@
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <body>
-<header th:include="~{/html/include/header :: header}" class="header includeJs"></header><header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
+<header th:include="~{html/include/header :: header}" class="header includeJs"></header>
 
 	<div class="container">
 		<section class="section mypage">
@@ -124,7 +124,7 @@
 </div>
 
 
-<div th:replace="~{/html/include/footer :: footer}"></div>
+<div th:replace="~{html/include/footer :: footer}"></div>
 <script>
 	const localAutoHyphen = (target) => {
 		target.value = target.value
@@ -181,7 +181,7 @@
 			type : "post",
 			success : function(result) {
 				console.log(result.code);
-				document.getElementById(target).value=result.code;
+				document.getElementById(target).value=result.secret_code;
 				secretCodeButtonDisplay();
 			}
 		});
