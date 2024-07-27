@@ -82,10 +82,16 @@ public class QuizController {
                 memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
                 quizNum
         );
+
+        boolean allMatchResult = (!responseDTO.isEmpty()) && responseDTO.stream().anyMatch(
+                a -> a.getMemberId().equals(customMemberDetail.getMember().getId())
+        );
+
         model.addAttribute("responseDTOs", responseDTO);
         model.addAttribute("quizNum", quizNum);
         model.addAttribute("title", quizService.getOneQuizTitle(quizId));
         model.addAttribute("requestDTO", quizDetailAnswerRequestDTO);
+        model.addAttribute("isDisabled", allMatchResult);
         return "html/quiz/quiz-view";
     }
 

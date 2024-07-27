@@ -12,13 +12,15 @@ public class QuizDetailAnswerResponseDTO {
     private Long quizId;
     private Long quizNum;
     private String title;
+    private Long memberId;
 
-    public QuizDetailAnswerResponseDTO(String quizAnswer, LocalDateTime createdAt, Long quizId, Long quizNum, String title) {
+    public QuizDetailAnswerResponseDTO(String quizAnswer, LocalDateTime createdAt, Long quizId, Long quizNum, String title, Long memberId) {
         this.createdAt = createdAt;
         this.quizAnswer = quizAnswer;
         this.quizId = quizId;
         this.quizNum = quizNum;
         this.title = title;
+        this.memberId = memberId;
     }
 
     public LocalDateTime getCreatedAt() {
@@ -59,5 +61,13 @@ public class QuizDetailAnswerResponseDTO {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
 }
