@@ -4,45 +4,29 @@ import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.album.dto.*;
 import com.jolipjo.lovebridge.domain.album.service.AlbumService;
 import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
-import com.jolipjo.lovebridge.domain.member.dto.FindPasswordRequestDTO;
-import com.jolipjo.lovebridge.domain.member.dto.FindPasswordResponseDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
-import com.jolipjo.lovebridge.domain.paginaition.dao.PaginationMapper;
 import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
-import com.jolipjo.lovebridge.domain.timecapsule.dto.Timecapsule;
-import jakarta.servlet.annotation.MultipartConfig;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Collections;
 import java.util.List;
 
 @Controller
 @RequestMapping("/album")
 public class AlbumController {
 
-
     private final AlbumService albumService;
     private final FileUploader fileUploader;
     private final MemberService memberService;
-//    private final MessageSource messageSource;
-//    private final FileUploader fileUploader;
-
-
-
-
 
     public AlbumController(AlbumService albumService, FileUploader fileUploader,MemberService memberService) {
         this.albumService = albumService;
-//        this.fileUploader = fileUploader;
         this.fileUploader = fileUploader;
         this.memberService = memberService;
     }
@@ -77,11 +61,7 @@ public class AlbumController {
     @PostMapping("{id}")
     public ResponseEntity<Void> albumDelete(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                                             @PathVariable(name = "id") int id, AlbumDeleteDTO albumDeleteDTO) {
-
         albumService.albumDelete(albumDeleteDTO, id);
-
-
-
 
         return ResponseEntity.noContent().build(); // Return HTTP 204 No Content
     }
@@ -91,12 +71,7 @@ public class AlbumController {
     //3. 앨범 작성 화면 호출
     @GetMapping("write")
     public String albumWritePage() {
-
-
         System.out.println("작성화면 호출");
-
-
-
         return "html/album/album-write";
     }
 
@@ -107,7 +82,6 @@ public class AlbumController {
     public String albumWrite(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                              @RequestParam(name = "file") MultipartFile file,
                              AlbumWriteRequestDTO albumWriteRequestDTO, Model model) {
-
         //로그인 아이디 넘기기
         Member member = customMemberDetail.getMember();
         albumWriteRequestDTO.setMemberId(member.getId());
@@ -122,25 +96,18 @@ public class AlbumController {
         //서비스 단으로 보내주기
         albumService.albumWrite(albumWriteRequestDTO);
 
-
-
         return "redirect:/album";
     }
-
 
 
     //5.수정 값 가져오기
     @GetMapping("modify/{id}")
     public String albumModifyLoad(@PathVariable(name = "id") Long id, Model model) {
-
         AlbumModifyRequestDTO albumModify = albumService.albumModifyLoad(id);
         model.addAttribute("albumModify", albumModify);
 
-
-
         System.out.println("수정 페이지 호출");
         System.out.println(albumModify);
-
 
         return "html/album/album-modify";
     }
@@ -154,14 +121,10 @@ public class AlbumController {
                                   AlbumModifyResponseDTO albumModifyResponseDTO) {
 
         albumModifyResponseDTO.setId(id);
-
         String url = fileUploader.saveFile(file);
         System.out.println("url = " + url);
         albumModifyResponseDTO.setImage(url);
-
-
         albumService.albumModifySend(albumModifyResponseDTO);
-
 
         return "redirect:/album";
     }

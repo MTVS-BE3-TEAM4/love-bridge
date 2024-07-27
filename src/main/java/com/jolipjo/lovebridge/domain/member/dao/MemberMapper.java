@@ -23,7 +23,6 @@ public interface MemberMapper {
 
     SecretCode findMembersBySecretCode(String secretCode);
 
-//    Long findMyPartner(Long memberId);
 
     Member findByEmail(String username);
 
@@ -34,8 +33,6 @@ public interface MemberMapper {
     String getPassword(Long id);
 
     void changePassword(ChangePasswordRequestDTO dto);
-
-//    Member findMyPartnerInfo(Long memberId);
 
     Member getMemberInfo(Long memberId);
 }
