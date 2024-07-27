@@ -88,7 +88,7 @@ public class QuizController {
         );
 
         model.addAttribute("responseDTOs", responseDTO);
-        model.addAttribute("quizNum", quizNum);
+        model.addAttribute("quizId", quizId);
         model.addAttribute("title", quizService.getOneQuizTitle(quizId));
         model.addAttribute("requestDTO", quizDetailAnswerRequestDTO);
         model.addAttribute("isDisabled", allMatchResult);
