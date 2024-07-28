@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             const myAttendCnt = data.myAttendCnt;
             const partnerAttendCnt = data.partnerAttendCnt;
-            alert("myAttendCnt :: " + myAttendCnt);
             console.log("F_character.style.right :: " + F_character.style.right);
             let myPositionF = (F_position = myAttendCnt);
             let myPositionM = (M_position = partnerAttendCnt);
