@@ -3,7 +3,6 @@ package com.jolipjo.lovebridge.domain.album.dao;
 
 import com.jolipjo.lovebridge.domain.album.dto.*;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 

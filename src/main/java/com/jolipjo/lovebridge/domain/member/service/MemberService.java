@@ -9,7 +9,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -118,15 +117,6 @@ public class MemberService {
     public SecretCode getMembersBySecretCode(String secretCode){
         return memberMapper.findMembersBySecretCode(secretCode);
     }
-
-    /*나와 연결된 시크릿코드를 가진 사용자 id 검색*/
-//    public Long getPartner(Long memberId){
-//        return memberMapper.findMyPartner(memberId);
-//    }
-
-//    public Member getPartnerInfo(Long memberId){
-//        return memberMapper.findMyPartnerInfo(memberId);
-//    }
 
     public Member getMemberById(Long memberId){
         return memberMapper.getMemberInfo(memberId);

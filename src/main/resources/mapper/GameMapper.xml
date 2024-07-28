@@ -86,12 +86,6 @@
         WHERE memberId = #{memberId}
     </update>
 
-    <!--    <delete id="deleteAttendance" parameterType="java.util.Map">-->
-    <!--        DELETE FROM miniGame-->
-    <!--        WHERE memberId = #{memberId}-->
-    <!--        AND attendCnt = #{attendCnt}-->
-    <!--    </delete>-->
-
     <update id="deleteAttendance" parameterType="java.util.Map">
         UPDATE miniGame
         SET attendCnt = 0

@@ -2,7 +2,6 @@ package com.jolipjo.lovebridge.domain.quiz.dao;
 
 import com.jolipjo.lovebridge.domain.quiz.dto.*;
 import com.jolipjo.lovebridge.domain.quiz.entity.QuizAnswer;
-import com.jolipjo.lovebridge.domain.quiz.service.QuizService;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

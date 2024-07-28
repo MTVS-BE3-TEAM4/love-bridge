@@ -18,6 +18,7 @@ let M_position = 0;
 const WinnerOkDialog = document.getElementById("WinnerOK");
 const F_btn = document.getElementById("F_btn");
 const M_btn = document.getElementById("M_btn");
+
 const attendanceModal = new bootstrap.Modal(document.getElementById('attendanceModal'), {
     keyboard: false
 });
@@ -39,12 +40,12 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             const myAttendCnt = data.myAttendCnt;
             const partnerAttendCnt = data.partnerAttendCnt;
-            console.log("F_character.style.right :: " + F_character.style.right);
+            const myGender = data.MyGender;
+            const partnerGender = data.partnerGender;
             let myPositionF = (F_position = myAttendCnt);
             let myPositionM = (M_position = partnerAttendCnt);
-            M_character.style.left = myPositionF = myAttendCnt + '%';
-            F_character.style.right =  myPositionM = partnerAttendCnt + '%';
-            console.log("F_character.style.right :: " + F_character.style.right);
+            F_character.style.left = myPositionF = myAttendCnt + '%';
+            M_character.style.right =  myPositionM = partnerAttendCnt + '%';
         })
         .catch(error => {
             console.error('Error:', error);
@@ -54,14 +55,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if(gameWrap.contains(Mbtn)) {
         M_btn.addEventListener('click', () => {
             if (M_position < 30) {
+
                 M_position++;
+              
                 console.log(M_position);
                 M_character.style.right = (M_position * 1) + "%";
                 if (M_position === 30) {
                     sendPosition(M_position, "M", "Win_M");
                     WinnerOkDialog.textContent = "남자친구분이 이겼어요.";
                     document.getElementById("M_heart").style.display = "flex";
-                    window.location.reload();
+
                 } else {
                     sendPosition(M_position, "M", "NotWinner");
                 }

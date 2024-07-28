@@ -690,7 +690,7 @@ section.main .main-visual .item-wrap::after{content: ''; background: url(../../i
 .list-svg-heart { fill: none; stroke: #FF9EA2; stroke-width: 20; }
 .quiz-complete{background: #fff;box-shadow: 0 0 30px rgba(255, 141, 145, 0.3);border: 2px solid #FF646A; border-radius: 8px;  }
 .quiz-list li{position:relative;font-size: 1.9rem; flex: 1; display: flex; padding-top: 15px; }
-.quiz-list li a{display: block;font-size: 1.8rem; position: relative; width: 100%; padding:0 30px;}
+.quiz-list li a{display: block;font-size: 1.8rem; position: relative; width: 100%; padding:0 30px 0 45px;}
 .quiz-list li.complete::after{content:''; background: url("../../images/icons/list-heart.svg") no-repeat 0 0 / cover; position: absolute; right: 0; top: 15px; width: 20px; height: 20px;}
 .quiz-list li .num{color: #FF646A;margin-right: 5px; position: absolute; left: 0; top: 0;}
 .quiz-list li + li{margin-top: 15px; border-top: 1px solid #ededed;;}

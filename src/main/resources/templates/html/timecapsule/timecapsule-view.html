@@ -5,141 +5,246 @@
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
 
 <head>
-
     <style>
+        .section.album-write {
+            max-width: 800px;
+        }
 
-        .section.album-write{max-width: 800px;}
-        .Bcontainer{display: flex; flex-wrap: wrap; align-items: stretch; justify-content: space-evenly;min-height: 300px;}
-        .Bcontainer li{padding: 2%; flex: 0 1 24%; display: flex; flex-direction: column; border: 1px solid #ffc8c8; box-shadow: 0 0 30px rgba(255, 141, 145, 0.3); }
-        .Bcontainer li .imgdiv { border: 1px solid #ddd; width: 100%; min-height: 100%; }
-        .Bcontainer li .album-util{display: flex; align-items: center; justify-content: space-evenly;}
-        .Bcontainer li .album-util .gearbt{cursor: pointer;margin: 0; padding: 0; border: 0; background: nne;}
-        .Bcontainer li .album-util .gearbt i{font-size: 1.3rem; color: #FF646A}
-        .Bcontainer li .album-util .date {font-size: 1.7rem; text-align: right; margin: 10px 0; color: #FF646A;}
-        .Bcontainer li .album-memo{font-size: 1.5rem; color: #333; margin-top: 10px;}
-        @media (max-width: 660px){
-            .Bcontainer li{flex: 0 1 100%; margin-top: 4%; }
-            .section{width: 80%;
+        .Bcontainer {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: stretch;
+            justify-content: space-evenly;
+            min-height: 300px;
+        }
+
+        .Bcontainer li {
+            padding: 2%;
+            flex: 0 1 24%;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #ffc8c8;
+            box-shadow: 0 0 30px rgba(255, 141, 145, 0.3);
+        }
+
+        .Bcontainer li .imgdiv {
+            border: 1px solid #ddd;
+            width: 100%;
+            min-height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Bcontainer li .imgdiv img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .Bcontainer li .album-util {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+        }
+
+        .Bcontainer li .album-util .gearbt {
+            cursor: pointer;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: none;
+        }
+
+        .Bcontainer li .album-util .gearbt i {
+            font-size: 1.3rem;
+            color: #FF646A
+        }
+
+        .Bcontainer li .album-util .date {
+            font-size: 1.7rem;
+            text-align: right;
+            margin: 10px 0;
+            color: #FF646A;
+        }
+
+        .Bcontainer li .album-memo {
+            font-size: 1.5rem;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 660px) {
+            .Bcontainer li {
+                flex: 0 1 100%;
+                margin-top: 4%;
+            }
+
+            .section {
+                width: 80%;
             }
         }
-        .smallcon1{height: 100px; display: flex; justify-content: space-between;align-items: center; text-align: center; }
 
-        .datedate{display: flex;height: 50px;justify-content: center ;align-items: center;margin-bottom: 5%}
+        .smallcon1 {
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
 
-        .datedate2{display: flex;height: 50px;justify-content: center ;align-items: center;margin-bottom: 5%; flex-direction: column;font-size: 25px;}
+        .datedate {
+            display: flex;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5%
+        }
 
-        .dateopen{width: 40% ;font-size: 2rem;text-align: center;color: #FF646A;align-items: center;}
-        .dateclose{width: 40%;font-size: 2rem;text-align: center;color: #FF646A;align-items: center;}
+        .datedate2 {
+            display: flex;
+            height: 50px;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 5%;
+            flex-direction: column;
+            font-size: 25px;
+        }
 
-        .lab{
+        .dateopen {
+            width: 40%;
+            font-size: 2rem;
+            text-align: center;
+            color: #FF646A;
+            align-items: center;
+        }
+
+        .dateclose {
+            width: 40%;
+            font-size: 2rem;
+            text-align: center;
+            color: #FF646A;
+            align-items: center;
+        }
+
+        .lab {
             font-size: 1.5rem;
         }
 
-        .storyA{  word-break:break-all; display: flex; border: 1px solid #ffc8c8; align-items: center;justify-content: center;}
+        .storyA {
+            word-break: break-all;
+            display: flex;
+            border: 1px solid #ffc8c8;
+            align-items: center;
+            justify-content: center;
+        }
 
-        .ohmygod {width: 100%;  font-size: 3rem; font-weight: 700;  justify-content: center;align-items: center; font-family: inherit;}
-        .storyA{
-            word-break:break-all;
+        .ohmygod {
+            width: 100%;
+            font-size: 3rem;
+            font-weight: 700;
+            justify-content: center;
+            align-items: center;
+            font-family: inherit;
+        }
+
+        .storyA {
+            word-break: break-all;
             height: 150px;
-            /*word-break: break-all;*/
             font-size: 2rem;
             text-align: center;
-
         }
-        .storyA2{display: flex; border: 1px solid #ffc8c8; align-items: center;justify-content: center;}
-        .storyA2{
+
+        .storyA2 {
+            display: flex;
+            border: 1px solid #ffc8c8;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .storyA2 {
             flex-direction: column;
             height: 150px;
             font-size: 2rem;
             text-align: center;
-            word-break:keep-all;
+            word-break: keep-all;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 
 <body>
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
-</header>
-
-
 
 <div class="container">
     <section class="section">
         <p class="section-tit">TIME CAPSULE</p>
         <form method="post" action="" enctype="multipart/form-data">
-            
             <div class="bigcon" th:each="viewE : ${viewDTOList}">
-
-
                 <div class="smallcon1">
-                    <div class="ohmygod"><p class="date" th:text="${ viewE.getTctitle() }"/></div>
+                    <div class="ohmygod">
+                        <p class="date" th:text="${viewE.getTctitle()}"></p>
+                    </div>
                 </div>
-
                 <div class="smallcon2">
-
-                    <div class="datedate" >
-                       <div class="dateclose"> <label class="lab">봉인일 :  <p class="ddat1" id="ddat1" th:text="${ viewE.getTcsealingdate() }"/> </label></div>
-
-
-                       <div class="dateopen"> <label class="lab">개봉일 :   <p class="ddat2" id="ddat2" th:text="${ viewE.getTcreleasedate() }"/></label></div>
-
+                    <div class="datedate">
+                        <div class="dateclose">
+                            <label class="lab">봉인일 : <p class="ddat1" id="ddat1" th:text="${viewE.getTcsealingdate()}"></p> </label>
+                        </div>
+                        <div class="dateopen">
+                            <label class="lab">개봉일 : <p class="ddat2" id="ddat2" th:text="${viewE.getTcreleasedate()}"></p></label>
+                        </div>
                     </div>
-                    <div class="datedate2">
-                        <p>타임캡슐이 열리기까지 남은시간 <div id="sumddat"></div></p>
+                    <div class="datedate2 hidden">
+                        <p>타임캡슐이 열리기까지 남은시간 <span id="sumddat"></span></p>
                     </div>
-
                     <div class="sbcon1">
                         <ul class="Bcontainer">
-                            <li class="item11 mg-b--20" >
-                                <div class="imgdiv" >
+                            <li class="item11 mg-b--20">
+                                <div class="imgdiv">
                                     <img class="imgfix" th:src="${viewE.getImage()}" />
                                 </div>
                             </li>
                         </ul>
                     </div>
-
                     <div class="storyA">
-                        <p class="date" th:text="${ viewE.getTcdetail() }"/>
+                        <p class="date" th:text="${viewE.getTcdetail()}"></p>
                     </div>
-
-
-
-
-
-
-                    <div class="btn-wrap  mg-b--20 ">
-                        <a onclick="location.href='/timecapsule'" class="btn btn-pink btn-board ">돌아가기</a>
+                    <div class="btn-wrap mg-b--20">
+                        <a onclick="location.href='/timecapsule'" class="btn btn-pink btn-board">돌아가기</a>
                     </div>
                 </div>
             </div>
-
-
         </form>
     </section>
 </div>
 <script>
-    function find_day(){
-        const DDay1 = document.querySelector("#ddat1").textContent;
-        const DDay2 = document.querySelector("#ddat2").textContent;
-
+    function find_day() {
+        const DDay1 = document.querySelector("#ddat2").textContent;
         const targetDate = new Date(DDay1);
-        const currentDate = new Date(DDay2);
+        const currentDate = new Date(); // 현재 시간을 가져옴
 
-        const timeDifference = currentDate.getTime() - targetDate.getTime();
-        const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const timeDifference = targetDate.getTime() - currentDate.getTime();
+        const daysRemaining = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
 
+        const DDayContainer = document.querySelector(".datedate2");
         const DDay = document.querySelector("#sumddat");
-        DDay.innerText = `${daysRemaining} 일`;
+
+        if (timeDifference > 0) {
+            DDayContainer.classList.remove('hidden');
+            DDay.innerText = `${daysRemaining} 일`;
+        } else {
+            DDayContainer.classList.add('hidden');
+        }
     }
 
     find_day();
-    setInterval(find_day, 1000);  // 초마다 디데이 기능 실행
+    setInterval(find_day, 1000);
 </script>
 
-
-
 <div th:replace="~{/html/include/footer :: footer}"></div>
-</footer>
 </body>
 
 </html>

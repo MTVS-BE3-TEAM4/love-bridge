@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="html/include/head :: headerLayout"></th:block>
-
+<head>
+    <title>퀴즈 답변 작성하는 페이지</title>
+    <style>
+        .disabled-form {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
+</head>
 <body>
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 <div class="container">
@@ -9,7 +17,7 @@
         <p class="section-tit">QUIZ</p>
         <div class="quiz-wrap">
             <div class="question">
-                <p class="question-tit"><span class="title-line" th:text="|Q ${quizNum}|"></span><span
+                <p class="question-tit"><span class="title-line" th:text="|Q ${quizId}|"></span><span
                         th:text="${title}"></span></p>
                 <style th:inline="css">
                     .answer-list li::before {
@@ -26,17 +34,33 @@
                     </li>
                 </ul>
             </div>
-            <form th:action="@{/quiz/{quizNum}/{quizId}(quizNum=${quizNum}, quizId=${quizId})}" th:object="${requestDTO}" method="post">
+            <form th:action="@{/quiz/{quizNum}/{quizId}(quizNum=${quizNum}, quizId=${quizId})}"
+                  th:object="${requestDTO}" method="post">
                 <div class="answer-wrap">
-                    <label for="answer">답변등록</label>
-                    <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
+                    <fieldset th:attr="disabled=${isDisabled} ? 'disabled' : null">
+                        <label for="answer">답변등록</label>
+                        <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
+                    </fieldset>
                     <div class="btn-wrap type2 mg-t--20">
-                        <button type="button" class="btn btn-half btn-line">
+                        <button id="goBackButton" type="button" class="btn btn-half btn-line">
                             취소
                         </button>
-                        <button type="submit" class="btn btn-half btn-pink">
-                            등록
-                        </button>
+                        <script>
+                            document.getElementById('goBackButton').addEventListener('click', function() {
+                                const previousURL = document.referrer;
+                                if (previousURL) {
+                                    window.location.href = previousURL;
+                                } else {
+                                    // 이전 페이지 정보가 없는 경우 기본적으로 이동할 URL을 설정
+                                    window.location.href = '/';
+                                }
+                            });
+                        </script>
+                        <fieldset th:attr="disabled=${isDisabled} ? 'disabled' : null">
+                            <button type="submit" class="btn btn-half btn-pink">
+                                등록
+                            </button>
+                        </fieldset>
                     </div>
                 </div>
             </form>

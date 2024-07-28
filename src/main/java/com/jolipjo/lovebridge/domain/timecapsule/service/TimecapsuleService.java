@@ -1,7 +1,5 @@
 package com.jolipjo.lovebridge.domain.timecapsule.service;
 
-import com.jolipjo.lovebridge.domain.member.dto.JoinRequestDTO;
-import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.timecapsule.dao.TimecapsuleMapper;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleListDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleViewDTO;
@@ -23,7 +21,6 @@ public class TimecapsuleService {
     public List<TimecapsuleViewDTO> findAllView() {
 
         return timecapsulMapper.findAllView();
-
     }
 
 
@@ -37,7 +34,6 @@ public class TimecapsuleService {
 
         System.out.println(" 서비스 여기까지들어왔습니다");
         timecapsulMapper.findAllWrite(dto);
-
     }
 
     public List<TimecapsuleWriteDTO> findAllWrite() {
@@ -45,15 +41,9 @@ public class TimecapsuleService {
         return  timecapsulMapper.findAllWrite();
     }
 
-
     public List<TimecapsuleViewDTO> findidView(long id) {
         return timecapsulMapper.findidView(id);
     }
-
-    public void timecapsuleWrite(TimecapsuleWriteDTO timecapsuleWriteDTO) {
-    }
-
-
 
 }
 

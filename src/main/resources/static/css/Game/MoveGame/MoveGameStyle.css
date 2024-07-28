@@ -235,12 +235,13 @@
 /*}*/
 
 #F_character {
-    left: 0;
+    right: initial;
+    display: flex;
 }
 
 #M_character {
-    right: 0;
     left: initial;
+    display: flex;
 }
 
 /*.character {*/

@@ -4,12 +4,9 @@ import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
-import com.jolipjo.lovebridge.domain.paginaition.controller.paginationController;
 import com.jolipjo.lovebridge.domain.paginaition.dto.PaginationDTO;
-import com.jolipjo.lovebridge.domain.paginaition.service.PaginationService;
 import com.jolipjo.lovebridge.domain.quiz.dto.*;
 import com.jolipjo.lovebridge.domain.quiz.service.QuizService;
-import org.springframework.context.MessageSource;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,15 +20,11 @@ import java.util.List;
 public class QuizController {
 
     private final QuizService quizService;
-    private final MessageSource messageSource;
     private final MemberService memberService;
-    private final PaginationService itemService;
 
-    public QuizController(QuizService quizService, MessageSource messageSource, MemberService memberService, PaginationService itemService) {
+    public QuizController(QuizService quizService , MemberService memberService) {
         this.quizService = quizService;
-        this.messageSource = messageSource;
         this.memberService = memberService;
-        this.itemService = itemService;
     }
 
     @GetMapping
@@ -82,10 +75,16 @@ public class QuizController {
                 memberService.getSecretCode(customMemberDetail.getMember().getId()).getCouple_id(),
                 quizNum
         );
+
+        boolean allMatchResult = (!responseDTO.isEmpty()) && responseDTO.stream().anyMatch(
+                a -> a.getMemberId().equals(customMemberDetail.getMember().getId())
+        );
+
         model.addAttribute("responseDTOs", responseDTO);
-        model.addAttribute("quizNum", quizNum);
+        model.addAttribute("quizId", quizId);
         model.addAttribute("title", quizService.getOneQuizTitle(quizId));
         model.addAttribute("requestDTO", quizDetailAnswerRequestDTO);
+        model.addAttribute("isDisabled", allMatchResult);
         return "html/quiz/quiz-view";
     }
 
