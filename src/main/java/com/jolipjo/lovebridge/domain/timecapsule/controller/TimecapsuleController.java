@@ -2,7 +2,6 @@ package com.jolipjo.lovebridge.domain.timecapsule.controller;
 
 import com.jolipjo.lovebridge.common.FileUploader;
 import com.jolipjo.lovebridge.domain.member.dto.CustomMemberDetail;
-import com.jolipjo.lovebridge.domain.member.dto.JoinRequestDTO;
 import com.jolipjo.lovebridge.domain.member.entity.Member;
 import com.jolipjo.lovebridge.domain.member.entity.SecretCode;
 import com.jolipjo.lovebridge.domain.member.service.MemberService;
@@ -10,28 +9,16 @@ import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleListDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleViewDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.dto.TimecapsuleWriteDTO;
 import com.jolipjo.lovebridge.domain.timecapsule.service.TimecapsuleService;
-import org.apache.logging.log4j.LogManager;
-import org.springframework.cglib.core.Local;
-import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.time.LocalDate;
-import java.util.List;
-import java.time.LocalDate;
-
-
 
 
 @Controller

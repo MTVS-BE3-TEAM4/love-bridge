@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jolipjo.lovebridge.domain.data.dao.DataMapper">
+
+
+    <!--    ================= 파라미터 ==================== -->
+    <parameterMap id="Rate" type="com.jolipjo.lovebridge.domain.data.dto.Rate">
+        <parameter property="rate"/>
+    </parameterMap>
+
+
+    <!--    ================= 반환값 ==================== -->
+    <resultMap id="MemberInfoDTO" type="com.jolipjo.lovebridge.domain.admin.dto.MemberInfoDTO">
+        <id column="id" property="id"/>
+        <result column="email" property="email"/>
+        <result column="secret_code" property="secretCode"/>
+        <result column="nickname" property="nickname"/>
+        <result column="role" property="role"/>
+        <result column="birth" property="birth"/>
+        <result column="gender" property="gender"/>
+    </resultMap>
+
+    <!--    전체 회원 검색-->
+    <insert id="insertRate" parameterMap="Rate" useGeneratedKeys="true">
+        INSERT INTO rate
+        (
+            rate
+        )
+        VALUES
+        (
+            #{rate}
+        )
+    </insert>
+
+</mapper>

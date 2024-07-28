@@ -9,22 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/include/header")
 public class HeaderController {
-//    @GetMapping
-//    public Boolean loginStatus() {
-//
-//        boolean status = false;
-//        try {
-//            status = SecurityContextHolder.getContext().getAuthentication().isAuthenticated();
-//
-//
-//        } catch (Exception e) {
-//            System.out.print(e.getMessage());
-//        }
-//
-//        return status;
-//
-//
-//    }
+
     @GetMapping
     public boolean loginStatus(@AuthenticationPrincipal CustomMemberDetail customMemberDetail) {
 

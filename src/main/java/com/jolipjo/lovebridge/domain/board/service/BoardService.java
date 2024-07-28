@@ -1,11 +1,9 @@
 package com.jolipjo.lovebridge.domain.board.service;
 
-import com.jolipjo.lovebridge.domain.album.dto.AlbumDeleteDTO;
 import com.jolipjo.lovebridge.domain.board.dao.BoardMapper;
 import com.jolipjo.lovebridge.domain.board.dto.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 
 import java.util.List;
 
