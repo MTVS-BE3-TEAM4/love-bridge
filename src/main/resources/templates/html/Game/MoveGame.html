@@ -46,7 +46,7 @@
         </div>
 
         <ul class="attendancetransfer">
-            <th:block th:if="${MyGender == 'M'}">
+            <th:block th:if="${MyGender == 'F'}">
             <li id="F_attendance">
                 <button class="attendacetransferButton" id="F_btn">
                     <span class="game-heart-btn" id="F_btnSpan"></span>
@@ -78,7 +78,7 @@
                 <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_M" class="btn-pink btn-board">저장</button>
             </li>
            </th:block>
-            <th:block th:if="${MyGender == 'F'}">
+            <th:block th:if="${MyGender == 'M'}">
             <li id="M_attendance">
                 <button class="attendacetransferButton" id="M_btn">
                     <span class="game-heart-btn" id="M_btnSpan"></span>
