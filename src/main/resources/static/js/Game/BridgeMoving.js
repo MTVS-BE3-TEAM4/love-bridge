@@ -16,17 +16,9 @@ let F_position = 0;
 let M_position = 0;
 
 const WinnerOkDialog = document.getElementById("WinnerOK");
-
-const WANTTEXT_M = document.getElementById("MText");
-const WANTTEXT_F = document.getElementById("FText");
-const WantBtn_M = document.getElementById("WantBtn_M");
-const WantBtn_F = document.getElementById("WantBtn_F");
-const WantEntire_F = document.getElementById("WantInputController_F");
-const WantEntire_M = document.getElementById("WantInputController_M");
-const resultList = document.getElementById("resultList");
 const F_btn = document.getElementById("F_btn");
 const M_btn = document.getElementById("M_btn");
-let mission_test = document.getElementById("mission-test");
+
 const attendanceModal = new bootstrap.Modal(document.getElementById('attendanceModal'), {
     keyboard: false
 });
@@ -46,8 +38,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            // 데이터를 받아와서 화면에 표시하거나 필요한 처리를 수행
             const myAttendCnt = data.myAttendCnt;
             const partnerAttendCnt = data.partnerAttendCnt;
             const myGender = data.MyGender;
@@ -65,13 +55,16 @@ document.addEventListener("DOMContentLoaded", function() {
     if(gameWrap.contains(Mbtn)) {
         M_btn.addEventListener('click', () => {
             if (M_position < 30) {
-                 M_position++;
+
+                M_position++;
+              
                 console.log(M_position);
                 M_character.style.right = (M_position * 1) + "%";
                 if (M_position === 30) {
                     sendPosition(M_position, "M", "Win_M");
                     WinnerOkDialog.textContent = "남자친구분이 이겼어요.";
                     document.getElementById("M_heart").style.display = "flex";
+
                 } else {
                     sendPosition(M_position, "M", "NotWinner");
                 }

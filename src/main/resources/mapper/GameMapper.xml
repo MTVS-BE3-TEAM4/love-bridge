@@ -14,35 +14,29 @@
 
     <select id="findAllByMe" resultMap="MiniGameDto" parameterType="java.lang.Long">
         SELECT
-            id,
-            memberId,
-            attendCnt,
-            date,
-            mission
+        id,
+        memberId,
+        attendCnt,
+        date,
+        mission
         FROM
-            miniGame
+        miniGame
         WHERE
-            memberId = #{id}
+        memberId = #{id}
     </select>
 
     <select id="findAllByPartner" resultMap="MiniGameDto" parameterType="java.lang.Long">
         SELECT
-            id,
-            memberId,
-            attendCnt,
-            date,
-            mission
+        id,
+        memberId,
+        attendCnt,
+        date,
+        mission
         FROM
-            miniGame
+        miniGame
         WHERE
-            memberId = #{secretId}
+        memberId = #{secretId}
     </select>
-    
-<!--    <select id="findAttendCount" resultType="java.lang.Integer" parameterType="String">-->
-<!--        SELECT attendCnt-->
-<!--        FROM miniGame-->
-<!--        WHERE memberId = #{memberId}-->
-<!--    </select>-->
 
     <insert id="insertMission" parameterType="java.util.Map">
         INSERT INTO miniGame
@@ -92,11 +86,6 @@
         WHERE memberId = #{memberId}
     </update>
 
-<!--    <delete id="deleteAttendance" parameterType="java.util.Map">-->
-<!--        DELETE FROM miniGame-->
-<!--        WHERE memberId = #{memberId}-->
-<!--        AND attendCnt = #{attendCnt}-->
-<!--    </delete>-->
     <update id="deleteAttendance" parameterType="java.util.Map">
         UPDATE miniGame
         SET attendCnt = 0
