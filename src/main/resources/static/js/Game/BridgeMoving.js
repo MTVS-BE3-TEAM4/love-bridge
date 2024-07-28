@@ -16,20 +16,16 @@ let F_position = 0;
 let M_position = 0;
 
 const WinnerOkDialog = document.getElementById("WinnerOK");
-
-const WANTTEXT_M = document.getElementById("MText");
-const WANTTEXT_F = document.getElementById("FText");
-const WantBtn_M = document.getElementById("WantBtn_M");
-const WantBtn_F = document.getElementById("WantBtn_F");
-const WantEntire_F = document.getElementById("WantInputController_F");
-const WantEntire_M = document.getElementById("WantInputController_M");
-const resultList = document.getElementById("resultList");
 const F_btn = document.getElementById("F_btn");
 const M_btn = document.getElementById("M_btn");
-let mission_test = document.getElementById("mission-test");
+const attendanceModal = new bootstrap.Modal(document.getElementById('attendanceModal'), {
+    keyboard: false
+});
 
-
-
+const gameWrap = document.querySelector('.GameWrap');
+const Mbtn = document.querySelector('#M_btn');
+const Fbtn = document.querySelector('#F_btn');
+const modalConfirmBtn = document.querySelector('#attendanceModal #confirmButton');
 // 여자
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -41,95 +37,76 @@ document.addEventListener("DOMContentLoaded", function() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            // 데이터를 받아와서 화면에 표시하거나 필요한 처리를 수행
             const myAttendCnt = data.myAttendCnt;
             const partnerAttendCnt = data.partnerAttendCnt;
-            const myGender = data.MyGender;
-            const partnerGender = data.partnerGender;
-            F_character.style.right = F_position = myAttendCnt + "%";
-            M_character.style.left = M_position = partnerAttendCnt + "%";
+            alert("myAttendCnt :: " + myAttendCnt);
+            console.log("F_character.style.right :: " + F_character.style.right);
+            let myPositionF = (F_position = myAttendCnt);
+            let myPositionM = (M_position = partnerAttendCnt);
+            M_character.style.left = myPositionF = myAttendCnt + '%';
+            F_character.style.right =  myPositionM = partnerAttendCnt + '%';
+            console.log("F_character.style.right :: " + F_character.style.right);
         })
         .catch(error => {
             console.error('Error:', error);
         });
-});
 
-    document.getElementById("F_btn").addEventListener("click", function() {
-        if (F_position < 30) {
-            F_position++;
-            F_character.style.right = (F_position * 1) + "%"; // 변수 사용
-            console.log("F_character.style.left 후 :: " + F_character.style.right);
-            if (F_position === 30) {
-                sendPosition(F_position, "F", "Win_F");
-                document.getElementById("F_heart").style.display = "flex";
-                WinnerOkDialog.textContent = " 여자친구분이 이겼어요.";
-            } else {
-                sendPosition(F_position, "F", "NotWinner");
+
+    if(gameWrap.contains(Mbtn)) {
+        M_btn.addEventListener('click', () => {
+            if (M_position < 30) {
+                M_position++;
+                console.log(M_position);
+                M_character.style.right = (M_position * 1) + "%";
+                if (M_position === 30) {
+                    sendPosition(M_position, "M", "Win_M");
+                    WinnerOkDialog.textContent = "남자친구분이 이겼어요.";
+                    document.getElementById("M_heart").style.display = "flex";
+                    window.location.reload();
+                } else {
+                    sendPosition(M_position, "M", "NotWinner");
+                }
             }
-        }
-    });
 
+            attendanceModal.show();
+        })
+    } else if(gameWrap.contains(Fbtn)) {
+        F_btn.addEventListener('click', () => {
+            if (F_position < 30) {
+                F_position++;
+                F_character.style.left = (F_position * 1) + "%"; // 변수 사용
+                console.log("F_character.style.left 후 :: " + F_character.style.right);
+                if (F_position === 30) {
+                    sendPosition(F_position, "F", "Win_F");
+                    document.getElementById("F_heart").style.display = "flex";
+                    WinnerOkDialog.textContent = " 여자친구분이 이겼어요.";
+                } else {
+                    sendPosition(F_position, "F", "NotWinner");
+                }
+            }
 
-
-// 남자
-document.getElementById("M_btn").addEventListener("click", function() {
-
-    if (M_position < 30) {
-        M_position++;
-        M_character.style.left = (M_position * 1) + "%";
-        if (M_position === 30) {
-            sendPosition(M_position, "M", "Win_M");
-            WinnerOkDialog.textContent = "남자친구분이 이겼어요.";
-            document.getElementById("M_heart").style.display = "flex";
-        } else {
-            sendPosition(M_position, "M", "NotWinner");
-        }
+            attendanceModal.show();
+        });
     }
 });
 
-document.getElementById("M_btn").addEventListener("click",
-    () => {
-        const myModal = new bootstrap.Modal(document.getElementById('attendanceModal'), {
-            keyboard: false
-        });
-        myModal.show();
-    });
+modalConfirmBtn.addEventListener('click', () => {
+    attendanceModal.hide();
+})
 
-document.addEventListener('DOMContentLoaded', function() {
-    const attendanceModal = new bootstrap.Modal(document.getElementById('attendanceModal'), {
-        keyboard: false
-    });
-
-    document.getElementById("F_btn").addEventListener("click", () => {
-        attendanceModal.show();
-    });
-
-    document.getElementById("M_btn").addEventListener("click", () => {
-        attendanceModal.show();
-    });
-
-    document.getElementById('confirmButton').addEventListener('click', () => {
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
         attendanceModal.hide();
         removeModalBackdrop();
-    });
-
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Enter") {
-            attendanceModal.hide();
-            removeModalBackdrop();
-        }
-    });
-
-    function removeModalBackdrop() {
-        const backdrops = document.getElementsByClassName('modal-backdrop');
-        while (backdrops.length > 0) {
-            backdrops[0].parentNode.removeChild(backdrops[0]);
-        }
     }
 });
 
-
+function removeModalBackdrop() {
+    const backdrops = document.getElementsByClassName('modal-backdrop');
+    while (backdrops.length > 0) {
+        backdrops[0].parentNode.removeChild(backdrops[0]);
+    }
+}
 
 const DescriptionModal = new bootstrap.Modal(document.getElementById("DescriptionModal"),{
     keyboard:false
@@ -166,20 +143,20 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    WantBtn_M.addEventListener("click", () => {
-        if (WANTTEXT_M.value !== "") {
-            WantEntire_M.classList.add("hidden");
-            sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
-        }
-    });
+    // WantBtn_M.addEventListener("click", () => {
+    //     if (WANTTEXT_M.value !== "") {
+    //         WantEntire_M.classList.add("hidden");
+    //         sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
+    //     }
+    // });
 
-    WantBtn_F.addEventListener("click", () => {
-        if (WANTTEXT_F.value !== "") {
-            WantEntire_F.classList.add("hidden");
-            sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
-        }
-
-    });
+    // WantBtn_F.addEventListener("click", () => {
+    //     if (WANTTEXT_F.value !== "") {
+    //         WantEntire_F.classList.add("hidden");
+    //         sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
+    //     }
+    //
+    // });
 
 });
 

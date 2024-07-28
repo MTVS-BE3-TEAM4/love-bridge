@@ -1,3 +1,16 @@
+@media (orientation: portrait) {
+    body {
+        transform: rotate(90deg);
+        transform-origin: left top;
+        width: 100vh;
+        height: 100vw;
+        overflow-x: hidden;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}
+
 .GameWrap {
     background: #ffefef;
     display: flex;
@@ -204,7 +217,13 @@
     margin-top: 130px;
 }
 
-.character{
+.F_characterCSS{
+    position: absolute;
+    top: -130px;
+    left: 0;
+}
+
+.M_characterCSS{
     position: absolute;
     top: -130px;
     left: 0;
