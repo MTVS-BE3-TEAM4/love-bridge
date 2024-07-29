@@ -65,7 +65,7 @@
                     <p>서로의 소원</p>
                 </li>
                 <li>
-                    <h1 id="mission-test" class="mission" th:text="${mission}"></h1>
+                    <h1 id="myMission" class="mission" th:text="${mission}"></h1>
                 </li>
                 <li>
                     <h1 class="mission" th:text="${partnerMission}"></h1>
@@ -92,7 +92,7 @@
 
     <!-- UI -->
     <div class="GameUI">
-        <div id="isDay" class="Dday" th:text="${MyGender}"></div>
+        <div id="isDay" class="Time"></div>
         <div class="Names"><button type="button" id="DescriptionButton">도움말</button></div>
         <div class="FName">
             <p th:text="${gameDTO.myName} + ' 님'"></p>

@@ -148,28 +148,37 @@ public class GameController {
         return result;
     }
 
-
-
-    @PostMapping("/Wish")
     @ResponseBody
-    public Map<String, Object> WishPage(Model model,
-                                        @RequestParam(value = "fwish") String FWish,
-                                        @RequestParam(value = "mwish") String MWish,
-                                        @AuthenticationPrincipal CustomMemberDetail memberDetail) {
-        GameDTO gameDTO = new GameDTO();
-        model.addAttribute("MWish", MWish);
-        model.addAttribute("FWish", FWish);
-        //gameService.missionInsert(FWish, memberDetail.getMember().getId());
-        gameService.missionUpdate(FWish, memberDetail.getMember().getId());
-        gameDTO.setMyName("member");
-        gameDTO.setPartnerName("member1");
-        gameDTO.setMission(FWish);
-        model.addAttribute("gameDTO", gameDTO);
-        Map<String, Object> result = new HashMap<>();
-        result.put("mission", gameDTO.getMission());
-        return result;
-
+    @PostMapping("/Wish")
+    public String WishPage(Model model,
+                           @RequestParam(value = "mission") String mission,
+                           @AuthenticationPrincipal CustomMemberDetail memberDetail) {
+        System.out.println("mission :: " + mission );
+        gameService.missionUpdate(mission, memberDetail.getMember().getId());
+        return mission;
     }
+
+
+//    @PostMapping("/Wish")
+//    @ResponseBody
+//    public Map<String, Object> WishPage(Model model,
+//                                        @RequestParam(value = "fwish") String FWish,
+//                                        @RequestParam(value = "mwish") String MWish,
+//                                        @AuthenticationPrincipal CustomMemberDetail memberDetail) {
+//        GameDTO gameDTO = new GameDTO();
+//        model.addAttribute("MWish", MWish);
+//        model.addAttribute("FWish", FWish);
+//        //gameService.missionInsert(FWish, memberDetail.getMember().getId());
+//        gameService.missionUpdate(FWish, memberDetail.getMember().getId());
+//        gameDTO.setMyName("member");
+//        gameDTO.setPartnerName("member1");
+//        gameDTO.setMission(FWish);
+//        model.addAttribute("gameDTO", gameDTO);
+//        Map<String, Object> result = new HashMap<>();
+//        result.put("mission", gameDTO.getMission());
+//        return result;
+//
+//    }
 
 
     // 받는다.
