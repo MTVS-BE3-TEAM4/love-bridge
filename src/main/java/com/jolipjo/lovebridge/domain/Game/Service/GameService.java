@@ -33,7 +33,7 @@ public class GameService {
 
 
 
-    public void missionInsert(String mission, Long memberId){
+    public void insertMission(String mission, Long memberId){
         Map<String,Object> params = new HashMap<>();
         params.put("mission",mission);
         params.put("memberId",memberId);
