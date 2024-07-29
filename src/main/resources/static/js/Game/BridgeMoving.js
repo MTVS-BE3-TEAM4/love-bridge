@@ -49,8 +49,6 @@ document.addEventListener("DOMContentLoaded", function() {
         .then(data => {
             const myAttendCnt = data.myAttendCnt;
             const partnerAttendCnt = data.partnerAttendCnt;
-            const myGender = data.MyGender;
-            const partnerGender = data.partnerGender;
             let myPositionF = (F_position = myAttendCnt);
             let myPositionM = (M_position = partnerAttendCnt);
             F_character.style.left = myPositionF = myAttendCnt + '%';
@@ -140,35 +138,35 @@ document.addEventListener("keydown", (event) => {
     }
 });
 
-// function updateTime() {
-//     const now = new Date();
-//     const hours = String(now.getHours()).padStart(2, '0');
-//     const minutes = String(now.getMinutes()).padStart(2, '0');
-//     const seconds = String(now.getSeconds()).padStart(2, '0');
-//     const currentTime = `${hours}:${minutes}:${seconds}`;
-//
-//     document.querySelector('.Time').textContent = currentTime;
-// }
-// setInterval(updateTime, 1000);
-// updateTime();
+function updateTime() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const currentTime = `${hours}:${minutes}:${seconds}`;
+
+    document.querySelector('.Time').textContent = currentTime;
+}
+setInterval(updateTime, 1000);
+updateTime();
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    partnerWishBtn.addEventListener("click", () => {
-        if (partnerWishText.value !== "") {
-            partnerWishController.classList.add("hidden");
-            sendWish(partnerWishText.value,myWishText.value);
-        }
-    });
 
     myWishBtn.addEventListener("click", () => {
         if (myWishText.value !== "") {
             myWishController.classList.add("hidden");
-            sendWish(myWishText.value,partnerWishText.value);
+            // sendWish(myWishText.value,partnerWishText.value);
+            sendWish(myWishText.value);
         }
 
     });
 
+    // partnerWishBtn.addEventListener("click", () => {
+    //     if (partnerWishText.value !== "") {
+    //         partnerWishController.classList.add("hidden");
+    //         sendWish(partnerWishText.value,myWishText.value);
+    //     }
+    // });
 });
 
 const sendPosition = (position, gender, winner) => {
@@ -192,22 +190,22 @@ const sendPosition = (position, gender, winner) => {
         });
 };
 
-const sendWish = (fwish, mwish) => {
-    console.log("fwish ::" + fwish)
-    console.log("mwish ::" + mwish)
+const sendWish = (mission) => {
+    alert("새로고침후 소원 반영 됩니다.");
     fetch('/Game/Wish', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: new URLSearchParams({
-            'fwish': fwish,
-            'mwish': mwish
+            'mission': mission,
         }).toString()
     })
-        .then(response => response.json())
-        .then(data => {
-            document.getElementById("mission-test").innerText = data.mission;
+        .then(response => {
+            response.text();
+            document.getElementById("myMission").innerText = data.mission;
+            console.log("mission :: " + response);
+            console.log("mission :: " + response.text());
         })
         .catch(error => {
             console.error('Error:', error);

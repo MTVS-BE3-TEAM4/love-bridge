@@ -88,9 +88,11 @@
 
     <update id="deleteAttendance" parameterType="java.util.Map">
         UPDATE miniGame
-        SET attendCnt = 0
+        SET attendCnt = 0, mission = ''
         WHERE memberId = #{memberId}
         AND attendCnt = 30
     </update>
+
+
 
 </mapper>
