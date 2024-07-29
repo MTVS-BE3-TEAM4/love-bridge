@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,7 +31,8 @@ public class GameController {
 
     // 보낸다.
     @GetMapping("/MoveGame")
-    public String MoveGamePage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail, Model model) {
+    public String MoveGamePage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail, Model model,
+                               RedirectAttributes redirectAttributes) {
         GameDTO gameDTO = new GameDTO();
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
@@ -38,7 +40,10 @@ public class GameController {
         Long partnerId;
 
         Boolean isMale=false;
-
+        if (secretCode == null || secretCode.getF_member_id() == null || secretCode.getM_member_id() == null) {
+            redirectAttributes.addFlashAttribute("message", "커플이 아닙니다. MINI GAME 을 볼 수 없습니다.");
+            return "redirect:/";
+        }
         Long MyMemberId = secretCode.getF_member_id();
         Long PartnerId = secretCode.getM_member_id();
         Member partner = memberService.getMemberById(PartnerId);
