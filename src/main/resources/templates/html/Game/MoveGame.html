@@ -10,7 +10,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/Game/MoveGame/MoveGameStyle.css">
 </head>
-<body>
+<body class="game">
 <header th:include="~{/html/include/header :: header}" class="header includeJs"></header>
 <!-- 게임 디스플레이 -->
 <div class="GameWrap">
@@ -62,7 +62,7 @@
             </th:block>
             <ul id="resultList" class="result-list">
                 <li class="title">
-                    <h1 style="font-size: 20px;">서로의 소원</h1>
+                    <p>서로의 소원</p>
                 </li>
                 <li>
                     <h1 id="mission-test" class="mission" th:text="${mission}"></h1>
@@ -126,17 +126,12 @@
 
 
 <!-- 도움말 -->
-<div class="modal fade custom-modal" id="DescriptionModal" tabindex="-1" aria-labelledby="attendanceModalLabel" aria-hidden="true">
+<div class="modal fade custom-modal" id="DescriptionModal" tabindex="-1" aria-labelledby="DescriptionModal" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div>
-                <h5 id="DescriptionTitle">&nbsp;</h5>
-            </div>
             <div class="modal-body">
-                <h3 style="text-align: center">설명</h3>
-            </div>
-            <div class="modal-body" style="text-align: center">
-                <p style="font-size: 16px;">
+                <h3>설명</h3>
+                <p>
                     게임방법은 다음과 같습니다.<br>
                     본 미니게임은 커플분이 서로 경쟁하여 먼저<br>
                     도착한분의 소원을 들어주는 게임입니다.<br>
@@ -144,12 +139,9 @@
                     플레이를 하기전에 서로의 소원을 먼저 정해주시기 바랍니다.<br>
                     **소원을 먼저 입력을 끝내셔야만 출석을 할 수 있습니다.**
                 </p>
+                <a type="button" class="btn-pink btn-board" data-bs-dismiss="modal" id="DescriptionCloseButton">확인</a>
             </div>
 
-            <div style="align-self: center">
-                <a type="button" class="btn-pink btn-board" data-bs-dismiss="modal" id="DescriptionCloseButton"
-                   style="text-align: center; border-radius: 15px; font-size: 20px; margin-bottom: 10px; text-decoration: none; color: inherit;">확인</a>
-            </div>
         </div>
     </div>
 </div>
