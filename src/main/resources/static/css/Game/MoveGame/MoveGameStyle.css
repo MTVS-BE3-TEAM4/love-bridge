@@ -465,7 +465,7 @@ button:disabled {
         font-size: 12px;
         margin-top: 0;
     }
-    .character{
+    .F_characterCSS,.M_characterCSS{
         top: -90%;
     }
     .GameWrap{
@@ -510,6 +510,12 @@ button:disabled {
         display: none;
     }
     .modal-open .modal{
-        display: flex !important;
+        padding: 0 10px;
+    }
+    .modal.show .modal-dialog{
+        margin: 0;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
     }
 }
