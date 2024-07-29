@@ -42,20 +42,20 @@
                         <textarea id="answer" name="quizAnswer" th:field="*{quizAnswer}"></textarea>
                     </fieldset>
                     <div class="btn-wrap type2 mg-t--20">
-                        <button id="goBackButton" type="button" class="btn btn-half btn-line">
+                        <button id="goBackButton" onclick="location.href='/quiz'" type="button" class="btn btn-half btn-line">
                             취소
                         </button>
-                        <script>
-                            document.getElementById('goBackButton').addEventListener('click', function() {
-                                const previousURL = document.referrer;
-                                if (previousURL) {
-                                    window.location.href = previousURL;
-                                } else {
-                                    // 이전 페이지 정보가 없는 경우 기본적으로 이동할 URL을 설정
-                                    window.location.href = '/';
-                                }
-                            });
-                        </script>
+<!--                        <script>-->
+<!--                            document.getElementById('goBackButton').addEventListener('click', function() {-->
+<!--                                const previousURL = document.referrer;-->
+<!--                                if (previousURL) {-->
+<!--                                    window.location.href = previousURL;-->
+<!--                                } else {-->
+<!--                                    // 이전 페이지 정보가 없는 경우 기본적으로 이동할 URL을 설정-->
+<!--                                    window.location.href = '/';-->
+<!--                                }-->
+<!--                            });-->
+<!--                        </script>-->
                         <fieldset th:attr="disabled=${isDisabled} ? 'disabled' : null">
                             <button type="submit" class="btn btn-half btn-pink">
                                 등록
