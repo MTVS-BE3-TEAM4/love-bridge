@@ -11,6 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,32 +31,40 @@ public class GameController {
 
     // 보낸다.
     @GetMapping("/MoveGame")
-    public String MoveGamePage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail, Model model) {
+    public String MoveGamePage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail, Model model,
+                               RedirectAttributes redirectAttributes) {
         GameDTO gameDTO = new GameDTO();
-        Member member = customMemberDetail.getMember();
-        SecretCode secretCode = memberService.getSecretCode(member.getId());
-        Member my = member;
-        Long partnerId;
+        Member myMember = customMemberDetail.getMember();
+        SecretCode secretCode = memberService.getSecretCode(myMember.getId());
+        Long partnerId = 0L;
 
         Boolean isMale=false;
+        if (secretCode == null || secretCode.getF_member_id() == null || secretCode.getM_member_id() == null) {
+            redirectAttributes.addFlashAttribute("message", "커플이 아닙니다. MINI GAME 을 볼 수 없습니다.");
+            return "redirect:/";
+        }
 
-        Long MyMemberId = secretCode.getF_member_id();
-        Long PartnerId = secretCode.getM_member_id();
-        Member partner = memberService.getMemberById(PartnerId);
+        if (myMember.getGender().equals("F")) {
+            partnerId = memberService.getMemberById(secretCode.getM_member_id()).getId();
+        } else {
+            partnerId = memberService.getMemberById(secretCode.getF_member_id()).getId();
+        }
+        Member partner = memberService.getMemberById(partnerId);
 
-        MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(my.getId());
-        MiniGameDto miniGameDtoPartner = gameService.getMiniGameDtoPartner(partner.getId());
-
-        // 내가 남자인지 여자인지 게이인지 레즈인지
-        if(member.getId() == secretCode.getF_member_id() ){
-            partnerId = secretCode.getM_member_id();
-        } else{
-            partnerId = secretCode.getF_member_id();
-            isMale=true;
+        // miniGame db 에 데이터 있는지 확인하고 없으면 insert
+        MiniGameDto miniGameDtoMy = gameService.getMiniGameDtoMe(myMember.getId());
+        MiniGameDto miniGameDtoPartner = gameService.getMiniGameDtoPartner(partnerId);
+        if (miniGameDtoMy == null) {
+            gameService.insertMission("", myMember.getId());
+            miniGameDtoMy = gameService.getMiniGameDtoMe(myMember.getId());
+        }
+        if (miniGameDtoPartner == null) {
+            gameService.insertMission("", partnerId);
+            miniGameDtoPartner = gameService.getMiniGameDtoPartner(partnerId);
         }
 
         //남 여 판별
-        if (isMale){
+        if (myMember.getGender().equals("M")){
             miniGameDtoMy.setGender("M");
             miniGameDtoPartner.setGender("F");
         }else {
@@ -79,7 +88,7 @@ public class GameController {
         gameDTO.setAttendCnt(miniGameDtoPartner.getAttendCnt());
         gameDTO.setMission(miniGameDtoMy.getMission());
         gameDTO.setMission(miniGameDtoPartner.getMission());
-        gameDTO.setMyName(member.getNickname());
+        gameDTO.setMyName(myMember.getNickname());
         gameDTO.setPartnerName(partner.getNickname());
         model.addAttribute("gameDTO", gameDTO);
         model.addAttribute("attendCnt", gameDTO.getAttendCnt());

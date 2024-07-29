@@ -36,7 +36,7 @@ public class QuizController {
 
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
-        if (secretCode == null) {
+        if (secretCode == null || secretCode.getF_member_id() == null || secretCode.getM_member_id() == null) {
             redirectAttributes.addFlashAttribute("message", "커플이 아닙니다. Quiz 리스트를 볼 수 없습니다.");
             return "redirect:/";
         }
