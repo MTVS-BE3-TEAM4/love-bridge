@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -36,11 +37,17 @@ public class AlbumController {
     public String albumListPage(@AuthenticationPrincipal CustomMemberDetail customMemberDetail,
                                 @RequestParam(defaultValue = "1", name = "page") int page,
                                 @RequestParam(defaultValue = "8", name = "size") int size,
+                                RedirectAttributes redirectAttributes,
                                 Model model) {
 
 
         Member member = customMemberDetail.getMember();
         SecretCode secretCode = memberService.getSecretCode(member.getId());
+
+        if (secretCode == null || secretCode.getM_member_id() == null || secretCode.getF_member_id() == null) {
+            redirectAttributes.addFlashAttribute("message", "커플이 아닙니다. album 리스트를 볼 수 없습니다.");
+            return "redirect:/";
+        }
 
         Long m = secretCode.getF_member_id();
         Long f = secretCode.getM_member_id();
