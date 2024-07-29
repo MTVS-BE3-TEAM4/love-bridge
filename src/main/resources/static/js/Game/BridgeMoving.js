@@ -27,6 +27,15 @@ const gameWrap = document.querySelector('.GameWrap');
 const Mbtn = document.querySelector('#M_btn');
 const Fbtn = document.querySelector('#F_btn');
 const modalConfirmBtn = document.querySelector('#attendanceModal #confirmButton');
+
+const myWishBtn = document.getElementById("WantBtn_F");
+const partnerWishBtn = document.getElementById("WantBtn_M");
+
+const myWishText = document.getElementById("FText");
+const partnerWishText = document.getElementById("MText");
+
+const myWishController = document.getElementById("WantInputController_F");
+const partnerWishController = document.getElementById("WantInputController_M");
 // 여자
 document.addEventListener("DOMContentLoaded", function() {
 
@@ -145,20 +154,20 @@ document.addEventListener("keydown", (event) => {
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    // WantBtn_M.addEventListener("click", () => {
-    //     if (WANTTEXT_M.value !== "") {
-    //         WantEntire_M.classList.add("hidden");
-    //         sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
-    //     }
-    // });
+    partnerWishBtn.addEventListener("click", () => {
+        if (partnerWishText.value !== "") {
+            partnerWishController.classList.add("hidden");
+            sendWish(partnerWishText.value,myWishText.value);
+        }
+    });
 
-    // WantBtn_F.addEventListener("click", () => {
-    //     if (WANTTEXT_F.value !== "") {
-    //         WantEntire_F.classList.add("hidden");
-    //         sendWish(WANTTEXT_F.value,WANTTEXT_M.value);
-    //     }
-    //
-    // });
+    myWishBtn.addEventListener("click", () => {
+        if (myWishText.value !== "") {
+            myWishController.classList.add("hidden");
+            sendWish(myWishText.value,partnerWishText.value);
+        }
+
+    });
 
 });
 
