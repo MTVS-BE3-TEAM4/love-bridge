@@ -56,7 +56,7 @@
             </th:block>
             <th:block th:if="${mission == ''}">
             <li id="WantInputController_F" class="WantWhichInput">
-                <input placeholder="공주님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="FText" >
+                <input placeholder="소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="FText" >
                 <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_F" class="btn-pink btn-board">저장</button>
             </li>
             </th:block>
@@ -72,20 +72,20 @@
                 </li>
             </ul>
 
-            <th:block th:if="${partnerMission == ''}">
-            <li id="WantInputController_M" class="WantWhichInput">
-                <input placeholder="왕자님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="MText">
-                <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_M" class="btn-pink btn-board">저장</button>
-            </li>
-           </th:block>
-            <th:block th:if="${MyGender == 'M'}">
-            <li id="M_attendance">
-                <button class="attendacetransferButton" id="M_btn">
-                    <span class="game-heart-btn" id="M_btnSpan"></span>
-                </button>
-                <p>출석하기</p>
-            </li>
-            </th:block>
+<!--            <th:block th:if="${partnerMission == ''}">-->
+<!--            <li id="WantInputController_M" class="WantWhichInput">-->
+<!--                <input placeholder="왕자님의 소원을 적어주세요" style="width: 200px; height: 60px; font-size: 20px; text-align: center;" id="MText">-->
+<!--                <button style="width: 70px; height: 60px; font-size: 20px" id="WantBtn_M" class="btn-pink btn-board">저장</button>-->
+<!--            </li>-->
+<!--           </th:block>-->
+<!--            <th:block th:if="${MyGender == 'M'}">-->
+<!--            <li id="M_attendance">-->
+<!--                <button class="attendacetransferButton" id="M_btn">-->
+<!--                    <span class="game-heart-btn" id="M_btnSpan"></span>-->
+<!--                </button>-->
+<!--                <p>출석하기</p>-->
+<!--            </li>-->
+<!--            </th:block>-->
         </ul>
     </div>
 
